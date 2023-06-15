@@ -1,4 +1,4 @@
-import { artNumTypes } from "../types/artNumTypes"
+import { artNumTypes } from '../types/artNumTypes'
 
 const initialState = {
   artNum: null,
