@@ -1,7 +1,10 @@
-import styles from "./productCard.module.scss";
+import styles from './productCard.module.scss';
 
 function ProductCard(props) {
-  const { url, userIcon, creator, verifiedIcon, currentBid, price } = props;
+  const {
+    // eslint-disable-next-line react/prop-types
+    url, userIcon, creator, verifiedIcon, currentBid, price,
+  } = props;
 
   return (
     <div className={styles.productCard}>
@@ -13,7 +16,10 @@ function ProductCard(props) {
             src={userIcon}
             alt="user-avatar"
           />
-          <p className={styles.productCard__userInfo_creator}>@{creator}</p>
+          <p className={styles.productCard__userInfo_creator}>
+            @
+            {creator}
+          </p>
         </div>
 
         <img
@@ -25,7 +31,11 @@ function ProductCard(props) {
       <div className={styles.productCard__priceInfo}>
         <div className={styles.productCard__priceInfo_currentBid}>
           <p>Current bid</p>
-          <span>{currentBid} ETH</span>
+          <span>
+            {currentBid}
+            {' '}
+            ETH
+          </span>
         </div>
         <div className={styles.productCard__priceInfo_buyNow}>
           <p>Buy now</p>
