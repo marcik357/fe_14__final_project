@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.productCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  padding-bottom: 48px;
+  width: auto;
+  &__img {
+    max-width: 327px;
+    max-height: 327px;
+    margin-bottom: 24px;
+  }
+  &__userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 100%;
+    margin-bottom: 33px;
+    position: relative;
+    &::after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      top: 60px;
+      background-color: #e1e2e2;
+    }
+    &_items {
+      display: flex;
+      align-items: center;
+    }
+    &_userIcon {
+      max-width: 40px;
+      max-height: 40px;
+      margin-right: 12px;
+    }
+    &_creator {
+      font-size: 20px;
+    }
+    &_verifiedIcon {
+      max-width: 24px;
+      max-height: 24px;
+    }
+  }
+  &__priceInfo {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    position: relative;
+    &::after {
+      content: "";
+      width: 1px;
+      height: 24px;
+      background-color: #d9d9d9;
+      position: absolute;
+      left: 163px;
+      top: 10px;
+    }
+    & p {
+      font-size: 14px;
+      color: #686a6c;
+      line-height: 20px;
+    }
+    & span {
+      color: #202025;
+      font-size: 20px;
+      line-height: 32px;
+    }
+    &_currentBid {
+      position: relative;
+      & p {
+        margin-left: 15px;
+        &::before {
+          content: "";
+          position: absolute;
+          border-radius: 50%;
+          top: 6px;
+          left: 3px;
+          width: 8px;
+          height: 8px;
+          background-color: #fd5d47;
+        }
+      }
+    }
+    &_buyNow {
+      & p {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

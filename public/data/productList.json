@@ -1,0 +1,125 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card1.png",
+            "currentBid": "0.4675",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 2,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card2.png",
+            "currentBid": "0.3522",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 3,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card3.png",
+            "currentBid": "0.3755",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 4,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card4.png",
+            "currentBid": "0.1256",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 5,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card5.png",
+            "currentBid": "0.2352",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 6,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card6.png",
+            "currentBid": "0.3564",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 7,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card7.png",
+            "currentBid": "0.4611",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 8,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card8.png",
+            "currentBid": "0.4643",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 9,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card9.png",
+            "currentBid": "0.6433",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 10,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card10.png",
+            "currentBid": "0.9654",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 11,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card11.png",
+            "currentBid": "0.6846",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 12,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card12.png",
+            "currentBid": "0.2464",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        }
+    ]
+           
+}
