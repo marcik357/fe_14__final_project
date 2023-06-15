@@ -9,6 +9,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "linebreak-style": ["error", "windows"],
         "no-trailing-spaces": ["error", { "skipBlankLines": true } ],
         "no-return-assign": 0,
         "eol-last": 0,

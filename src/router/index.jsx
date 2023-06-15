@@ -1,5 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
-import { MainLayout, Home, Cart, Categories, Product, NotFound } from '../pages';
+import {
+  Route, Routes,
+} from 'react-router-dom';
+import {
+  MainLayout, Home, Cart, Categories, Product, NotFound,
+} from '../pages';
 
 export default function Router() {
   return (
