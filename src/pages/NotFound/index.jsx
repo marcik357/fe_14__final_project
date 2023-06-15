@@ -1,11 +1,7 @@
-// import style from './notFound.module.scss'
-
 export function NotFound() {
-
-    return (
-        <>
-            {/* <div className={style.notFound}>
-            </div> */}
-        </>
-    )
+  return (
+    <div>
+      404 page
+    </div>
+  );
 }
