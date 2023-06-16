@@ -1,7 +1,9 @@
+import Blog from '../../components/Blog';
+
 export function Home() {
   return (
     <div>
-      Home
+      <Blog />
     </div>
   );
 }
