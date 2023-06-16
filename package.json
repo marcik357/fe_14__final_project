@@ -17,6 +17,7 @@
     "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
+    "sass": "^1.63.4",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-order": "^0.7.0",
@@ -51,13 +52,13 @@
       "last 1 safari version"
     ]
   },
-    "watch": {
-      "stylelint-dev": {
-        "patterns": [
-          "/src/**/*.scss"
-        ],
-        "extensions": "scss"
-      }
+  "watch": {
+    "stylelint-dev": {
+      "patterns": [
+        "/src/**/*.scss"
+      ],
+      "extensions": "scss"
+    }
   },
   "devDependencies": {
     "eslint": "^8.42.0",
