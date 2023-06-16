@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import styles from './productCard.module.scss';
 
 function ProductCard(props) {
   const {
-    // eslint-disable-next-line react/prop-types
     url, userIcon, creator, verifiedIcon, currentBid, price,
   } = props;
 
@@ -33,7 +33,6 @@ function ProductCard(props) {
           <p>Current bid</p>
           <span>
             {currentBid}
-            {' '}
             ETH
           </span>
         </div>

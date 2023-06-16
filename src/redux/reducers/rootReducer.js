@@ -1,5 +1,9 @@
-import { artNumReducer as artNum } from './artNumReducer'
+// Core
+import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({
-  artNum,
-})
+// Reducers
+
+import { artNumReducer as artNum } from './artNumReducer';
+import { dataReducer as data } from './getDataReducer';
+
+export const rootReducer = combineReducers({ data, artNum });
