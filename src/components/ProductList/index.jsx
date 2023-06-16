@@ -15,13 +15,15 @@ function ProductList(props) {
   }, [getDataAsync]);
 
   return products ? (
-    <div className={styles.home}>
-      <div className={styles.home__title}>
+    <div className={styles.products}>
+      <div className={styles.products__title}>
         <h2>NFTs</h2>
       </div>
-      {products.map((product) => (
-        <ProductCard {...product} key={product.id} />
-      ))}
+      <div className={styles.products__wrapper}>
+        {products.map((product) => (
+          <ProductCard {...product} key={product.id} />
+        ))}
+      </div>
     </div>
   ) : (
     <p>Loading...</p>
