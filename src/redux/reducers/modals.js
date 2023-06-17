@@ -2,8 +2,8 @@ import { modalTypes } from '../types/modalTypes';
 
 const initialState = {
   isModalOpened: false,
-  modalData: {}
-}
+  modalData: {},
+};
 
 export function modalsReducer(state = initialState, action) {
   switch (action.type) {
@@ -11,14 +11,14 @@ export function modalsReducer(state = initialState, action) {
       return {
         ...state,
         isModalOpened: true,
-        modalData: action.payload.modalData
-      }
+        modalData: action.payload.modalData,
+      };
     case modalTypes.CLOSE_MODAL:
       return {
         ...state,
         isModalOpened: false,
-        modalData: {}
-      }
+        modalData: {},
+      };
     default:
       return state;
   }
