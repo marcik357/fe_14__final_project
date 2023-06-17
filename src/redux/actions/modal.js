@@ -5,7 +5,7 @@ export function openModal(modalData) {
     type: modalTypes.OPEN_MODAL,
     payload: {
       modalData
-    }
+    },
   }
 }
 
