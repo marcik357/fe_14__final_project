@@ -9,6 +9,9 @@
         "sourceType": "module"
     },
     "rules": {
+        "react/jsx-boolean-value": "off",
+        "import/no-unresolved": "off",
+        "linebreak-style": ["error", "windows"],
         "no-trailing-spaces": ["error", { "skipBlankLines": true } ],
         "no-return-assign": 0,
         "eol-last": 0,
