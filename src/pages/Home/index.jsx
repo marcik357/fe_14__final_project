@@ -1,25 +1,20 @@
-import { useState, useEffect } from 'react';
-import SliderSwiper from '../../components/SliderReact';
-// import Slider from '../../components/Slider';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import SliderPromo from '../../components/SliderPromo';
+import { getData } from '../../redux/actions/getDataActions';
 
 export function Home() {
-  // const [products, setProducts] = useState([]);
-  const [promoProducts, setPromoProducts] = useState([]);
-
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    fetch('./data/productList.json')
-      .then((response) => response.json())
-      .then((data) => {
-        // setProducts(data.products);
-        setPromoProducts(data.promo.filter((product) => product.promo));
-      });
+    dispatch(getData('./data/productList.json'));
   }, []);
+  const productsPromo = useSelector((state) => state.products.products);
 
   return (
     <div>
       Home
-      {/* <Slider products={promoProducts} type="promo" /> */}
-      <SliderSwiper products={promoProducts} type="promo" />
+      {productsPromo.promo && <SliderPromo products={productsPromo.promo} type="promo" />}
     </div>
   );
 }

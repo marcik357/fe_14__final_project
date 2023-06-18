@@ -1,0 +1,251 @@
+.promoSlider {
+  height: 75vh;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-position: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.31) 80%);
+    }
+
+    &_img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-position: center;
+      object-fit: cover;
+    }
+  }
+
+  &__container {
+    box-sizing: border-box;
+    max-width: 1470px;
+    position: relative;
+    padding: 0 15px;
+  }
+
+  &__prevBtn,
+  &__nextBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E1E2E2;
+    position: absolute;
+    top: 2rem;
+    right: 5.75rem;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    z-index: 100;
+    cursor: pointer;
+    transition: box-shadow .3s;
+
+    &:hover {
+      box-shadow: inset 0px 0px 5px 2px #202025;
+    }
+  }
+
+  &__nextBtn {
+    right: 1rem;
+    transform: rotate(180deg);
+    background-color: #202025;
+
+    &:hover {
+      box-shadow: inset 0px 0px 5px 2px #E1E2E2;
+    }
+  }
+
+  &__inner {
+    max-width: 670px;
+    margin-bottom: 4rem;
+    z-index: 2;
+  }
+
+  &__meta {
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    &_prod {
+      font-weight: 800;
+      font-size: 80px;
+      line-height: 80px;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: #F7FBFA;
+    }
+
+    &_auth {
+      display: flex;
+      gap: 1rem;
+      padding: .75rem;
+      background: #202025;
+      border-radius: .75rem;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 36px;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      color: #F7FBFA;
+      transition: box-shadow .3s;
+
+      &:hover {
+        box-shadow: inset 0px 0px 10px #F7FBFA;
+      }
+    }
+
+    &_img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: #D9C5FF;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    &_link,
+    &_buy {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 320px;
+      height: 64px;
+      font-weight: 800;
+      font-size: 12px;
+      line-height: 24px;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      border: 2px solid #F7FBFA;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        width: 50%;
+        height: 50%;
+        border-radius: 50%;
+        transition: all .3s;
+        z-index: -1;
+      }
+
+      &:hover {
+        &::after {
+          width: 200%;
+          height: 200%;
+          top: -50%;
+        }
+      }
+    }
+
+    &_link {
+      box-sizing: border-box;
+      gap: .75rem;
+      color: #F7FBFA;
+
+      &::after {
+        background-color: #202025;
+      }
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    &_buy {
+      background: transparent;
+      transition: color .3s;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -5%;
+        left: -5%;
+        width: 110%;
+        height: 110%;
+        background-color: #F7FBFA;
+        z-index: -1;
+      }
+
+      &::after {
+        background-color: #202025;
+        z-index: -1;
+      }
+
+      &:hover {
+        color: #F7FBFA;
+      }
+    }
+  }
+
+}
+
+.promoThumbs {
+  box-sizing: border-box;
+  margin: -10rem 0 0 auto;
+  padding: .5rem;
+  width: max-content;
+  height: 10rem;
+
+  &__container {
+    box-sizing: border-box;
+    max-width: 1470px;
+    padding: 0 15px;
+  }
+
+  &>* {
+    align-items: flex-end;
+  }
+
+  &__thumb {
+    width: 5rem;
+    border-radius: .8rem;
+    overflow: hidden;
+    cursor: pointer;
+
+  }
+
+  &__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: scale .3s;
+
+    &:hover {
+      scale: 1.5;
+    }
+  }
+}
