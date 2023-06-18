@@ -8,8 +8,7 @@
           "currentBid": "0.4675",
           "userIcon": "../images/Icons/user-icon.png",
           "verifiedIcon": "../images/Icons/verified-icon.png",
-          "creator": "randomdash",
-          "promo": true
+          "creator": "randomdash"
       },
       {
           "id": 2,
@@ -19,8 +18,7 @@
           "currentBid": "0.3522",
           "userIcon": "../images/Icons/user-icon.png",
           "verifiedIcon": "../images/Icons/verified-icon.png",
-          "creator": "elnafrederick",
-          "promo": true
+          "creator": "elnafrederick"
       },
       {
           "id": 3,
@@ -30,8 +28,7 @@
           "currentBid": "0.3522",
           "userIcon": "../images/Icons/user-icon.png",
           "verifiedIcon": "../images/Icons/verified-icon.png",
-          "creator": "elnafrederick",
-          "promo": true
+          "creator": "elnafrederick"
       },
       {
           "id": 4,
@@ -41,8 +38,7 @@
           "currentBid": "0.3522",
           "userIcon": "../images/Icons/user-icon.png",
           "verifiedIcon": "../images/Icons/verified-icon.png",
-          "creator": "elnafrederick",
-          "promo": true
+          "creator": "elnafrederick"
       }
     ],
     "products": [
@@ -76,7 +72,8 @@
             "currentBid": "0.3755",
             "userIcon": "../images/Icons/user-icon.png",
             "verifiedIcon": "../images/Icons/verified-icon.png",
-            "creator": "randomdash"
+            "creator": "randomdash",
+            "promo": true
         },
         {
             "id": 4,
@@ -86,7 +83,8 @@
             "currentBid": "0.1256",
             "userIcon": "../images/Icons/user-icon.png",
             "verifiedIcon": "../images/Icons/verified-icon.png",
-            "creator": "elnafrederick"
+            "creator": "elnafrederick",
+            "promo": true
         },
         {
             "id": 5,
@@ -96,7 +94,8 @@
             "currentBid": "0.2352",
             "userIcon": "../images/Icons/user-icon.png",
             "verifiedIcon": "../images/Icons/verified-icon.png",
-            "creator": "randomdash"
+            "creator": "randomdash",
+            "promo": true
         },
         {
             "id": 6,
