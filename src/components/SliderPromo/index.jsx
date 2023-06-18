@@ -47,48 +47,49 @@ function SliderPromo({ products }) {
             className={styles.promoSlider__slide}
           >
             <img src={product.url} alt={product.name} className={styles.promoSlider__slide_img} />
-            <div className={styles.promoSlider__inner}>
-              <div className={styles.promoSlider__meta}>
-                <Link
-                  to={`/product/${product.id}`}
-                  className={styles.promoSlider__meta_prod}
-                >
-                  {product.name}
-                </Link>
-                <Link
-                  to="/"
-                  className={styles.promoSlider__meta_auth}
-                >
-                  <div className={styles.promoSlider__meta_img}>
-                    <img src={product.userIcon} alt="avatar" />
-                  </div>
-                  {product.creator}
-                </Link>
-              </div>
-              <div className={styles.promoSlider__btns}>
-                <Link
-                  to={`/product/${product.id}`}
-                  className={styles.promoSlider__btns_link}
-                >
-                  View NFT
-                  <Arrow fill="#F7FBFA" />
-                </Link>
-                <Button
-                  onClick={() => {
-                    // show modal accept purchase
-                  }}
-                  className={styles.promoSlider__btns_buy}
-                >
-                  BUY NOW
-                </Button>
+            <div className={styles.promoSlider__container}>
+              <div className={styles.promoSlider__inner}>
+                <div className={styles.promoSlider__meta}>
+                  <Link
+                    to={`/product/${product.id}`}
+                    className={styles.promoSlider__meta_prod}
+                  >
+                    {product.name}
+                  </Link>
+                  <Link
+                    to="/"
+                    className={styles.promoSlider__meta_auth}
+                  >
+                    <div className={styles.promoSlider__meta_img}>
+                      <img src={product.userIcon} alt="avatar" />
+                    </div>
+                    {product.creator}
+                  </Link>
+                </div>
+                <div className={styles.promoSlider__btns}>
+                  <Link
+                    to={`/product/${product.id}`}
+                    className={styles.promoSlider__btns_link}
+                  >
+                    View NFT
+                    <Arrow fill="#F7FBFA" />
+                  </Link>
+                  <Button
+                    onClick={() => {
+                      // show modal accept purchase
+                    }}
+                    className={styles.promoSlider__btns_buy}
+                  >
+                    BUY NOW
+                  </Button>
+                </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={styles.promoThumbs__container}>
+      <div className={styles.promoThumbs}>
         <Swiper
-          // loop={true}
           onSwiper={setThumbsSwiper}
           spaceBetween={10}
           slidesPerView={3}
@@ -96,7 +97,7 @@ function SliderPromo({ products }) {
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
           direction="vertical"
-          className={styles.promoThumbs}
+          className={styles.promoThumbs__container}
         >
           {products.map((product) => (
             <SwiperSlide key={product.id} className={styles.promoThumbs__thumb}>

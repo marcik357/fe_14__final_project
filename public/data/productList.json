@@ -2,7 +2,7 @@
     "promo": [
       {
           "id": 1,
-          "name": "NFT",
+          "name": "NFT + som long name",
           "price": "2.00",
           "url": "../images/Cards/card1.png",
           "currentBid": "0.4675",
