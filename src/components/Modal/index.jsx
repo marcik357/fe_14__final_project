@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/prop-types */
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import style from './modal.module.scss';
 
 export function Modal(props) {
@@ -31,10 +30,18 @@ export function Modal(props) {
   );
 }
 
-// Modal.propTypes = {
-//   show: PropTypes.bool.isRequired,
-//   header: PropTypes.string.isRequired,
-//   text: PropTypes.string.isRequired,
-//   onClose: PropTypes.func.isRequired,
-//   actions: PropTypes.func.isRequired,
-// };
+Modal.defaultProps = {
+  show: false,
+  header: '',
+  text: '',
+  onClose: () => {},
+  actions: null,
+};
+
+Modal.propTypes = {
+  show: PropTypes.bool,
+  header: PropTypes.string,
+  text: PropTypes.string,
+  onClose: PropTypes.func,
+  actions: PropTypes.node,
+};
