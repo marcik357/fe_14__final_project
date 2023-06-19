@@ -97,8 +97,8 @@
       align-items: center;
       gap: 1rem;
       padding: 0.5rem;
-      border-radius: 0.75rem;
       transition: box-shadow 0.3s;
+      border-radius: 0.75rem;
       background: #202025;
       color: #f7fbfa;
       font-size: 1rem;
@@ -160,8 +160,8 @@
         top: 100%;
         width: 50%;
         height: 50%;
-        border-radius: 50%;
         transition: all 0.3s;
+        border-radius: 50%;
         content: '';
         z-index: -1;
       }
