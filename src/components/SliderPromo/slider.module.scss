@@ -264,9 +264,6 @@
       &_prod {
         font-size: 30px;
         line-height: 35px;
-        // font-size: 40px; ============================= 992px
-        // font-size: 80px; ============================= 1200px
-        // line-height: 80px;
       }
 
       &_auth {
@@ -310,8 +307,8 @@
 
     &__container {
       box-sizing: border-box;
-      margin: -10rem 0 0 auto;
-      padding: .5rem;
+      margin: -14rem 0 0 auto;
+      // padding: .5rem;
       width: max-content;
       height: 10rem;
     }
