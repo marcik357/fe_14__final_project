@@ -3,36 +3,40 @@
         "id": 1,
         "capturePost": "8 things you didn't know you could do on Crypter",
         "url": "../images/Img-blog/img-blog-8things.png",
-        "iconPost": "../images/Icon-blog/icon-blog-author.png",
+        "iconPost": "../images/Icon-blog/svgIcon.svg",
         "authorPost": "Crypter II",
         "dataPost": "26 Aug 2022",
-        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel."
+        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel.",
+        "textButton": "continue reading >>>"
     },
      {
         "id": 2,
         "capturePost": "Introducing CrypterOS the operating system for web3.",
         "url": "../images/Img-blog/img-blog-introducing.png",
-        "iconPost": "../images/Icon-blog/icon-blog-author.png",
+        "iconPost": "../images/Icon-blog/svgIcon.svg",
         "authorPost": "Crypter II",
         "dataPost": "26 Aug 2022",
-        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel."
+        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel.",
+        "textButton": "continue reading >>>"
     },
     {
         "id": 3,
         "capturePost": "8 things you didn't know you could do on Crypter",
         "url": "../images/Img-blog/img-blog-robot.png",
-        "iconPost": "../images/Icon-blog/icon-blog-author.png",
+        "iconPost": "../images/Icon-blog/svgIcon.svg",
         "authorPost": "Crypter II",
         "dataPost": "26 Aug 2022",
-        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel."
+        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel.",
+        "textButton": "continue reading >>>"
     },
     {
         "id": 4,
         "capturePost": "8 things you didn't know you could do on Crypter",
         "url": "../images/Img-blog/img-blog-car.png",
-        "iconPost": "../images/Icon-blog/icon-blog-author.png",
+        "iconPost": "../images/Icon-blog/svgIcon.svg",
         "authorPost": "Crypter II",
         "dataPost": "26 Aug 2022",
-        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel."
+        "textPost": "Web3 is the next evolution of the internet built on open infrastructure where information, code, and objects are free to travel.",
+        "textButton": "continue reading >>>"
     }
 ]
