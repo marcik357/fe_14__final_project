@@ -32,10 +32,10 @@
 
   &__container {
     position: relative;
-    box-sizing: border-box;
     max-width: 1470px;
     padding: 0 15px;
     z-index: 2;
+    box-sizing: border-box;
   }
 
   &__prevBtn,
@@ -80,8 +80,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
     margin-bottom: 1rem;
+    gap: 1rem;
 
     &_prod {
       color: #f7fbfa;
@@ -95,7 +95,6 @@
     &_auth {
       display: flex;
       align-items: center;
-      gap: 1rem;
       padding: 0.5rem;
       transition: box-shadow 0.3s;
       border-radius: 0.75rem;
@@ -106,6 +105,7 @@
       letter-spacing: -0.01em;
       line-height: 1.5rem;
       text-decoration: none;
+      gap: 1rem;
 
       &:hover {
         box-shadow: inset 0 0 10px #f7fbfa;
@@ -135,7 +135,6 @@
 
     &_link,
     &_buy {
-      box-sizing: border-box;
       display: flex;
       flex: 1 0 300px;
       align-items: center;
@@ -154,6 +153,7 @@
       text-transform: uppercase;
       cursor: pointer;
       overflow: hidden;
+      box-sizing: border-box;
 
       &::after {
         position: absolute;
@@ -176,9 +176,9 @@
     }
 
     &_link {
+      color: #f7fbfa;
       box-sizing: border-box;
       gap: 0.75rem;
-      color: #f7fbfa;
 
       &::after {
         background-color: #202025;
@@ -275,15 +275,15 @@
 
   .promoThumbs {
     display: flex;
-    box-sizing: border-box;
     max-width: 1470px;
     padding: 0 15px;
+    box-sizing: border-box;
 
     &__container {
-      box-sizing: border-box;
       width: max-content;
       height: 10rem;
       margin: -14rem 0 0 auto;
+      box-sizing: border-box;
     }
 
     & > * {
@@ -300,8 +300,8 @@
     &__img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       transition: scale 0.3s;
+      object-fit: cover;
 
       &:hover {
         scale: 1.5;
