@@ -50,9 +50,6 @@
     right: 5.75rem;
     width: 2.75rem;
     height: 2.75rem;
-    // min-width: =========================================== 768px
-    // width: 3.75rem;
-    // height: 3.75rem;
     border-radius: 50%;
     z-index: 100;
     cursor: pointer;
@@ -76,15 +73,11 @@
   &__inner {
     max-width: 670px;
     margin-bottom: 1rem;
-    // min-width: =========================================== 768px
-    // margin-bottom: 4rem;
     z-index: 2;
   }
 
   &__meta {
     margin-bottom: 1rem;
-    // min-width: =========================================== 768px
-    // margin-bottom: 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,12 +87,7 @@
     &_prod {
       font-weight: 800;
       font-size: 24px;
-      // min-width: =========================================== 768px
-      // font-size: 30px;
       line-height: 35px;
-      // font-size: 40px; ============================= 992px
-      // font-size: 80px; ============================= 1200px
-      // line-height: 80px;
       letter-spacing: -0.02em;
       text-decoration: none;
       color: #F7FBFA;
@@ -110,16 +98,11 @@
       align-items: center;
       gap: 1rem;
       padding: .5rem;
-      // min-width: =========================================== 768px
-      // padding: .75rem;
       background: #202025;
       border-radius: .75rem;
       font-weight: 700;
       font-size: 1rem;
       line-height: 1.5rem;
-      // min-width: =========================================== 768px
-      // font-size: 1.125rem;
-      // line-height: 2.3rem;
       letter-spacing: -0.01em;
       text-decoration: none;
       color: #F7FBFA;
@@ -133,9 +116,6 @@
     &_img {
       width: 2rem;
       height: 2rem;
-      // min-width: =========================================== 768px
-      // width: 2.5rem;
-      // height: 2.5rem;
       border-radius: 5px;
       overflow: hidden;
       background-color: #D9C5FF;
@@ -152,8 +132,6 @@
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    // min-width: =========================================== 768px
-    // gap: 1.5rem;
     flex-wrap: wrap;
 
     &_link,
@@ -166,17 +144,15 @@
       position: relative;
       width: 300px;
       height: 50px;
-      // min-width: =========================================== 768px
-      // height: 64px;
       margin: 0 auto;
       font-weight: 800;
       font-size: 12px;
       line-height: 24px;
       letter-spacing: 0.17em;
       text-transform: uppercase;
+      text-decoration: none;
       border: 2px solid #F7FBFA;
       border-radius: 4px;
-      text-decoration: none;
       cursor: pointer;
       overflow: hidden;
 
@@ -308,7 +284,6 @@
     &__container {
       box-sizing: border-box;
       margin: -14rem 0 0 auto;
-      // padding: .5rem;
       width: max-content;
       height: 10rem;
     }
