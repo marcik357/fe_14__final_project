@@ -4,6 +4,7 @@
       "stylelint-order"
     ],
     "rules": {
+      "number-leading-zero": "never",
       "no-missing-end-of-source-newline": null,
       "order/order": [
         "custom-properties",
