@@ -1,4 +1,3 @@
-/* eslint-disable default-param-last */
 import { dataTypes } from '../types/dataTypes';
 
 const initialState = {

@@ -1,6 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import ProductCard from '../ProductCard';

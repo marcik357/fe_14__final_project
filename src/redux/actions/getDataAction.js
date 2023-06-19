@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable func-names */
 import axios from 'axios';
 import { dataTypes } from '../types/dataTypes';
 
