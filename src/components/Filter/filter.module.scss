@@ -1,0 +1,28 @@
+// mobile
+.filter {
+  min-width: 375px;
+
+  &__title {
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+  }
+
+  &__sideWrapperBckg {
+    position: absolute;
+    background: rgba(0, 0, 0, .6);
+    inset: 0;
+  }
+
+  &__sideWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100%;
+    transform: translateZ(0);
+    transition: all .5s;
+    background-color: #fff;
+    // transform: translate3d(-100%,0,0);
+    // transition: transform .5s;
+  }
+}

@@ -13,6 +13,7 @@
         "no-return-assign": 0,
         "eol-last": 0,
         "react/react-in-jsx-scope": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "linebreak-style": ["error", "windows"]
     }
 }
