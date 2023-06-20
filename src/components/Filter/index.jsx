@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable linebreak-style */
 import { useState } from 'react';
 import styles from './filter.module.scss';
@@ -14,11 +16,11 @@ function Filter() {
   };
   return (
     <div className={styles.filter}>
-      <h2 className={styles.filter__title}>NFTs</h2>
-      <div className={styles.filter__wrapper}>
-        <button className={styles.filter__button} type="button" onClick={openModal}>Filters</button>
-        {isOpen && (
-          <div className={`${styles.filter__sideWrapperBckg} ${styles.open}`}>
+      <div className={styles.filter__container}>
+        <h2 className={styles.filter__title}>NFTs</h2>
+        <div className={styles.filter__wrapper}>
+          <button className={styles.filter__button} type="button" onClick={openModal}>Filters</button>
+          <div className={`${styles.filter__sideWrapperBckg} ${isOpen ? styles.open : ''}`} onClick={closeModal}>
             <div className={`${styles.filter__sideWrapper} ${isOpen ? styles.open : ''}`}>
               <div className={styles.filter__sideHeader}>
                 <button className={styles.filter__sideCloseBtn} type="button" onClick={closeModal}>
@@ -103,7 +105,7 @@ function Filter() {
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
