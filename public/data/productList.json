@@ -107,6 +107,222 @@
             "userIcon": "../images/Icons/user-icon.png",
             "verifiedIcon": "../images/Icons/verified-icon.png",
             "creator": "randomdash"
+        },
+        {
+            "id": 13,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card13.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 14,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card14.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 15,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card15.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 16,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card16.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 17,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card17.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 18,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card18.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 19,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card19.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 20,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card20.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 21,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card21.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 22,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card22.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 23,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card23.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 24,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card24.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 25,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card25.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 26,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card26.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 27,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card27.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 28,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card28.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 29,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card29.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 30,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card30.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 31,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card31.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 32,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card32.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 33,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card33.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 34,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card34.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
+        },
+        {
+            "id": 35,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card35.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "elnafrederick"
+        },
+        {
+            "id": 36,
+            "name": "NFT",
+            "price": "2.00",
+            "url": "../images/Cards/card36.png",
+            "userIcon": "../images/Icons/user-icon.png",
+            "verifiedIcon": "../images/Icons/verified-icon.png",
+            "creator": "randomdash"
         }
     ]
            
