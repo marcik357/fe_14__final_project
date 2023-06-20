@@ -6,25 +6,26 @@ import MainImg from '../../img/img-blog-main.png'
 export default function Blog() {
 
   return (
-    <div className={styles.blog_home}>
+    <div className={styles.blog}>
 
-      <div className={styles.blog_main}>
+      <div className={styles.blog__mainImg}>
         <img src={MainImg}></img>
       </div>
       
-      <div className={styles.blog_posts}>
+      <div className={styles.blog__posts}>
         {
           Data.map( data => {
             return (
               <div>
-                <div className={styles.blog_post} key={data.id}>
-                  <div className={styles.blog_postImg}>
-                    <img src={data.url} alt=""/>
+                <div className={styles.blog__post} key={data.id}>
+                  <div className={styles.blog__postImgBlock}>
+                    <img className={styles.blog__postImg} src={data.url} alt={`image ${data.id}`}/>
+                    <button className={styles.blog__btnImg}>{data.textButton}</button>
                   </div>
-                  <div className={styles.blog_content}>
+                  <div className={styles.blog__content}>
                     <h3>{data.capturePost}</h3>
-                    <div className={styles.blog_infoAuthor}>
-                      <div className={styles.blog_postIcon}>
+                    <div className={styles.blog__infoAuthor}>
+                      <div className={styles.blog__postIcon}>
                         <img src={data.iconPost} alt=""/>
                       </div>
                       <div>
@@ -33,7 +34,6 @@ export default function Blog() {
                       </div>
                     </div>
                     <p>{data.textPost}</p>
-                    <button>{data.textButton}</button>
                   </div>
                 </div>
               </div>
