@@ -1,32 +1,30 @@
-import styles from "./blog.module.scss"
+import styles from './blog.module.scss';
 import postsData from '../../data.json';
 // import {Link} from "react-router-dom";
-import MainImg from '../../img/img-blog-main.png'
+import MainImg from '../../img/img-blog-main.png';
 
 export default function Blog() {
-
   return (
     <div className={styles.blog}>
 
       <div className={styles.blog__mainImg}>
-        <img src={MainImg}></img>
+        <img src={MainImg} alt="img" />
       </div>
-      
       <div className={styles.blog__posts}>
         {
-          postsData.map( (data, index) => {
+          postsData.map((data, index) => {
             return (
               <div key={data.id}>
                 <div className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                   <div className={styles.blog__postImgBlock}>
-                    <img className={styles.blog__postImg} src={data.url} alt={`image ${data.id}`}/>
-                    <button className={styles.blog__btnImg}>{data.textButton}</button>
+                    <img className={styles.blog__postImg} src={data.url} alt={`img ${data.id}`} />
+                    <button type="button" className={styles.blog__btnImg}>{data.textButton}</button>
                   </div>
                   <div className={styles.blog__content}>
                     <h3>{data.capturePost}</h3>
                     <div className={styles.blog__infoAuthor}>
                       <div className={styles.blog__postIcon}>
-                        <img src={data.iconPost} alt=""/>
+                        <img src={data.iconPost} alt={`icon ${data.id}`} />
                       </div>
                       <div>
                         <p>{data.authorPost}</p>
@@ -37,12 +35,11 @@ export default function Blog() {
                   </div>
                 </div>
               </div>
-            )
+            );
           })
         }
       </div>
 
-      
     </div>
-  )
+  );
 }
