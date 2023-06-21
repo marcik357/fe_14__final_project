@@ -19,7 +19,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
     "sass": "^1.63.4",
-    "stylelint": "^8.2.0",
+    "stylelint": "^8.4.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-order": "^0.7.0",
     "web-vitals": "^2.1.4"
@@ -30,9 +30,9 @@
     "build": "npm run stylelint-build && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "stylelint-dev": "stylelint 'src/**/*.scss' --cache --cache-location './.stylelintcache'; exit 0",
-    "stylelint-build": "stylelint 'src/**/*.scss'",
-    "stylelint-fix-sass": "stylelint --fix 'src/**/*.scss'",
+    "stylelint-dev": "stylelint \"src/**/*.scss\" --cache --cache-location \"./.stylelintcache\" exit 0",
+    "stylelint-build": "stylelint \"src/**/*.scss\"",
+    "stylelint-fix-sass": "stylelint --fix \"src/**/*.scss\"",
     "watch-styles-sass": "npm-watch"
   },
   "eslintConfig": {
