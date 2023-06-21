@@ -1,7 +1,9 @@
-export * from './search';
-export * from './basket';
-export * from './logo';
-export * from './instagram';
-export * from './linkedin';
-export * from './facebook';
-export * from './twitter';
+export { Search } from './search';
+export { Basket } from './basket';
+export { Logo } from './logo';
+export { Instagram } from './instagram';
+export { Linkedin } from './linkedin';
+export { Facebook } from './facebook';
+export { Twitter } from './twitter';
+export { Close } from './close';
+export { ArrowRight } from './arrow-right';

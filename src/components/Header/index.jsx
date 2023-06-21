@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { Logo, Search, Basket } from '../Icons';
 import style from './header.module.scss';
 
@@ -40,6 +41,8 @@ function Header() {
       setPlaceholder('Search');
     }
   }
+
+  const isDesktop = useMediaQuery({ minWidth: 769 });
 
   return (
     <>
@@ -86,9 +89,13 @@ function Header() {
                   </Link>
                 </li>
                 <li className={style.nav__item}>
-                  <Link to="/cart">
-                    <Basket width={35} height={35} color="#202025" />
-                  </Link>
+                  {isDesktop ? (
+                    <Link to="/cart">
+                      <Basket width={35} height={35} color="#202025" />
+                    </Link>
+                  ) : (
+                    <Link to="/cart">Shopping Cart</Link>
+                  )}
                 </li>
               </ul>
             </nav>
