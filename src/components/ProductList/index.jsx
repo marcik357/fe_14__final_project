@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard';
 import styles from './productList.module.scss';
 import './pagination.scss';
 import { getDataAsync } from '../../redux/actions/getDataAction';
 import usePagination from '../../Hooks/usePagination';
 import Loader from '../Loader';
+
 function ProductList(props) {
   const { products, getDataAsync } = props;
 
@@ -55,12 +57,32 @@ function ProductList(props) {
       </div>
     </div>
   ) : (
-    <p>Loading...</p>
+    <Loader />
   );
 }
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      url: PropTypes.string,
+      userIcon: PropTypes.string,
+      creator: PropTypes.string,
+      verifiedIcon: PropTypes.string,
+      price: PropTypes.string,
+    })
+  ),
+  getDataAsync: PropTypes.func.isRequired,
+};
+
+ProductList.defaultProps = {
+  products: [],
+};
+
 const mapDispatchToProps = {
   getDataAsync,
 };
+
 const mapStateToProps = (state) => ({
   products: state.data.products,
 });

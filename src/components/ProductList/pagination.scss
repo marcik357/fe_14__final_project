@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .pagination {
   display: flex;
   align-items: center;
@@ -7,7 +9,7 @@
 
   & :last-child {
     border: none;
-    font-size: 20px;
+    font-size: rem(20);
   }
 }
 
@@ -18,7 +20,7 @@
   width: 2rem;
   height: 2rem;
   transition: all .3s ease;
-  border: solid 1px #202025;
+  border: solid rem(1) #202025;
   border-radius: 30%;
   background-color: transparent;
   font-family: 'Inter', sans-serif;
@@ -40,6 +42,6 @@
 
   &:first-child {
     border: none;
-    font-size: 20px;
+    font-size: rem(20);
   }
 }

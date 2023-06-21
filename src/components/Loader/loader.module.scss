@@ -1,14 +1,14 @@
 .three__body {
-  --uib-size: 35px;
+  --uib-size: 100px;
   --uib-speed: .8s;
   --uib-color: #5d3fd3;
 
   display: flex;
   position: relative;
-  left: 45%;
+  left: 50%;
   width: var(--uib-size);
   height: var(--uib-size);
-  margin: 170px 0;
+  margin: rem(170) 0;
   transform: translateX(-50%);
   animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
 

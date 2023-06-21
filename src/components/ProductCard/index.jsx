@@ -1,17 +1,20 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
-import Loader from '../Loader';
 function ProductCard(props) {
-  const { url, userIcon, creator, verifiedIcon, price } = props;
+  const { url, userIcon, creator, verifiedIcon, price, name } = props;
 
   return (
     <div className={styles.productCard}>
-      {url ? (
-        <Loader />
-      ) : (
-        <Loader />
-      )}
+      <img
+        className={styles.productCard__img}
+        src={url}
+        alt='product-card'
+      />
+
       <div className={styles.productCard__userInfo}>
         <div className={styles.productCard__userInfo_items}>
+          <div className={styles.productCard__userInfo_name}>{name}</div>
           <img
             className={styles.productCard__userInfo_userIcon}
             src={userIcon}
@@ -61,5 +64,21 @@ function ProductCard(props) {
     </div>
   );
 }
+
+ProductCard.propTypes = {
+  url: PropTypes.string,
+  userIcon: PropTypes.string,
+  creator: PropTypes.string,
+  verifiedIcon: PropTypes.string,
+  price: PropTypes.string,
+};
+
+ProductCard.defaultProps = {
+  url: '',
+  userIcon: '',
+  creator: '',
+  verifiedIcon: '',
+  price: 0,
+};
 
 export default ProductCard;

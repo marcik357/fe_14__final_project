@@ -1,23 +1,26 @@
+@import '../../styles/variables';
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .productCard {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
-  padding: 0 15px;
+  width: 93%;
+  margin-top: rem(30);
+  padding: 0 rem(15);
   transition: .2s ease;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   cursor: pointer;
-  overflow: hidden;
 
   &:hover {
     transform: scale(1.05);
     transition: .2s ease;
-    border-radius: 30px;
+    border-radius: rem(30);
     background-color: #202025;
   }
 
@@ -25,10 +28,14 @@
     & p {
       color: #f7fbfa;
     }
+
+    & svg {
+      fill: #fff;
+    }
   }
 
   &:hover .productCard__priceInfo_button {
-    border: 1px solid #f7fbfa;
+    border: rem(1) solid #f7fbfa;
     background-color: #f7fbfa;
     color: #000;
 
@@ -41,18 +48,31 @@
     color: #d2d2d2;
   }
 
-  &:hover .productCard__priceInfo_buyNow {
-    & svg {
-      fill: #fff;
-    }
+  &:hover .productCard__userInfo_name {
+    transform: translateY(0);
+    transition: .2s;
+    opacity: 1;
+  }
+
+  &:hover .productCard__userInfo::before {
+    position: absolute;
+    bottom: rem(58);
+    width: 100%;
+    height: rem(100);
+    border-radius: 0 0 rem(20) rem(20);
+    background: linear-gradient(to top, rgba(0, 0, 0, .744), transparent);
+    content: '';
+    z-index: 6;
   }
 
   &__img {
-    max-width: 327px;
-    max-height: 327px;
-    margin-top: 18px;
-    margin-bottom: 18px;
-    border-radius: 5%;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: rem(18);
+    border-radius: 7%;
+    z-index: 4;
   }
 
   &__userInfo {
@@ -60,14 +80,27 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    min-width: 100%;
-    margin-bottom: 33px;
+    margin-top: rem(18);
+    margin-bottom: rem(33);
+
+    &_name {
+      position: absolute;
+      bottom: rem(80);
+      left: rem(30);
+      transform: translateY(rem(45));
+      transition: .2s;
+      color: #f7fbfa;
+      font-size: rem(24);
+      line-height: rem(32);
+      opacity: 0;
+      z-index: 7;
+    }
 
     &::after {
       position: absolute;
-      top: 55px;
+      top: rem(55);
       width: 100%;
-      height: 1px;
+      height: rem(1);
       background-color: #e1e2e2;
       content: '';
     }
@@ -78,19 +111,19 @@
     }
 
     &_userIcon {
-      max-width: 40px;
-      max-height: 40px;
-      margin-right: 12px;
+      max-width: rem(40);
+      max-height: rem(40);
+      margin-right: rem(12);
     }
 
     &_creator {
       color: #5d5d5d;
-      font-size: 20px;
+      font-size: rem(20);
     }
 
     &_verifiedIcon {
-      max-width: 24px;
-      max-height: 24px;
+      max-width: rem(24);
+      max-height: rem(24);
     }
   }
 
@@ -99,17 +132,17 @@
     justify-content: space-between;
     position: relative;
     min-width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: rem(24);
 
     &_button {
       display: flex;
       position: relative;
-      padding: 7px 44px;
+      padding: rem(7) rem(35);
       border: 1px solid #202025;
-      border-radius: 50px;
+      border-radius: rem(50);
       background-color: #202025;
       color: #f7fbfa;
-      font-size: 14px;
+      font-size: rem(14);
       text-transform: uppercase;
       cursor: pointer;
       overflow: hidden;
@@ -125,7 +158,7 @@
         transform: translateX(-50%) scaleY(1) scaleX(1.25);
         transition: all .5s .1s cubic-bezier(.55, 0, .1, 1);
         border-radius: 50%;
-        background-color: #000;
+        background-color: #202025;
         content: '';
         z-index: -1;
       }
@@ -140,7 +173,7 @@
         transform: translateX(-50%) scaleY(1) scaleX(1.45);
         transition: all .5s .1s cubic-bezier(.55, 0, .1, 1);
         border-radius: 50%;
-        background-color: #000;
+        background-color: #202025;
         content: '';
         z-index: -1;
       }
@@ -148,13 +181,13 @@
       &:hover:before {
         top: -35%;
         transform: translateX(-50%) scaleY(1.3) scaleX(.8);
-        background-color: #000;
+        background-color: #202025;
       }
 
       &:hover:hover:after {
         top: -45%;
         transform: translateX(-50%) scaleY(1.3) scaleX(.8);
-        background-color: #000;
+        background-color: #202025;
       }
     }
 
@@ -163,14 +196,14 @@
       align-items: center;
 
       & svg {
-        min-width: 20px;
-        min-height: 20px;
+        min-width: rem(20);
+        min-height: rem(20);
       }
 
       & p {
         color: #202025;
-        font-size: 20px;
-        line-height: 32px;
+        font-size: rem(20);
+        line-height: rem(32);
 
         & span {
           font-weight: 400;
@@ -180,85 +213,151 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: rem(768)) {
   .productCard {
-    margin-bottom: 64px;
+    margin-bottom: rem(64);
+    padding: 0 rem(10);
+
+    &:hover {
+      border-radius: rem(20);
+    }
+
+    &:hover .productCard__userInfo::before {
+      bottom: rem(64);
+      width: 100%;
+      border-radius: 0 0 rem(13) rem(13);
+    }
 
     &__img {
-      max-width: 220px;
-      max-height: 220px;
-      margin-bottom: 24px;
+      margin-top: rem(10);
+      margin-bottom: rem(24);
+    }
+
+    &__userInfo {
+      align-items: center;
+      margin-top: 0;
+
+      &_name {
+        bottom: rem(70);
+        left: rem(20);
+        font-size: rem(20);
+      }
+
+      &_creator {
+        font-size: rem(12);
+      }
     }
 
     &__priceInfo {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       position: relative;
       min-width: 100%;
 
       &_button {
-        padding: 7px 34px;
-        font-size: 10px;
+        padding: rem(7) rem(25);
+        font-size: rem(10);
       }
 
       &_buyNow {
         & img {
-          max-width: 13px;
-          max-height: 13px;
+          max-width: rem(13);
+          max-height: rem(13);
         }
 
         & p {
-          font-size: 15px;
+          font-size: rem(12);
         }
       }
     }
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: rem(1024)) {
   .productCard {
+    padding: 0 rem(10);
+
+    &:hover {
+      border-radius: rem(20);
+    }
+
     &__img {
-      max-width: 298px;
-      max-height: 298px;
-      margin-bottom: 24px;
+      margin-top: rem(10);
+      margin-bottom: rem(24);
+    }
+
+    &:hover .productCard__userInfo::before {
+      bottom: rem(64);
+      width: 100%;
+      border-radius: 0 0 rem(14) rem(14);
+    }
+
+    &__userInfo {
+      margin-top: 0;
+
+      &_creator {
+        font-size: rem(15);
+      }
+
+      &_name {
+        bottom: rem(70);
+        left: rem(20);
+        font-size: rem(20);
+      }
     }
 
     &__priceInfo {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       position: relative;
       min-width: 100%;
 
       &_button {
-        padding: 7px 40px;
-        font-size: 15px;
+        padding: rem(8) rem(25);
+        font-size: rem(12);
       }
 
       &_buyNow {
         & img {
-          max-width: 20px;
-          max-height: 20px;
+          max-width: rem(20);
+          max-height: rem(20);
         }
 
         & p {
-          font-size: 20px;
+          font-size: rem(15);
         }
       }
     }
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: rem(1400)) {
   .productCard {
+    padding: 0 rem(15);
+
+    &:hover {
+      border-radius: rem(25);
+    }
+
     &__img {
-      max-width: 330px;
-      max-height: 330px;
-      margin-bottom: 24px;
+      margin-top: rem(15);
+    }
+
+    &:hover .productCard__userInfo::before {
+      border-radius: 0 0 rem(21) rem(21);
     }
 
     &__userInfo {
       &_creator {
-        font-size: 24px;
+        font-size: rem(20);
+      }
+
+      &_name {
+        bottom: rem(90);
+        left: rem(30);
+        font-size: rem(23);
       }
     }
 
@@ -269,18 +368,18 @@
       min-width: 100%;
 
       &_button {
-        padding: 10px 40px;
-        font-size: 18px;
+        padding: rem(10) rem(40);
+        font-size: rem(14);
       }
 
       &_buyNow {
         & img {
-          max-width: 20px;
-          max-height: 20px;
+          max-width: rem(20);
+          max-height: rem(20);
         }
 
         & p {
-          font-size: 24px;
+          font-size: rem(20);
         }
       }
     }
