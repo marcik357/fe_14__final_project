@@ -1,5 +1,5 @@
 import styles from "./blog.module.scss"
-import Data from '../../data.json';
+import postsData from '../../data.json';
 // import {Link} from "react-router-dom";
 import MainImg from '../../img/img-blog-main.png'
 
@@ -14,10 +14,10 @@ export default function Blog() {
       
       <div className={styles.blog__posts}>
         {
-          Data.map( data => {
+          postsData.map( (data, index) => {
             return (
-              <div>
-                <div className={styles.blog__post} key={data.id}>
+              <div key={data.id}>
+                <div className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                   <div className={styles.blog__postImgBlock}>
                     <img className={styles.blog__postImg} src={data.url} alt={`image ${data.id}`}/>
                     <button className={styles.blog__btnImg}>{data.textButton}</button>

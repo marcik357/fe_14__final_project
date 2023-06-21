@@ -9,15 +9,16 @@ img {
 }
 
 .blog {
-    
+    max-width: 1140px;
+    margin: 0 auto;
 
     &__post {
         display: flex;
     }
 
-    // &__post:nth-child(2n+1) {
-    //     flex-direction: row-reverse;
-    // }
+    &__reverse {
+        flex-direction: row-reverse;
+    }
 
     &__postImgBlock {
         position: relative;
@@ -54,6 +55,8 @@ img {
     &__btnImg:hover {
         background-color: #F7FBFA;
         color: black;
+        border: 1px solid black;
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
     }
 
     &__infoAuthor {
