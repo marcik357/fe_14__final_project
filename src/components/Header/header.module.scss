@@ -15,7 +15,9 @@ a {
 }
 
 .header {
-  height: 103px;
+  position: sticky;
+  top: 0;
+  width: 100%;
   color: #202025;
   font-family: 'Inter';
   font-size: 12px;
@@ -23,11 +25,9 @@ a {
   letter-spacing: 2px;
   line-height: 200%;
   text-transform: uppercase;
+  z-index: 10;
 
   &__wrapper {
-    position: fixed;
-    top: 0;
-    width: 100%;
     padding: 25px 0;
     transition: all .4s ease-out;
     background-color: #f7fbfa;
