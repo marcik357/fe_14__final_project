@@ -20,18 +20,20 @@ export default function Blog() {
                     <img className={styles.blog__postImg} src={data.url} alt={`img ${data.id}`} />
                     <button type="button" className={styles.blog__btnImg}>{data.textButton}</button>
                   </div>
-                  <div className={styles.blog__content}>
-                    <h3>{data.capturePost}</h3>
-                    <div className={styles.blog__infoAuthor}>
-                      <div className={styles.blog__postIcon}>
-                        <img src={data.iconPost} alt={`icon ${data.id}`} />
+                  <div className={styles.blog__contentBlock}>
+                    <div className={styles.blog__content}>
+                      <h3 className={styles.blog__capturePost}>{data.capturePost}</h3>
+                      <div className={styles.blog__infoAuthor}>
+                        <div className={styles.blog__postIcon}>
+                          <img src={data.iconPost} alt={`icon ${data.id}`} />
+                        </div>
+                        <div>
+                          <p>{data.authorPost}</p>
+                          <p>{data.dataPost}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p>{data.authorPost}</p>
-                        <p>{data.dataPost}</p>
-                      </div>
+                      <p>{data.textPost}</p>
                     </div>
-                    <p>{data.textPost}</p>
                   </div>
                 </div>
               </div>
