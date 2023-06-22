@@ -10,7 +10,7 @@ export function MainLayout() {
 
   useEffect(() => {
     dispatch(getData('./data/productList.json'));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

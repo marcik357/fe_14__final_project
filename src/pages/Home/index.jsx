@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getData } from '../../redux/actions/getDataActions';
 import SliderPromo from '../../components/SliderPromo';
 import ProductList from '../../components/ProductList';
+import Filter from '../../components/Filter';
+import styles from './Home.module.scss';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -13,7 +15,7 @@ export function Home() {
 
   useEffect(() => {
     dispatch(getData('./data/productList.json'));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -21,7 +23,10 @@ export function Home() {
         ? (
           <>
             {products.promo && <SliderPromo products={products.promo} type="promo" />}
-            <ProductList />
+            <div className={styles.products}>
+              <Filter />
+              <ProductList />
+            </div>
           </>
         )
         : <p>Loading...</p>}
