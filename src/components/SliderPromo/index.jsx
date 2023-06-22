@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
 import Button from '../Button';
-import { Arrow } from '../icons/arrowSlider';
+import { Arrow } from '../Icons/arrowSlider';
 
 function SliderPromo({ products }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);

@@ -19,7 +19,6 @@ export function Home() {
       {!loading
         ? (
           <>
-            Home
             {products.promo && <SliderPromo products={products.promo} type="promo" />}
           </>
         )
