@@ -1,6 +1,7 @@
 import {
   Route, Routes,
 } from 'react-router-dom';
+import Basket from '../components/Basket';
 import {
   MainLayout, Home, Cart, Categories, Product, NotFound,
 } from '../pages';
@@ -12,6 +13,7 @@ export default function Router() {
         <Route index element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/basket" element={<Basket />} />
         <Route path="/product">
           <Route path=":productId" element={<Product />} />
         </Route>
