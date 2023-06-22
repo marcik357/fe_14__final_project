@@ -29,7 +29,7 @@ button {
     text-align: center;
   }
 
-  &__button {
+  &__openBtn {
     padding: 18px 25px;
     border-radius: 4px;
     background: #202025;
@@ -130,9 +130,38 @@ button {
     padding: 5px 0;
     text-align: center;
   }
+
+  &__applyBtn {
+    padding: 18px 25px;
+    border-radius: 4px;
+    background: #202025;
+    color: #f7fbfa;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  // content with sidebar-filter
+  &__contentList {
+    width: 100%;
+  }
+
+  &__contentSidebar {
+    display: none;
+  }
 }
 
-@media (min-width: 993px) {
+@media (min-width: 768px) {
+  .filter {
+    &__openBtn,
+    &__applyBtn {
+      padding: 18px 77px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
   .filter {
     margin-top: 64px;
 
@@ -142,13 +171,35 @@ button {
     }
 
     &__title {
-      margin-bottom: 96px;
+      margin-bottom: 64px;
       font-size: 48px;
       line-height: 48px;
     }
 
-    &__button {
-      padding: 18px 77px;
+    &__openBtn {
+      display: none;
+    }
+    // content with sidebar-filter
+    &__content {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    &__contentList {
+      width: calc(100% - 250px);
+    }
+
+    &__contentSidebar {
+      display: block;
+      flex-shrink: 0;
+      width: 250px;
+      height: max-content;
+    }
+
+    &__sideBody {
+      height: calc(100% - 64px);
+      padding: 0 5px 5px;
+      overflow-y: auto;
     }
   }
 }
