@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import SliderPromo from '../../components/SliderPromo';
 import { getData } from '../../redux/actions/getDataActions';
+import SliderPromo from '../../components/SliderPromo';
+import ProductList from '../../components/ProductList';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export function Home() {
         ? (
           <>
             {products.promo && <SliderPromo products={products.promo} type="promo" />}
+            <ProductList />
           </>
         )
         : <p>Loading...</p>}
