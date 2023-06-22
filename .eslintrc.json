@@ -13,6 +13,10 @@
         "no-return-assign": 0,
         "eol-last": 0,
         "react/react-in-jsx-scope": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "react/jsx-index":"off",
+        "react/jsx-indent": "off",
+        "react/jsx-one-expression-per-line":"off",
+        "react/jsx-props-no-spreading": "off"
     }
 }
