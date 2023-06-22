@@ -1,4 +1,4 @@
-.overlay{
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   z-index: 1;
 }
 
-.modal{
+.modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -20,34 +20,34 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
   z-index: 10;
 
-  @media (min-width: 375px){
+  @media (min-width: 375px) {
     width: 370px;
   }
 
-  @media (min-width: 575px){
+  @media (min-width: 575px) {
     width: 570px;
   }
 
-  @media (min-width: 1024px){
+  @media (min-width: 1024px) {
     width: 700px;
   }
 
-  @media (min-width: 1600px){
+  @media (min-width: 1600px) {
     width: 800px;
   }
 
-  &__container{
+  &__container {
     padding: 0 10px;
   }
 
-  &__header{
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
   }
 
-  &__text{
+  &__text {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,13 +62,13 @@
     }
   }
 
-  &__closeBtn{
+  &__closeBtn {
     border: none;
     background-color: white;
     cursor: pointer;
   }
 
-  &__btns{
+  &__btns {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,7 +82,7 @@
     }
   }
 
-  &__btn{
+  &__btn {
     width: 260px;
     height: 50px;
     border-radius: 4px;
@@ -90,12 +90,12 @@
     text-transform: uppercase;
     cursor: pointer;
 
-    &.cancelBtn{
+    &.cancelBtn {
       border: 2px solid #202025;
       background-color: white;
     }
 
-    &.submitBtn{
+    &.submitBtn {
       border: none;
       background-color: #202025;
       color: white;
@@ -103,5 +103,3 @@
   }
 
 }
-
-
