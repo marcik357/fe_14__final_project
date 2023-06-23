@@ -18,28 +18,14 @@ function Header() {
     }
 
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   // поточне значення введеного тексту в input та значення placeholder
   const [searchValue, setSearchValue] = useState('');
-  const [placeholder, setPlaceholder] = useState('Search');
+  // const [placeholder, setPlaceholder] = useState('Search');
 
   function handleInputChange(e) {
     setSearchValue(e.target.value);
-  }
-
-  function handleInputFocus() {
-    setPlaceholder('');
-  }
-  
-  function handleInputBlur() {
-    if (!searchValue) {
-      setPlaceholder('Search');
-    }
   }
 
   // відкриття бургер-меню
@@ -84,12 +70,10 @@ function Header() {
                 <form action="" className={`${style.search__form} ${isSearchVisible ? style.active : ''} ${scrolled ? style.scrolled : null}`}>
                   <input
                     type="text"
-                    placeholder={placeholder}
+                    placeholder={'Search'}
                     className={style.search__input}
                     value={searchValue}
                     onChange={handleInputChange}
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
                   />
                   <Search />
                 </form>

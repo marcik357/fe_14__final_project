@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard';
 import styles from './productList.module.scss';
 import './pagination.scss';
@@ -7,6 +6,7 @@ import usePagination from '../../Hooks/usePagination';
 import Loader from '../Loader';
 import { getDataAsync } from '../../redux/actions/getDataAction';
 import { useSelector, useDispatch } from 'react-redux';
+
 function ProductList() {
   const products = useSelector((state) => state.data.products);
   const dispatch = useDispatch();
