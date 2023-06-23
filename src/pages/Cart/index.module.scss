@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+}
+
+.cart {
+  min-width: 320px;
+
+  &__poster {
+    min-height: 250px;
+    margin: 0;
+    background: url("../../components/Cart/image/Basket-header-img.png") no-repeat center/cover;
+  }
+
+  &__block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7fbfa;
+  }
+}
+
+.block {
+  &__items {
+    flex-basis: 100%;
+    background: #010101;
+  }
+
+  &__noItems {
+    height: 50vh;
+    color: #fff;
+  }
+
+  &__actionToBuy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 420px) {
+  .cart {
+    min-width: 420px;
+  }
+}
+
+@media (min-width: 500px) {
+  .cart {
+    min-width: 500px;
+  }
+}
+
+@media (min-width: 800px) {
+  .cart {
+    min-width: 800px;
+
+    &__block {
+      flex-wrap: nowrap;
+      align-items: flex-start;
+    }
+  }
+
+  .block {
+    &__items {
+      flex-basis: 55%;
+    }
+
+    &__actionToBuy {
+      flex-basis: 45%;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .cart {
+    min-width: 1000px;
+  }
+
+  .block {
+    &__items {
+      flex-basis: 60%;
+    }
+
+    &__actionToBuy {
+      flex-basis: 40%;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .cart {
+    min-width: 1200px;
+  }
+
+  .block {
+    &__items {
+      flex-basis: 60%;
+    }
+
+    &__actionToBuy {
+      flex-basis: 40%;
+    }
+  }
+}
