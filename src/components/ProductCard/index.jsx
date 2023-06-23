@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
-function ProductCard(props) {
-  const { url, userIcon, creator, verifiedIcon, price, name } = props;
+import { buyNowHandler } from '../../utils';
+import { useDispatch } from 'react-redux';
+
+function ProductCard({ url, userIcon, creator, verifiedIcon, price, name, id }) {
+  const dispatch = useDispatch()
 
   return (
     <div className={styles.productCard}>
@@ -33,7 +36,8 @@ function ProductCard(props) {
         <div className={styles.productCard__priceInfo_price}>
           <button
             className={styles.productCard__priceInfo_button}
-            type='submit'
+            type='button'
+            onClick={() => buyNowHandler(dispatch, id)}
           >
             Buy now
           </button>

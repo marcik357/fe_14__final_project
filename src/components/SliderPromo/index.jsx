@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/css';
@@ -9,9 +9,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
 import { Arrow } from '../Icons';
+import { buyNowHandler } from '../../utils';
 
 function SliderPromo() {
   const products = useSelector((state) => state.products.promo);
+  const dispatch = useDispatch()
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const prevBtnRef = useRef(null);
@@ -29,7 +31,7 @@ function SliderPromo() {
         }}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         autoplay={{
-          delay: 3000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         className={styles.promoSlider}
@@ -77,9 +79,7 @@ function SliderPromo() {
                   </Link>
                   <button
                     type='button'
-                    onClick={() => {
-                      // show modal accept purchase
-                    }}
+                    onClick={() => buyNowHandler(dispatch, product.id)}
                     className={styles.promoSlider__btns_buy}
                   >
                     BUY NOW

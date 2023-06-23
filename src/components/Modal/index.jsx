@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import style from './modal.module.scss';
 import { setModalType } from '../../redux/actions/modalActions';
+import { setArtNumAction } from '../../redux/actions/artNumActions';
+import style from './modal.module.scss';
 
 export function Modal(props) {
   const dispatch = useDispatch();
@@ -10,6 +10,7 @@ export function Modal(props) {
 
   function onCloseModal() {
     dispatch(setModalType(null));
+    dispatch(setArtNumAction(null))
   }
 
   function onSubmitModal() {
@@ -49,6 +50,6 @@ Modal.propTypes = {
     type: PropTypes.string,
     header: PropTypes.string,
     text: PropTypes.string,
-    actions: PropTypes.node,
+    actions: PropTypes.func,
   }),
 };
