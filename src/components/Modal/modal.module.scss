@@ -12,28 +12,31 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 340px;
+  width: 320px;
+  min-width: 320px;
   transform: translate(-50%, -50%);
-  transition: width .5s ease-in-out;
   border-radius: 8px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
   z-index: 10;
 
-  @media (min-width: 375px) {
-    width: 370px;
+  @media (max-width: 374px) {
+    width: 90%;
+    max-width: 320px;
   }
 
-  @media (min-width: 575px) {
-    width: 570px;
+  @media (min-width: 375px) and (max-width: 574px) {
+    width: 90%;
+    max-width: 570px;
+  }
+
+  @media (min-width: 575px) and (max-width: 1023px) {
+    width: 90%;
+    max-width: 700px;
   }
 
   @media (min-width: 1024px) {
     width: 700px;
-  }
-
-  @media (min-width: 1600px) {
-    width: 800px;
   }
 
   &__container {

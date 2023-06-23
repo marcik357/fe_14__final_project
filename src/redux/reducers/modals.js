@@ -1,23 +1,15 @@
 import { modalTypes } from '../types/modalTypes';
 
 const initialState = {
-  isModalOpened: false,
-  modalData: {},
+  modal: null,
 };
 
 export function modalsReducer(state = initialState, action) {
   switch (action.type) {
-    case modalTypes.OPEN_MODAL:
+    case modalTypes.SHOW_MODAL:
       return {
         ...state,
-        isModalOpened: true,
-        modalData: action.payload.modalData,
-      };
-    case modalTypes.CLOSE_MODAL:
-      return {
-        ...state,
-        isModalOpened: false,
-        modalData: {},
+        modal: action.payload.modal
       };
     default:
       return state;

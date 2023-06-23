@@ -1,4 +1,3 @@
 export const modalTypes = {
-  OPEN_MODAL: 'OPEN_MODAL',
-  CLOSE_MODAL: 'CLOSE_MODAL',
+  SHOW_MODAL: 'MODAL - SHOW_MODAL',
 };

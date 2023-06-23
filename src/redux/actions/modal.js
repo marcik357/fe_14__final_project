@@ -1,16 +1,10 @@
 import { modalTypes } from '../types/modalTypes';
 
-export function openModal(modalData) {
+export function setModalType(modal) {
   return {
-    type: modalTypes.OPEN_MODAL,
-    payload: {
-      modalData
-    },
-  }
+    type: modalTypes.SHOW_MODAL,
+    payload: { modal }
+  };
 }
 
-export function closeModal() {
-  return {
-    type: modalTypes.CLOSE_MODAL,
-  }
-}
+
