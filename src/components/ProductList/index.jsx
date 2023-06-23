@@ -1,16 +1,15 @@
-import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard';
 import styles from './productList.module.scss';
 import './pagination.scss';
-import { getDataAsync } from '../../redux/actions/getDataAction';
 import usePagination from '../../Hooks/usePagination';
 import Loader from '../Loader';
-
-function ProductList(props) {
-  const { products, getDataAsync } = props;
-
+import { getDataAsync } from '../../redux/actions/getDataAction';
+import { useSelector, useDispatch } from 'react-redux';
+function ProductList() {
+  const products = useSelector((state) => state.data.products);
+  const dispatch = useDispatch();
   const {
     firstContentIndex,
     lastContentIndex,
@@ -25,10 +24,10 @@ function ProductList(props) {
   });
 
   useEffect(() => {
-    getDataAsync();
-  }, [getDataAsync]);
+    dispatch(getDataAsync());
+  }, [dispatch]);
 
-  return products ? (
+  return products.length > 0 ? (
     <div className={styles.products}>
       <div className={styles.products__title}>
         <h2>NFTs</h2>
@@ -79,12 +78,4 @@ ProductList.defaultProps = {
   products: [],
 };
 
-const mapDispatchToProps = {
-  getDataAsync,
-};
-
-const mapStateToProps = (state) => ({
-  products: state.data.products,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default ProductList;

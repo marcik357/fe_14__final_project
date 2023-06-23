@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { dataTypes } from '../types/dataTypes';
 
 export const setData = (data) => ({
@@ -8,11 +7,15 @@ export const setData = (data) => ({
 
 export function getDataAsync() {
   return function (dispatch) {
-    dispatch({ type: dataTypes.SET_PRODUCTS });
-    axios
-      .get('./data/productList.json')
+    fetch('./data/productList.json')
       .then((response) => {
-        const results = response.data.products;
+        if (!response.ok) {
+          throw new Error('Error fetching data');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const results = data.products;
         dispatch(setData(results));
       })
       .catch((err) => {

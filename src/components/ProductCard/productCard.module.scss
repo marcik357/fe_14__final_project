@@ -11,14 +11,14 @@
   margin-top: 30px;
   padding: 0 15px;
   transition: .2s ease;
+  border-radius: 30px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     transition: .2s ease;
-    border-radius: 30px;
     background-color: #202025;
   }
 
