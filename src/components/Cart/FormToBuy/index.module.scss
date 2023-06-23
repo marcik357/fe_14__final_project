@@ -7,7 +7,7 @@
   margin: 20px 0;
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: -1px 1px 7px 7px rgba(0, 0, 0, 0.13);
+  box-shadow: -1px 1px 7px 7px rgba(0, 0, 0, .13);
 
   &__slogan {
     padding-bottom: 60px;
@@ -35,6 +35,7 @@
     border: none;
     background: #202025;
     color: #fff;
+    text-align: center;
     text-transform: uppercase;
   }
 }
@@ -142,6 +143,7 @@
     padding: 30px 20px;
 
     &__btnBuy {
+      width: 80%;
       margin: 50px 0 10px;
     }
   }
