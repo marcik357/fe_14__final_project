@@ -27,12 +27,12 @@ body {
   }
 
   &__noItems {
-    height: 50vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 30px;
+    justify-content: center;
+    height: 50vh;
     color: #fff;
+    font-size: 30px;
   }
 
   &__actionToBuy {
