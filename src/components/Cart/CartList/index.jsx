@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState, useRef, useEffect } from 'react';
 import style from './index.module.scss';
-import { data } from '../data/data';
-import icon from '../image/item-img.png';
+// import { data } from '../public/data/Cart';
+// import icon from '../public/images/Cart/item-img.png';
 
 export function CartList(props) {
   const parentElement = useRef();
