@@ -11,8 +11,8 @@ import Loader from '../../components/Loader';
 export function Home() {
   const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.products.products);
-  const promo = useSelector((state) => state.products.promo);
+  // const products = useSelector((state) => state.products.products);
+  // const promo = useSelector((state) => state.products.promo);
   const loading = useSelector((state) => state.loading.loading);
   // const error = useSelector((state) => state.error.error);
 
