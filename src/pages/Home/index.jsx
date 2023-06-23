@@ -5,16 +5,19 @@ import SliderPromo from '../../components/SliderPromo';
 import ProductList from '../../components/ProductList';
 import Filter from '../../components/Filter';
 import styles from './Home.module.scss';
+import { addProductsAction, addPromoAction } from '../../redux/actions/productsActions';
 
 export function Home() {
   const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.products.products);
+  // const products = useSelector((state) => state.products.products);
+  const promo = useSelector((state) => state.products.promo);
   const loading = useSelector((state) => state.loading.loading);
   // const error = useSelector((state) => state.error.error);
 
   useEffect(() => {
-    dispatch(getData('./data/productList.json'));
+    dispatch(getData('./data/promoList.json', addPromoAction));
+    dispatch(getData('./data/productList.json', addProductsAction));
   }, [dispatch]);
 
   return (
@@ -22,7 +25,7 @@ export function Home() {
       {!loading
         ? (
           <>
-            {products.promo && <SliderPromo products={products.promo} type="promo" />}
+            {promo && <SliderPromo products={promo} type="promo" />}
             <div className={styles.products}>
               <Filter />
               <ProductList />

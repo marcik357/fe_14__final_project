@@ -1,15 +1,12 @@
-import { useEffect } from 'react';
 import ProductCard from '../ProductCard';
 import styles from './productList.module.scss';
 import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import Loader from '../Loader';
-import { getDataAsync } from '../../redux/actions/getDataAction';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function ProductList() {
-  const products = useSelector((state) => state.data.products);
-  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products);
   const {
     firstContentIndex,
     lastContentIndex,
@@ -22,10 +19,6 @@ function ProductList() {
     contentPerPage: 12,
     count: products?.length,
   });
-
-  useEffect(() => {
-    dispatch(getDataAsync());
-  }, [dispatch]);
 
   return products.length > 0 ? (
     <div className={styles.products}>

@@ -6,3 +6,10 @@ export function addProductsAction(products) {
     payload: products
   };
 }
+
+export function addPromoAction(promo) {
+  return {
+    type: productsTypes.ADD_PROMO,
+    payload: promo
+  };
+}
