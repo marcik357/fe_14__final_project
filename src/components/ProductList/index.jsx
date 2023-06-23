@@ -60,22 +60,4 @@ function ProductList() {
   );
 }
 
-ProductList.propTypes = {
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      url: PropTypes.string,
-      userIcon: PropTypes.string,
-      creator: PropTypes.string,
-      verifiedIcon: PropTypes.string,
-      price: PropTypes.string,
-    })
-  ),
-  getDataAsync: PropTypes.func.isRequired,
-};
-
-ProductList.defaultProps = {
-  products: [],
-};
-
 export default ProductList;

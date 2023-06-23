@@ -6,21 +6,19 @@ import icon from '../image/item-img.png';
 
 export function CartList(props) {
   const parentElement = useRef();
-  const
-    {
-      title, text, quantity, price, sumOfOrder, setOrderAmount, id,
-    } = props;
+  const { title, text, quantity, price, sumOfOrder, setOrderAmount, id } = props;
   const [quantityItem, setQuantityItem] = useState(quantity);
+
   useEffect(() => {
     setOrderAmount(sumOfOrder(data));
-  }, []);
-  function deleteElementFromScreen(e) {
-    e.preventDefault();
+  }, [setOrderAmount, sumOfOrder]);
+
+  function deleteElementFromScreen() {
     parentElement.current.remove();
     alert('Item deleted successfully');
   }
-  function decrease(e) {
-    e.preventDefault();
+
+  function decrease() {
     if (quantityItem <= 0)setQuantityItem(0);
     else { setQuantityItem(quantityItem - 1); }
     const priceUp = Array.from(parentElement.current.children).find(
@@ -29,12 +27,14 @@ export function CartList(props) {
       .dataset.price;
     setOrderAmount((prev) => prev - parseFloat(priceUp));
   }
+
   function increase() {
     setQuantityItem(quantityItem + 1);
     const priceUp = Array.from(parentElement.current.children).find(((elem) => elem.dataset.price))
       .dataset.price;
     setOrderAmount((prev) => prev + parseFloat(priceUp));
   }
+
   return (
     <div ref={parentElement} data-id={id} className={style.cartListItem}>
       <div className={style.cartListItem__icon}>
@@ -66,7 +66,7 @@ export function CartList(props) {
        >{quantityItem}
        </div>
         <button
-          type="submit"
+          type="button"
           className={style.quantity__btn}
           onClick={increase}
         > +

@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 
-function Button({
-  onClick, className, type, text, children,
-}) {
+function Button({ onClick, className, type, text, children }) {
   return (
     <button
       onClick={onClick}
@@ -31,4 +29,4 @@ Button.propTypes = {
   children: PropTypes.node,
 };
 
-export default Button;
+export default Button
