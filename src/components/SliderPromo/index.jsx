@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/css';
@@ -10,7 +10,9 @@ import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
 import { Arrow } from '../Icons';
 
-function SliderPromo({ products }) {
+function SliderPromo() {
+  const products = useSelector((state) => state.products.promo);
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const prevBtnRef = useRef(null);
   const nextBtnRef = useRef(null);
@@ -109,19 +111,5 @@ function SliderPromo({ products }) {
     </>
   );
 }
-
-SliderPromo.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    price: PropTypes.string,
-    url: PropTypes.string,
-    currentBid: PropTypes.string,
-    userIcon: PropTypes.string,
-    verifiedIcon: PropTypes.string,
-    creator: PropTypes.string,
-    promo: PropTypes.bool,
-  })).isRequired,
-};
 
 export default SliderPromo;

@@ -20,7 +20,7 @@ function ProductList() {
     count: products?.length,
   });
 
-  return products.length > 0 ? (
+  return (
     <div className={styles.products}>
       <div className={styles.products__title}>
         <h2>NFTs</h2>
@@ -48,8 +48,6 @@ function ProductList() {
         </button>
       </div>
     </div>
-  ) : (
-    <Loader />
   );
 }
 

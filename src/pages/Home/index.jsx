@@ -6,11 +6,12 @@ import ProductList from '../../components/ProductList';
 import Filter from '../../components/Filter';
 import styles from './Home.module.scss';
 import { addProductsAction, addPromoAction } from '../../redux/actions/productsActions';
+import Loader from '../../components/Loader';
 
 export function Home() {
   const dispatch = useDispatch();
 
-  // const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products.products);
   const promo = useSelector((state) => state.products.promo);
   const loading = useSelector((state) => state.loading.loading);
   // const error = useSelector((state) => state.error.error);
@@ -25,14 +26,14 @@ export function Home() {
       {!loading
         ? (
           <>
-            {promo && <SliderPromo products={promo} type="promo" />}
+            <SliderPromo />
             <div className={styles.products}>
               <Filter />
               <ProductList />
             </div>
           </>
         )
-        : <p>Loading...</p>}
+        : <Loader />}
     </div>
   );
 }
