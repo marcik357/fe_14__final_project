@@ -1,8 +1,42 @@
 import { useState, useRef } from 'react';
 import style from './index.module.scss';
-import { data } from '../../components/Cart/data/data';
-import { CartList } from '../../components/Cart/CartList';
-import { FormToBuy } from '../../components/Cart/FormToBuy';
+import { CartList } from '../../components/CartList';
+import { FormToBuy } from '../../components/FormToBuy';
+
+const data = [
+  {
+    id: '1',
+    src: '../img/item.png',
+    title: 'Nft',
+    text: 'Price',
+    quantity: 2,
+    price: 0.25,
+  },
+  {
+    id: '2',
+    src: '../img/item2.png',
+    title: 'Nft',
+    text: 'Price',
+    quantity: 1,
+    price: 0.17,
+  },
+  {
+    id: '3',
+    src: '../img/Frame.png',
+    title: 'Nft',
+    text: 'Price',
+    quantity: 5,
+    price: 0.13,
+  },
+  {
+    id: '4',
+    src: '../img/Frame2.png',
+    title: 'Nft',
+    text: 'Price',
+    quantity: 1,
+    price: 0.07,
+  },
+];
 
 function sumOfOrder(date) {
   const arrayOfNftPrice = date.map((item) => (parseFloat(item.price) * parseFloat(item.quantity)));
