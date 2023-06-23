@@ -1,29 +1,34 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import style from './modal.module.scss';
+import { setModalType } from '../../redux/actions/modal';
 
 export function Modal(props) {
-  const {
-    show, header, text, onClose, actions,
-  } = props;
-  if (!show) {
-    return null;
+  const dispatch = useDispatch();
+  const { data: { type, header, text, actions }} = props;
+  
+  function onCloseModal() {
+    dispatch(setModalType(null));
   }
+
+  function onSubmitModal() {
+    onCloseModal();
+  }
+
   return (
     <>
-      <div className={style.overlay} role="button" tabIndex={0} onClick={onClose} onKeyDown={onClose} />
-      <div className={style.modal}>
+      <div className={style.overlay} role="button" tabIndex={0} onClick={onCloseModal} onKeyDown={onCloseModal} />
+      <div className={`${style.modal} ${style[type]}`}>
         <div className={style.modal__container}>
           <div className={style.modal__header}>
             <h3 className={style.modal__title}>{header}</h3>
-            <button type="button" className={style.modal__closeBtn} onClick={onClose}>✖</button>
+            <button type="button" className={style.modal__closeBtn} onClick={onCloseModal}>✖</button>
           </div>
           <div className={style.modal__text}>
-            <p>{text}</p>
+            {text && <p>{text}</p>}
           </div>
-          <div className={style.modal__btns}>
-            {actions}
-          </div>
+          {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}
         </div>
       </div>
     </>
@@ -31,17 +36,19 @@ export function Modal(props) {
 }
 
 Modal.defaultProps = {
-  show: false,
-  header: '',
-  text: '',
-  onClose: () => {},
-  actions: null,
+  data: {
+    type: '',
+    header: '',
+    text: '',
+    actions: null,
+  },
 };
 
 Modal.propTypes = {
-  show: PropTypes.bool,
-  header: PropTypes.string,
-  text: PropTypes.string,
-  onClose: PropTypes.func,
-  actions: PropTypes.node,
+  data: PropTypes.shape({
+    type: PropTypes.string,
+    header: PropTypes.string,
+    text: PropTypes.string,
+    actions: PropTypes.node,
+  }),
 };
