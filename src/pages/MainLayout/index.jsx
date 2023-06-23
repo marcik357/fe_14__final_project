@@ -13,10 +13,11 @@ export function MainLayout() {
   useEffect(() => {
     dispatch(getData('./data/productList.json'));
   }, [dispatch]);
+  
   return (
     <>
       {modalType && (
-      <Modal data={modalProps.find((modal) => modal.type === modalType)} />
+        <Modal data={modalProps.find((modal) => modal.type === modalType)} />
       )}
       <Header />
       <Outlet />

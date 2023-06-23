@@ -4,7 +4,7 @@ const initialState = {
   modal: null,
 };
 
-export function modalsReducer(state = initialState, action) {
+export function modalReducer(state = initialState, action) {
   switch (action.type) {
     case modalTypes.SHOW_MODAL:
       return {

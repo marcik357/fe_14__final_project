@@ -8,8 +8,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
-import Button from '../Button';
-import { Arrow } from '../Icons/arrowSlider';
+import { Arrow } from '../Icons';
 
 function SliderPromo({ products }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -74,14 +73,15 @@ function SliderPromo({ products }) {
                     View NFT
                     <Arrow fill="#F7FBFA" />
                   </Link>
-                  <Button
+                  <button
+                    type='button'
                     onClick={() => {
                       // show modal accept purchase
                     }}
                     className={styles.promoSlider__btns_buy}
                   >
                     BUY NOW
-                  </Button>
+                  </button>
                 </div>
               </div>
             </div>

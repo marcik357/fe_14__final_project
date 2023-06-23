@@ -4,7 +4,7 @@ import { productsReducer as products } from './productsReducer';
 import { loadingReducer as loading } from './loadingReducer';
 import { errorReducer as error } from './errorReducer';;
 import { dataReducer as data } from './getDataReducer';
-import { modalsReducer as modals} from './modals';
+import { modalReducer as modal } from './modalReducer';
 
 export const rootReducer = combineReducers({
   artNum,
@@ -12,5 +12,5 @@ export const rootReducer = combineReducers({
   loading,
   error,
   data,
-  modals
+  modal
 });

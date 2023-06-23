@@ -2,12 +2,12 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import style from './modal.module.scss';
-import { setModalType } from '../../redux/actions/modal';
+import { setModalType } from '../../redux/actions/modalActions';
 
 export function Modal(props) {
   const dispatch = useDispatch();
-  const { data: { type, header, text, actions }} = props;
-  
+  const { data: { type, header, text, actions } } = props;
+
   function onCloseModal() {
     dispatch(setModalType(null));
   }
