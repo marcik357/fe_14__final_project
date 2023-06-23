@@ -27,7 +27,7 @@ export function Cart() {
               setOrderAmount={setOrderAmount}
               {...item}
             />
-            )) : <p className={style.block__noItems}>No items in the basket</p>
+            )) : <p className={style.block__noItems}>No items in the Cart</p>
             }
         </div>
         <div className={style.block__actionToBuy}>
