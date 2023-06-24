@@ -3,18 +3,20 @@ import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
 import { buyNowHandler } from '../../utils';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function ProductCard({ url, userIcon, creator, verifiedIcon, price, name, id }) {
   const dispatch = useDispatch()
 
   return (
     <div className={styles.productCard}>
+      <Link to={`/product/${id}`}>
       <img
         className={styles.productCard__img}
         src={url}
         alt='product-card'
       />
-
+      </Link>
       <div className={styles.productCard__userInfo}>
         <div className={styles.productCard__userInfo_items}>
           <div className={styles.productCard__userInfo_name}>{name}</div>

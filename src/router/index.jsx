@@ -2,7 +2,7 @@ import {
   Route, Routes,
 } from 'react-router-dom';
 import {
-  MainLayout, Home, Cart, Categories, Product, NotFound,
+  MainLayout, Home, Cart, Categories, NotFound, ProductPage,
 } from '../pages';
 
 export default function Router() {
@@ -13,7 +13,7 @@ export default function Router() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product">
-          <Route path=":productId" element={<Product />} />
+          <Route path=":productId" element={<ProductPage />} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
