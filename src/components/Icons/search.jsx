@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
-export function Search({ width = 24, height = 24, color = '#686A6C' }) {
+export function Search({ width = 24, height = 24, color = '#686A6C', onClick }) {
   return (
     <svg
       width={width}
       height={height}
+      onClick={onClick}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -31,10 +32,12 @@ Search.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   color: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 Search.defaultProps = {
   width: 24,
   height: 24,
   color: '#686A6C',
+  onClick: () => {},
 };

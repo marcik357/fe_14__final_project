@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Logo, Search, Basket, ArrowRight, Instagram, Twitter, Facebook, Linkedin } from '../Icons';
 import style from './header.module.scss';
@@ -18,29 +18,23 @@ function Header() {
     }
 
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   // поточне значення введеного тексту в input та значення placeholder
   const [searchValue, setSearchValue] = useState('');
-  const [placeholder, setPlaceholder] = useState('Search');
 
   function handleInputChange(e) {
     setSearchValue(e.target.value);
   }
 
-  function handleInputFocus() {
-    setPlaceholder('');
-  }
-  
-  function handleInputBlur() {
-    if (!searchValue) {
-      setPlaceholder('Search');
+  // при кліку на компонент Search, курсор автоматично з'являється в рядку пошуку (input).
+  const inputRef = useRef(null);
+
+  const handleSearchClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
-  }
+  };
 
   // відкриття бургер-меню
   const [isOpen, setIsOpen] = useState(false);
@@ -84,14 +78,13 @@ function Header() {
                 <form action="" className={`${style.search__form} ${isSearchVisible ? style.active : ''} ${scrolled ? style.scrolled : null}`}>
                   <input
                     type="text"
-                    placeholder={placeholder}
+                    placeholder="Search"
                     className={style.search__input}
                     value={searchValue}
                     onChange={handleInputChange}
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
+                    ref={inputRef}
                   />
-                  <Search />
+                  <Search onClick={handleSearchClick} />
                 </form>
                 {!isDesktop ? (
                   <button type="button" className={style.search__btn} onClick={toggleSearchView}>
