@@ -11,18 +11,16 @@ function Filter() {
   const openModal = () => {
     setIsOpen(true);
   };
-  const closeModal = (e) => {
-    e.preventDefault();
+  const closeModal = () => {
     setIsOpen(false);
   };
   return (
     <div className={styles.filter}>
       <div className={styles.filter__container}>
-        <h2 className={styles.filter__title}>NFTs</h2>
         <div className={styles.filter__wrapper}>
           <button className={styles.filter__openBtn} type="button" onClick={openModal}>Filters</button>
           <div className={`${styles.filter__sideWrapperBckg} ${isOpen ? styles.open : ''}`} onClick={closeModal}>
-            <div className={`${styles.filter__sideWrapper} ${isOpen ? styles.open : ''}`}>
+            <div className={`${styles.filter__sideWrapper} ${isOpen ? styles.open : ''}`} onClick={(event) => event.stopPropagation()}>
               <div className={styles.filter__sideHeader}>
                 <button className={styles.filter__sideCloseBtn} type="button" onClick={closeModal}>
                   <img src={left} alt="left-img" />
@@ -38,17 +36,9 @@ function Filter() {
                   </label>
                 </div>
                 <h4 className={styles.filter__sideCategoryTitle}>Price</h4>
-                <div className={styles.filter__sideItem}>
-                  <label htmlFor="min">
-                    <input type="checkbox" id="min" name="min" />
-                    Min
-                  </label>
-                </div>
-                <div className={styles.filter__sideItem}>
-                  <label htmlFor="max">
-                    <input type="checkbox" id="max" name="max" />
-                    Max
-                  </label>
+                <div className={styles.filter__sideItemValue}>
+                  <input type="text" id="minPrice" name="minPrice" placeholder="Min" />
+                  <input type="text" id="maxPrice" name="maxPrice" placeholder="Max" />
                 </div>
                 <h4 className={styles.filter__sideCategoryTitle}>Author</h4>
                 <div className={styles.filter__sideItem}>
@@ -120,17 +110,9 @@ function Filter() {
                   </label>
                 </div>
                 <h4 className={styles.filter__sideCategoryTitle}>Price</h4>
-                <div className={styles.filter__sideItem}>
-                  <label htmlFor="min">
-                    <input type="checkbox" id="min" name="min" />
-                    Min
-                  </label>
-                </div>
-                <div className={styles.filter__sideItem}>
-                  <label htmlFor="max">
-                    <input type="checkbox" id="max" name="max" />
-                    Max
-                  </label>
+                <div className={styles.filter__sideItemValue}>
+                  <input type="text" id="minPrice" name="minPrice" placeholder="Min" />
+                  <input type="text" id="maxPrice" name="maxPrice" placeholder="Max" />
                 </div>
                 <h4 className={styles.filter__sideCategoryTitle}>Author</h4>
                 <div className={styles.filter__sideItem}>
