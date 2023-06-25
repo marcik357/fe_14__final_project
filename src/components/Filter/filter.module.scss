@@ -201,6 +201,13 @@ option {
     &__sortBtn {
       padding: 18px 15px;
     }
+
+    &__sortValue {
+      padding: 10px 0;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+    }
   }
 }
 

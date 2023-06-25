@@ -3,7 +3,7 @@
 /* eslint-disable linebreak-style */
 import { useState } from 'react';
 import styles from './filter.module.scss';
-import left from './img/left-chevron-svgrepo-com.svg';
+import { LeftChevron } from '../Icons/left-chevron';
 
 function Filter() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +20,8 @@ function Filter() {
             <button className={styles.filter__openBtn} type="button" onClick={toggleModal}>Filters</button>
             <select name="sortBy" id="sortBy" className={styles.filter__sortBtn}>
               <option disabled selected hidden value="Sort By">Sort By</option>
-              <option value="Lowest price">Lowest price</option>
-              <option value="Highest price">Highest price</option>
+              <option value="Lowest price" className={styles.filter__sortValue}>Lowest price</option>
+              <option value="Highest price" className={styles.filter__sortValue}>Highest price</option>
             </select>
           </div>
           <div className={styles.filter__content}>
@@ -29,7 +29,7 @@ function Filter() {
               <div className={`${styles.filter__sidebarWrapper} ${isOpen ? styles.open : ''}`} onClick={(event) => event.stopPropagation()}>
                 <div className={styles.filter__sidebarHeader}>
                   <button className={styles.filter__sidebarCloseBtn} type="button" onClick={toggleModal}>
-                    <img src={left} alt="left-img" />
+                    <LeftChevron />
                     Filters
                   </button>
                 </div>
