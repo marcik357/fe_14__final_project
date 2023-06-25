@@ -33,7 +33,7 @@ const usePagination = ({ contentPerPage, count }) => {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 720, behavior: 'smooth' });
   };
 
   const nextPage = () => {
