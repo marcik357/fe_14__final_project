@@ -12,9 +12,7 @@ export default function Router() {
         <Route index element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/product">
-          <Route path=":productId" element={<ProductPage />} />
-        </Route>
+        <Route path="/product/:productId" element={<ProductPage />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
