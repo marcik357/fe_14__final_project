@@ -32,28 +32,17 @@ const usePagination = ({ contentPerPage, count }) => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 720, behavior: 'smooth' });
-  };
-
   const nextPage = () => {
     if (page < pageCount) {
       changePage(true);
-      scrollToTop();
     }
   };
 
   const prevPage = () => {
     if (page > 1) {
       changePage(false);
-      scrollToTop();
     }
   };
-
-  useEffect(() => {
-    scrollToTop();
-  }, [page]);
-
   const generatePageNumbers = () => {
     const maxVisiblePages = 5;
     const visiblePages = Math.min(maxVisiblePages, pageCount);

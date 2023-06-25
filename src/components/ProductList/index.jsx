@@ -18,7 +18,10 @@ function ProductList({ products }) {
     contentPerPage: 12,
     count: products.length,
   });
-
+  const scroll = () => {
+    const section = document.querySelector('#products');
+    section.scrollIntoView({ behavior: 'smooth', top: 740 });
+  };
   const renderPageNumbers = () => {
     const ellipsis = '...';
 
@@ -48,7 +51,10 @@ function ProductList({ products }) {
 
           {visiblePages.map((number) => (
             <button
-              onClick={() => setPage(number)}
+              onClick={() => {
+                setPage(number);
+                scroll();
+              }}
               key={number}
               className={`page ${page === number ? 'active' : ''}`}
             >
@@ -75,7 +81,7 @@ function ProductList({ products }) {
   };
 
   return (
-    <div className={styles.products}>
+    <div id='products' className={styles.products}>
       <div className={styles.products__title}>
         <h2>NFTs</h2>
       </div>
@@ -86,7 +92,7 @@ function ProductList({ products }) {
       </div>
       <div className='pagination'>
         {page === 1 ? null : (
-          <button onClick={prevPage} className='page'>
+          <button onClick={(prevPage, scroll)} className='page'>
             <ArrowRight
               style={{
                 transform: 'rotate(180deg)',
@@ -97,7 +103,7 @@ function ProductList({ products }) {
         )}
         {renderPageNumbers()}
         {totalPages === page ? null : (
-          <button onClick={nextPage} className='page'>
+          <button onClick={(nextPage, scroll)} className='page'>
             <ArrowRight style={{ backgroundColor: '#fff' }} />
           </button>
         )}

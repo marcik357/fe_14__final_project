@@ -26,7 +26,7 @@ function ProductCard({
             src={imageUrls[0]}
             alt='product-card'
           />
-          <p className={styles.productCard_name}>{name}</p>
+          <p className={styles.productCard__name}>{name}</p>
         </div>
       </Link>
       <div className={styles.productCard__userInfo}>
