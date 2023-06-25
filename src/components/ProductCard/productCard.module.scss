@@ -42,7 +42,7 @@
     }
   }
 
-  &:hover .productCard__userInfo_creator {
+  &:hover .productCard__userInfo_author {
     color: #d2d2d2;
   }
 
@@ -111,10 +111,12 @@
     &_userIcon {
       max-width: 40px;
       max-height: 40px;
-      margin-right: 12px;
+      margin-right: 10px;
+      border-radius: 50%;
+      background: #bbd6da;
     }
 
-    &_creator {
+    &_author {
       color: #5d5d5d;
       font-size: 20px;
     }
@@ -241,7 +243,7 @@
         font-size: 20px;
       }
 
-      &_creator {
+      &_author {
         font-size: 12px;
       }
     }
@@ -294,7 +296,7 @@
     &__userInfo {
       margin-top: 0;
 
-      &_creator {
+      &_author {
         font-size: 15px;
       }
 
@@ -348,7 +350,7 @@
     }
 
     &__userInfo {
-      &_creator {
+      &_author {
         font-size: 20px;
       }
 
