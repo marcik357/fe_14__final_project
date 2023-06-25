@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const usePagination = ({ contentPerPage, count }) => {
   const [page, setPage] = useState(1);
@@ -32,14 +32,58 @@ const usePagination = ({ contentPerPage, count }) => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const nextPage = () => {
+    if (page < pageCount) {
+      changePage(true);
+      scrollToTop();
+    }
+  };
+
+  const prevPage = () => {
+    if (page > 1) {
+      changePage(false);
+      scrollToTop();
+    }
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, [page]);
+
+  const generatePageNumbers = () => {
+    const maxVisiblePages = 5;
+    const visiblePages = Math.min(maxVisiblePages, pageCount);
+
+    let startPage = Math.max(page - Math.floor(visiblePages), 1);
+    const endPage = startPage + visiblePages - 1;
+
+    if (endPage > pageCount) {
+      startPage = Math.max(pageCount - visiblePages + 1, 1);
+    }
+
+    const pageNumbers = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return pageNumbers;
+  };
+
+  const pageNumbers = generatePageNumbers();
+
   return {
     totalPages: pageCount,
-    nextPage: () => changePage(true),
-    prevPage: () => changePage(false),
+    nextPage,
+    prevPage,
     setPage: setPageSAFE,
     firstContentIndex,
     lastContentIndex,
     page,
+    pageNumbers,
   };
 };
 

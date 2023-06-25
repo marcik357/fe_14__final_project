@@ -7,21 +7,30 @@ import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
 
-function ProductCard({ imageUrls, userIcon, author, currentPrice, name, itemNo }) {
-  const dispatch = useDispatch()
+function ProductCard({
+  imageUrls,
+  userIcon,
+  author,
+  currentPrice,
+  name,
+  itemNo,
+}) {
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.productCard}>
       <Link to={`/product/${itemNo}`}>
-        <img
-          className={styles.productCard__img}
-          src={imageUrls[0]}
-          alt='product-card'
-        />
+        <div>
+          <img
+            className={styles.productCard__img}
+            src={imageUrls[0]}
+            alt='product-card'
+          />
+          <p className={styles.productCard_name}>{name}</p>
+        </div>
       </Link>
       <div className={styles.productCard__userInfo}>
         <div className={styles.productCard__userInfo_items}>
-          <div className={styles.productCard__userInfo_name}>{name}</div>
           <img
             className={styles.productCard__userInfo_userIcon}
             src={userIcon}

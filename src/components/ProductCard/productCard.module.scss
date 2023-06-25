@@ -16,6 +16,19 @@
   font-weight: 700;
   cursor: pointer;
 
+  &_name {
+    position: absolute;
+    top: 290px;
+    left: 30px;
+    transform: translateY(45px);
+    transition: .2s;
+    color: #f7fbfa;
+    font-size: 24px;
+    line-height: 32px;
+    opacity: 0;
+    z-index: 7;
+  }
+
   &:hover {
     transform: scale(1.03);
     transition: .2s ease;
@@ -46,7 +59,7 @@
     color: #d2d2d2;
   }
 
-  &:hover .productCard__userInfo_name {
+  &:hover .productCard_name {
     transform: translateY(0);
     transition: .2s;
     opacity: 1;
@@ -80,19 +93,6 @@
     position: relative;
     margin-top: 18px;
     margin-bottom: 33px;
-
-    &_name {
-      position: absolute;
-      bottom: 80px;
-      left: 30px;
-      transform: translateY(45px);
-      transition: .2s;
-      color: #f7fbfa;
-      font-size: 24px;
-      line-height: 32px;
-      opacity: 0;
-      z-index: 7;
-    }
 
     &::after {
       position: absolute;
