@@ -2,11 +2,8 @@ import ProductCard from '../ProductCard';
 import styles from './productList.module.scss';
 import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
-import Loader from '../Loader';
-import { useSelector } from 'react-redux';
 
-function ProductList() {
-  const products = useSelector((state) => state.products.products);
+function ProductList({ products }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -27,7 +24,7 @@ function ProductList() {
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product.id} />
+          <ProductCard {...product} key={product._id} />
         ))}
       </div>
       <div className='pagination'>
