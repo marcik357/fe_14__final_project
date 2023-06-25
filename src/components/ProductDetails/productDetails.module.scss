@@ -6,7 +6,6 @@
 .productDetails {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   min-width: 375px;
   background-color: #f1f4f4;
@@ -15,13 +14,12 @@
 
   @media (min-width: 748px) {
     flex-direction: row;
-    align-items: flex-start;
   }
 
   &__imgCont {
     display: flex;
+    flex: 1 0 50%;
     flex-direction: column;
-    justify-content: center;
     position: relative;
     background-color: white;
   }
@@ -67,15 +65,15 @@
     padding: 20px;
     row-gap: 20px;
 
-    &::after {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 95%;
-      height: 1px;
-      background-color: #e1e2e2;
-      content: '';
-    }
+    // &::after {
+    //   position: absolute;
+    //   bottom: 0;
+    //   left: 0;
+    //   width: 95%;
+    //   height: 1px;
+    //   background-color: #e1e2e2;
+    //   content: '';
+    // }
 
     @media (min-width: 1024px) {
       flex-direction: row;
@@ -95,11 +93,14 @@
     &_container {
       display: flex;
       align-items: center;
-      column-gap: 20px;
+      column-gap: 10px;
     }
 
     &_userIcon {
-      width: 48px;
+      max-width: 40px;
+      max-height: 40px;
+      border-radius: 50%;
+      background: #bbd6da;
     }
 
     &_userName {
@@ -115,16 +116,13 @@
     }
 
     &_userCollection {
-      width: 56px;
-      height: 24px;
-      padding-top: 4px;
-      border-radius: 6px;
+      padding: 5px 10px;
+      border-radius: 5px;
       background-color: #e1e2e2;
       color: #686a6c;
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 1px;
-      text-align: center;
       text-transform: uppercase;
     }
   }
@@ -152,17 +150,15 @@
   }
 
   &__actions {
-    &_container {
-      margin: 20px;
-      padding: 20px;
-      border-radius: 18px;
-      background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 18px;
+    background-color: white;
 
-      @media (min-width: 748px) {
-        margin-top: 40px;
-        margin-right: 50px;
-        margin-left: 50px;
-      }
+    @media (min-width: 748px) {
+      margin-top: 40px;
+      margin-right: 50px;
+      margin-left: 50px;
     }
 
     &_header {
@@ -172,9 +168,14 @@
     }
 
     &_title {
-      font-size: 16px;
+      margin-bottom: 30px;
+      font-size: 2rem;
       font-weight: 700;
-      line-height: 24px;
+      line-height: 3rem;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
 
     &_text {
@@ -208,6 +209,11 @@
       padding-bottom: 10px;
       font-size: 25px;
       font-weight: 800;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
 
       &::after {
         position: absolute;
