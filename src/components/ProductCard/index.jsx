@@ -20,26 +20,27 @@ function ProductCard({
   return (
     <div className={styles.productCard}>
       <Link to={`/product/${itemNo}`}>
-        <div>
-          <img
-            className={styles.productCard__img}
-            src={imageUrls[0]}
-            alt='product-card'
-          />
-          <p className={styles.productCard__name}>{name}</p>
-        </div>
+        <img
+          className={styles.productCard__img}
+          src={imageUrls[0]}
+          alt='product-card'
+        />
+        <p className={styles.productCard__name}>{name}</p>
       </Link>
       <div className={styles.productCard__userInfo}>
-        <div className={styles.productCard__userInfo_items}>
-          <img
-            className={styles.productCard__userInfo_userIcon}
-            src={userIcon}
-            alt='user-avatar'
-          />
-          <p className={styles.productCard__userInfo_author}>{author}</p>
-        </div>
+        <Link to={`/`}>
+          <div className={styles.productCard__userInfo_items}>
+            <img
+              className={styles.productCard__userInfo_userIcon}
+              src={userIcon}
+              alt='user-avatar'
+            />
+            <p className={styles.productCard__userInfo_author}>{author}</p>
+          </div>
+        </Link>
         <Verified />
       </div>
+
       <div className={styles.productCard__priceInfo}>
         <div className={styles.productCard__priceInfo_price}>
           <button
