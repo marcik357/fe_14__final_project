@@ -173,6 +173,11 @@ a {
     }
   }
 
+  &__label {
+    display: flex;
+    align-items: flex-end;
+  }
+
   &__input {
     order: 2;
     margin-left: 5px;

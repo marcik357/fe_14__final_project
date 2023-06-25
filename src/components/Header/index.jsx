@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Logo, Search, Basket, ArrowRight, Instagram, Twitter, Facebook, Linkedin } from '../Icons';
 import style from './header.module.scss';
@@ -26,15 +26,6 @@ function Header() {
   function handleInputChange(e) {
     setSearchValue(e.target.value);
   }
-
-  // при кліку на компонент Search, курсор автоматично з'являється в рядку пошуку (input).
-  const inputRef = useRef(null);
-
-  const handleSearchClick = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  };
 
   // відкриття бургер-меню
   const [isOpen, setIsOpen] = useState(false);
@@ -76,15 +67,17 @@ function Header() {
               </Link>
               <div className={`${style.header__search} ${style.search}`}>
                 <form action="" className={`${style.search__form} ${isSearchVisible ? style.active : ''} ${scrolled ? style.scrolled : null}`}>
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className={style.search__input}
-                    value={searchValue}
-                    onChange={handleInputChange}
-                    ref={inputRef}
-                  />
-                  <Search onClick={handleSearchClick} />
+                  <label htmlFor="searchInput" className={style.search__label}>
+                    <input
+                      id="searchInput"
+                      type="text"
+                      placeholder="Search"
+                      className={style.search__input}
+                      value={searchValue}
+                      onChange={handleInputChange}
+                    />
+                    <Search />
+                  </label>
                 </form>
                 {!isDesktop ? (
                   <button type="button" className={style.search__btn} onClick={toggleSearchView}>
