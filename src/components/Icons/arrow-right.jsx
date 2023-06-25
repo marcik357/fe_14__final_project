@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export function ArrowRight({ width = 24, height = 24, color = '#686A6C' }) {
+export function ArrowRight({ width, height, color }) {
   return (
     <svg
       width={width}
