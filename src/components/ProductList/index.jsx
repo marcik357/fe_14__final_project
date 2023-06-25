@@ -22,24 +22,30 @@ function ProductList({ products }) {
   const renderPageNumbers = () => {
     const ellipsis = '...';
 
-    // Відображення всіх номерів сторінок
     if (totalPages) {
-      return pageNumbers.map((number) => (
-        <button
-          onClick={() => setPage(number)}
-          key={number}
-          className={`page ${page === number ? 'active' : ''}`}
-        >
-          {number}
-        </button>
-      ));
-    }
+      const visiblePages =
+        totalPages <= 7
+          ? pageNumbers
+          : page <= 4
+          ? pageNumbers.slice(0, 5)
+          : page >= totalPages - 4
+          ? pageNumbers.slice(totalPages - 5)
+          : pageNumbers.slice(page - 3, page + 2);
 
-    // Відображення крапок зліва від поточної сторінки
-    if (page <= 4) {
-      const visiblePages = pageNumbers.slice(0, 3);
       return (
         <>
+          {page > 4 && totalPages > 7 && (
+            <>
+              <button
+                onClick={() => setPage(1)}
+                className={`page ${page === 1 ? 'active' : ''}`}
+              >
+                1
+              </button>
+              <span className='ellipsis'>{ellipsis}</span>
+            </>
+          )}
+
           {visiblePages.map((number) => (
             <button
               onClick={() => setPage(number)}
@@ -49,71 +55,23 @@ function ProductList({ products }) {
               {number}
             </button>
           ))}
-          <span className='ellipsis'>{ellipsis}</span>
-          <button
-            onClick={() => setPage(totalPages)}
-            className={`page ${page === totalPages ? 'active' : ''}`}
-          >
-            {totalPages}
-          </button>
+
+          {page <= totalPages - 4 && totalPages > 7 && (
+            <>
+              <span className='ellipsis'>{ellipsis}</span>
+              <button
+                onClick={() => setPage(totalPages)}
+                className={`page ${page === totalPages ? 'active' : ''}`}
+              >
+                {totalPages}
+              </button>
+            </>
+          )}
         </>
       );
     }
 
-    // Відображення крапок праворуч від поточної сторінки
-    if (page > 4 && page <= totalPages - 4) {
-      return (
-        <>
-          <button
-            onClick={() => setPage(1)}
-            className={`page ${page === 1 ? 'active' : ''}`}
-          >
-            1
-          </button>
-          <span className='ellipsis'>{ellipsis}</span>
-          {pageNumbers.slice(page - 3, page + 2).map((number) => (
-            <button
-              onClick={() => setPage(number)}
-              key={number}
-              className={`page ${page === number ? 'active' : ''}`}
-            >
-              {number}
-            </button>
-          ))}
-          <span className='ellipsis'>{ellipsis}</span>
-          <button
-            onClick={() => setPage(totalPages)}
-            className={`page ${page === totalPages ? 'active' : ''}`}
-          >
-            {totalPages}
-          </button>
-        </>
-      );
-    }
-
-    // Відображення крапок зліва від останньої сторінки
-    if (page > totalPages - 4) {
-      return (
-        <>
-          <button
-            onClick={() => setPage(1)}
-            className={`page ${page === 1 ? 'active' : ''}`}
-          >
-            1
-          </button>
-          <span className='ellipsis'>{ellipsis}</span>
-          {pageNumbers.slice(totalPages - 5, totalPages).map((number) => (
-            <button
-              onClick={() => setPage(number)}
-              key={number}
-              className={`page ${page === number ? 'active' : ''}`}
-            >
-              {number}
-            </button>
-          ))}
-        </>
-      );
-    }
+    return null;
   };
 
   return (
