@@ -11,7 +11,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
   return (
     <div className={styles.productDetails}>
       <div className={styles.productDetails__imgCont}>
-        <img className={styles.productDetails__img} src={imageUrls[0].slice(1)} alt="product-img" />
+        <img className={styles.productDetails__img} src={imageUrls[0].slice(1)} alt={name || "product image"} />
         <div className={styles.productDetails__links}>
           <div className={styles.productDetails__userInfo}>
             <p className={styles.productDetails__userInfo_text}>Created by</p>
@@ -29,10 +29,6 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
             </div>
           </div>
         </div>
-        {/* <div className={styles.productDetails__info}>
-          <h3 className={styles.productDetails__info_title}>Details:</h3>
-          <p className={styles.productDetails__info_text}>We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities. Join the millions of creators, collectors, and curators who are on this journey with you.</p>
-        </div> */}
       </div>
       <div className={styles.productDetails__actions}>
         <div className={styles.productDetails__actions_header}>
