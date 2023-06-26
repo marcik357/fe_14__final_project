@@ -17,7 +17,7 @@ export function Home() {
   // const error = useSelector((state) => state.error.error);
 
   useEffect(() => {
-    dispatch(getDataAction('./data/promoList.json', addPromoAction));
+    dispatch(getDataAction('https://plankton-app-6vr5h.ondigitalocean.app/api/slides', addPromoAction));
     dispatch(getDataAction('https://plankton-app-6vr5h.ondigitalocean.app/api/products', addProductsAction));
   }, [dispatch]);
 

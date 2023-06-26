@@ -30,6 +30,7 @@ function SliderPromo() {
           nextEl: nextBtnRef.current,
         }}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+        speed={500}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
@@ -46,32 +47,32 @@ function SliderPromo() {
         </div>
         {products.map((product) => (
           <SwiperSlide
-            key={product.id}
+            key={product._id}
             className={styles.promoSlider__slide}
           >
-            <img src={product.url} alt={product.name} className={styles.promoSlider__slide_img} />
+            <img src={product.imageUrl} alt={product.product.name} className={styles.promoSlider__slide_img} />
             <div className={styles.promoSlider__container}>
               <div className={styles.promoSlider__inner}>
                 <div className={styles.promoSlider__meta}>
                   <Link
-                    to={`/product/${product.id}`}
+                    to={`/product/${product.product.itemNo}`}
                     className={styles.promoSlider__meta_prod}
                   >
-                    {product.name}
+                    {product.product.name}
                   </Link>
                   <Link
                     to="/"
                     className={styles.promoSlider__meta_auth}
                   >
                     <div className={styles.promoSlider__meta_img}>
-                      <img src={product.userIcon} alt="avatar" />
+                      <img src={product.product.userIcon || './images/avatars/user-icon.png'} alt="avatar" />
                     </div>
-                    {product.creator}
+                    {product.product.author}
                   </Link>
                 </div>
                 <div className={styles.promoSlider__btns}>
                   <Link
-                    to={`/product/${product.id}`}
+                    to={`/product/${product.product.itemNo}`}
                     className={styles.promoSlider__btns_link}
                   >
                     View NFT
@@ -79,7 +80,7 @@ function SliderPromo() {
                   </Link>
                   <button
                     type='button'
-                    onClick={() => buyNowHandler(dispatch, product.id)}
+                    onClick={() => buyNowHandler(dispatch, product.product.itemNo)}
                     className={styles.promoSlider__btns_buy}
                   >
                     BUY NOW
@@ -102,8 +103,8 @@ function SliderPromo() {
           className={styles.promoThumbs__container}
         >
           {products.map((product) => (
-            <SwiperSlide key={product.id} className={styles.promoThumbs__thumb}>
-              <img src={product.url} alt={product.name} className={styles.promoThumbs__img} />
+            <SwiperSlide key={product._id} className={styles.promoThumbs__thumb}>
+              <img src={product.imageUrl} alt={product.product.name} className={styles.promoThumbs__img} />
             </SwiperSlide>
           ))}
         </Swiper>

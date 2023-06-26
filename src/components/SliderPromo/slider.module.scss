@@ -90,6 +90,10 @@
       letter-spacing: -.02em;
       line-height: 35px;
       text-decoration: none;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
 
     &_auth {
