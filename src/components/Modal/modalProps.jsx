@@ -5,7 +5,7 @@ import style from './modal.module.scss';
 export const modalProps = [
   {
     type: 'buy',
-    text: 'This product will be added to your cart',
+    header: 'Added to cart',
     closeBtnHandler(onClose, className) {
       return (
         <button onClick={onClose} className={className} />
@@ -14,8 +14,8 @@ export const modalProps = [
     actions(onClose, onSubmit, className) {
       return (
         <div className={className}>
-          <button onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Ok</button>
-          <button onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>Cancel</button>
+          <button onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Continue shopping</button>
+          <button onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>View cart</button>
         </div>
       );
     },

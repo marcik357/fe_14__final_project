@@ -23,7 +23,7 @@ export function Modal(props) {
         <div className={style.modal__container}>
           <div className={style.modal__header}>
             <h3 className={style.modal__title}>{header}</h3>
-            <button type="button" className={style.modal__closeBtn} onClick={onCloseModal}>✖</button>
+            <button type="button" className={style.modal__closeBtn} onClick={onCloseModal}>✕</button>
           </div>
           <div className={style.modal__text}>
             {text && <p>{text}</p>}
