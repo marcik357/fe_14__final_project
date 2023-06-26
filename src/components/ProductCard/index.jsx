@@ -42,15 +42,13 @@ function ProductCard({
       </div>
 
       <div className={styles.productCard__priceInfo}>
-        <div className={styles.productCard__priceInfo_price}>
-          <button
-            className={styles.productCard__priceInfo_button}
-            type='button'
-            onClick={() => buyNowHandler(dispatch, itemNo)}
-          >
-            Buy now
-          </button>
-        </div>
+        <button
+          className={styles.productCard__priceInfo_button}
+          type='button'
+          onClick={() => buyNowHandler(dispatch, itemNo)}
+        >
+          Buy now
+        </button>
         <div className={styles.productCard__priceInfo_buyNow}>
           <ETHIcon />
           <p>

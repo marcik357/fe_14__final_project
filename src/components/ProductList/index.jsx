@@ -93,18 +93,13 @@ function ProductList({ products }) {
       <div className='pagination'>
         {page === 1 ? null : (
           <button onClick={(prevPage, scroll)} className='page'>
-            <ArrowRight
-              style={{
-                transform: 'rotate(180deg)',
-                backgroundColor: '#fff',
-              }}
-            />
+            <ArrowRight />
           </button>
         )}
         {renderPageNumbers()}
         {totalPages === page ? null : (
           <button onClick={(nextPage, scroll)} className='page'>
-            <ArrowRight style={{ backgroundColor: '#fff' }} />
+            <ArrowRight />
           </button>
         )}
       </div>
