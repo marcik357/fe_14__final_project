@@ -7,8 +7,15 @@ import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
 
-function ProductCard({ imageUrls, userIcon, author, currentPrice, name, itemNo }) {
-  const dispatch = useDispatch()
+function ProductCard({
+  imageUrls,
+  userIcon,
+  author,
+  currentPrice,
+  name,
+  itemNo,
+}) {
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.productCard}>
@@ -18,19 +25,22 @@ function ProductCard({ imageUrls, userIcon, author, currentPrice, name, itemNo }
           src={imageUrls[0]}
           alt='product-card'
         />
+        <p className={styles.productCard__name}>{name}</p>
       </Link>
       <div className={styles.productCard__userInfo}>
-        <div className={styles.productCard__userInfo_items}>
-          <div className={styles.productCard__userInfo_name}>{name}</div>
-          <img
-            className={styles.productCard__userInfo_userIcon}
-            src={userIcon}
-            alt='user-avatar'
-          />
-          <p className={styles.productCard__userInfo_author}>{author}</p>
-        </div>
+        <Link to={`/`}>
+          <div className={styles.productCard__userInfo_items}>
+            <img
+              className={styles.productCard__userInfo_userIcon}
+              src={userIcon}
+              alt='user-avatar'
+            />
+            <p className={styles.productCard__userInfo_author}>{author}</p>
+          </div>
+        </Link>
         <Verified />
       </div>
+
       <div className={styles.productCard__priceInfo}>
         <div className={styles.productCard__priceInfo_price}>
           <button
