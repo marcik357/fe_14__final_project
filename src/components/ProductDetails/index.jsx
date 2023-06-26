@@ -5,18 +5,18 @@ import style from './productDetails.module.scss';
 // потім перейменувати у style
 import { ETHIcon } from '../Icons';
 
-export default function ProductDetails({ _id, itemNo, name, currentPrice, imageUrls, userIcon, collectionIcon, author, theme }) {
+export default function ProductDetails({ _id, itemNo, name, currentPrice, imageUrls, authorIcon, collectionIcon, author, theme }) {
   const dispatch = useDispatch();
 
   return (
     <div className={style.productDetails}>
       <div className={style.productDetails__imgCont}>
-        <img className={style.productDetails__img} src={imageUrls[0].slice(1)} alt={name || "product image"} />
+        <img className={style.productDetails__img} src={imageUrls} alt={name || "product image"} />
         <div className={style.productDetails__links}>
           <div className={style.productDetails__userInfo}>
             <p className={style.productDetails__userInfo_text}>Created by</p>
             <div className={style.productDetails__userInfo_container}>
-              <img className={style.productDetails__userInfo_userIcon} src={userIcon} alt="user-avatar" />
+              <img className={style.productDetails__userInfo_userIcon} src={authorIcon} alt="user-avatar" />
               <p className={style.productDetails__userInfo_userLink}>{author}</p>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
 
 ProductDetails.propTypes = {
   imageUrls: PropTypes.array,
-  userIcon: PropTypes.string,
+  authorIcon: PropTypes.string,
   collectionIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,
@@ -72,7 +72,7 @@ ProductDetails.propTypes = {
 
 ProductDetails.defaultProps = {
   imageUrls: [],
-  userIcon: '/images/avatars/user-icon.png',
+  authorIcon: '/images/avatars/user-icon.png',
   collectionIcon: '/images/icons/collection-icon.png',
   author: 'varios author',
   currentPrice: 0,

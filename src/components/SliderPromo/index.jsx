@@ -46,7 +46,7 @@ function SliderPromo() {
           </div>
         </div>
         {products.map((product) => {
-          const { _id, imageUrl, product: { itemNo, name, userIcon, author } } = product;
+          const { _id, imageUrl, product: { itemNo, name, authorIcon, author } } = product;
           return (
             <SwiperSlide
               key={_id}
@@ -67,7 +67,7 @@ function SliderPromo() {
                       className={styles.promoSlider__meta_auth}
                     >
                       <div className={styles.promoSlider__meta_img}>
-                        <img src={userIcon || './images/avatars/user-icon.png'} alt="avatar" />
+                        <img src={authorIcon || '/images/avatars/user-icon.png'} alt="avatar" />
                       </div>
                       {author}
                     </Link>

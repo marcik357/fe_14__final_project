@@ -9,7 +9,7 @@ import { ETHIcon } from '../Icons';
 
 function ProductCard({
   imageUrls,
-  userIcon,
+  authorIcon,
   author,
   currentPrice,
   name,
@@ -32,7 +32,7 @@ function ProductCard({
           <div className={styles.productCard__userInfo_items}>
             <img
               className={styles.productCard__userInfo_userIcon}
-              src={userIcon}
+              src={authorIcon}
               alt='user-avatar'
             />
             <p className={styles.productCard__userInfo_author}>{author}</p>
@@ -64,14 +64,14 @@ function ProductCard({
 
 ProductCard.propTypes = {
   imageUrls: PropTypes.array,
-  userIcon: PropTypes.string,
+  authorIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,
 };
 
 ProductCard.defaultProps = {
   imageUrls: [],
-  userIcon: './images/avatars/user-icon.png',
+  authorIcon: '/images/avatars/user-icon.png',
   author: 'varios author',
   currentPrice: 0,
 };
