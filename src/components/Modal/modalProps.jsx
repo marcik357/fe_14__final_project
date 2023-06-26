@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
 import style from './modal.module.scss';
 
 export const modalProps = [
@@ -31,8 +29,8 @@ export const modalProps = [
     actions(onClose, onSubmit, className) {
       return (
         <div className={className}>
-          <button onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Ok</button>
-          <button onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>Cancel</button>
+          <button type='button' onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Ok</button>
+          <button type='button' onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>Cancel</button>
         </div>
       );
     },
