@@ -9,7 +9,7 @@ export default function Blog() {
     <div className={styles.blog_home}>
 
       <div className={styles.blog_main}>
-        <img src={MainImg}></img>
+        <img src={MainImg} alt=""></img>
       </div>
       
       <div className={styles.blog_posts}>
@@ -19,7 +19,7 @@ export default function Blog() {
               <div>
                 <div className={styles.blog_post} key={data.id}>
                   <div className={styles.blog_postImg}>
-                    <img src={data.url} alt=""/>
+                    <img src={data.url} alt="img"/>
                   </div>
                   <div className={styles.blog_content}>
                     <h3>{data.capturePost}</h3>
