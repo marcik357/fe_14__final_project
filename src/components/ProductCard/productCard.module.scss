@@ -74,6 +74,7 @@
     background: linear-gradient(to top, rgba(0, 0, 0, .744), transparent);
     content: '';
     z-index: 6;
+    pointer-events: none;
   }
 
   &__img {
@@ -228,7 +229,6 @@
 
     &__img {
       margin-top: 10px;
-      margin-bottom: 24px;
     }
 
     &__name {
@@ -239,7 +239,7 @@
 
     &__userInfo {
       align-items: center;
-      margin-top: 0;
+      margin-top: 24px;
 
       &_author {
         font-size: 12px;
@@ -282,7 +282,6 @@
 
     &__img {
       margin-top: 10px;
-      margin-bottom: 24px;
     }
 
     &__name {
@@ -297,7 +296,7 @@
     }
 
     &__userInfo {
-      margin-top: 0;
+      margin-top: 24px;
 
       &_author {
         font-size: 15px;
