@@ -25,7 +25,7 @@ export default function Blog() {
               <div key={data.id}>
                 <div className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                   <div className={styles.blog__postImgBlock}>
-                    <img className={styles.blog__postImg} src={data.url} alt={`img ${data.id}`} />
+                    <img className={styles.blog__postImg} src={data.url} width="375" alt={`img ${data.id}`} />
                     <Link to="*">
                       <button type="button" className={styles.blog__btnImg}>{data.textButton}</button>
                     </Link>
@@ -40,11 +40,11 @@ export default function Blog() {
                           <BlogIcon />
                         </div>
                         <div>
-                          <p>{data.authorPost}</p>
-                          <p>{data.dataPost}</p>
+                          <p className={styles.blog__authorPost}>{data.authorPost}</p>
+                          <p className={styles.blog__dataPost}>{data.dataPost}</p>
                         </div>
                       </div>
-                      <p>{data.textPost}</p>
+                      <p className={styles.blog__textPost}>{data.textPost}</p>
                     </div>
                   </div>
                 </div>

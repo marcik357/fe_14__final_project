@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
     padding: 0;
 }
+
+
 
 img {
     display: block;
@@ -11,17 +13,22 @@ img {
 }
 
 .blog {
-    max-width: 1600px;
+    width: 100%;
     margin: 0 auto;
+    // padding: 0 20px;
+    // min-width: 375px;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+
 
     &__mainImgContainer {
         position: relative;
-        overflow: hidden;
+        overflow: hidden;       
     }
 
     &__mainImg {
         width: 100%;
-        height: 528px;
+        min-height: 528px;
         position: relative;
     }
 
@@ -41,42 +48,49 @@ img {
         transform: translate(-50%, -50%);
         text-align: center;
         color: #F7FBFA;
-        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        // z-index: 1;
     }
 
     &__titleOverlay h2 {
-        font-size: 64px;
-        font-family: Inter;
+        font-size: 48px;
+        // font-family: Inter;
         font-weight: 800;
-        line-height: 64px;
-        letter-spacing: -1.28px;
-        margin-bottom: 24px;
+        line-height: 48px;
+        letter-spacing: -0.96px;
+        margin-bottom: 16px;
     }
 
     &__titleOverlay p {
-        font-size: 32px;
-        font-family: Inter;
-        font-weight: 800;
-        line-height: 40px;
-        letter-spacing: -0.64px;
+        font-size: 20px;
+        // font-family: Inter;
+        font-weight: 700;
+        line-height: 32px;
+        letter-spacing: -0.4px;
     }
 
-    &__post {
-        display: flex;
-    }
+    // &__post {
+    //     display: flex;
+    // }
 
-    &__reverse {
-        flex-direction: row-reverse;
-    }
+    // &__reverse {
+    //     flex-direction: row-reverse;
+    // }
 
     &__postImgBlock {
         position: relative;
         overflow: hidden;
-        width: 50%;
+        // width: 50%;
     }
 
     &__postImg {
         transition: filter 0.3s ease;
+        width: 100%;
     }
 
     &__postImgBlock:hover img {
@@ -100,6 +114,7 @@ img {
         text-transform: uppercase;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        // width: 260px;
     }
 
     &__btnImg:hover {
@@ -107,17 +122,19 @@ img {
         color: #202025;
         border: 1px solid #202025;
         box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+        // width: 260px;
     }
 
-    &__contentBlock {
-        width: 50%;
-    }
+    // &__contentBlock {
+    //     width: 50%;
+    // }
 
     &__content {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin: 80px;
+        margin: 40px 24px 96px;
+        // color: #202025;
     }
 
     &__linkCapturePost {
@@ -125,22 +142,45 @@ img {
     }
 
     &__capturePost {
-        font-family: 'Inter';
-	    font-weight: bold;
-	    font-size: 64px;
-	    line-height: 64px;
-	    color: #202025;
-        padding-bottom: 32px;
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 40px;
+        letter-spacing: -0.64px;
+        padding-bottom: 16px;
+        color: #202025;
     }
 
     &__infoAuthor {
         display: flex;
         align-content: center;
+        margin-bottom: 75px;
     }
 
     &__postIcon {
         display: flex;
-        align-content: center;
+        // align-content: center;
+        margin-right: 20px;
+        margin-top: 6px;
     }
 
+    &__authorPost {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 36px;
+        letter-spacing: -0.18px;
+    }
+
+    &__dataPost {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: -0.28px;
+    }
+
+    &__textPost {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 32px;
+        letter-spacing: -0.4px;
+    }
 }
