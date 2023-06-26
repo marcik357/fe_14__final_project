@@ -2,6 +2,7 @@ import styles from './blog.module.scss';
 import postsData from '../../data.json';
 // import {Link} from "react-router-dom";
 import MainImg from '../../img/img-blog-main.png';
+import { BlogIcon } from '../Icons/icon-blog';
 
 export default function Blog() {
   return (
@@ -25,7 +26,8 @@ export default function Blog() {
                       <h3 className={styles.blog__capturePost}>{data.capturePost}</h3>
                       <div className={styles.blog__infoAuthor}>
                         <div className={styles.blog__postIcon}>
-                          <img src={data.iconPost} alt={`icon ${data.id}`} />
+                          <BlogIcon />
+                          {/* <img src={data.iconPost} alt={`icon ${data.id}`} /> */}
                         </div>
                         <div>
                           <p>{data.authorPost}</p>
