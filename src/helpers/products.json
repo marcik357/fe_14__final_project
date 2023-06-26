@@ -1,0 +1,489 @@
+[
+{
+    "name": "Elon praying for bitcoin",
+    "author": "@Art_ofbitcoin",
+    "categories" : "celebrities",
+    "theme" : ["art","portrait","people"],
+    "currentPrice" : 2.90,
+    "imageUrls": ["./images/products/@Art_ofbitcoin_Elon_praying_for_bitcoin_Art.png"],
+    "quantity" : 7
+},
+{
+    "name": "Art Side",
+    "author": "@ArtWarsNFT",
+    "categories" : "other",
+    "theme" : ["art", "film"],
+    "currentPrice" : 3.50,
+    "imageUrls": ["./images/products/@ArtWarsNFT_Art_Side.png"],
+    "quantity" : 3
+},
+{
+    "name": "Art Side BurgerKing",
+    "author": "@ArtWarsNFT",
+    "categories" : "other",
+    "theme" : ["art", "film"],
+    "currentPrice" : 3.00,
+    "imageUrls": ["./images/products/@ArtWarsNFT_Art_Side_BurgerKing.png"],
+    "quantity" : 8
+},
+{
+    "name": "kawaii",
+    "author": "@cybrpnk",
+    "categories" : "other",
+    "theme" : ["art", "anime"],
+    "currentPrice" : 1.80,
+    "imageUrls": ["./images/products/@cybrpnk_cute_plush_toy_kawaii.png"],
+    "quantity" : 6
+},
+{
+    "name": "Alien shaman",
+    "author": "@DaSucker",
+    "categories" : "art",
+    "theme" : ["art","portrait"],
+    "currentPrice" : 2.30,
+    "imageUrls": ["./images/products/@DaSucker_Alien_shaman.png"],
+    "quantity" : 5
+},
+{
+    "name": "Dia De Los Muertos",
+    "author": "@DaSucker",
+    "categories" : "art",
+    "theme" : ["art","portrait","anime"],
+    "currentPrice" : 1.90,
+    "imageUrls": ["./images/products/@DaSucker_Anime_Dia_De_Los_Muertos.png"],
+    "quantity" : 9
+},
+{
+    "name": "Animation Student",
+    "author": "@ElifOnur",
+    "categories" : "other",
+    "theme" : ["portrait"],
+    "currentPrice" : 3.90,
+    "imageUrls": ["./images/products/@Elif_Onur_Animation_Student.png"],
+    "quantity" : 4
+},
+{
+    "name": "Boy in gasmask",
+    "author": "@elnafrederick",
+    "categories" : "other",
+    "theme" : ["art","portrait","anime","people"],
+    "currentPrice" : 2.80,
+    "imageUrls": ["./images/products/@elnafrederick_boy_in_gasmask_anime.png"],
+    "quantity" : 8
+},
+{
+    "name": "Coins in wallet",
+    "author": "@elnafrederick",
+    "categories" : "other",
+    "theme" : ["art"],
+    "currentPrice" : 2.20,
+    "imageUrls": ["./products/@elnafrederick_Coins_in_wallet.png"],
+    "quantity" : 6
+},
+{
+    "name": "Cube in sand",
+    "author": "@elnafrederick",
+    "categories" : "art",
+    "theme" : ["art","nature"],
+    "currentPrice" : 2.90,
+    "imageUrls": ["./images/products/@elnafrederick_cube_in_sand.png"],
+    "quantity" : 4
+},
+{
+    "name": "Elven kingdom city",
+    "author": "@elnafrederick",
+    "categories" : "art",
+    "theme" : ["art","nature"],
+    "currentPrice" : 1.99,
+    "imageUrls": ["./images/products/@elnafrederick_Elven_kingdom_city.png"],
+    "quantity" : 8
+},
+{
+    "name": "Cute fox",
+    "author": "@elnafrederick",
+    "categories" : "art",
+    "theme" : ["anime","animals"],
+    "currentPrice" : 1.99,
+    "imageUrls": ["./images/products/@elnafrederick_Emiru_Anime_cute_fox.png"],
+    "quantity" : 6
+},
+{
+    "name": "Fairy tree",
+    "author": "@elnafrederick",
+    "currentPrice" : 2.00,
+    "categories" : "art",
+    "theme" : ["nature","art"],
+    "imageUrls": ["./images/products/@elnafrederick_fairy_tree.png"],
+    "quantity" : 7
+},
+{
+    "name": "Flappy monster",
+    "author": "@elnafrederick",
+    "currentPrice" : 2.56,
+    "categories" : "other",
+    "theme" : ["nature","cartoon"],
+    "imageUrls": ["./images/products/@elnafrederick_flappy_monster_cuteplanet.png"],
+    "quantity" : 8
+},
+{
+    "name": "Fox",
+    "author": "@elnafrederick",
+    "currentPrice" : 2.87,
+    "categories" : "other",
+    "theme" : ["nature","animals"],
+    "imageUrls": ["./images/products/@elnafrederick_fox.png"],
+    "quantity" : 4
+},
+{
+    "name": "Stone family",
+    "author": "@elnafrederick",
+    "currentPrice" : 2.37,
+    "categories" : "other",
+    "theme" : ["nature","cartoon","music"],
+    "imageUrls": ["./images/products/@elnafrederick_stone_family_cuteplanet_.png"],
+    "quantity" : 14
+},
+{
+    "name": "Giraffe slam",
+    "author": "@Hakaji",
+    "currentPrice" : 1.98,
+    "categories" : "other",
+    "theme" : ["nature","animals","cartoon"],
+    "imageUrls": ["./images/products/@Hakaji_Giraffe_Slam.png"],
+    "quantity" : 8
+},
+{
+    "name": "Perception",
+    "author": "@Hakaji",
+    "currentPrice" : 2.38,
+    "categories" : "art",
+    "theme" : ["art","people"],
+    "imageUrls": ["./images/products/@Hakaji_Perception.png"],
+    "quantity" : 3
+},
+{
+    "name": "Beautiful spectral lion",
+    "author": "@Hanzo",
+    "currentPrice" : 3.00,
+    "categories" : "art",
+    "theme" : ["art","animals","nature"],
+    "imageUrls": ["./images/products/@Hanzo_Beautiful_Spectral_lion.png"],
+    "quantity" : 7
+},
+{
+    "name": "Fantasy village",
+    "author": "@Hanzo",
+    "currentPrice" : 2.00,
+    "categories" : "art",
+    "theme" : ["art","nature"],
+    "imageUrls": ["./images/products/@Hanzo_Fantasy_Village.png"],
+    "quantity" : 6
+},
+{
+    "name": "Mountains...",
+    "author": "@Hanzo",
+    "currentPrice" : 2.30,
+    "categories" : "art",
+    "theme" : ["art","nature"],
+    "imageUrls": ["./images/products/@Hanzo_mountains_landscape_wooden_house.png"],
+    "quantity" : 10
+},
+{
+    "name": "Myth of north",
+    "author": "@Ilya_Shapko",
+    "currentPrice" : 2.30,
+    "categories" : "art",
+    "theme" : ["art","nature","animals"],
+    "imageUrls": ["./images/products/@Ilya_Shapko_myth_of_north.png"],
+    "quantity" : 1
+},
+{
+    "name": "Night cryptobug",
+    "author": "@Ilya_Shapko",
+    "currentPrice" : 2.80,
+    "categories" : "art",
+    "theme" : ["nature","animals"],
+    "imageUrls": ["./images/products/@Ilya_Shapko_night_cryptobug.png"],
+    "quantity" : 11
+},
+{
+    "name": "Psychedelic tiger",
+    "author": "@Ilya_Shapko",
+    "currentPrice" : 2.90,
+    "categories" : "art",
+    "theme" : ["nature","animals","art"],
+    "imageUrls": ["./images/products/@Ilya_Shapko_psychedelic_tiger.png"],
+    "quantity" : 8
+},
+{
+    "name": "Tiger",
+    "author": "@Ilya_Shapko",
+    "currentPrice" : 2.99,
+    "categories" : "other",
+    "theme" : ["nature","animals"],
+    "imageUrls": ["./public/images/products/@Ilya_Shapko_tiger.png"],
+    "quantity" : 7
+},
+{
+    "name": "Valentine",
+    "author": "@Jabarvizu",
+    "currentPrice" : 2.39,
+    "categories" : "other",
+    "theme" : ["portrait","people"],
+    "imageUrls": ["./public/images/products/@Jabarvizu_Faye_Valentine.png"],
+    "quantity" : 6
+},
+{
+    "name": "Indigo child",
+    "author": "@Jabarvizu",
+    "currentPrice" : 2.20,
+    "categories" : "art",
+    "theme" : ["portrait","people","animals","art"],
+    "imageUrls": ["./public/images/products/@Jabarvizu_Indigo_Child.png"],
+    "quantity" : 4
+},
+{
+    "name": "Woman DJ",
+    "author": "@Jayeola_Muniz",
+    "currentPrice" : 2.40,
+    "categories" : "other",
+    "theme" : ["portrait","people","cartoon","music"],
+    "imageUrls": ["./public/images/products/@Jayeola_Muniz_Woman_DJ.png"],
+    "quantity" : 9
+},
+{
+    "name": "Cyber soldier",
+    "author": "@jessygrosch",
+    "currentPrice" : 2.50,
+    "categories" : "gaming",
+    "theme" : ["portrait","people"],
+    "imageUrls": ["./public/images/products/@jessygrosch_Cyber_Soldier.png"],
+    "quantity" : 4
+},
+{
+    "name": "Lion LoliPop",
+    "author": "@KingLe713",
+    "currentPrice" : 2.90,
+    "categories" : "other",
+    "theme" : ["animals"],
+    "imageUrls": ["./public/images/products/@KingLe713_Lion_LoliPop.png"],
+    "quantity" : 2
+},
+{
+    "name": "Rainbow_Lion",
+    "author": "@KingLe713",
+    "currentPrice" : 2.30,
+    "categories" : "other",
+    "theme" : ["animals"],
+    "imageUrls": ["./public/images/products/@KingLe713_Rainbow_Lion.png"],
+    "quantity" : 3
+},
+{
+    "name": "Astronaut art",
+    "author": "@Kuchoka",
+    "currentPrice" : 2.40,
+    "categories" : "art",
+    "theme" : ["art","people"],
+    "imageUrls": ["./images/products/@Kuchoka_Astronaut_Art.png"],
+    "quantity" : 5
+},
+{
+    "name": "Metauniverse monkey",
+    "author": "@Kuchoka",
+    "currentPrice" : 2.90,
+    "categories" : "metaverse",
+    "theme" : ["art","animals"],
+    "imageUrls": ["./images/products/@Kuchoka_Metauniverse_Monkey.png"],
+    "quantity" : 3
+},
+{
+    "name": "Metaverse art",
+    "author": "@Kuchoka",
+    "currentPrice" : 2.70,
+    "categories" : "metaverse",
+    "theme" : ["art","animals"],
+    "imageUrls": ["./images/products/@Kuchoka_Metaverse_Art.png"],
+    "quantity" : 2
+},
+{
+    "name": "Cyberpank Woman",
+    "author": "@Monero",
+    "currentPrice" : 2.10,
+    "categories" : "other",
+    "theme" : ["people","anime"],
+    "imageUrls": ["./images/products/@Monero_Anime_Cyberpank_Woman.png"],
+    "quantity" : 4
+},
+{
+    "name": "Mr.Spock",
+    "author": "@Monero",
+    "currentPrice" : 2.90,
+    "categories" : "other",
+    "theme" : ["people", "film"],
+    "imageUrls": ["./images/products/@Monero_Mr._Spock.png"],
+    "quantity" : 2
+},
+{
+    "name": "Planet_04",
+    "author": "@OscarLlorens",
+    "currentPrice" : 2.00,
+    "categories" : "art",
+    "theme" : ["art", "cartoon","fantasy"],
+    "imageUrls": ["./images/products/@Óscar_Lloréns_Planet_04.png"],
+    "quantity" : 4
+},
+{
+    "name": "Dreamy dog",
+    "author": "@randomdash",
+    "currentPrice" : 2.70,
+    "categories" : "other",
+    "theme" : ["robot"],
+    "imageUrls": ["./images/products/@randomdash_dreamy_dog.png"],
+    "quantity" : 5
+},
+{
+    "name": "Explorer showcase",
+    "author": "@randomdash",
+    "currentPrice" : 2.00,
+    "categories" : "other",
+    "theme" : ["robot"],
+    "imageUrls": ["./images/products/@randomdash_Explorer-showcase.png"],
+    "quantity" : 6
+},
+{
+    "name": "Happy dog",
+    "author": "@randomdash",
+    "currentPrice" : 2.80,
+    "categories" : "other",
+    "theme" : ["robot"],
+    "imageUrls": ["./images/products/@randomdash_happy_dog.png"],
+    "quantity" : 4
+},
+{
+    "name": "Searching dog",
+    "author": "@randomdash",
+    "currentPrice" : 2.80,
+    "categories" : "other",
+    "theme" : ["robot"],
+    "imageUrls": ["./images/products/@randomdash_searching_dog.png"],
+    "quantity" : 8
+},
+{
+    "name": "Superplastic and Gucci",
+    "author": "@SUPERGUCCI",
+    "currentPrice" : 4.80,
+    "categories" : "art",
+    "theme" : ["art"],
+    "imageUrls": ["./images/products/@SUPERGUCCI_Superplastic_and_Gucci.png"],
+    "quantity" : 1
+},
+{
+    "name": "Cybercat",
+    "author": "@VictorDuarte",
+    "currentPrice" : 2.30,
+    "categories" : "art",
+    "theme" : ["animals", "fantasy"],
+    "imageUrls": ["./images/products/@Victor_Duarte_Cybercat.png"],
+    "quantity" : 8
+},
+{
+    "name": "Crypto Queen",
+    "author": "@illestrater",
+    "currentPrice" : 8.30,
+    "categories" : "celebrities",
+    "theme" : ["people", "portrait","cartoon"],
+    "imageUrls": ["./images/products/@illestrater_CryptoQueen.png"],
+    "quantity" : 1
+},
+{
+    "name": "Snoop Dogg",
+    "author": "@illestrater",
+    "currentPrice" : 8.90,
+    "categories" : "celebrities",
+    "theme" : ["people", "portrait","music"],
+    "imageUrls": ["./images/products/@illestrater_Snoop_Dogg.png"],
+    "quantity" : 1
+},
+{
+    "name": "Lucky rabbit",
+    "author": "@kishuinu",
+    "currentPrice" : 6.90,
+    "categories" : "gaming",
+    "theme" : ["cartoon","animals"],
+    "imageUrls": ["./images/products/@kishuinu_Lucky_rabbit.png"],
+    "quantity" : 1
+},
+{
+    "name": "Kingdom avatar",
+    "author": "@kishuinu",
+    "currentPrice" : 6.70,
+    "categories" : "gaming",
+    "theme" : ["cartoon","animals"],
+    "imageUrls": ["./images/products/@kishuinu_Kingdom_avatar.png"],
+    "quantity" : 1
+},
+{
+    "name": "Smart finance",
+    "author": "@kishuinu",
+    "currentPrice" : 8.70,
+    "categories" : "gaming",
+    "theme" : ["cartoon","animals"],
+    "imageUrls": ["./images/products/@kishuinu_Smart_finance.png"],
+    "quantity" : 1
+},
+{
+    "name": "Clash of NFT",
+    "author": "@Subh77",
+    "currentPrice" : 5.70,
+    "categories" : "gaming",
+    "theme" : ["art"],
+    "imageUrls": ["./images/products/@Subh77_Clash_of_NFT.png"],
+    "quantity" : 1
+},
+{
+    "name": "Kooler015",
+    "author": "@Subh77",
+    "currentPrice" : 6.70,
+    "categories" : "gaming",
+    "theme" : ["people","portrait"],
+    "imageUrls": ["./images/products/@Subh77_Kooler015.png"],
+    "quantity" : 1
+},
+{
+    "name": "Kooler017",
+    "author": "@Subh77",
+    "currentPrice" : 5.70,
+    "categories" : "gaming",
+    "theme" : ["people","portrait"],
+    "imageUrls": ["./images/products/@Subh77_Kooler017.png"],
+    "quantity" : 1
+},
+{
+    "name": "Kooler018",
+    "author": "@Subh77",
+    "currentPrice" : 6.20,
+    "categories" : "gaming",
+    "theme" : ["people","portrait"],
+    "imageUrls": ["./images/products/@Subh77_Kooler018.png"],
+    "quantity" : 1
+},
+{
+    "name": "Ultraman",
+    "author": "@Subh77",
+    "currentPrice" : 6.90,
+    "categories" : "gaming",
+    "theme" : ["people","portrait"],
+    "imageUrls": ["./images/products/@Subh77_Ultraman.png"],
+    "quantity" : 1
+},
+{
+    "name": "Ultraman",
+    "author": "@Subh77",
+    "currentPrice" : 6.90,
+    "categories" : "gaming",
+    "theme" : ["people","portrait"],
+    "imageUrls": ["./images/products/@Subh77_Ultraman.png"],
+    "quantity" : 1
+}
+
+]
