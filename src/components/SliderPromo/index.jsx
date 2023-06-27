@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/css';
@@ -11,8 +11,7 @@ import styles from './slider.module.scss';
 import { Arrow } from '../Icons';
 import { buyNowHandler } from '../../utils';
 
-function SliderPromo() {
-  const products = useSelector((state) => state.products.promo);
+function SliderPromo({products}) {
   const dispatch = useDispatch()
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);

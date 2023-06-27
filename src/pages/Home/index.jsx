@@ -12,7 +12,7 @@ export function Home() {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.products);
-  // const promo = useSelector((state) => state.products.promo);
+  const promo = useSelector((state) => state.products.promo);
   const loading = useSelector((state) => state.loading.loading);
   // const error = useSelector((state) => state.error.error);
 
@@ -22,18 +22,16 @@ export function Home() {
   }, [dispatch]);
 
   return (
-    <div>
-      {!loading ? (
-        <>
-          <SliderPromo />
-          <div className={styles.products}>
-            <Filter />
-            <ProductList products={products} />
-          </div>
-        </>
-      ) : (
-        <Loader />
-      )}
-    </div>
+    !loading ? (
+      <>
+        <SliderPromo products={promo} />
+        <div className={styles.products}>
+          <Filter />
+          <ProductList products={products} />
+        </div>
+      </>
+    ) : (
+      <Loader />
+    )
   );
 }
