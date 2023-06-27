@@ -1,0 +1,42 @@
+[
+  {
+      "id": 1,
+      "name": "NFT + som long name",
+      "price": "2.00",
+      "url": "../images/Cards/card1.png",
+      "currentBid": "0.4675",
+      "userIcon": "../images/Icons/user-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 2,
+      "name": "NFT",
+      "price": "2.00",
+      "url": "../images/Cards/card2.png",
+      "currentBid": "0.3522",
+      "userIcon": "../images/Icons/user-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 3,
+      "name": "NFT",
+      "price": "2.00",
+      "url": "../images/Cards/card3.png",
+      "currentBid": "0.3522",
+      "userIcon": "../images/Icons/user-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 4,
+      "name": "NFT",
+      "price": "2.00",
+      "url": "../images/Cards/card4.png",
+      "currentBid": "0.3522",
+      "userIcon": "../images/Icons/user-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  }
+]

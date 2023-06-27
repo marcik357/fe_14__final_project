@@ -4,10 +4,10 @@ import postsData from '../../data.json';
 import MainImg from '../../img/MainPicture.jpg';
 import { BlogIcon } from '../Icons/icon-blog';
 
-export default function Blog() {
+export default function BlogComp() {
+
   return (
     <div className={styles.blog}>
-
       <div className={styles.blog__mainImgContainer}>
         <div className={styles.blog__mainImg}>
           <img src={MainImg} alt="img" />
@@ -18,8 +18,7 @@ export default function Blog() {
         </div>
       </div>
       <div className={styles.blog__posts}>
-        {
-          postsData.map((data, index) => {
+        {postsData.map((data, index) => {
             return (
               <div key={data.id}>
                 <div className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
