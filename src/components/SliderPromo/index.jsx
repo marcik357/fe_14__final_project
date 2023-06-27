@@ -63,7 +63,7 @@ function SliderPromo() {
                       {name}
                     </Link>
                     <Link
-                      to="/"
+                      to={`/author/${author}`}
                       className={styles.promoSlider__meta_auth}
                     >
                       <div className={styles.promoSlider__meta_img}>

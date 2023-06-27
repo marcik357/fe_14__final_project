@@ -1,7 +1,7 @@
-import Blog from '../../components/Blog'
+import BlogComp from '../../components/Blog';
 
-export function BlogPage() {
+export function Blog() {
   return (
-    <Blog />
+    <BlogComp />
   );
 }

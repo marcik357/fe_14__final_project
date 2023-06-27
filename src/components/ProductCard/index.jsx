@@ -23,20 +23,20 @@ function ProductCard({
         <img
           className={styles.productCard__img}
           src={imageUrls[0]}
-          alt='product-card'
+          alt={name}
         />
         <p className={styles.productCard__name}>{name}</p>
       </Link>
       <div className={styles.productCard__userInfo}>
-        <Link to={`/`}>
-          <div className={styles.productCard__userInfo_items}>
-            <img
-              className={styles.productCard__userInfo_userIcon}
-              src={authorIcon}
-              alt='user-avatar'
-            />
-            <p className={styles.productCard__userInfo_author}>{author}</p>
-          </div>
+        <Link
+          to={`/author/${author}`}
+          className={styles.productCard__userInfo_items}>
+          <img
+            className={styles.productCard__userInfo_userIcon}
+            src={authorIcon}
+            alt='user-avatar'
+          />
+          <p className={styles.productCard__userInfo_author}>{author}</p>
         </Link>
         <Verified />
       </div>

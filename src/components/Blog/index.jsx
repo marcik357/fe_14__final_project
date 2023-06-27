@@ -3,7 +3,7 @@ import Data from '../../data.json';
 // import {Link} from "react-router-dom";
 import MainImg from '../../img/img-blog-main.png'
 
-export default function Blog() {
+export default function BlogComp() {
 
   return (
     <div className={styles.blog_home}>
