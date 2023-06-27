@@ -1,15 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataAction } from '../../redux/actions/getDataActions';
-import {
-  addProductsAction,
-  addPromoAction,
-} from '../../redux/actions/productsActions';
+import { addProductsAction, addPromoAction } from '../../redux/actions/productsActions';
 import SliderPromo from '../../components/SliderPromo';
 import ProductList from '../../components/ProductList';
 import Filter from '../../components/Filter';
-import styles from './Home.module.scss';
 import Loader from '../../components/Loader';
+import styles from './Home.module.scss';
 
 export function Home() {
   const dispatch = useDispatch();
