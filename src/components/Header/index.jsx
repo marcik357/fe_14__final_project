@@ -105,28 +105,30 @@ function Header() {
                   <span>community</span>
                 </h2>
                 <ul className={style.social__list}>
-                  {socialData.map((social) => (
+                  {socialData.map(({type, url, icon}) => (
                     <SocialLink
+                      key={type}
                       classLi={style.social__item}
-                      url={social.url}
+                      url={url}
                       classUrl={style.social__link}
-                      icon={social.icon}
+                      icon={icon}
                   />
                   ))}
                 </ul>
               </div>
               <ul className={style.nav__list}>
-                {menuData.map((menu) => (
-                  menu.type !== 'basket' && (
+                {menuData.map(({type, page, text, icon}) => (
+                  type !== 'basket' && (
                     <MenuLink
+                      key={type}
                       classItem={style.nav__item}
-                      page={menu.page}
-                      isActive={isActive(menu.page)}
+                      page={page}
+                      isActive={isActive(page)}
                       classActive={style.activeLink}
                       closeBurgerMenu={() => toggleBurgerMenu()}
-                      text={menu.text}
+                      text={text}
                       isDesktop={isDesktop}
-                      icon={menu.icon}
+                      icon={icon}
                   />
                   )
                 ))}
