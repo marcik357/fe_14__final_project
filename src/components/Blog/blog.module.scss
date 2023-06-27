@@ -3,24 +3,17 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
-
 
 img {
     display: block;
-    // width: 100%;
 }
 
 .blog {
     width: 100%;
     margin: 0 auto;
-    // padding: 0 20px;
-    // min-width: 375px;
     overflow-x: hidden;
     font-family: 'Inter', sans-serif;
-
 
     &__mainImgContainer {
         position: relative;
@@ -55,12 +48,10 @@ img {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        // z-index: 1;
     }
 
     &__titleOverlay h2 {
         font-size: 48px;
-        // font-family: Inter;
         font-weight: 800;
         line-height: 48px;
         letter-spacing: -0.96px;
@@ -69,7 +60,6 @@ img {
 
     &__titleOverlay p {
         font-size: 20px;
-        // font-family: Inter;
         font-weight: 700;
         line-height: 32px;
         letter-spacing: -0.4px;
@@ -123,7 +113,6 @@ img {
         color: #202025;
         border: 1px solid #202025;
         box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
-        // width: 100%;
     }
 
     // &__contentBlock {
@@ -135,7 +124,6 @@ img {
         flex-direction: column;
         justify-content: space-between;
         margin: 40px 24px 80px;
-        // color: #202025;
     }
 
     &__linkCapturePost {
@@ -147,18 +135,17 @@ img {
         font-weight: 800;
         line-height: 40px;
         letter-spacing: -0.64px;
-        padding-bottom: 16px;
+        margin-bottom: 16px;
         color: #202025;
     }
 
     &__infoAuthor {
         display: flex;
         align-content: center;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
     }
 
     &__postIcon {
-        // display: flex;
         margin-right: 20px;
         margin-top: 6px;
     }
@@ -186,7 +173,6 @@ img {
 }
 
 @media (min-width: 1024px) {
-
     .blog {
         &__post {
             display: flex;
@@ -203,6 +189,65 @@ img {
            &__contentBlock {
             width: 50%;
         }
-    }
 
+        &__titleOverlay h2 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 64px;
+            letter-spacing: -1.28px;
+        }
+    
+        &__titleOverlay p {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 40px;
+            letter-spacing: -0.64px;
+        }
+
+        &__capturePost {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 48px;
+            letter-spacing: -0.8px;
+        }
+
+        &__content {
+            margin: 35px;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .blog {
+        &__infoAuthor {
+            margin-bottom: 150px;
+        }
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .blog {
+        &__titleOverlay h2 {
+            font-size: 104px;
+            font-weight: 800;
+            line-height: 104px;
+        }
+
+        &__capturePost {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 64px;
+            letter-spacing: -1.28px;
+            margin-bottom: 32px;
+        }
+
+        &__content {
+            margin: 80px;
+        }
+
+        &__infoAuthor {
+            margin-bottom: 50px;
+        }
+    }
 }
