@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataAction } from '../../redux/actions/getDataActions';
-import { addProductsAction, addPromoAction } from '../../redux/actions/productsActions';
+import {
+  addProductsAction,
+  addPromoAction,
+} from '../../redux/actions/productsActions';
 import SliderPromo from '../../components/SliderPromo';
 import ProductList from '../../components/ProductList';
 import Filter from '../../components/Filter';
@@ -17,23 +20,23 @@ export function Home() {
   // const error = useSelector((state) => state.error.error);
 
   useEffect(() => {
-    dispatch(getDataAction('./data/promoList.json', addPromoAction));
+    dispatch(getDataAction('https://plankton-app-6vr5h.ondigitalocean.app/api/slides', addPromoAction));
     dispatch(getDataAction('https://plankton-app-6vr5h.ondigitalocean.app/api/products', addProductsAction));
   }, [dispatch]);
 
   return (
     <div>
-      {!loading
-        ? (
-          <>
-            <SliderPromo />
-            <div className={styles.products}>
-              <Filter />
-              <ProductList products={products} />
-            </div>
-          </>
-        )
-        : <Loader />}
+      {!loading ? (
+        <>
+          <SliderPromo />
+          <div className={styles.products}>
+            <Filter />
+            <ProductList products={products} />
+          </div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 }

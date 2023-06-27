@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Logo, Search, Basket, ArrowRight, Instagram, Twitter, Facebook, Linkedin } from '../Icons';
@@ -22,7 +22,6 @@ function Header() {
 
   // поточне значення введеного тексту в input та значення placeholder
   const [searchValue, setSearchValue] = useState('');
-  // const [placeholder, setPlaceholder] = useState('Search');
 
   function handleInputChange(e) {
     setSearchValue(e.target.value);
@@ -35,7 +34,7 @@ function Header() {
     setIsOpen(!isOpen);
   }
 
-  // прапор для компонентів, щоб не показувати іх на десктопі
+  // прапор для компонентів, щоб не рендерити іх на десктопі
   const isDesktop = useMediaQuery({ minWidth: 993 });
 
   // показуємо та ховаємо радок пошуку input
@@ -47,12 +46,19 @@ function Header() {
 
   // відміна прокрутки при відкритому бургер меню
   useEffect(() => {
-    if (isOpen) {
+    if (!isDesktop && isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [isOpen]);
+  }, [isDesktop, isOpen]);
+
+  // підсвічення пункту меню відповідно до сторінки на якій знаходиться користувач
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <>
@@ -68,14 +74,17 @@ function Header() {
               </Link>
               <div className={`${style.header__search} ${style.search}`}>
                 <form action="" className={`${style.search__form} ${isSearchVisible ? style.active : ''} ${scrolled ? style.scrolled : null}`}>
-                  <input
-                    type="text"
-                    placeholder={'Search'}
-                    className={style.search__input}
-                    value={searchValue}
-                    onChange={handleInputChange}
-                  />
-                  <Search />
+                  <label htmlFor="searchInput" className={style.search__label}>
+                    <input
+                      id="searchInput"
+                      type="text"
+                      placeholder="Search"
+                      className={style.search__input}
+                      value={searchValue}
+                      onChange={handleInputChange}
+                    />
+                    <Search />
+                  </label>
                 </form>
                 {!isDesktop ? (
                   <button type="button" className={style.search__btn} onClick={toggleSearchView}>
@@ -114,33 +123,33 @@ function Header() {
               </ul>
               <ul className={style.nav__list}>
                 <li className={style.nav__item}>
-                  <Link to="/categories">
+                  <NavLink to="/categories" className={isActive('/categories') ? style.activeLink : ''} onClick={() => toggleBurgerMenu()}>
                     <span>store</span>
                     {!isDesktop ? <ArrowRight /> : null}
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className={style.nav__item}>
-                  <Link to="*">
+                  <NavLink to="/blog" className={isActive('/blog') ? style.activeLink : ''} onClick={() => toggleBurgerMenu()}>
                     <span>blog</span>
                     {!isDesktop ? <ArrowRight /> : null}
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className={style.nav__item}>
-                  <Link to="*">
+                  <NavLink to="/help" className={isActive('/help') ? style.activeLink : ''} onClick={() => toggleBurgerMenu()}>
                     <span>help center</span>
                     {!isDesktop ? <ArrowRight /> : null}
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className={style.nav__item}>
                   {isDesktop ? (
-                    <Link to="/cart">
-                      <Basket width={35} height={35} color="#202025" />
-                    </Link>
+                    <NavLink to="/cart">
+                      <Basket width={35} height={35} color={isActive('/cart') ? '#9933ff' : '#202025'} />
+                    </NavLink>
                   ) : (
-                    <Link to="/cart">
+                    <NavLink to="/cart" onClick={() => toggleBurgerMenu()}>
                       <span>Shopping Cart</span>
                       {!isDesktop ? <ArrowRight /> : null}
-                    </Link>
+                    </NavLink>
                   )}
                 </li>
               </ul>
