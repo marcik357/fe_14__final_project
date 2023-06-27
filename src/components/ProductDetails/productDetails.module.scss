@@ -115,21 +115,21 @@
     padding: 20px;
     border-radius: 18px;
     background-color: white;
-
+    
     @media (min-width: 748px) {
       margin-top: 40px;
       margin-right: 50px;
       margin-left: 50px;
     }
-
+    
     &_header {
       display: flex;
       align-items: center;
       column-gap: 20px;
+      margin-bottom: 30px;
     }
 
     &_title {
-      margin-bottom: 30px;
       font-size: 2rem;
       font-weight: 700;
       line-height: 3rem;
