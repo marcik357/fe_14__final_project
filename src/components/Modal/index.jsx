@@ -6,7 +6,7 @@ import style from './modal.module.scss';
 
 export function Modal(props) {
   const dispatch = useDispatch();
-  const { data: { type, header, text, actions } } = props;
+  const { data: { type, header, text, actions, icon } } = props;
 
   function onCloseModal() {
     dispatch(setModalType(null));
@@ -27,6 +27,9 @@ export function Modal(props) {
             <button type="button" className={style.modal__closeBtn} onClick={onCloseModal}>✕</button>
           </div>
           <div className={style.modal__text}>
+            <div className={style.modal__icon}>
+              {icon}
+            </div>
             {text && <p>{text}</p>}
           </div>
           {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}
