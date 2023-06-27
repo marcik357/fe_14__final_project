@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import styles from './blog.module.scss';
 import postsData from '../../data.json';
@@ -25,7 +24,7 @@ export default function Blog() {
               <div key={data.id}>
                 <div className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                   <div className={styles.blog__postImgBlock}>
-                    <img className={styles.blog__postImg} src={data.url} width="375" alt={`img ${data.id}`} />
+                    <img className={styles.blog__postImg} src={data.url} alt={`img ${data.id}`} />
                     <Link to="*">
                       <button type="button" className={styles.blog__btnImg}>{data.textButton}</button>
                     </Link>
