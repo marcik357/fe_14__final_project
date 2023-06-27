@@ -124,6 +124,7 @@ function Header() {
                       isActive={isActive(menu.page)}
                       classActive={style.activeLink}
                       closeBurgerMenu={() => toggleBurgerMenu()}
+                      text={menu.text}
                       isDesktop={isDesktop}
                       icon={menu.icon}
                   />

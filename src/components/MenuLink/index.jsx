@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 function MenuLink(props) {
-  const { classItem, page, isActive, classActive, closeBurgerMenu, isDesktop, icon } = props;
+  const { classItem, page, isActive, classActive, closeBurgerMenu, text, isDesktop, icon } = props;
 
   return (
     <>
       <li className={classItem}>
         <NavLink to={page} className={isActive ? classActive : ''} onClick={closeBurgerMenu}>
-          <span>store</span>
+          <span>{text}</span>
           {!isDesktop ? icon : null}
         </NavLink>
       </li>
@@ -22,6 +22,7 @@ MenuLink.propTypes = {
   isActive: PropTypes.bool,
   classActive: PropTypes.string,
   closeBurgerMenu: PropTypes.func,
+  text: PropTypes.string,
   isDesktop: PropTypes.bool,
   icon: PropTypes.element
 };
@@ -32,6 +33,7 @@ MenuLink.defaultProps = {
   isActive: false,
   classActive: '',
   closeBurgerMenu: null,
+  text: '',
   isDesktop: false,
   icon: null
 };
