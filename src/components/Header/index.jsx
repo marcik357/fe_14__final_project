@@ -111,13 +111,13 @@ function Header() {
                       classLi={style.social__item}
                       url={url}
                       classUrl={style.social__link}
-                      icon={icon}
+                      icon={icon('#010101')}
                   />
                   ))}
                 </ul>
               </div>
               <ul className={style.nav__list}>
-                {menuData.map(({type, page, text, icon}) => (
+                {menuData.map(({type, page, text}) => (
                   type !== 'basket' && (
                     <MenuLink
                       key={type}
@@ -128,7 +128,6 @@ function Header() {
                       closeBurgerMenu={() => toggleBurgerMenu()}
                       text={text}
                       isDesktop={isDesktop}
-                      icon={icon}
                   />
                   )
                 ))}

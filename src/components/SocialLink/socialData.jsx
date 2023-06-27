@@ -4,22 +4,22 @@ const socialData = [
   {
     type: 'Instagram',
     url: 'https://www.instagram.com/nft_community/',
-    icon: <Instagram color="#010101" />
+    icon(color) { return <Instagram color={color} />; }
   },
   {
     type: 'Twitter',
     url: 'https://twitter.com/nft__community',
-    icon: <Twitter color="#010101" />
+    icon(color) { return <Twitter color={color} />; }
   },
   {
     type: 'Facebook',
     url: 'https://www.facebook.com/NFTCommunity',
-    icon: <Facebook color="#010101" />
+    icon(color) { return <Facebook color={color} />; }
   },
   {
     type: 'Linkedin',
     url: 'https://www.linkedin.com/groups/13992662/',
-    icon: <Linkedin color="#010101" />
+    icon(color) { return <Linkedin color={color} />; }
   },
 ];
 
