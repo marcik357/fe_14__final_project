@@ -1,8 +1,12 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Logo, Search, Basket, ArrowRight, Instagram, Twitter, Facebook, Linkedin } from '../Icons';
+import { Logo, Search, Basket, ArrowRight } from '../Icons';
 import style from './header.module.scss';
+import socialData from '../SocialLink/socialData';
+import SocialLink from '../SocialLink';
+import menuData from '../MenuLink/menuData';
+import MenuLink from '../MenuLink';
 
 function Header() {
   // зміна розмірів та прозорості хедера при прокрутці
@@ -94,52 +98,39 @@ function Header() {
               </div>
             </div>
             <nav className={`${style.nav} ${isOpen ? style.active : ''}`}>
-              <ul className={style.social__list}>
+              <div className={style.social}>
                 <h2 className={style.social__title}>
                   <span>Join our</span>
                   <br />
                   <span>community</span>
                 </h2>
-                <li className={style.social__item}>
-                  <a href="https://www.instagram.com/nft_community/" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Instagram color="#010101" />
-                  </a>
-                </li>
-                <li className={style.social__item}>
-                  <a href="https://twitter.com/nft__community" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Twitter color="#010101" />
-                  </a>
-                </li>
-                <li className={style.social__item}>
-                  <a href="https://www.facebook.com/NFTCommunity" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Facebook color="#010101" />
-                  </a>
-                </li>
-                <li className={style.social__item}>
-                  <a href="https://www.linkedin.com/groups/13992662/" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Linkedin color="#010101" />
-                  </a>
-                </li>
-              </ul>
+                <ul className={style.social__list}>
+                  {socialData.map(({type, url, icon}) => (
+                    <SocialLink
+                      key={type}
+                      classLi={style.social__item}
+                      url={url}
+                      classUrl={style.social__link}
+                      icon={icon('#010101')}
+                  />
+                  ))}
+                </ul>
+              </div>
               <ul className={style.nav__list}>
-                <li className={style.nav__item}>
-                  <NavLink to="/categories" className={isActive('/categories') ? style.activeLink : ''} onClick={() => toggleBurgerMenu()}>
-                    <span>store</span>
-                    {!isDesktop ? <ArrowRight /> : null}
-                  </NavLink>
-                </li>
-                <li className={style.nav__item}>
-                  <NavLink to="/blog" className={isActive('/blog') ? style.activeLink : ''} onClick={() => toggleBurgerMenu()}>
-                    <span>blog</span>
-                    {!isDesktop ? <ArrowRight /> : null}
-                  </NavLink>
-                </li>
-                <li className={style.nav__item}>
-                  <NavLink to="/help" className={isActive('/help') ? style.activeLink : ''} onClick={() => toggleBurgerMenu()}>
-                    <span>help center</span>
-                    {!isDesktop ? <ArrowRight /> : null}
-                  </NavLink>
-                </li>
+                {menuData.map(({type, page, text}) => (
+                  type !== 'basket' && (
+                    <MenuLink
+                      key={type}
+                      classItem={style.nav__item}
+                      page={page}
+                      isActive={isActive(page)}
+                      classActive={style.activeLink}
+                      closeBurgerMenu={() => toggleBurgerMenu()}
+                      text={text}
+                      isDesktop={isDesktop}
+                  />
+                  )
+                ))}
                 <li className={style.nav__item}>
                   {isDesktop ? (
                     <NavLink to="/cart">
@@ -147,7 +138,7 @@ function Header() {
                     </NavLink>
                   ) : (
                     <NavLink to="/cart" onClick={() => toggleBurgerMenu()}>
-                      <span>Shopping Cart</span>
+                      <span>shopping cart</span>
                       {!isDesktop ? <ArrowRight /> : null}
                     </NavLink>
                   )}
