@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { buyNowHandler } from '../../utils';
 import style from './productDetails.module.scss';
 import { ETHIcon } from '../Icons';
+import { Link } from 'react-router-dom';
 
-export default function ProductDetails({ _id, itemNo, name, currentPrice, imageUrls, authorIcon, collectionIcon, author, theme, details }) {
+export default function ProductDetails({ _id, itemNo, name, currentPrice, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
   const dispatch = useDispatch();
 
   return (
@@ -13,17 +14,23 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
         <img className={style.productDetails__img} src={imageUrls} alt={name || "product image"} />
         <div className={style.productDetails__links}>
           <div className={style.productDetails__userInfo}>
-            <p className={style.productDetails__userInfo_text}>Created by</p>
-            <div className={style.productDetails__userInfo_container}>
+            <p className={style.productDetails__userInfo_text}>Created by:</p>
+            <Link to={'/'} className={style.productDetails__userInfo_container}>
               <img className={style.productDetails__userInfo_userIcon} src={authorIcon} alt="user-avatar" />
               <p className={style.productDetails__userInfo_userLink}>{author}</p>
+            </Link>
+          </div>
+          <div className={style.productDetails__userInfo}>
+            <p className={style.productDetails__userInfo_text}>Collection:</p>
+            <div className={style.productDetails__userInfo_container}>
+              <Link to='/' className={style.productDetails__userInfo_userCollection} >{categories}</Link>
             </div>
           </div>
           <div className={style.productDetails__userInfo}>
-            <p className={style.productDetails__userInfo_text}>Collection</p>
+            <p className={style.productDetails__userInfo_text}>Tags:</p>
             <div className={style.productDetails__userInfo_container}>
               {theme && theme.map((item) => (
-                <a href='/' className={style.productDetails__userInfo_userCollection} key={item}>{item}</a>
+                <Link to='/' className={style.productDetails__userInfo_userCollection} key={item}>{item}</Link>
               ))}
             </div>
           </div>
@@ -32,7 +39,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
       <div className={style.productDetails__actions}>
         <div className={style.productDetails__actions_header}>
           <h2 className={style.productDetails__actions_title}>{name}</h2>
-          <button className={style.productDetails__buttons_fav}>♡</button>
+          {/* <button className={style.productDetails__buttons_fav}>♡</button> */}
         </div>
         <div className={style.productDetails__actions_price}>
           <p>Price</p>
