@@ -5,6 +5,7 @@ import { getDataAction } from '../../redux/actions/getDataActions';
 import styles from './blog.module.scss';
 import Loader from '../../components/Loader';
 import { BlogIcon } from '../../components/Icons/icon-blog';
+import Banner from '../../components/Banner';
 
 export function Blog() {
   const dispatch = useDispatch();
@@ -18,23 +19,18 @@ export function Blog() {
   return (
     !loading ? (
       <div className={styles.blog}>
-        <div className={styles.blog__mainImgContainer}>
-          <div className={styles.blog__mainImg}>
-            <img src='/images/banners/blog-banner.jpg' alt="img" />
-          </div>
-          <div className={styles.blog__titleOverlay}>
-            <h2>Crypter Blog</h2>
-            <p>Crypter NFT marketplace blog</p>
-          </div>
-        </div>
+        <Banner
+          title='Crypter Blog'
+          subtitle='Crypter NFT marketplace blog'
+          img='/images/banners/blog-banner.jpg' />
         <div className={styles.blog__posts}>
           {data.map(({ url, id, textButton, capturePost, authorPost, dataPost, textPost }, index) => {
             return (
               <div key={id} className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                 <div className={styles.blog__postImgBlock}>
                   <img className={styles.blog__postImg} src={url} alt={`img ${id}`} />
-                  <Link to="*">
-                    <button type="button" className={styles.blog__btnImg}>{textButton}</button>
+                  <Link to="*" className={styles.blog__btnImg}>
+                    {textButton}
                   </Link>
                 </div>
                 <div className={styles.blog__contentBlock}>
@@ -56,8 +52,7 @@ export function Blog() {
                 </div>
               </div>
             );
-          })
-          }
+          })}
         </div>
       </div>
     ) : (
