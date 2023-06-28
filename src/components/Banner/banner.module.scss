@@ -4,6 +4,7 @@
   margin: 0 auto;
   padding: 25vh 0;
   color: #f7fbfa;
+  font-family: 'Inter', sans-serif;
   text-align: center;
 
   &::after {
@@ -28,6 +29,7 @@
   }
 
   &__title {
+    margin-bottom: 1rem;
     font-size: 3rem;
     font-weight: 800;
     letter-spacing: -.96px;

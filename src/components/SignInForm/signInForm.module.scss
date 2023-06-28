@@ -1,21 +1,9 @@
-$accent-main: #a1bf36;
-$bg-btn-hover: #adca44;
-$bg-btn-active: #798d30;
-$accent-light: #e7efcd;
-$color-main-bright: #fff;
-
 .form {
-  position: sticky;
-  top: 1rem;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 3px 15px rgba(161, 191, 54, .3);
-
-  &__title {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
+  max-width: 1470px;
+  margin: 0 auto;
+  padding: 0 15px;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 
   &__label {
     display: inline-block;
@@ -25,10 +13,13 @@ $color-main-bright: #fff;
 
   &__input {
     width: 100%;
-    margin-bottom: 1rem;
-    padding: .3rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
     border-radius: .3rem;
-    box-shadow: inset 2px 2px 5px 1px rgba(161, 191, 54, .3);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
 
     &::placeholder {
       color: #888;
@@ -36,7 +27,7 @@ $color-main-bright: #fff;
 
     &:focus {
       border-color: transparent;
-      outline: 2px solid $accent-main;
+      outline: 2px solid #202025;
     }
 
     &:has(+div) {
@@ -49,25 +40,74 @@ $color-main-bright: #fff;
 
     &:has(+.form__error) {
       outline: 2px solid red;
+      box-shadow: 0 5px 10px 8px rgba(255, 0, 0, .05);
     }
   }
 
   &__submit {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
     margin: 0 auto;
-    padding: .3rem 1rem .5rem;
-    transition: background-color .3s;
-    border-radius: 1.5rem;
-    background: $accent-main;
-    color: $color-main-bright;
-    font-size: 1.2rem;
+    padding: .7rem 2rem;
+    transition: color .3s;
+    border: 2px solid #202025;
+    border-radius: 4px;
+    background: transparent;
+    color: #202025;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .17em;
+    line-height: 24px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+    cursor: pointer;
+    overflow: hidden;
 
-    &:hover {
-      background: $bg-btn-hover;
+    @media (min-width: 768px) {
+      width: max-content;
     }
 
-    &:active {
-      background: $bg-btn-active;
+    &::after {
+      position: absolute;
+      top: 100%;
+      width: 50%;
+      height: 50%;
+      transition: all .3s;
+      border-radius: 50%;
+      content: '';
+      z-index: -1;
+    }
+
+    &:hover {
+      &::after {
+        top: -50%;
+        width: 200%;
+        height: 200%;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      top: -5%;
+      left: -5%;
+      width: 110%;
+      height: 110%;
+      background-color: #f7fbfa;
+      content: '';
+      z-index: -1;
+    }
+
+    &::after {
+      background-color: #202025;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: #f7fbfa;
     }
   }
 

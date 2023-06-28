@@ -26,14 +26,13 @@ export default function SignInForm() {
         setSubmitting(false);
       }} >
       <Form className={style.form}>
-        <h2 className={style.form__title}>Sign In</h2>
         {signInFormFields.map(field => {
           if (field.tagType === 'masked') {
             return <InputMasked key={field.name} {...field} />
           }
           return <Input key={field.name} {...field} />
         })}
-        <button text='Checkout' className={style.form__submit} type='submit' />
+        <button text='Checkout' className={style.form__submit} type='submit'>Sign In</button>
       </Form>
     </Formik>
   )

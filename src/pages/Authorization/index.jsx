@@ -19,9 +19,16 @@ export function Authorization() {
     <>
       <Banner
         title='Crypter authorization'
-        subtitle="Let's get to know each other better"
+        // subtitle="Let's get to know each other better"
         img='/images/banners/authorization-banner.jpg' />
-      <SignInForm/>
+      <div className='authorization'>
+        <div className='authorization__container'>
+          <div className='authorization__switcher'>
+
+          </div>
+          <SignInForm />
+        </div>
+      </div>
     </>
   );
 }
