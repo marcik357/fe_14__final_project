@@ -32,3 +32,10 @@ export const validationSchemaUser = Yup.object({
     .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
     .required("Required Field!"),
 })
+
+export const validationSchemaLogin = Yup.object({
+  loginOrEmail: Yup.string()
+    .required("Required Field!"),
+  password: Yup.string()
+    .required("Required Field!"),
+});
