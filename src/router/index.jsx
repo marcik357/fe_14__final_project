@@ -1,9 +1,6 @@
-import {
-  Route, Routes,
-} from 'react-router-dom';
-import {
-  MainLayout, Home, Cart, Categories, Product, NotFound,
-} from '../pages';
+import { Route, Routes } from 'react-router-dom';
+import { MainLayout, Home, Cart, Categories, NotFound, ProductPage } from '../pages';
+import { BlogPage } from '../pages/Blog';
 
 export default function Router() {
   return (
@@ -12,9 +9,8 @@ export default function Router() {
         <Route index element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/product">
-          <Route path=":productId" element={<Product />} />
-        </Route>
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
