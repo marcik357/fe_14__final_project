@@ -1,7 +1,9 @@
+import PageNotFound from "../../components/404";
+
 export function NotFound() {
   return (
     <div>
-      404 page
+      <PageNotFound />
     </div>
   );
 }
