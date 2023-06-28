@@ -4,6 +4,7 @@
   justify-content: center;
   margin: 1rem 0;
   gap: 1rem;
+  user-select: none;
 
   & :last-child {
     border: none;
@@ -25,8 +26,7 @@
   font-weight: bold;
   cursor: pointer;
 
-  &.active,
-  :hover {
+  &.active {
     transition: all .3s ease;
     background-color: #202025;
     color: #fff;
@@ -41,5 +41,9 @@
   &:first-child {
     border: none;
     font-size: 20px;
+  }
+
+  &:first-child svg {
+    transform: rotate(180deg);
   }
 }

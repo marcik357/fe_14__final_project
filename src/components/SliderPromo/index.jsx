@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/css';
@@ -9,9 +9,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
 import { Arrow } from '../Icons';
+import { buyNowHandler } from '../../utils';
 
-function SliderPromo() {
-  const products = useSelector((state) => state.products.promo);
+function SliderPromo({products}) {
+  const dispatch = useDispatch()
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const prevBtnRef = useRef(null);
@@ -28,8 +29,9 @@ function SliderPromo() {
           nextEl: nextBtnRef.current,
         }}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+        speed={500}
         autoplay={{
-          delay: 3000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         className={styles.promoSlider}
@@ -42,54 +44,56 @@ function SliderPromo() {
             <Arrow fill="#E1E2E2" />
           </div>
         </div>
-        {products.map((product) => (
-          <SwiperSlide
-            key={product.id}
-            className={styles.promoSlider__slide}
-          >
-            <img src={product.url} alt={product.name} className={styles.promoSlider__slide_img} />
-            <div className={styles.promoSlider__container}>
-              <div className={styles.promoSlider__inner}>
-                <div className={styles.promoSlider__meta}>
-                  <Link
-                    to={`/product/${product.id}`}
-                    className={styles.promoSlider__meta_prod}
-                  >
-                    {product.name}
-                  </Link>
-                  <Link
-                    to="/"
-                    className={styles.promoSlider__meta_auth}
-                  >
-                    <div className={styles.promoSlider__meta_img}>
-                      <img src={product.userIcon} alt="avatar" />
-                    </div>
-                    {product.creator}
-                  </Link>
-                </div>
-                <div className={styles.promoSlider__btns}>
-                  <Link
-                    to={`/product/${product.id}`}
-                    className={styles.promoSlider__btns_link}
-                  >
-                    View NFT
-                    <Arrow fill="#F7FBFA" />
-                  </Link>
-                  <button
-                    type='button'
-                    onClick={() => {
-                      // show modal accept purchase
-                    }}
-                    className={styles.promoSlider__btns_buy}
-                  >
-                    BUY NOW
-                  </button>
+        {products.map((product) => {
+          const { _id, imageUrl, product: { itemNo, name, authorIcon, author } } = product;
+          return (
+            <SwiperSlide
+              key={_id}
+              className={styles.promoSlider__slide}
+            >
+              <img src={imageUrl} alt={name} className={styles.promoSlider__slide_img} />
+              <div className={styles.promoSlider__container}>
+                <div className={styles.promoSlider__inner}>
+                  <div className={styles.promoSlider__meta}>
+                    <Link
+                      to={`/product/${itemNo}`}
+                      className={styles.promoSlider__meta_prod}
+                    >
+                      {name}
+                    </Link>
+                    <Link
+                      to={`/author/${author}`}
+                      className={styles.promoSlider__meta_auth}
+                    >
+                      <div className={styles.promoSlider__meta_img}>
+                        <img src={authorIcon || '/images/avatars/user-icon.png'} alt="avatar" />
+                      </div>
+                      {author}
+                    </Link>
+                  </div>
+                  <div className={styles.promoSlider__btns}>
+                    <Link
+                      to={`/product/${itemNo}`}
+                      className={styles.promoSlider__btns_link}
+                    >
+                      View NFT
+                      <Arrow fill="#F7FBFA" />
+                    </Link>
+                    <button
+                      type='button'
+                      onClick={() => buyNowHandler(dispatch, itemNo)}
+                      className={styles.promoSlider__btns_buy}
+                    >
+                      BUY NOW
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
+      
       <div className={styles.promoThumbs}>
         <Swiper
           onSwiper={setThumbsSwiper}
@@ -101,11 +105,13 @@ function SliderPromo() {
           direction="vertical"
           className={styles.promoThumbs__container}
         >
-          {products.map((product) => (
-            <SwiperSlide key={product.id} className={styles.promoThumbs__thumb}>
-              <img src={product.url} alt={product.name} className={styles.promoThumbs__img} />
+          {products.map((product) => {
+            const { _id, imageUrl, product: { name } } = product
+            return (
+            <SwiperSlide key={_id} className={styles.promoThumbs__thumb}>
+              <img src={imageUrl} alt={name} className={styles.promoThumbs__img} />
             </SwiperSlide>
-          ))}
+          )})}
         </Swiper>
       </div>
     </>

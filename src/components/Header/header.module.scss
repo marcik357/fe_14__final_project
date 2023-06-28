@@ -28,14 +28,14 @@ a {
   z-index: 10;
 
   &__wrapper {
-    padding: 25px 0;
+    padding: 15px 0;
     transition: all .4s ease-out;
-    background-color: #f7fbfa;
+    background-color: rgb(247, 251, 250);
   }
 
   &__scrolled {
     padding: 0;
-    opacity: .8;
+    background-color: rgb(247, 251, 250, .8);
   }
 
   &__container {
@@ -173,6 +173,11 @@ a {
     }
   }
 
+  &__label {
+    display: flex;
+    align-items: flex-end;
+  }
+
   &__input {
     order: 2;
     margin-left: 5px;
@@ -190,11 +195,13 @@ a {
   flex-direction: column;
   position: absolute;
   top: 0;
-  right: -110%;
+  left: 0;
   width: 100%;
   height: 100vh;
-  transition: right .5s ease 0s;
+  transform: translateY(-100%);
+  transition: all .5s ease 0s;
   background-color: #010101;
+  opacity: 0;
   overflow: auto;
   z-index: 15;
 
@@ -206,11 +213,14 @@ a {
     flex: 0 1 40%;
     position: static;
     height: auto;
-    background-color: #f7fbfa;
+    transform: translateY(0);
+    background-color: transparent;
+    opacity: 1;
   }
 
   &.active {
-    right: 0;
+    transform: translateY(0);
+    opacity: 1;
   }
 
   &__list {
@@ -253,21 +263,6 @@ a {
     }
   }
 
-  &__item:not(:last-child) {
-    @media (min-width: 993px) {
-      padding: 5px 8px;
-      transition: all .3s ease 0s;
-      border: 2px solid transparent;
-    }
-  }
-
-  &__item:not(:last-child):hover {
-    @media (min-width: 993px) {
-      border: 2px solid #202025;
-      border-radius: 4px;
-    }
-  }
-
   &__item a {
     display: flex;
     align-items: center;
@@ -280,21 +275,108 @@ a {
       color: #202025;
     }
   }
+
+  &__item:not(:last-child) a {
+    @media (min-width: 993px) {
+      position: relative;
+      padding: 5px 8px;
+      border: 2px solid #202025;
+      border-radius: 6px;
+    }
+  }
+
+  &__item:not(:last-child) a::before {
+    @media (min-width: 993px) {
+      position: absolute;
+      top: 0;
+      left: -2px;
+      width: calc(100% + 6px);
+      height: 100%;
+      transform: scaleY(1);
+      transition: .5s ease-in-out;
+      transition-delay: .4s;
+      background-color: rgb(247, 251, 250);
+      content: '';
+    }
+  }
+
+  &__item:not(:last-child) a:hover::before {
+    @media (min-width: 993px) {
+      transform: scaleY(0);
+    }
+  }
+
+  &__item:not(:last-child) a::after {
+    @media (min-width: 993px) {
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 100%;
+      height: calc(100% + 4px);
+      transform: scaleX(1);
+      transition: .5s ease-in-out;
+      background-color: rgb(247, 251, 250);
+      content: '';
+    }
+  }
+
+  &__item:not(:last-child) a:hover::after {
+    @media (min-width: 993px) {
+      transform: scaleX(0);
+    }
+  }
+
+  &__item:not(:last-child) a span {
+    @media (min-width: 993px) {
+      position: relative;
+      z-index: 3;
+    }
+  }
+
+  &__item a.activeLink {
+    @media (min-width: 993px) {
+      border: 2px solid #93f;
+      color: #93f;
+    }
+  }
+
+  &__item a.activeLink:hover {
+    @media (min-width: 993px) {
+      border: 2px solid #93f;
+    }
+  }
 }
 
 .social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: 2;
+
+  @media (min-width: 769px) {
+    flex: 0 1 50%;
+    flex-direction: column;
+    order: 0;
+    background-color: #b9a9fb;
+  }
+
+  @media (min-width: 993px) {
+    display: none;
+  }
+
   &__title {
     display: none;
 
     @media (min-width: 769px) {
       display: block;
-      flex: 0 1 100%;
-      align-self: flex-end;
-      margin-top: 400px;
+      align-self: flex-start;
+      margin-top: 200px;
+      padding: 0 24px;
       font-size: 48px;
       font-weight: 800;
       letter-spacing: 1px;
       line-height: 48px;
+      text-transform: none;
     }
   }
 
@@ -302,24 +384,10 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    order: 2;
     width: 100%;
     padding: 40px 24px;
     list-style: none;
     gap: 12px;
-
-    @media (min-width: 769px) {
-      flex: 0 1 50%;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      order: 0;
-      padding: 40px 24px 180px;
-      background-color: #b9a9fb;
-    }
-
-    @media (min-width: 993px) {
-      display: none;
-    }
   }
 
   &__item {

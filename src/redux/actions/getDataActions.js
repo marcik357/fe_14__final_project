@@ -2,7 +2,7 @@ import { fetchData } from '../../utils';
 import { setErrorAction } from './errorActions';
 import { setLoadingAction } from './loadingActions';
 
-export function getData(url, callback) {
+export function getDataAction(url, callback) {
   return async (dispatch) => {
     try {
       dispatch(setLoadingAction(true));

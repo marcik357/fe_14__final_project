@@ -5,6 +5,7 @@
       "price": "1.34",
       "url": "../images/Cards/card1.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -14,6 +15,7 @@
       "price": "1.75",
       "url": "../images/Cards/card2.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -23,6 +25,7 @@
       "price": "2.35",
       "url": "../images/Cards/card3.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -32,6 +35,7 @@
       "price": "0.89",
       "url": "../images/Cards/card4.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -41,6 +45,7 @@
       "price": "2.35",
       "url": "../images/Cards/card5.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -50,6 +55,7 @@
       "price": "3.46",
       "url": "../images/Cards/card6.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -59,6 +65,7 @@
       "price": "24.00",
       "url": "../images/Cards/card7.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -68,6 +75,7 @@
       "price": "2.64",
       "url": "../images/Cards/card8.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -77,6 +85,7 @@
       "price": "1.00",
       "url": "../images/Cards/card9.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -86,6 +95,7 @@
       "price": "2.53",
       "url": "../images/Cards/card10.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -95,6 +105,7 @@
       "price": "5.75",
       "url": "../images/Cards/card11.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -104,6 +115,7 @@
       "price": "3.33",
       "url": "../images/Cards/card12.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -113,6 +125,7 @@
       "price": "3.55",
       "url": "../images/Cards/card13.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -122,6 +135,7 @@
       "price": "1.75",
       "url": "../images/Cards/card14.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -131,6 +145,7 @@
       "price": "7.50",
       "url": "../images/Cards/card15.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -140,6 +155,7 @@
       "price": "6.53",
       "url": "../images/Cards/card16.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -148,6 +164,7 @@
       "name": "NFT",
       "price": "6.77",
       "url": "../images/Cards/card17.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "userIcon": "../images/Icons/user-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
@@ -158,6 +175,7 @@
       "price": "3.46",
       "url": "../images/Cards/card18.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -167,6 +185,7 @@
       "price": "9.64",
       "url": "../images/Cards/card19.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -176,6 +195,7 @@
       "price": "1.64",
       "url": "../images/Cards/card20.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -185,6 +205,7 @@
       "price": "1.64",
       "url": "../images/Cards/card21.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -194,6 +215,7 @@
       "price": "6.66",
       "url": "../images/Cards/card22.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -203,6 +225,7 @@
       "price": "3.46",
       "url": "../images/Cards/card23.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -212,6 +235,7 @@
       "price": "6.75",
       "url": "../images/Cards/card24.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -221,6 +245,7 @@
       "price": "4.87",
       "url": "../images/Cards/card25.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -230,6 +255,7 @@
       "price": "3.86",
       "url": "../images/Cards/card26.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -239,6 +265,7 @@
       "price": "6.56",
       "url": "../images/Cards/card27.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -248,6 +275,7 @@
       "price": "7.05",
       "url": "../images/Cards/card28.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -257,6 +285,7 @@
       "price": "2.57",
       "url": "../images/Cards/card29.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -266,6 +295,7 @@
       "price": "4.04",
       "url": "../images/Cards/card30.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -275,6 +305,7 @@
       "price": "1.44",
       "url": "../images/Cards/card31.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -284,6 +315,7 @@
       "price": "3.22",
       "url": "../images/Cards/card32.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -293,6 +325,7 @@
       "price": "5.55",
       "url": "../images/Cards/card33.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -302,6 +335,7 @@
       "price": "0.93",
       "url": "../images/Cards/card34.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
   },
@@ -311,6 +345,7 @@
       "price": "5.06",
       "url": "../images/Cards/card35.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "elnafrederick"
   },
@@ -320,7 +355,1088 @@
       "price": "9.27",
       "url": "../images/Cards/card36.png",
       "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
       "verifiedIcon": "../images/Icons/verified-icon.png",
       "creator": "randomdash"
-  }
+  },
+   {
+      "id": 1,
+      "name": "NFT",
+      "price": "1.34",
+      "url": "../images/Cards/card1.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 2,
+      "name": "NFT",
+      "price": "1.75",
+      "url": "../images/Cards/card2.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 3,
+      "name": "NFT",
+      "price": "2.35",
+      "url": "../images/Cards/card3.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 4,
+      "name": "NFT",
+      "price": "0.89",
+      "url": "../images/Cards/card4.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 5,
+      "name": "NFT",
+      "price": "2.35",
+      "url": "../images/Cards/card5.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 6,
+      "name": "NFT",
+      "price": "3.46",
+      "url": "../images/Cards/card6.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 7,
+      "name": "NFT",
+      "price": "24.00",
+      "url": "../images/Cards/card7.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 8,
+      "name": "NFT",
+      "price": "2.64",
+      "url": "../images/Cards/card8.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 9,
+      "name": "NFT",
+      "price": "1.00",
+      "url": "../images/Cards/card9.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 10,
+      "name": "NFT",
+      "price": "2.53",
+      "url": "../images/Cards/card10.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 11,
+      "name": "NFT",
+      "price": "5.75",
+      "url": "../images/Cards/card11.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 12,
+      "name": "NFT",
+      "price": "3.33",
+      "url": "../images/Cards/card12.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 13,
+      "name": "NFT",
+      "price": "3.55",
+      "url": "../images/Cards/card13.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 14,
+      "name": "NFT",
+      "price": "1.75",
+      "url": "../images/Cards/card14.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 15,
+      "name": "NFT",
+      "price": "7.50",
+      "url": "../images/Cards/card15.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 16,
+      "name": "NFT",
+      "price": "6.53",
+      "url": "../images/Cards/card16.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 17,
+      "name": "NFT",
+      "price": "6.77",
+      "url": "../images/Cards/card17.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 18,
+      "name": "NFT",
+      "price": "3.46",
+      "url": "../images/Cards/card18.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 19,
+      "name": "NFT",
+      "price": "9.64",
+      "url": "../images/Cards/card19.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 20,
+      "name": "NFT",
+      "price": "1.64",
+      "url": "../images/Cards/card20.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 21,
+      "name": "NFT",
+      "price": "1.64",
+      "url": "../images/Cards/card21.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 22,
+      "name": "NFT",
+      "price": "6.66",
+      "url": "../images/Cards/card22.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 23,
+      "name": "NFT",
+      "price": "3.46",
+      "url": "../images/Cards/card23.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 24,
+      "name": "NFT",
+      "price": "6.75",
+      "url": "../images/Cards/card24.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 25,
+      "name": "NFT",
+      "price": "4.87",
+      "url": "../images/Cards/card25.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 26,
+      "name": "NFT",
+      "price": "3.86",
+      "url": "../images/Cards/card26.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 27,
+      "name": "NFT",
+      "price": "6.56",
+      "url": "../images/Cards/card27.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 28,
+      "name": "NFT",
+      "price": "7.05",
+      "url": "../images/Cards/card28.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 29,
+      "name": "NFT",
+      "price": "2.57",
+      "url": "../images/Cards/card29.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 30,
+      "name": "NFT",
+      "price": "4.04",
+      "url": "../images/Cards/card30.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 31,
+      "name": "NFT",
+      "price": "1.44",
+      "url": "../images/Cards/card31.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 32,
+      "name": "NFT",
+      "price": "3.22",
+      "url": "../images/Cards/card32.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 33,
+      "name": "NFT",
+      "price": "5.55",
+      "url": "../images/Cards/card33.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 34,
+      "name": "NFT",
+      "price": "0.93",
+      "url": "../images/Cards/card34.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+      "id": 35,
+      "name": "NFT",
+      "price": "5.06",
+      "url": "../images/Cards/card35.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "elnafrederick"
+  },
+  {
+      "id": 36,
+      "name": "NFT",
+      "price": "9.27",
+      "url": "../images/Cards/card36.png",
+      "userIcon": "../images/Icons/user-icon.png",
+      "collectionIcon": "../images/Icons/collection-icon.png",
+      "verifiedIcon": "../images/Icons/verified-icon.png",
+      "creator": "randomdash"
+  },
+  {
+    "id": 1,
+    "name": "NFT",
+    "price": "1.34",
+    "url": "../images/Cards/card1.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 2,
+    "name": "NFT",
+    "price": "1.75",
+    "url": "../images/Cards/card2.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 3,
+    "name": "NFT",
+    "price": "2.35",
+    "url": "../images/Cards/card3.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 4,
+    "name": "NFT",
+    "price": "0.89",
+    "url": "../images/Cards/card4.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 5,
+    "name": "NFT",
+    "price": "2.35",
+    "url": "../images/Cards/card5.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 6,
+    "name": "NFT",
+    "price": "3.46",
+    "url": "../images/Cards/card6.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 7,
+    "name": "NFT",
+    "price": "24.00",
+    "url": "../images/Cards/card7.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 8,
+    "name": "NFT",
+    "price": "2.64",
+    "url": "../images/Cards/card8.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 9,
+    "name": "NFT",
+    "price": "1.00",
+    "url": "../images/Cards/card9.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 10,
+    "name": "NFT",
+    "price": "2.53",
+    "url": "../images/Cards/card10.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 11,
+    "name": "NFT",
+    "price": "5.75",
+    "url": "../images/Cards/card11.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 12,
+    "name": "NFT",
+    "price": "3.33",
+    "url": "../images/Cards/card12.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 13,
+    "name": "NFT",
+    "price": "3.55",
+    "url": "../images/Cards/card13.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 14,
+    "name": "NFT",
+    "price": "1.75",
+    "url": "../images/Cards/card14.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 15,
+    "name": "NFT",
+    "price": "7.50",
+    "url": "../images/Cards/card15.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 16,
+    "name": "NFT",
+    "price": "6.53",
+    "url": "../images/Cards/card16.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 17,
+    "name": "NFT",
+    "price": "6.77",
+    "url": "../images/Cards/card17.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 18,
+    "name": "NFT",
+    "price": "3.46",
+    "url": "../images/Cards/card18.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 19,
+    "name": "NFT",
+    "price": "9.64",
+    "url": "../images/Cards/card19.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 20,
+    "name": "NFT",
+    "price": "1.64",
+    "url": "../images/Cards/card20.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 21,
+    "name": "NFT",
+    "price": "1.64",
+    "url": "../images/Cards/card21.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 22,
+    "name": "NFT",
+    "price": "6.66",
+    "url": "../images/Cards/card22.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 23,
+    "name": "NFT",
+    "price": "3.46",
+    "url": "../images/Cards/card23.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 24,
+    "name": "NFT",
+    "price": "6.75",
+    "url": "../images/Cards/card24.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 25,
+    "name": "NFT",
+    "price": "4.87",
+    "url": "../images/Cards/card25.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 26,
+    "name": "NFT",
+    "price": "3.86",
+    "url": "../images/Cards/card26.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 27,
+    "name": "NFT",
+    "price": "6.56",
+    "url": "../images/Cards/card27.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 28,
+    "name": "NFT",
+    "price": "7.05",
+    "url": "../images/Cards/card28.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 29,
+    "name": "NFT",
+    "price": "2.57",
+    "url": "../images/Cards/card29.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 30,
+    "name": "NFT",
+    "price": "4.04",
+    "url": "../images/Cards/card30.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 31,
+    "name": "NFT",
+    "price": "1.44",
+    "url": "../images/Cards/card31.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 32,
+    "name": "NFT",
+    "price": "3.22",
+    "url": "../images/Cards/card32.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 33,
+    "name": "NFT",
+    "price": "5.55",
+    "url": "../images/Cards/card33.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 34,
+    "name": "NFT",
+    "price": "0.93",
+    "url": "../images/Cards/card34.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 35,
+    "name": "NFT",
+    "price": "5.06",
+    "url": "../images/Cards/card35.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 36,
+    "name": "NFT",
+    "price": "9.27",
+    "url": "../images/Cards/card36.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+ {
+    "id": 1,
+    "name": "NFT",
+    "price": "1.34",
+    "url": "../images/Cards/card1.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 2,
+    "name": "NFT",
+    "price": "1.75",
+    "url": "../images/Cards/card2.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 3,
+    "name": "NFT",
+    "price": "2.35",
+    "url": "../images/Cards/card3.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 4,
+    "name": "NFT",
+    "price": "0.89",
+    "url": "../images/Cards/card4.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 5,
+    "name": "NFT",
+    "price": "2.35",
+    "url": "../images/Cards/card5.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 6,
+    "name": "NFT",
+    "price": "3.46",
+    "url": "../images/Cards/card6.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 7,
+    "name": "NFT",
+    "price": "24.00",
+    "url": "../images/Cards/card7.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 8,
+    "name": "NFT",
+    "price": "2.64",
+    "url": "../images/Cards/card8.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 9,
+    "name": "NFT",
+    "price": "1.00",
+    "url": "../images/Cards/card9.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 10,
+    "name": "NFT",
+    "price": "2.53",
+    "url": "../images/Cards/card10.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 11,
+    "name": "NFT",
+    "price": "5.75",
+    "url": "../images/Cards/card11.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 12,
+    "name": "NFT",
+    "price": "3.33",
+    "url": "../images/Cards/card12.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 13,
+    "name": "NFT",
+    "price": "3.55",
+    "url": "../images/Cards/card13.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 14,
+    "name": "NFT",
+    "price": "1.75",
+    "url": "../images/Cards/card14.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 15,
+    "name": "NFT",
+    "price": "7.50",
+    "url": "../images/Cards/card15.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 16,
+    "name": "NFT",
+    "price": "6.53",
+    "url": "../images/Cards/card16.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 17,
+    "name": "NFT",
+    "price": "6.77",
+    "url": "../images/Cards/card17.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 18,
+    "name": "NFT",
+    "price": "3.46",
+    "url": "../images/Cards/card18.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 19,
+    "name": "NFT",
+    "price": "9.64",
+    "url": "../images/Cards/card19.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 20,
+    "name": "NFT",
+    "price": "1.64",
+    "url": "../images/Cards/card20.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 21,
+    "name": "NFT",
+    "price": "1.64",
+    "url": "../images/Cards/card21.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 22,
+    "name": "NFT",
+    "price": "6.66",
+    "url": "../images/Cards/card22.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 23,
+    "name": "NFT",
+    "price": "3.46",
+    "url": "../images/Cards/card23.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 24,
+    "name": "NFT",
+    "price": "6.75",
+    "url": "../images/Cards/card24.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 25,
+    "name": "NFT",
+    "price": "4.87",
+    "url": "../images/Cards/card25.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 26,
+    "name": "NFT",
+    "price": "3.86",
+    "url": "../images/Cards/card26.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 27,
+    "name": "NFT",
+    "price": "6.56",
+    "url": "../images/Cards/card27.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 28,
+    "name": "NFT",
+    "price": "7.05",
+    "url": "../images/Cards/card28.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 29,
+    "name": "NFT",
+    "price": "2.57",
+    "url": "../images/Cards/card29.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 30,
+    "name": "NFT",
+    "price": "4.04",
+    "url": "../images/Cards/card30.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 31,
+    "name": "NFT",
+    "price": "1.44",
+    "url": "../images/Cards/card31.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 32,
+    "name": "NFT",
+    "price": "3.22",
+    "url": "../images/Cards/card32.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 33,
+    "name": "NFT",
+    "price": "5.55",
+    "url": "../images/Cards/card33.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 34,
+    "name": "NFT",
+    "price": "0.93",
+    "url": "../images/Cards/card34.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+},
+{
+    "id": 35,
+    "name": "NFT",
+    "price": "5.06",
+    "url": "../images/Cards/card35.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "elnafrederick"
+},
+{
+    "id": 36,
+    "name": "NFT",
+    "price": "9.27",
+    "url": "../images/Cards/card36.png",
+    "userIcon": "../images/Icons/user-icon.png",
+    "collectionIcon": "../images/Icons/collection-icon.png",
+    "verifiedIcon": "../images/Icons/verified-icon.png",
+    "creator": "randomdash"
+}
 ]
