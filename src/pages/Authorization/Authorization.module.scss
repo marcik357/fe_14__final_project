@@ -7,17 +7,17 @@
   margin: 2rem auto;
   padding: 0 15px;
   box-sizing: border-box;
-  
+
   &__switcher {
     display: flex;
     gap: 2rem;
     margin: 0 auto;
   }
-  
+
   @media (min-width: 768px) {
     align-items: start;
     flex-direction: row;
-    
+
     &__switcher {
       flex-direction: column;
     }
@@ -33,6 +33,7 @@
     position: relative;
     margin: 0 auto;
     padding: .7rem 2rem;
+    min-width: 150px;
     transition: color .3s;
     border: 2px solid #202025;
     border-radius: 4px;
@@ -89,6 +90,31 @@
 
     &:hover {
       color: #f7fbfa;
+    }
+
+    &_active {
+      // border: 2px solid #f7fbfa;
+      color: #f7fbfa;
+
+      &::before {
+        position: absolute;
+        top: -5%;
+        left: -5%;
+        width: 110%;
+        height: 110%;
+        background-color: #202025;
+        content: '';
+        z-index: -1;
+      }
+
+      &::after {
+        background-color: #f7fbfa;
+        z-index: -1;
+      }
+
+      &:hover {
+        color: #202025;
+      }
     }
   }
 }

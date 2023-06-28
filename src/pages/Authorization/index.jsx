@@ -27,12 +27,12 @@ export function Authorization() {
         <div className={`${styles.authorization__switcher} + ${styles.switcher}`}>
           <button
             onClick={() => setIsLogIn(true)}
-            className={styles.switcher__btn}>
+            className={isLogIn ? `${styles.switcher__btn} + ${styles.switcher__btn_active}` : styles.switcher__btn}>
             Logn In
           </button>
           <button
             onClick={() => setIsLogIn(false)}
-            className={styles.switcher__btn}>
+            className={!isLogIn ? `${styles.switcher__btn} + ${styles.switcher__btn_active}` : styles.switcher__btn}>
             Sign In
           </button>
         </div>
