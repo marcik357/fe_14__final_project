@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 // import Loader from '../../components/Loader';
-// import styles from './Authorization.module.scss';
+import styles from './Authorization.module.scss';
 import Banner from '../../components/Banner';
 import SignInForm from '../../components/SignInForm';
 
 export function Authorization() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
+  const [isLogIn, setIsLogIn] = useState(true)
 
   // const loading = useSelector((state) => state.loading.loading);
   // const error = useSelector((state) => state.error.error);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [dispatch]);
+  // }, [dispatch]);
 
   return (
     <>
@@ -21,13 +23,20 @@ export function Authorization() {
         title='Crypter authorization'
         // subtitle="Let's get to know each other better"
         img='/images/banners/authorization-banner.jpg' />
-      <div className='authorization'>
-        <div className='authorization__container'>
-          <div className='authorization__switcher'>
-
-          </div>
-          <SignInForm />
+      <div className={styles.authorization}>
+        <div className={`${styles.authorization__switcher} + ${styles.switcher}`}>
+          <button
+            onClick={() => setIsLogIn(true)}
+            className={styles.switcher__btn}>
+            Logn In
+          </button>
+          <button
+            onClick={() => setIsLogIn(false)}
+            className={styles.switcher__btn}>
+            Sign In
+          </button>
         </div>
+        {isLogIn ? <div>login</div> : <SignInForm />}
       </div>
     </>
   );
