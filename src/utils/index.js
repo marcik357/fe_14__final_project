@@ -14,6 +14,45 @@ export async function fetchData(url) {
   }
 }
 
+export async function postData(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    } else {
+      return response.json();
+    }
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+export async function postDataAuthorized(url, data, token) {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    } else {
+      return response.json();
+    }
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
 export function buyNowHandler(dispatch, artNum) {
   dispatch(setModalType('buy'))
   dispatch(setArtNumAction(artNum))

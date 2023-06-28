@@ -10,5 +10,5 @@ export const rootReducer = combineReducers({
   products,
   loading,
   error,
-  modal
+  modal,
 });
