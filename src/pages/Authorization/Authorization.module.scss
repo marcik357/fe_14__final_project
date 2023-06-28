@@ -9,9 +9,8 @@
   box-sizing: border-box;
 
   &__switcher {
-    display: flex;
+    flex: 1 0 35%;
     margin: 0 auto;
-    gap: 2rem;
   }
 
   @media (min-width: 768px) {
@@ -25,6 +24,10 @@
 }
 
 .switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+
   &__btn {
     display: flex;
     align-items: center;
