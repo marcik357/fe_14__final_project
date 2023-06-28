@@ -5,7 +5,7 @@ const Input = ({ label, ...props }) => {
     return (
         <>
             <label
-                htmlFor={props.id || props.name}
+                htmlFor={props.id}
                 className={props.labelClass}>
                 {label}
             </label>
@@ -13,6 +13,7 @@ const Input = ({ label, ...props }) => {
                 className={props.inputClass}
                 type={props.type}
                 placeholder={props.placeholder}
+                id={props.id}
                 {...field} />
             {meta.touched && meta.error
                 ? <div

@@ -1,28 +1,34 @@
 import * as Yup from 'yup';
 
-export const validationSchemaCart = Yup.object({
+export const validationSchemaUser = Yup.object({
   firstName: Yup.string()
-    .min(2, 'Має містити принаймні 2 літери')
-    .max(25, 'Може бути не більше 25 символів')
+    .min(2, 'Must contain at least 2 letters')
+    .max(25, 'Can be no more than 25 characters')
+    .matches(/^[a-zA-Zа-яА-Я]+$/)
     .trim()
-    .required("Обов'язкове поле!"),
+    .required("Required Field!"),
   lastName: Yup.string()
-    .min(2, 'Має містити принаймні 2 літери')
-    .max(25, 'Може бути не більше 25 символів')
+    .min(2, 'Must contain at least 2 letters')
+    .max(25, 'Can be no more than 25 characters')
+    .matches(/^[a-zA-Zа-яА-Я]+$/)
     .trim()
-    .required("Обов'язкове поле!"),
+    .required("Required Field!"),
   login: Yup.string()
-    .min(3, 'Має містити принаймні 3 літери')
-    .max(25, 'Може бути не більше 25 символів')
+    .min(3, 'Must contain at least 3 letters')
+    .max(25, 'Can be no more than 25 characters')
+    .matches(/^[a-zA-Z0-9]+$/)
     .trim()
-    .required("Обов'язкове поле!"),
+    .required("Required Field!"),
   password: Yup.string()
-    .min(6, 'Має містити принаймні 6 символів')
-    .max(18, 'Може бути не більше 18 символів')
+    .min(7, 'Must contain at least 7 letters')
+    .max(30, 'Can be no more than 30 characters')
+    .matches(/^[a-zA-Z0-9]+$/)
     .trim()
-    .required("Обов'язкове поле!"),
-  email: Yup.string().email('Invalid email').required('Required'),
-  // telephone: Yup.string()
-  //   .matches(/^[^#]*$/)
-  //   .required("Обов'язкове поле!"),
+    .required("Required Field!"),
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  telephone: Yup.string()
+    .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
+    .required("Required Field!"),
 })

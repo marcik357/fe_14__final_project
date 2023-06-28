@@ -13,6 +13,7 @@ const InputMasked = ({ label, ...props }) => {
       <PatternFormat
         className={props.inputClass}
         type={props.type}
+        id={props.id}
         placeholder={props.placeholder}
         format={props.format}
         allowEmptyFormatting mask={props.mask}
@@ -20,7 +21,7 @@ const InputMasked = ({ label, ...props }) => {
       {meta.touched && meta.error
         ? <div
           className={props.errorClass}>
-          Повністю заповніть поле у заданому форматі
+          Complete the field in the given format
         </div>
         : null}
     </>

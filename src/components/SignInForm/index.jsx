@@ -2,13 +2,11 @@ import style from './signInForm.module.scss'
 import { Formik, Form } from 'formik';
 import Input from '../Input';
 import InputMasked from '../InputMasked';
-import { validationSchemaCart } from '../../validation';
-import { useDispatch } from 'react-redux';
+import { validationSchemaUser } from '../../validation';
 import { signInFormFields } from './signInFormFields';
 import { postData } from '../../utils';
 
 export default function SignInForm() {
-  const dispatch = useDispatch()
 
   return (
     <Formik
@@ -20,16 +18,15 @@ export default function SignInForm() {
         password: '',
         telephone: '',
       }}
-      validationSchema={validationSchemaCart}
-      onSubmit={(values, { setSubmitting }) => {
-        // dispatch(createCustomer(values))
+      validationSchema={validationSchemaUser}
+      onSubmit={async (values, { setSubmitting }) => {
         postData('https://plankton-app-6vr5h.ondigitalocean.app/api/customers', values)
         // повідомлення про реєстрацію
         // і потрібно залогінитись
         setSubmitting(false);
       }} >
       <Form className={style.form}>
-        <h2 className={style.form__title}>Оформити замовлення</h2>
+        <h2 className={style.form__title}>Sign In</h2>
         {signInFormFields.map(field => {
           if (field.tagType === 'masked') {
             return <InputMasked key={field.name} {...field} />
