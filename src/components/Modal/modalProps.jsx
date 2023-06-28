@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { Success } from '../Icons/success-icon';
 import style from './modal.module.scss';
 
@@ -10,7 +11,9 @@ export const modalProps = [
       return (
         <div className={className}>
           <button onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Continue shopping</button>
-          <button onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>View cart</button>
+          <NavLink to="/cart" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
+            View cart
+          </NavLink>
         </div>
       );
     },
