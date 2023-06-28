@@ -1,0 +1,62 @@
+.banner {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 25vh 0;
+  color: #f7fbfa;
+  text-align: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(0deg, #00000062 0%, #0000002f 100%);
+    z-index: -1;
+  }
+
+  &__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -.96px;
+    line-height: 48px;
+
+    @media (min-width: 1024px) {
+      font-size: 4rem;
+      letter-spacing: -1.28px;
+      line-height: 6rem;
+    }
+
+    @media (min-width: 1440px) {
+      font-size: 6rem;
+      letter-spacing: -1.28px;
+      line-height: 12rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -.4px;
+    line-height: 2rem;
+
+    @media (min-width: 1024px) {
+      font-size: 2rem;
+      letter-spacing: -.64px;
+      line-height: 3rem;
+    }
+  }
+}
