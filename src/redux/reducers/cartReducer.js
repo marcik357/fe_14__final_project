@@ -13,10 +13,12 @@ export function cartReducer(state=initialState, action) {
            return {...state,products:[...state.products,action.payload]}
         case cartTypes.ADD_TO_CART_PRODUCT:
             return {...state,cartProductsAdd:[...state.cartProductsAdd,action.payload.cartProductsAdd]}
-            case cartTypes.INCREASE_CART:
+            case cartTypes.CHANGE_CART__PRODUCT:
                 return {...state,products:action.payload}
                 case cartTypes.LOAD_CART:
                     return action.payload;
+                     case cartTypes.DELETE_CART:
+                        return action.payload;
             default:
            return state;
     }
