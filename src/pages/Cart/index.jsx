@@ -1,15 +1,23 @@
 import { useState,useEffect, useRef} from 'react';
 import style from './index.module.scss';
-import { CartList } from '../../components/Cart/CartList';
-import { FormToBuy } from '../../components/Cart/FormToBuy';
+import { CartList } from '../../components/CartList';
+import { FormToBuy } from '../../components/FormToBuy';
 import { useSelector,useDispatch } from 'react-redux';
 import { getCart } from '../../redux/actions/cartActions';
-let token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTY5NDg4Y2Y0ZjhiZTkwZjkxZDRhMyIsImZpcnN0TmFtZSI6IkFyc2VuIiwibGFzdE5hbWUiOiJBcnNlbml0IiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjg3ODc5NzkwLCJleHAiOjE2ODc5MTU3OTB9.6RxoeCepgEnG0oVOvBud8GuUerIM5HMp0rvf7EypWek'
 
-function sumOfOrder(date) {
-  const arrayOfNftPrice = date.map((item) => (parseFloat(item.price) * parseFloat(item.quantity)));
-  const sumOfNftPrice = arrayOfNftPrice.reduce((sum, item) => sum + item, 0);
+let token = localStorage.getItem('tokenCart')
 
+function sumOfOrder(cartProductsAdd,products) {
+  let sumOfNftPrice
+  if(cartProductsAdd.length === 0 && (products.length === 0 )) sumOfNftPrice = 0
+  else{
+    const arrayOfNftPrice = products.map((item) =>
+    {
+      return cartProductsAdd?.find(elem=> elem._id === item.product).currentPrice * item.cartQuantity
+    }
+    );
+    sumOfNftPrice = arrayOfNftPrice?.reduce((sum, item) => sum + item, 0);
+  }
   return sumOfNftPrice;
 }
 
@@ -20,12 +28,21 @@ export function Cart() {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    localStorage.setItem('cartProductsAdd',JSON.stringify(cartProductsAdd))
-    localStorage.setItem('products',JSON.stringify(products))
-
-    // dispatch(getCart(token))
+      !token ? (
+        localStorage.setItem('cartProductsAdd',JSON.stringify(cartProductsAdd)),
+        localStorage.setItem('products',JSON.stringify(products))
+      ):"";
   },[cartProductsAdd,products])
 
+  useEffect(()=>{
+      token ? (dispatch(getCart(token))):""
+  },[dispatch])
+
+
+  useEffect(()=>{
+    setOrderAmount(sumOfOrder(cartProductsAdd,products))
+  },[cartProductsAdd,products])
+  
   return (
     <div className={style.cart}>
       <div className={style.cart__poster} />
@@ -34,7 +51,7 @@ export function Cart() {
           {
             cartProductsAdd?.length > 0 ? cartProductsAdd?.map((item) => (
             <CartList
-              key={item.id}
+              key={item.itemNo}
               sumOfOrder={sumOfOrder}
               setOrderAmount={setOrderAmount}
               {...item}
