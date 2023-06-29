@@ -27,7 +27,7 @@ export async function postData(url, data) {
     });
     if (!response.ok) {
       const error  = await response.json()
-      throw new Error(error?.loginOrEmail || error?.password || error?.message || error);
+      throw new Error(error?.loginOrEmail || error?.password || error?.message || error?.email || error);
     }
     return await response.json();
   } catch (error) {
