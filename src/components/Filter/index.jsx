@@ -12,23 +12,44 @@ function Filter() {
   const [isOpen, setIsOpen] = useState(false);
   const [authorFilters, setAuthorFilters] = useState([]);
   const [categoryFilters, setCategoryFilters] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [queryString, setQueryString] = useState('');
+
   const [selectedFilters, setSelectedFilters] = useState({
     authors: [],
     categories: [],
+    minPrice: '',
+    maxPrice: '',
   });
-  const [products, setProducts] = useState();
+  const [sortBy, setSortBy] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  // const valueChange = (event) => {
-  //   if (event.target.checked) {
-  //     console.log(event.target.name);
-  //   } else {
-  //     console.log('null');
-  //   }
-  // };
+  useEffect(() => {
+    // Функция для получения списка товаров с API
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://plankton-app-6vr5h.ondigitalocean.app/api/products/filter');
+        if (response.ok) {
+          const data = await response.json();
+          if (data) {
+            setProducts(data.products);
+          }
+        } else {
+          throw new Error('Unable to fetch products');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchProducts();
+  }, []);
+  console.log(products);
 
   useEffect(() => {
     // Функція для отримання фільтрів по type з API за доп fetch
@@ -50,7 +71,6 @@ function Filter() {
         console.error(error);
       }
     };
-
     // Виклик функції для отримання фільтрів по типам
     getFiltersByType('author');
     getFiltersByType('categories');
@@ -60,8 +80,6 @@ function Filter() {
   const valueChange = (event) => {
     const { name, checked } = event.target;
     const filterType = event.target.getAttribute('data-filter-type');
-    console.log(filterType);
-    console.log(event.target.checked);
 
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
@@ -78,30 +96,55 @@ function Filter() {
       return updatedFilters;
     });
   };
+  // Кнопка підтвердження фільтра від / до
+  const applyPriceFilter = () => {
+    setSelectedFilters((prevSelectedFilters) => ({
+      ...prevSelectedFilters,
+      minPrice,
+      maxPrice,
+    }));
+  };
+  console.log(minPrice);
 
   const buildQueryString = (filters) => {
-    let queryString = '';
+    let newQueryString = '';
 
     if (filters.authors.length > 0) {
       const authorsString = filters.authors.join(',');
-      queryString += `&author=${authorsString}`;
+      newQueryString += `&author=${authorsString}`;
     }
 
     if (filters.categories.length > 0) {
       const categoriesString = filters.categories.join(',');
-      queryString += `&categories=${categoriesString}`;
+      newQueryString += `&categories=${categoriesString}`;
     }
 
-    // Додам сюди інші параметри фільтрації
+    if (sortBy) {
+      newQueryString += `&sort=${sortBy}`;
+    }
 
-    return queryString;
+    if (filters.minPrice !== '') {
+      newQueryString += `&minPrice=${filters.minPrice}`;
+    }
+  
+    if (filters.maxPrice !== '') {
+      newQueryString += `&maxPrice=${filters.maxPrice}`;
+    }
+
+    setQueryString(newQueryString); // Оновлення стану queryStrin
+    return newQueryString;
   };
 
-  // useEffect(() => {
+  useEffect(() => {
+    buildQueryString(selectedFilters);
+  }, [selectedFilters, sortBy]);
+  console.log(selectedFilters);
+  console.log(queryString);
+
+
   // Функція для відображення обраних фільтрів
   const applyFilters = () => {
-    const queryString = buildQueryString(selectedFilters);
-    console.log(queryString);
+    // const queryString = buildQueryString(selectedFilters);
     // Запит до API з використанням queryString для фільтрації товарів
     fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/products/filter?${queryString}`)
       .then((response) => {
@@ -112,19 +155,15 @@ function Filter() {
       })
       .then((data) => {
         // Опрацювання отриманих відфільтрованих товарів
-        console.log(data);
         setProducts(data);
-        console.log(products);
       })
       .catch((error) => {
         console.error(error);
       });
   };
   useEffect(() => {
-    applyFilters(); // Викликати applyFilters при кожній зміні selectedFilters ????
-  }, [selectedFilters]);
-  //   applyFilters();
-  // }, [selectedFilters]);
+    applyFilters(); // Викликати applyFilters при кожній зміні queryString
+  }, [queryString]);
 
 
   return (
@@ -133,10 +172,10 @@ function Filter() {
         <div className={styles.filter__wrapper}>
           <div className={styles.filter__nav}>
             <button className={styles.filter__openBtn} type="button" onClick={toggleModal}>Filters</button>
-            <select name="sortBy" id="sortBy" className={styles.filter__sortBtn}>
+            <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} onChange={(e) => setSortBy(e.target.value)}>
               <option disabled selected hidden value="Sort By">Sort By</option>
-              <option value="Lowest price" className={styles.filter__sortValue}>Lowest price</option>
-              <option value="Highest price" className={styles.filter__sortValue}>Highest price</option>
+              <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
+              <option value="-currentPrice" className={styles.filter__sortValue}>Highest price</option>
             </select>
           </div>
           <div className={styles.filter__content}>
@@ -149,17 +188,20 @@ function Filter() {
                   </button>
                 </div>
                 <div className={styles.filter__sidebarBody}>
-                  <h4 className={styles.filter__sidebarCategoryTitle}>All</h4>
+                  {/* <h4 className={styles.filter__sidebarCategoryTitle}>All</h4>
                   <div className={styles.filter__sidebarItem}>
                     <label htmlFor="all">
                       <input type="checkbox" id="all" name="all" />
                       All
                     </label>
-                  </div>
+                  </div> */}
                   <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
                   <div className={styles.filter__sidebarItemValue}>
-                    <input type="text" id="minPrice" name="minPrice" placeholder="Min" />
-                    <input type="text" id="maxPrice" name="maxPrice" placeholder="Max" />
+                    <div>
+                      <input type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={(e) => setMinPrice(e.target.value)} value={minPrice} />
+                      <input type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={(e) => setMaxPrice(e.target.value)} value={maxPrice} />
+                    </div>
+                    <button className={styles.filter__sidebarApplyBtn} type="button" onClick={applyPriceFilter}>Apply</button>
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
                   {authorFilters.map((author) => (
@@ -181,19 +223,12 @@ function Filter() {
                   ))}
                 </div>
                 <div className={styles.filter__sidebarFooter}>
-                  <button className={styles.filter__applyBtn} type="button" onClick={applyFilters}>Apply</button>
+                  <button className={styles.filter__applyBtn} type="button">Clear All</button>
                 </div>
               </div>
             </div>
             <section className={styles.filter__contentList}>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ea ipsam ab mollitia quo sunt voluptatibus quam dignissimos eaque, optio molestias atque amet harum impedit quasi commodi error cupiditate aliquid?</p>
-              {/* {products.map((product) => (
-                <div key={product.id}>
-                  <h3>{product.name}</h3>
-                  <p>{product.author}</p>
-                  <p>{product.categories}</p>
-                </div>
-              ))} */}
             </section>
           </div>
         </div>
