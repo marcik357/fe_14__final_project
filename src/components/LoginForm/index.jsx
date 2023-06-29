@@ -4,11 +4,13 @@ import Input from '../Input';
 import { validationSchemaLogin } from '../../validation';
 import { login } from '../../utils';
 import { useDispatch } from 'react-redux';
+import { setModalType } from '../../redux/actions/modalActions';
+import { setErrorAction } from '../../redux/actions/errorActions';
 
 
 export default function LoginForm() {
   const dispatch = useDispatch()
-
+  const baseUrl = 'https://plankton-app-6vr5h.ondigitalocean.app/api/'
     const logInFormFields = [
         {
           tagType: 'regular',
@@ -41,9 +43,13 @@ export default function LoginForm() {
       }}
       validationSchema={validationSchemaLogin}
       onSubmit={async (values, { setSubmitting }) => {
-        login('https://plankton-app-6vr5h.ondigitalocean.app/api/customers/login', values, dispatch)
-        // повідомлення про успішний вхід
-        setSubmitting(false);
+        try {
+          await login(`${baseUrl}customers/login`, values, dispatch)
+          setSubmitting(false);
+        } catch (error) {
+          dispatch(setErrorAction(error.message));
+          dispatch(setModalType('error'))
+        }
       }} >
       <Form className={style.form}>
         {logInFormFields.map(field => (
