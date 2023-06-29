@@ -73,13 +73,40 @@ export const getDataFromLS = (key) => {
   }
 };
 
+// export async function login(url, data, dispatch) {
+//   try {
+//     const responseData = await postData(url, data);
+//     const token = responseData.token;
+
+//     localStorage.setItem('token', token);
+//     dispatch(setTokenAction(token))
+//     return responseData;
+//   } catch (err) {
+//     throw new Error(err.message);
+//   }
+// }
 export async function login(url, data, dispatch) {
   try {
-    const responseData = await postData(url, data);
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      const errorMessage = errorData?.loginOrEmail || errorData?.password;
+      throw new Error(errorMessage);
+    }
+
+    const responseData = await response.json();
     const token = responseData.token;
 
     localStorage.setItem('token', token);
-    dispatch(setTokenAction(token))
+    dispatch(setTokenAction(token));
+
     return responseData;
   } catch (err) {
     throw new Error(err.message);
