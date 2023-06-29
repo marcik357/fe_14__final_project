@@ -30,5 +30,16 @@ export const modalProps = [
         </div>
       );
     },
+  },
+  {
+    type: 'error',
+    header: 'an error occurred',
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <button type='button' onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>OK</button>
+        </div>
+      );
+    },
   }
 ];

@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setArtNumAction } from '../../redux/actions/artNumActions';
+import { setErrorAction } from '../../redux/actions/errorActions';
 import style from './modal.module.scss';
 
 export function Modal(props) {
   const dispatch = useDispatch();
   const { data: { type, header, text, actions, icon } } = props;
+  const error = useSelector((state) => state.error.error)
 
   function onCloseModal() {
     dispatch(setModalType(null));
     dispatch(setArtNumAction(null))
+    dispatch(setErrorAction(null));
   }
 
   function onSubmitModal() {
@@ -29,7 +32,7 @@ export function Modal(props) {
             <div className={style.modal__icon}>
               {icon}
             </div>
-            {text && <p>{text}</p>}
+            {type !== 'buy' && <p>{text || error}</p>}
           </div>
           {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}
         </div>
