@@ -188,7 +188,7 @@ option {
   &__sidebarApplyBtn {
     width: 120px;
     height: 30px;
-    margin: 10px 0 0 30px;
+    margin: 10px 0 0 20px;
     border-radius: 40px;
     background-color: rgba(1, 3, 4, .08);
     text-align: center;
@@ -196,9 +196,9 @@ option {
   }
 
   &__sidebarApplyBtn:hover {
-    background-color: black;
-    color:#f7fbfa;
     transition: .3s;
+    background-color: black;
+    color: #f7fbfa;
   }
 
   &__sidebarFooter {
@@ -206,7 +206,7 @@ option {
     text-align: center;
   }
 
-  &__applyBtn {
+  &__clearBtn {
     width: 150px;
     padding: 18px 0;
     border-radius: 4px;
@@ -218,6 +218,10 @@ option {
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
+  }
+
+  &__clearBtnHead {
+    display: none;
   }
 }
 
@@ -285,6 +289,27 @@ option {
 
     &__sidebarFooter {
       text-align: inherit;
+    }
+
+    &__clearBtn {
+      display: none;
+    }
+
+    &__clearBtnHead {
+      display: block;
+      width: 120px;
+      height: 30px;
+      margin: 10px 0 0 20px;
+      border-radius: 40px;
+      background-color: rgba(1, 3, 4, .08);
+      text-align: center;
+      cursor: pointer;
+    }
+
+    &__clearBtnHead:hover {
+      transition: .3s;
+      background-color: black;
+      color: #f7fbfa;
     }
   }
 }

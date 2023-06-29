@@ -165,6 +165,29 @@ function Filter() {
     applyFilters(); // Викликати applyFilters при кожній зміні queryString
   }, [queryString]);
 
+  // Очистити всі фільтри
+  const clearAllFilters = () => {
+    setSelectedFilters({
+      authors: [],
+      categories: [],
+      minPrice: '',
+      maxPrice: '',
+    });
+    setSortBy('');
+    setMinPrice('');
+    setMaxPrice('');
+
+    // Скинути обрані значення checkbox
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((e) => {
+      e.checked = false;
+    });
+
+    // Скинути обрані значення select
+    const select = document.getElementById('sortBy');
+    select.selectedIndex = 0;
+  };
+
 
   return (
     <div className={styles.filter}>
@@ -188,13 +211,7 @@ function Filter() {
                   </button>
                 </div>
                 <div className={styles.filter__sidebarBody}>
-                  {/* <h4 className={styles.filter__sidebarCategoryTitle}>All</h4>
-                  <div className={styles.filter__sidebarItem}>
-                    <label htmlFor="all">
-                      <input type="checkbox" id="all" name="all" />
-                      All
-                    </label>
-                  </div> */}
+                  <button className={styles.filter__clearBtnHead} type="button" onClick={clearAllFilters}>Clear All</button>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
                   <div className={styles.filter__sidebarItemValue}>
                     <div>
@@ -223,7 +240,7 @@ function Filter() {
                   ))}
                 </div>
                 <div className={styles.filter__sidebarFooter}>
-                  <button className={styles.filter__applyBtn} type="button">Clear All</button>
+                  <button className={styles.filter__clearBtn} type="button" onClick={clearAllFilters}>Clear All</button>
                 </div>
               </div>
             </div>
