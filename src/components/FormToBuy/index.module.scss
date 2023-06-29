@@ -31,7 +31,7 @@
   &__btnBuy {
     width: 100%;
     margin: 40px 0 20px;
-    padding: 20px;
+    padding: 20px 5px;
     border: none;
     background: #202025;
     color: #fff;
@@ -50,13 +50,18 @@
   &__summeryPriceValue {
     font-size: 25px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 }
 
 @media (min-width: 420px) {
   .makeOrder {
     width: 90%;
+    
+    &__btnBuy {
+      padding: 20px 5px;
+      margin: 40px 0 30px;
+    }
   }
 
   .block {
@@ -78,11 +83,17 @@
     &__slogan {
       padding-bottom: 70px;
     }
+
+    &__btnBuy {
+      padding: 20px 5px;
+      margin: 40px 0 30px;
+    }
+
   }
 
   .block {
     &__title {
-      font-size: 18px;
+      font-size: 14px;
     }
 
     &__summeryPriceValue {
@@ -123,17 +134,17 @@
     padding: 40px 30px;
 
     &__btnBuy {
-      margin: 50px 0 20px;
+      margin: 35px 0 20px;
     }
   }
 
   .block {
     &__title {
-      font-size: 16px;
+      font-size: 14px;
     }
 
     &__summeryPriceValue {
-      font-size: 20px;
+      font-size: 17px;
     }
   }
 }
@@ -149,6 +160,7 @@
   }
 
   .block {
+    padding:0 10px;
     &__title {
       font-size: 22px;
     }
