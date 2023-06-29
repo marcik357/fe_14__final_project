@@ -1,41 +1,21 @@
 import style from './loginForm.module.scss';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Input from '../Input';
+import { logInFormFields } from './logInFormFields';
 import { validationSchemaLogin } from '../../validation';
-import { login } from '../../utils';
+import { postData } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
-import { logInFormFields } from './logInFormFields';
+import { setTokenAction } from '../../redux/actions/tokenActions';
+import { baseUrl } from '../../utils/vars';
 
 
 export default function LoginForm() {
-  const dispatch = useDispatch()
-  const baseUrl = 'https://plankton-app-6vr5h.ondigitalocean.app/api/'
-    // const logInFormFields = [
-    //     {
-    //       tagType: 'regular',
-    //       label: "Login or Email",
-    //       labelClass: style.form__label,
-    //       inputClass: style.form__input,
-    //       errorClass: style.form__error,
-    //       id: "loginOrEmail",
-    //       name: "loginOrEmail",
-    //       type: "text",
-    //       placeholder: "Enter your login or email",
-    //     },
-    //     {
-    //       tagType: 'regular',
-    //       label: "Password",
-    //       labelClass: style.form__label,
-    //       inputClass: style.form__input,
-    //       errorClass: style.form__error,
-    //       id: "password",
-    //       name: "password",
-    //       type: "password",
-    //       placeholder: "Enter your password",
-    //     }
-    //   ];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <Formik
       initialValues={{
@@ -45,7 +25,12 @@ export default function LoginForm() {
       validationSchema={validationSchemaLogin}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          await login(`${baseUrl}customers/login`, values, dispatch)
+          const response = await postData(`${baseUrl}customers/login`, values)
+          const token = response.token;
+          localStorage.setItem('token', token);
+          dispatch(setTokenAction(token));
+          navigate("/")
+          // await login(`${baseUrl}customers/login`, values, dispatch)
           setSubmitting(false);
         } catch (error) {
           dispatch(setErrorAction(error.message));

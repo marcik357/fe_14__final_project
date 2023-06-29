@@ -30,7 +30,7 @@ export function Authorization() {
           type={isLogIn ? 'login' : 'signup'}
           onClickHandler={() => setIsLogIn(!isLogIn)}
           classList={styles.authorization__greating} />
-        {isLogIn ? <LoginForm /> : <SignUpForm />}
+        {isLogIn ? <LoginForm /> : <SignUpForm callback={setIsLogIn}/>}
       </div>
     </>
   );

@@ -2,15 +2,16 @@ import style from './signUpForm.module.scss'
 import { Formik, Form } from 'formik';
 import Input from '../Input';
 import InputMasked from '../InputMasked';
-import { validationSchemaUser } from '../../validation';
 import { signInFormFields } from './signUpFormFields';
+import { validationSchemaUser } from '../../validation';
 import { postData } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
+import { baseUrl } from '../../utils/vars';
 
-export default function SignUpForm() {
-  const dispatch = useDispatch()
+export default function SignUpForm({ callback }) {
+  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -25,9 +26,11 @@ export default function SignUpForm() {
       validationSchema={validationSchemaUser}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          await postData('https://plankton-app-6vr5h.ondigitalocean.app/api/customers', values)
+          await postData(`${baseUrl}customers`, values)
+          callback(true)
           setSubmitting(false);
         } catch (error) {
+          console.log(error.message);
           dispatch(setErrorAction(error.message));
           dispatch(setModalType('error'))
         }

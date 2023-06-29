@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ProductDetails from '../../components/ProductDetails';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import Loader from '../../components/Loader';
+import { baseUrl } from '../../utils/vars';
 
 export function Product() {
   const { productId } = useParams();
@@ -15,7 +16,7 @@ export function Product() {
   const error = useSelector(state => state.error.error)
 
   useEffect(() => {
-    dispatch(getDataAction(`https://plankton-app-6vr5h.ondigitalocean.app/api/products/${productId}`, setProduct, 'product'));
+    dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, 'product'));
   }, [dispatch, productId]);
 
   useEffect(() => {
