@@ -5,6 +5,7 @@ import styles from './Authorization.module.scss';
 import Banner from '../../components/Banner';
 import SignUpForm from '../../components/SignUpForm';
 import LogInGreating from '../../components/LogInGreating';
+import LoginForm from '../../components/LoginForm';
 
 export function Authorization() {
   // const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export function Authorization() {
           type={isLogIn ? 'login' : 'signup'}
           onClickHandler={() => setIsLogIn(!isLogIn)}
           classList={styles.authorization__greating} />
-        {isLogIn ? <div>login</div> : <SignUpForm />}
+        {isLogIn ? <LoginForm /> : <SignUpForm />}
       </div>
     </>
   );
