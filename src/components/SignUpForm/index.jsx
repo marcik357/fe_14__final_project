@@ -7,6 +7,7 @@ import { signInFormFields } from './signUpFormFields';
 import { postData } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
+import { setErrorAction } from '../../redux/actions/errorActions';
 
 export default function SignUpForm() {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ export default function SignUpForm() {
           await postData('https://plankton-app-6vr5h.ondigitalocean.app/api/customers', values)
           setSubmitting(false);
         } catch (error) {
+          dispatch(setErrorAction(error.message));
           dispatch(setModalType('error'))
         }
         // повідомлення про реєстрацію
