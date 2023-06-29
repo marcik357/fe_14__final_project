@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 // import Loader from '../../components/Loader';
 import styles from './Authorization.module.scss';
 import Banner from '../../components/Banner';
-import SignInForm from '../../components/SignInForm';
+import SignUpForm from '../../components/SignUpForm';
+import LogInGreating from '../../components/LogInGreating';
 
 export function Authorization() {
   // const dispatch = useDispatch();
@@ -24,19 +25,11 @@ export function Authorization() {
         // subtitle="Let's get to know each other better"
         img='/images/banners/authorization-banner.jpg' />
       <div className={styles.authorization}>
-        <div className={`${styles.authorization__switcher} + ${styles.switcher}`}>
-          <button
-            onClick={() => setIsLogIn(true)}
-            className={isLogIn ? `${styles.switcher__btn} + ${styles.switcher__btn_active}` : styles.switcher__btn}>
-            Logn In
-          </button>
-          <button
-            onClick={() => setIsLogIn(false)}
-            className={!isLogIn ? `${styles.switcher__btn} + ${styles.switcher__btn_active}` : styles.switcher__btn}>
-            Sign In
-          </button>
-        </div>
-        {isLogIn ? <div>login</div> : <SignInForm />}
+        <LogInGreating
+          type={isLogIn ? 'login' : 'signup'}
+          onClickHandler={() => setIsLogIn(!isLogIn)}
+          classList={styles.authorization__greating} />
+        {isLogIn ? <div>login</div> : <SignUpForm />}
       </div>
     </>
   );
