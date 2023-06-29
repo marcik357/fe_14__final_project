@@ -5,8 +5,11 @@ import InputMasked from '../InputMasked';
 import { validationSchemaUser } from '../../validation';
 import { signInFormFields } from './signUpFormFields';
 import { postData } from '../../utils';
+import { useDispatch } from 'react-redux';
+import { setModalType } from '../../redux/actions/modalActions';
 
 export default function SignUpForm() {
+  const dispatch = useDispatch()
 
   return (
     <Formik
@@ -20,10 +23,14 @@ export default function SignUpForm() {
       }}
       validationSchema={validationSchemaUser}
       onSubmit={async (values, { setSubmitting }) => {
-        postData('https://plankton-app-6vr5h.ondigitalocean.app/api/customers', values)
+        try {
+          await postData('https://plankton-app-6vr5h.ondigitalocean.app/api/customers', values)
+          setSubmitting(false);
+        } catch (error) {
+          dispatch(setModalType('error'))
+        }
         // повідомлення про реєстрацію
         // і потрібно залогінитись
-        setSubmitting(false);
       }} >
       <Form className={style.form}>
         {signInFormFields.map(field => {
