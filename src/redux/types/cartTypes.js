@@ -1,6 +1,7 @@
 export const cartTypes = {
+    LOAD_CART:'Cart - LOAD_CART',
     ADD_TO_CART:'Cart - ADD_TO_CART',
     ADD_TO_CART_PRODUCT:'Cart - ADD_TO_CART_PRODUCT',
-    INCREASE_CART:'Cart - INCREASE_CART',
-    LOAD_CART:'Cart - LOAD_CART'
+    CHANGE_CART__PRODUCT:'Cart - CHANGE_CART__PRODUCT',
+    DELETE_CART:'Cart - DELETE_CART',
 }
