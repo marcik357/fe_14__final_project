@@ -5,8 +5,8 @@ export async function fetchData(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      const { message } = await response.json()
-      throw new Error(message);
+      const { error } = await response.json()
+      throw new Error(error);
     }
     const data = await response.json();
     return data;
@@ -17,7 +17,6 @@ export async function fetchData(url) {
 
 export async function postData(url, data) {
   try {
-    console.log(data)
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -26,13 +25,13 @@ export async function postData(url, data) {
       body: JSON.stringify(data)
     });
     if (!response.ok) {
-      const { message } = await response.json()
-      throw new Error(message);
+      const { error } = await response.json()
+      throw new Error(error);
     } else {
       return response.json();
     }
-  } catch (err) {
-    throw new Error(err.message);
+  } catch (error) {
+    throw new Error(error.message);
   }
 }
 
@@ -47,13 +46,13 @@ export async function postDataAuthorized(url, data, token) {
       body: JSON.stringify(data)
     });
     if (!response.ok) {
-      const { message } = await response.json()
-      throw new Error(message);
+      const { error } = await response.json()
+      throw new Error(error);
     } else {
       return response.json();
     }
-  } catch (err) {
-    throw new Error(err);
+  } catch (error) {
+    throw new Error(error.message);
   }
 }
 
