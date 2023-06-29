@@ -1,5 +1,6 @@
 import { setArtNumAction } from "../redux/actions/artNumActions";
 import { setModalType } from "../redux/actions/modalActions";
+import { setTokenAction } from "../redux/actions/tokenActions";
 
 export async function fetchData(url) {
   try {
@@ -71,3 +72,16 @@ export const getDataFromLS = (key) => {
     return [];
   }
 };
+
+export async function login(url, data, dispatch) {
+  try {
+    const responseData = await postData(url, data);
+    const token = responseData.token;
+
+    localStorage.setItem('token', token);
+    dispatch(setTokenAction(token))
+    return responseData;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
