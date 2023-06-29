@@ -6,7 +6,8 @@ export async function fetchData(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('HTTP request error');
+      const { message } = await response.json()
+      throw new Error(message);
     }
     const data = await response.json();
     return data;
@@ -26,7 +27,8 @@ export async function postData(url, data) {
       body: JSON.stringify(data)
     });
     if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
+      const { message } = await response.json()
+      throw new Error(message);
     } else {
       return response.json();
     }
@@ -46,12 +48,13 @@ export async function postDataAuthorized(url, data, token) {
       body: JSON.stringify(data)
     });
     if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
+      const { message } = await response.json()
+      throw new Error(message);
     } else {
       return response.json();
     }
   } catch (err) {
-    throw new Error(err.message);
+    throw new Error(err);
   }
 }
 

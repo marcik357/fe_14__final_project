@@ -1,12 +1,16 @@
-import style from './signInForm.module.scss'
+import style from './signUpForm.module.scss'
 import { Formik, Form } from 'formik';
 import Input from '../Input';
 import InputMasked from '../InputMasked';
 import { validationSchemaUser } from '../../validation';
-import { signInFormFields } from './signInFormFields';
+import { signInFormFields } from './signUpFormFields';
 import { postData } from '../../utils';
+import { useDispatch } from 'react-redux';
+import { setModalType } from '../../redux/actions/modalActions';
+import { setErrorAction } from '../../redux/actions/errorActions';
 
-export default function SignInForm() {
+export default function SignUpForm() {
+  const dispatch = useDispatch()
 
   return (
     <Formik
@@ -20,10 +24,15 @@ export default function SignInForm() {
       }}
       validationSchema={validationSchemaUser}
       onSubmit={async (values, { setSubmitting }) => {
-        postData('https://plankton-app-6vr5h.ondigitalocean.app/api/customers', values)
+        try {
+          await postData('https://plankton-app-6vr5h.ondigitalocean.app/api/customers', values)
+          setSubmitting(false);
+        } catch (error) {
+          dispatch(setErrorAction(error.message));
+          dispatch(setModalType('error'))
+        }
         // повідомлення про реєстрацію
         // і потрібно залогінитись
-        setSubmitting(false);
       }} >
       <Form className={style.form}>
         {signInFormFields.map(field => {
@@ -32,7 +41,7 @@ export default function SignInForm() {
           }
           return <Input key={field.name} {...field} />
         })}
-        <button text='Checkout' className={style.form__submit} type='submit'>Sign In</button>
+        <button text='Checkout' className={style.form__submit} type='submit'>Sign Up</button>
       </Form>
     </Formik>
   )

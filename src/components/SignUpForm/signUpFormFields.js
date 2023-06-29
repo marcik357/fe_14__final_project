@@ -1,4 +1,4 @@
-import style from './signInForm.module.scss'
+import style from './signUpForm.module.scss'
 
 export const signInFormFields = [
   {
