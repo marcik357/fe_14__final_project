@@ -3,17 +3,17 @@ import style from './index.module.scss';
 import { CartList } from '../../components/CartList';
 import { FormToBuy } from '../../components/FormToBuy';
 import { useSelector,useDispatch } from 'react-redux';
-import { getCart } from '../../redux/actions/cartActions';
+import { reloadPageGetCart } from '../../redux/actions/cartActions';
 
 let token = localStorage.getItem('tokenCart')
 
-function sumOfOrder(cartProductsAdd,products) {
+function sumOfOrder(cartProductsArray,products) {
   let sumOfNftPrice
-  if(cartProductsAdd.length === 0 && (products.length === 0 )) sumOfNftPrice = 0
+  if(cartProductsArray.length === 0 && (products.length === 0 )) sumOfNftPrice = 0
   else{
     const arrayOfNftPrice = products.map((item) =>
     {
-      return cartProductsAdd?.find(elem=> elem._id === item.product).currentPrice * item.cartQuantity
+      return cartProductsArray?.find(elem=> elem._id === item.product).currentPrice * item.cartQuantity
     }
     );
     sumOfNftPrice = arrayOfNftPrice?.reduce((sum, item) => sum + item, 0);
@@ -24,24 +24,24 @@ function sumOfOrder(cartProductsAdd,products) {
 export function Cart() {
   const basketItemsWrapper = useRef();
   const [orderAmount, setOrderAmount] = useState();
-  const { cartProductsAdd, products } = useSelector(state => state.cart);
+  const { cartProductsArray, products } = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   useEffect(()=>{
       !token ? (
-        localStorage.setItem('cartProductsAdd',JSON.stringify(cartProductsAdd)),
+        localStorage.setItem('cartProductsArray',JSON.stringify(cartProductsArray)),
         localStorage.setItem('products',JSON.stringify(products))
       ):"";
-  },[cartProductsAdd,products])
+  },[cartProductsArray,products])
 
   useEffect(()=>{
-      token ? (dispatch(getCart(token))):""
+      token ? (dispatch(reloadPageGetCart(token))):""
   },[dispatch])
 
 
   useEffect(()=>{
-    setOrderAmount(sumOfOrder(cartProductsAdd,products))
-  },[cartProductsAdd,products])
+    setOrderAmount(sumOfOrder(cartProductsArray,products))
+  },[cartProductsArray,products])
   
   return (
     <div className={style.cart}>
@@ -49,7 +49,7 @@ export function Cart() {
       <div className={style.cart__block}>
         <div ref={basketItemsWrapper} className={style.block__items}>
           {
-            cartProductsAdd?.length > 0 ? cartProductsAdd?.map((item) => (
+            cartProductsArray?.length > 0 ? cartProductsArray?.map((item) => (
             <CartList
               key={item.itemNo}
               sumOfOrder={sumOfOrder}
