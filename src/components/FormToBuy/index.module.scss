@@ -57,10 +57,10 @@
 @media (min-width: 420px) {
   .makeOrder {
     width: 90%;
-    
+
     &__btnBuy {
-      padding: 20px 5px;
       margin: 40px 0 30px;
+      padding: 20px 5px;
     }
   }
 
@@ -85,10 +85,9 @@
     }
 
     &__btnBuy {
-      padding: 20px 5px;
       margin: 40px 0 30px;
+      padding: 20px 5px;
     }
-
   }
 
   .block {
@@ -160,7 +159,8 @@
   }
 
   .block {
-    padding:0 10px;
+    padding: 0 10px;
+
     &__title {
       font-size: 22px;
     }

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import style from './index.module.scss';
 import axios from 'axios';
-import { newCart,addToCartProduct,addNewProductToCart,addToCartQuantity} from '../../redux/actions/cartActions';
+import { createCartOnTheServerFirst,addToCartProduct,addNewProductToCart,addToCartQuantity} from '../../redux/actions/cartActions';
 import { useDispatch,useSelector} from 'react-redux';
 
 let token = localStorage.getItem('tokenCart');
+///не видаляти,імітацяя додавання продукту
 // const obj =  {
 //   author: "@Art_ofbitcoin",
 //   categories: "other",
@@ -39,9 +40,10 @@ const obj =  {
 const idProduct ="6499cd711dc5c1843d9f8ed3";
 export function FormToBuy({ orderAmount }) {
   const dispatch = useDispatch();
-  const { cartProductsAdd,products } = useSelector(state => state.cart);
+  const { cartProductsArray,products } = useSelector(state => state.cart);
 
   function workWithServer(){
+    ///не видаляти,імітацяя логінізаціх і кнопки в кошик
   //   const userData = {
   //     loginOrEmail: "sitnikov.artem91@gmail.com",
   //     password: "66666666"
@@ -57,11 +59,11 @@ export function FormToBuy({ orderAmount }) {
   //   /*Show error to customer, may be incorrect password or something else*/
   // });
     localStorage.getItem('tokenCart') ?
-    ( cartProductsAdd.length > 0 && products.length > 0 ?(
+    ( cartProductsArray.length > 0 && products.length > 0 ?(
       dispatch(addNewProductToCart(idProduct,token)),
       dispatch(addToCartProduct(obj))
     ):(
-      dispatch(newCart(idProduct,token)),
+      dispatch(createCartOnTheServerFirst(idProduct,token)),
       dispatch(addToCartProduct(obj)))
     )
     :(

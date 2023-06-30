@@ -9,14 +9,14 @@ export function CartList(props) {
     const parentElement = useRef();
     const dispatch = useDispatch();
     const { imageUrls, name, currentPrice, sumOfOrder, setOrderAmount, id, _id } = props;
-    const { cartProductsAdd,products } = useSelector(state => state.cart);
-    let currentQuantity = products.length >0 ? (products.find(item=>item.product === _id)).cartQuantity: 0;
+    const { cartProductsArray,products } = useSelector(state => state.cart);
+    let currentQuantity = products.length > 0 ? (products.find(item=>item.product === _id))?.cartQuantity: 0;
  
   function deleteElementFromScreen(e) {
     let id =e.target.dataset.id;
     localStorage.getItem('tokenCart') ?
-      dispatch(deleteFromCartProductWithServer(id,cartProductsAdd,products,token)) :
-    dispatch(deleteFromCartProduct(id,cartProductsAdd,products));
+      dispatch(deleteFromCartProductWithServer(id,cartProductsArray,products,token)) :
+    dispatch(deleteFromCartProduct(id,cartProductsArray,products));
     setOrderAmount(0)
   }
   
@@ -24,16 +24,16 @@ export function CartList(props) {
     let idProduct= e.target.dataset.id;
     localStorage.getItem('tokenCart') ? (dispatch(changeQuantityInCartWithServer(idProduct,currentQuantity,products,token,false)),setOrderAmount(sumOfOrder(cartProductsAdd,products))):
     dispatch(changeQuantityInCartLocal(idProduct,currentQuantity,products,false));
-    setOrderAmount(sumOfOrder(cartProductsAdd,products))
+    setOrderAmount(sumOfOrder(cartProductsArray,products))
   }
   
   function increase(e) {
       let idProduct= e.target.dataset.id;
       localStorage.getItem('tokenCart') ? (dispatch(changeQuantityInCartWithServer(idProduct,currentQuantity,products,token,true))
-      ,setOrderAmount(sumOfOrder(cartProductsAdd,products))):
+      ,setOrderAmount(sumOfOrder(cartProductsArray,products))):
       dispatch(changeQuantityInCartLocal(idProduct,currentQuantity,products,true));
 
-      setOrderAmount(sumOfOrder(cartProductsAdd,products))
+      setOrderAmount(sumOfOrder(cartProductsArray,products))
   }
 
   return (
@@ -60,7 +60,7 @@ export function CartList(props) {
           data-id={_id}
           type="submit"
           className={style.quantity__btn}
-          onClick={currentQuantity > 0 ? decrease : null}
+          onClick={currentQuantity > 1 ? decrease : null}
         > -
         </button>
        <div
