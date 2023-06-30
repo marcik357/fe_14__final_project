@@ -1,4 +1,3 @@
-import axios from "axios";
 import { cartTypes } from "../types/cartTypes";
 // const newCustomer = {
 //     firstName: "Artem",
@@ -51,7 +50,7 @@ export function changeQuantityInCartLocal(id,quantity,array,operation){
 ////for server and local storage
 export function addToCartQuantity(id){
     return {
-        type:cartTypes.ADD_TO_CART,
+        type:cartTypes.ADD_TO_CART_QUANTITY,
         payload:{
             product:id,
             cartQuantity:1,
@@ -70,7 +69,7 @@ export function addToCartProduct(data){
     return {
         type:cartTypes.ADD_TO_CART_PRODUCT,
         payload:{
-            cartProductsAdd:data,
+            cartProductsArray:data,
     }
   }
 }
@@ -79,7 +78,7 @@ export function deleteFromCartProduct(id,cartProduct,product){
     const newCartProduct = cartProduct.filter(product=> product._id !== id)
     const newProduct = product.filter(product=> product.product !== id)
     const deleteProductArray = {
-        cartProductsAdd:newCartProduct,
+        cartProductsArray:newCartProduct,
         products:newProduct
     }
     return {
@@ -89,70 +88,53 @@ export function deleteFromCartProduct(id,cartProduct,product){
 }
 
 ////working with server and token
-export function getCart(token){
-    return function(dispatch){
-         ////need to make fetch
-        axios.defaults.headers.get['Authorization'] = `Bearer ${token} `;
-        axios
-        .get("https://plankton-app-6vr5h.ondigitalocean.app/api/cart")
-
-    //   fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
-    //     headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'}
-    //   })
-      .then(cart => {
-        let initialState;
-        !cart.data ? initialState ={
-            cartProductsAdd:[],
-            products:[]
+export function reloadPageGetCart(token){
+    return async function(dispatch){
+    const getFetch = await fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
+        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'}
+      })
+    const response = await getFetch.json();;
+    const initialState = !response ? {
+        cartProductsArray:[],
+        products:[]
         } :
-            initialState ={
-              cartProductsAdd:cart.data.products.map(product => product.product),
-              products:cart.data.products.map(item=> {
+            {
+              cartProductsArray:response.products.map(product => product.product),
+              products:response.products.map(item=> {
                   return { cartQuantity:item.cartQuantity,
                            product:item.product._id}
                })
           }
-  
           dispatch(loadCart(initialState))
       }
-      )
-    }
-  }
-  
+}
+
 export function addNewProductToCart(id,token){
     return async function(dispatch){
- ////need to make fetch
-axios.defaults.headers.put['Authorization'] = `Bearer ${token}`;
-axios
-  .put(`https://plankton-app-6vr5h.ondigitalocean.app/api/cart/${id}`)
-  dispatch(addToCartQuantity(id))
+    const sendFetch = await fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/cart/${id}`,{
+        method:"PUT",
+        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+      })
+      dispatch(addToCartQuantity(id))
     }
 }
 
-export function newCart(id,token){
+export function createCartOnTheServerFirst(id,token){
     const newCart = {
         products:[{
             product:id,
             cartQuantity:1
         }]
     }
-    
-    return function(dispatch){
-          ////need to make fetch
-        axios.defaults.headers.post['Authorization'] = `Bearer ${token} `;
-        axios
-        .post("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",newCart);
+    return async function(dispatch){
+        const getFetch = await fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
+            method:"POST",
+            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+            body:JSON.stringify(newCart),
+          })
         dispatch(addToCartQuantity(id))
-      
-        // fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
-        // method:"POST",
-        // headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/text'},
-        // body:newCart
-        // } )
-        
  }
 }
-
 
 export function changeQuantityInCartWithServer(id,quantity,array,token,operation){
     const increaseCart={
@@ -179,21 +161,22 @@ export function changeQuantityInCartWithServer(id,quantity,array,token,operation
     const changeQuantityForServer = {
         products:changeProductArray
     }
-
     return async function (dispatch){
-        axios.defaults.headers.put['Authorization'] = `Bearer ${token}`;
-        axios
-  .put("https://plankton-app-6vr5h.ondigitalocean.app/api/cart", changeQuantityForServer)
-  dispatch(changeCartQuantity(changeProductArray))
+        const sendFetch = await fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
+            method:"PUT",
+            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+            body:JSON.stringify(changeQuantityForServer)
+          })
+        dispatch(changeCartQuantity(changeProductArray))
     }
 }
 
 export function deleteFromCartProductWithServer(id,cartProduct,product,token){
   return async function(dispatch){
-    axios.defaults.headers.delete['Authorization'] = `Bearer ${token}`;
-    axios
-    .delete(`https://plankton-app-6vr5h.ondigitalocean.app/api/cart/${id}`)
-
+    const sendFetch = await fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/cart/${id}`,{
+        method:"DELETE",
+        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+      })
     dispatch(deleteFromCartProduct(id,cartProduct,product))
   }
 }
