@@ -7,6 +7,7 @@ import ProductList from '../../components/ProductList';
 import Filter from '../../components/Filter';
 import Loader from '../../components/Loader';
 import styles from './Home.module.scss';
+import { baseUrl } from '../../utils/vars';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -17,8 +18,8 @@ export function Home() {
   // const error = useSelector((state) => state.error.error);
 
   useEffect(() => {
-    dispatch(getDataAction('https://plankton-app-6vr5h.ondigitalocean.app/api/slides', addPromoAction));
-    dispatch(getDataAction('https://plankton-app-6vr5h.ondigitalocean.app/api/products', addProductsAction));
+    dispatch(getDataAction(`${baseUrl}slides`, addPromoAction));
+    dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
   }, [dispatch]);
 
   return (
