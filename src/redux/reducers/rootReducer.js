@@ -13,6 +13,6 @@ export const rootReducer = combineReducers({
   loading,
   error,
   modal,
-  cart
+  cart,
   token
 });

@@ -8,6 +8,7 @@ import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
 
 function ProductCard({
+  _id,
   imageUrls,
   authorIcon,
   author,
@@ -45,7 +46,7 @@ function ProductCard({
         <button
           className={styles.productCard__priceInfo_button}
           type='button'
-          onClick={() => buyNowHandler(dispatch, itemNo)}
+          onClick={() => buyNowHandler(dispatch, _id)}
         >
           Buy now
         </button>
