@@ -1,0 +1,1 @@
+export const baseUrl = 'https://plankton-app-6vr5h.ondigitalocean.app/api/'
