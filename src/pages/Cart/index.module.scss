@@ -23,6 +23,8 @@ body {
 .block {
   &__items {
     flex-basis: 100%;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
     background: #010101;
   }
 
