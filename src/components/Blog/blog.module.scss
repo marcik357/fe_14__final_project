@@ -169,6 +169,13 @@ img {
         font-weight: 500;
         line-height: 32px;
         letter-spacing: -0.4px;
+        // height: 100px;
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // white-space: nowrap;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
     }
 }
 
