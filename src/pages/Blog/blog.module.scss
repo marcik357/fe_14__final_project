@@ -93,6 +93,11 @@
     font-weight: 500;
     letter-spacing: -.4px;
     line-height: 32px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }
 
