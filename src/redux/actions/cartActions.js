@@ -1,15 +1,7 @@
 import { cartTypes } from "../types/cartTypes";
-// const newCustomer = {
-//     firstName: "Artem",
-//     lastName: "Sytnikov",
-//     login: "Artem",
-//     email: "sitnikov.artem91@gmail.com",
-//     password: "66666666",
-//     telephone: "+380630000000",
-//     gender: "male",
-//     avatarUrl: "img/customers/023648.png",
-//     isAdmin: true
-//   }
+import { setErrorAction } from "./errorActions";
+import { setLoadingAction } from "./loadingActions";
+import { baseUrl } from '../../utils/vars'
 
 ///workin without server
 export function loadCart(initialState){
@@ -90,28 +82,37 @@ export function deleteFromCartProduct(id,cartProduct,product){
 ////working with server and token
 export function reloadPageGetCart(token){
     return async function(dispatch){
-    const getFetch = await fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
-        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'}
-      })
-    const response = await getFetch.json();;
-    const initialState = !response ? {
-        cartProductsArray:[],
-        products:[]
-        } :
-            {
-              cartProductsArray:response.products.map(product => product.product),
-              products:response.products.map(item=> {
-                  return { cartQuantity:item.cartQuantity,
-                           product:item.product._id}
-               })
-          }
-          dispatch(loadCart(initialState))
+            try{
+                dispatch(setLoadingAction(true));
+                const getFetch = await fetch(`${baseUrl}cart`,{
+                    headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'}
+                  })
+                  const response = await getFetch.json();
+                    const initialState = !response ? {
+                        cartProductsArray:[],
+                        products:[]
+                        } :
+                            {
+                              cartProductsArray:response.products.map(product => product.product),
+                              products:response.products.map(item=> {
+                                  return { cartQuantity:item.cartQuantity,
+                                           product:item.product._id}
+                               })
+                          }
+                          dispatch(loadCart(initialState))
+                          dispatch(setLoadingAction(false));
+                          dispatch(setErrorAction(null));
+            }
+            catch(error){
+                dispatch(setLoadingAction(false));
+                dispatch(setErrorAction(error));
+            }
       }
 }
 
 export function addNewProductToCart(id,token){
     return async function(dispatch){
-    const sendFetch = await fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/cart/${id}`,{
+    const sendFetch = await fetch(`${baseUrl}cart/${id}`,{
         method:"PUT",
         headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
       })
@@ -127,7 +128,7 @@ export function createCartOnTheServerFirst(id,token){
         }]
     }
     return async function(dispatch){
-        const getFetch = await fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
+        const getFetch = await fetch(`${baseUrl}cart`,{
             method:"POST",
             headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
             body:JSON.stringify(newCart),
@@ -162,7 +163,7 @@ export function changeQuantityInCartWithServer(id,quantity,array,token,operation
         products:changeProductArray
     }
     return async function (dispatch){
-        const sendFetch = await fetch("https://plankton-app-6vr5h.ondigitalocean.app/api/cart",{
+        const sendFetch = await fetch(`${baseUrl}cart`,{
             method:"PUT",
             headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
             body:JSON.stringify(changeQuantityForServer)
@@ -173,10 +174,61 @@ export function changeQuantityInCartWithServer(id,quantity,array,token,operation
 
 export function deleteFromCartProductWithServer(id,cartProduct,product,token){
   return async function(dispatch){
-    const sendFetch = await fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/cart/${id}`,{
-        method:"DELETE",
-        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
-      })
-    dispatch(deleteFromCartProduct(id,cartProduct,product))
+    try{
+        dispatch(setLoadingAction(true));
+        const sendFetch = await fetch(`${baseUrl}cart/${id}`,{
+            method:"DELETE",
+            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+          })
+          dispatch(deleteFromCartProduct(id,cartProduct,product));
+          dispatch(setLoadingAction(false));
+          dispatch(setErrorAction(null));
+       
+    }
+    catch(error){
+        dispatch(setLoadingAction(false));
+        dispatch(setErrorAction(error));
+    }
   }
 }
+
+export function deleteAllCart(){
+    const deleteProductArray = {
+        cartProductsArray:[],
+        products:[]
+    }
+    return {
+        type:cartTypes.DELETE_CART,
+        payload:deleteProductArray,
+    }
+}
+
+export function buyProduct(token){
+   return async function(dispatch){
+    try{
+        dispatch(setLoadingAction(true));
+        const sendFetch = await fetch(`${baseUrl}cart`,{
+            method:"DELETE",
+            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+          })
+          dispatch(deleteAllCart());
+          dispatch(setLoadingAction(false));
+          dispatch(setErrorAction(null));
+    }
+    catch(error){
+        dispatch(setLoadingAction(false));
+        dispatch(setErrorAction(error));
+    }
+    }
+}
+
+export async function addProductNftToCart(dispatch,cartProductsArray,products,idProduct,token,itemNo){
+        const getFetch = await fetch(`${baseUrl}products/${itemNo}`)
+        const response = await getFetch.json();
+        token ?
+        ( cartProductsArray.length > 0 && products.length > 0 ?(
+          dispatch(addNewProductToCart(idProduct,token))
+        ):dispatch(createCartOnTheServerFirst(idProduct,token)))
+        :dispatch(addToCartQuantity(idProduct));
+        dispatch(addToCartProduct(response));
+    }
