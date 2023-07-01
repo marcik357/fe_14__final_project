@@ -53,7 +53,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
           <h3 className={style.productDetails__descr_title}>Details:</h3>
           <p className={style.productDetails__descr_text}>{details}</p>
         </div>
-        <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, itemNo)}>Buy now</button>
+        <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, _id)}>Buy now</button>
         <p className={style.productDetails__actions_text}>We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities. Join the millions of creators, collectors, and curators who are on this journey with you.</p>
       </div>
     </div>

@@ -81,7 +81,7 @@ function SliderPromo({products}) {
                     </Link>
                     <button
                       type='button'
-                      onClick={() => buyNowHandler(dispatch, itemNo)}
+                      onClick={() => buyNowHandler(dispatch, _id)}
                       className={styles.promoSlider__btns_buy}
                     >
                       BUY NOW
