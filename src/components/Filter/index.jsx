@@ -7,6 +7,26 @@ import { useState, useEffect } from 'react';
 import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
 
+// // Функция для сохранения данных в localStorage
+// const saveToLocalStorage = (key, data) => {
+//   try {
+//     localStorage.setItem(key, JSON.stringify(data));
+//   } catch (error) {
+//     console.error('Error saving to localStorage:', error);
+//   }
+// };
+
+// const loadFromLocalStorage = (key) => {
+//   const data = localStorage.getItem(key);
+//   if (!data) return [];
+//   try {
+//     const value = JSON.parse(data);
+//     return value;
+//   } catch (e) {
+//     return [];
+//   }
+// };
+
 
 function Filter() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +49,44 @@ function Filter() {
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+
+  // useEffect(() => {
+  //   // Загрузка данных из localStorage
+  //   const savedFilters = loadFromLocalStorage('selectedFilters');
+  //   const savedSortBy = loadFromLocalStorage('sortBy');
+  //   const savedProducts = loadFromLocalStorage('products');
+  //   const savedisOpen = loadFromLocalStorage('isOpen');
+  //   const savedQueryString = loadFromLocalStorage('queryString');
+
+  //   if (savedFilters) {
+  //     setSelectedFilters(savedFilters);
+  //   }
+
+  //   if (savedSortBy) {
+  //     setSortBy(savedSortBy);
+  //   }
+
+  //   if (savedProducts) {
+  //     setProducts(savedProducts);
+  //   }
+
+  //   if (savedisOpen) {
+  //     setIsOpen(savedisOpen);
+  //   }
+
+  //   if (savedQueryString) {
+  //     setIsOpen(savedQueryString);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   // Сохранение данных в localStorage при изменении состояния selectedFilters, sortBy и products
+  //   saveToLocalStorage('selectedFilters', selectedFilters);
+  //   saveToLocalStorage('sortBy', sortBy);
+  //   saveToLocalStorage('products', products);
+  //   saveToLocalStorage('isOpen', isOpen);
+  //   saveToLocalStorage('queryString', queryString);
+  // }, [selectedFilters, sortBy, products, isOpen, queryString]);
 
   useEffect(() => {
     // Функция для получения списка товаров с API
@@ -203,7 +261,7 @@ function Filter() {
 
   // Перевірка інпутів по ціні від / до
   const isValidPriceInput = (minPriceValue, maxPriceValue) => {
-    if (minPriceValue === '' && maxPriceValue === '') {
+    if (minPriceValue === '' || maxPriceValue === '') {
       return true;
     }
   
