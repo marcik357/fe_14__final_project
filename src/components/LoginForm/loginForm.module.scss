@@ -61,10 +61,10 @@
     letter-spacing: .17em;
     line-height: 24px;
     text-transform: uppercase;
-    box-sizing: border-box;
     box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
     cursor: pointer;
     overflow: hidden;
+    box-sizing: border-box;
 
     @media (min-width: 768px) {
       width: max-content;
