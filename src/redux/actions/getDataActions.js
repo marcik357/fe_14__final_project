@@ -12,7 +12,7 @@ export function getDataAction(url, callback, state) {
       dispatch(setErrorAction(null));
     } catch (error) {
       dispatch(setLoadingAction(false));
-      dispatch(setErrorAction(error));
+      dispatch(setErrorAction(error.message));
     }
   };
 }

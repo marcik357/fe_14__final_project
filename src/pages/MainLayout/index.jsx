@@ -6,17 +6,31 @@ import Header from '../../components/Header';
 import { Modal } from '../../components/Modal/index';
 import { modalProps } from '../../components/Modal/modalProps';
 import { setTokenAction } from '../../redux/actions/tokenActions';
+import { setModalType } from '../../redux/actions/modalActions';
+import { setErrorAction } from '../../redux/actions/errorActions';
 
 export function MainLayout() {
   const dispatch = useDispatch()
   const modalType = useSelector((state) => state.modal.modal);
+  const token = useSelector((state) => state.token.token);
+  const error = useSelector((state) => state.error.error);
 
   useEffect(() => {
-    dispatch(setTokenAction(localStorage.getItem('token')));
+    if (!token) dispatch(setTokenAction(localStorage.getItem('token')));
+  }, [token, dispatch]);
+
+  useEffect(() => {
     modalType
       ? document.body.style.overflow = 'hidden'
       : document.body.style.overflow = 'auto';
-  }, [modalType, dispatch]);
+  }, [modalType]);
+
+  useEffect(() => {
+    if (error == 401) {
+      dispatch(setModalType('login'))
+      dispatch(setErrorAction(null));
+    }
+  }, [error, dispatch])
 
   return (
     <>

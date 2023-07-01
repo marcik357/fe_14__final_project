@@ -23,7 +23,7 @@ export function Modal(props) {
   return (
     <>
       <div className={style.overlay} role="button" tabIndex={0} onClick={onCloseModal} onKeyDown={onCloseModal} />
-      <div className={`${style.modal} ${style[type]}`}>
+      <div className={style.modal}>
         <div className={style.modal__container}>
           <div className={style.modal__header}>
             <h3 className={style.modal__title}>{header}</h3>

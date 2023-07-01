@@ -30,7 +30,6 @@ export default function SignUpForm({ callback }) {
           callback(true)
           setSubmitting(false);
         } catch (error) {
-          console.log(error.message);
           dispatch(setErrorAction(error.message));
           dispatch(setModalType('error'))
         }

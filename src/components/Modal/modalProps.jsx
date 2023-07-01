@@ -41,5 +41,19 @@ export const modalProps = [
         </div>
       );
     },
+  },
+  {
+    type: 'login',
+    header: 'you need to log in',
+    text: 'Sorry, but for the sake of security, sometimes you need to log in again',
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <NavLink to="/authorization" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
+            log in
+          </NavLink>
+        </div>
+      );
+    },
   }
 ];

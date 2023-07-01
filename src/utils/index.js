@@ -1,16 +1,21 @@
 import { setArtNumAction } from "../redux/actions/artNumActions";
 import { setModalType } from "../redux/actions/modalActions";
 
+const handleError = (response, code) => {
+  if (response.status === code) {
+    throw new Error(response.status)
+  }
+}
+
 export async function fetchData(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      const error = await response.json()
+      handleError(response, 401);
+      const error = await response.json();
       throw new Error(error.message);
     }
     return await response.json();
-    // const data = await response.json();
-    // return data;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -26,6 +31,7 @@ export async function postData(url, data) {
       body: JSON.stringify(data)
     });
     if (!response.ok) {
+      handleError(response, 401);
       const error  = await response.json()
       throw new Error(error?.loginOrEmail || error?.password || error?.message || error?.email || error);
     }
@@ -46,6 +52,7 @@ export async function postDataAuthorized(url, data, token) {
       body: JSON.stringify(data)
     });
     if (!response.ok) {
+      handleError(response, 401);
       const error = await response.json()
       throw new Error(error);
     }
