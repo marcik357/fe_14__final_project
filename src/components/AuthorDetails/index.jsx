@@ -36,6 +36,10 @@ export function AuthorDetails(){
                         </div>
                     </div>
                     <div className={style.authorDetails__products}>
+                        <div className={style.authorDetails__products_btns}>
+                            <button className={style.authorDetails__products_btn}>Created</button>
+                            <button className={style.authorDetails__products_btn}>Collection</button>
+                        </div>
                         <ProductList products={products} />
                     </div>
                 </div>
