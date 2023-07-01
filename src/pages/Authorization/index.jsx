@@ -23,7 +23,6 @@ export function Authorization() {
     <>
       <Banner
         title='Crypter authorization'
-        // subtitle="Let's get to know each other better"
         img='/images/banners/authorization-banner.jpg' />
       <div className={styles.authorization}>
         <LogInGreating
