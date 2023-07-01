@@ -15,9 +15,11 @@ function ProductCard({
   currentPrice,
   name,
   itemNo,
+  buttonText,
+  buttonHandler
 }) {
   const dispatch = useDispatch();
-
+  buttonHandler = buttonHandler || (() => buyNowHandler(dispatch, _id));
   return (
     <div className={styles.productCard}>
       <Link to={`/product/${itemNo}`}>
@@ -46,9 +48,9 @@ function ProductCard({
         <button
           className={styles.productCard__priceInfo_button}
           type='button'
-          onClick={() => buyNowHandler(dispatch, _id)}
+          onClick={buttonHandler}
         >
-          Buy now
+          {buttonText}
         </button>
         <div className={styles.productCard__priceInfo_buyNow}>
           <ETHIcon />
@@ -68,6 +70,8 @@ ProductCard.propTypes = {
   authorIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,
+  buttonText: PropTypes.string,
+  buttonHandler : PropTypes.func
 };
 
 ProductCard.defaultProps = {
@@ -75,6 +79,8 @@ ProductCard.defaultProps = {
   authorIcon: '/images/avatars/user-icon.png',
   author: 'varios author',
   currentPrice: 0,
+  buttonText: "Buy now",
+  buttonHandler : null
 };
 
 export default ProductCard;

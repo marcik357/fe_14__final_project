@@ -4,7 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products }) {
+function ProductList({ products, customButtonText, customButtonHandler }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -87,7 +87,9 @@ function ProductList({ products }) {
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product._id} />
+          <ProductCard {...product} key={product._id}
+          buttonText={customButtonText}
+          buttonHandler={customButtonHandler} />
         ))}
       </div>
       <div className='pagination'>
