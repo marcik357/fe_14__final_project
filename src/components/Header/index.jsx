@@ -1,12 +1,13 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Logo, Search, Basket, ArrowRight } from '../Icons';
+import { Logo, Search, Basket, LogIn, Account } from '../Icons';
 import style from './header.module.scss';
 import socialData from '../SocialLink/socialData';
 import SocialLink from '../SocialLink';
 import menuData from '../MenuLink/menuData';
 import MenuLink from '../MenuLink';
+import MobilNav from '../MobilNav';
 
 function Header() {
   // зміна розмірів та прозорості хедера при прокрутці
@@ -64,6 +65,9 @@ function Header() {
     return location.pathname === path;
   };
 
+  // логінізація тимчасова!!!!!
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <>
       <header className={style.header}>
@@ -90,11 +94,6 @@ function Header() {
                     <Search />
                   </label>
                 </form>
-                {!isDesktop ? (
-                  <button type="button" className={style.search__btn} onClick={toggleSearchView}>
-                    <Search width={32} height={32} color="#202025" />
-                  </button>
-                ) : null}
               </div>
             </div>
             <nav className={`${style.nav} ${isOpen ? style.active : ''}`}>
@@ -117,8 +116,8 @@ function Header() {
                 </ul>
               </div>
               <ul className={style.nav__list}>
-                {menuData.map(({type, page, text}) => (
-                  type !== 'basket' && (
+                {menuData.map(({type, page, text, icon}) => (
+                  (isLogin && type !== 'login') || (!isLogin && type !== 'account') ? (
                     <MenuLink
                       key={type}
                       classItem={style.nav__item}
@@ -128,24 +127,22 @@ function Header() {
                       closeBurgerMenu={() => toggleBurgerMenu()}
                       text={text}
                       isDesktop={isDesktop}
+                      isLogin={isLogin}
+                      icon={icon}
                   />
-                  )
-                ))}
-                <li className={style.nav__item}>
-                  {isDesktop ? (
-                    <NavLink to="/cart">
-                      <Basket width={35} height={35} color={isActive('/cart') ? '#9933ff' : '#202025'} />
-                    </NavLink>
-                  ) : (
-                    <NavLink to="/cart" onClick={() => toggleBurgerMenu()}>
-                      <span>shopping cart</span>
-                      {!isDesktop ? <ArrowRight /> : null}
-                    </NavLink>
-                  )}
-                </li>
+                  ) : null
+                  ))}
               </ul>
             </nav>
-            <button type="button" className={`${style.burger} ${isOpen ? style.active : ''}`} onClick={toggleBurgerMenu}> </button>
+            <>
+              <MobilNav
+                toggleSearchView={() => toggleSearchView()}
+                isLogin={isLogin}
+                isActive={isActive('/cart')}
+                isOpen={isOpen}
+                toggleBurgerMenu={() => toggleBurgerMenu()}
+              />
+            </>
           </div>
         </div>
       </header>

@@ -16,21 +16,17 @@ export function MainLayout() {
   const error = useSelector((state) => state.error.error);
 
   useEffect(() => {
-    if (!token) dispatch(setTokenAction(localStorage.getItem('token')));
-  }, [token, dispatch]);
-
-  useEffect(() => {
+    if (error == 401) {
+      dispatch(setModalType('login'));
+      dispatch(setErrorAction(null));
+    }
+    if (!token) {
+      dispatch(setTokenAction(localStorage.getItem('token')));
+    }
     modalType
       ? document.body.style.overflow = 'hidden'
       : document.body.style.overflow = 'auto';
-  }, [modalType]);
-
-  useEffect(() => {
-    if (error == 401) {
-      dispatch(setModalType('login'))
-      dispatch(setErrorAction(null));
-    }
-  }, [error, dispatch])
+  }, [token, error, modalType, dispatch])
 
   return (
     <>
