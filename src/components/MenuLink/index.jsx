@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { ArrowRight, Basket } from '../Icons';
 
 function MenuLink(props) {
-	const { classItem, page, isActive, classActive, closeBurgerMenu, text, isDesktop, icon } = props;
+	const { classItem, classHover, page, isActive, classActive, closeBurgerMenu, text, isDesktop, icon } = props;
 
 	return (
 		<>
-			<li className={classItem}>
+			<li className={`${classItem} ${classHover}`}>
 				<NavLink to={page} className={isActive ? classActive : ''} onClick={!isDesktop ? closeBurgerMenu : null}>
 					{icon && isDesktop ? (
 						icon.type === Basket ? (

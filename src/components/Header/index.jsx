@@ -116,11 +116,12 @@ function Header() {
                 </ul>
               </div>
               <ul className={style.nav__list}>
-                {menuData.map(({type, page, text, icon}) => (
+                {menuData.map(({type, page, text, icon, classHover}) => (
                   (isLogin && type !== 'login') || (!isLogin && type !== 'account') ? (
                     <MenuLink
                       key={type}
                       classItem={style.nav__item}
+                      classHover={style[classHover]}
                       page={page}
                       isActive={isActive(page)}
                       classActive={style.activeLink}
