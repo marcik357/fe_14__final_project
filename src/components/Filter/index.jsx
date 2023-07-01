@@ -24,6 +24,7 @@ function Filter() {
   const [sortBy, setSortBy] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [isApplyButtonDisabled, setIsApplyButtonDisabled] = useState(false);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -98,11 +99,23 @@ function Filter() {
   };
   // Кнопка підтвердження фільтра від / до
   const applyPriceFilter = () => {
-    setSelectedFilters((prevSelectedFilters) => ({
-      ...prevSelectedFilters,
-      minPrice,
-      maxPrice,
-    }));
+    setSelectedFilters((prevSelectedFilters) => {
+      const updatedFilters = { ...prevSelectedFilters };
+  
+      if (minPrice === '') {
+        updatedFilters.minPrice = '0';
+      } else {
+        updatedFilters.minPrice = minPrice;
+      }
+  
+      if (maxPrice === '') {
+        updatedFilters.maxPrice = '100000';
+      } else {
+        updatedFilters.maxPrice = maxPrice;
+      }
+  
+      return updatedFilters;
+    });
   };
   console.log(minPrice);
 
@@ -144,7 +157,6 @@ function Filter() {
 
   // Функція для відображення обраних фільтрів
   const applyFilters = () => {
-    // const queryString = buildQueryString(selectedFilters);
     // Запит до API з використанням queryString для фільтрації товарів
     fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/products/filter?${queryString}`)
       .then((response) => {
@@ -176,6 +188,7 @@ function Filter() {
     setSortBy('');
     setMinPrice('');
     setMaxPrice('');
+    setIsApplyButtonDisabled(false);
 
     // Скинути обрані значення checkbox
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -188,6 +201,30 @@ function Filter() {
     select.selectedIndex = 0;
   };
 
+  // Перевірка інпутів по ціні від / до
+  const isValidPriceInput = (minPriceValue, maxPriceValue) => {
+    if (minPriceValue === '' && maxPriceValue === '') {
+      return true;
+    }
+  
+    if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
+      return false;
+    }
+  
+    return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
+  };
+  const handleMinPriceChange = (e) => {
+    const { value } = e.target;
+    setMinPrice(value);
+    setIsApplyButtonDisabled(!isValidPriceInput(value, maxPrice));
+  };
+  
+  const handleMaxPriceChange = (e) => {
+    const { value } = e.target;
+    setMaxPrice(value);
+    setIsApplyButtonDisabled(!isValidPriceInput(minPrice, value));
+  };
+  
 
   return (
     <div className={styles.filter}>
@@ -215,10 +252,10 @@ function Filter() {
                   <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
                   <div className={styles.filter__sidebarItemValue}>
                     <div>
-                      <input type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={(e) => setMinPrice(e.target.value)} value={minPrice} />
-                      <input type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={(e) => setMaxPrice(e.target.value)} value={maxPrice} />
+                      <input className={`${isApplyButtonDisabled ? styles.warning : ''}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
+                      <input className={`${isApplyButtonDisabled ? styles.warning : ''}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
                     </div>
-                    <button className={styles.filter__sidebarApplyBtn} type="button" onClick={applyPriceFilter}>Apply</button>
+                    <button className={`${styles.filter__sidebarApplyBtn} ${isApplyButtonDisabled ? styles.disabled : ''}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
                   {authorFilters.map((author) => (
@@ -245,7 +282,11 @@ function Filter() {
               </div>
             </div>
             <section className={styles.filter__contentList}>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ea ipsam ab mollitia quo sunt voluptatibus quam dignissimos eaque, optio molestias atque amet harum impedit quasi commodi error cupiditate aliquid?</p>
+              {products.productsQuantity === 0 ? (
+                <p className={styles.filter__contentNoItems}>No items with such parameters</p>
+              ) : (
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ea ipsam ab mollitia quo sunt voluptatibus quam dignissimos eaque, optio molestias atque amet harum impedit quasi commodi error cupiditate aliquid?</p>
+              )}
             </section>
           </div>
         </div>
