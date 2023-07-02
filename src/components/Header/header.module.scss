@@ -344,6 +344,10 @@ a {
     }
   }
 
+  &__item span {
+    display: none;
+  }
+
   &__link {
     display: flex;
     align-items: center;
