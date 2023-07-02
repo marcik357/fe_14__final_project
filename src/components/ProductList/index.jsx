@@ -3,8 +3,10 @@ import styles from './productList.module.scss';
 import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
+import { useDispatch } from 'react-redux';
 
 function ProductList({ products, customButtonText, customButtonHandler }) {
+  const dispatch = useDispatch()
   const {
     firstContentIndex,
     lastContentIndex,
@@ -89,7 +91,8 @@ function ProductList({ products, customButtonText, customButtonHandler }) {
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
           <ProductCard {...product} key={product._id}
           buttonText={customButtonText}
-          buttonHandler={customButtonHandler} />
+          buttonHandler={() => customButtonHandler(dispatch, product._id)}
+           />
         ))}
       </div>
       <div className='pagination'>

@@ -8,6 +8,7 @@ import Filter from '../../components/Filter';
 import Loader from '../../components/Loader';
 import styles from './Home.module.scss';
 import { baseUrl } from '../../utils/vars';
+import { buyNowHandler } from '../../utils';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -28,7 +29,8 @@ export function Home() {
         <SliderPromo products={promo} />
         <div className={styles.products}>
           <Filter />
-          <ProductList products={products} />
+          <ProductList products={products}
+          customButtonHandler={(dispatch, _id) => buyNowHandler(dispatch, _id)}/>
         </div>
       </>
     ) : (

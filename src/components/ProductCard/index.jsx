@@ -18,8 +18,6 @@ function ProductCard({
   buttonText,
   buttonHandler
 }) {
-  const dispatch = useDispatch();
-  buttonHandler = buttonHandler || (() => buyNowHandler(dispatch, _id));
   return (
     <div className={styles.productCard}>
       <Link to={`/product/${itemNo}`}>
@@ -80,7 +78,6 @@ ProductCard.defaultProps = {
   author: 'varios author',
   currentPrice: 0,
   buttonText: "Buy now",
-  buttonHandler : null
 };
 
 export default ProductCard;
