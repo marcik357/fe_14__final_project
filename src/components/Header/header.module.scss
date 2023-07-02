@@ -35,7 +35,6 @@ a {
 
   &__scrolled {
     padding: 0;
-    background-color: rgb(247, 251, 250, .8);
   }
 
   &__container {
@@ -53,7 +52,6 @@ a {
     flex: 1 1 50%;
     align-items: center;
     justify-content: space-between;
-    //  margin-right: 40px;
 
     @media (min-width: 993px) {
       flex: 0 1 50%;
@@ -212,9 +210,29 @@ a {
       font-size: 12px;
     }
 
-// 	 &.loginHover {
-	
-// 	 }
+    &.basketHover path {
+      transition: all .4s ease 0s;
+    }
+
+    &.basketHover:hover path {
+      stroke-width: 2.2px;
+    }
+
+    &.loginHover path {
+      transition: all .4s ease 0s;
+    }
+
+    &.loginHover:hover path {
+      stroke-width: 2.2px;
+    }
+
+    &.accountHover path {
+      transition: all .4s ease 0s;
+    }
+
+    &.accountHover:hover path {
+      stroke-width: 2.2px;
+    }
   }
 
   &__item a {
@@ -239,6 +257,13 @@ a {
       border-radius: 6px;
       overflow: hidden;
 
+      &.activeLink {
+        @media (min-width: 993px) {
+          transition: all 1s ease 0s;
+          border-color: #202025;
+        }
+      }
+
       &:hover {
         transition: border-color .4s ease-in-out;
         border-color: #202025;
@@ -261,32 +286,6 @@ a {
         transition-delay: .2s;
         opacity: 1;
       }
-    }
-  }
-
-  &__item:last-child svg {
-    transition: fill 1.4s ease 0s;
-  }
-
-  &__item:last-child svg:hover {
-    fill: linear-gradient(#686a6c, #f7fbfa);
-    animation: fillAnimation 1.4s forwards;
-  }
-
-  @keyframes fillAnimation {
-    0% {
-      fill: #f7fbfa;
-    }
-
-    100% {
-      fill: #686a6c;
-    }
-  }
-
-  &__item a.activeLink {
-    @media (min-width: 993px) {
-      transition: all 1s ease 0s;
-      border-color: #202025;
     }
   }
 }

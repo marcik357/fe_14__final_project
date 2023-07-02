@@ -21,23 +21,23 @@ const menuData = [
   },
   {
     type: 'login',
-    page: '/login',
+    page: '/authorization',
     text: 'login',
-    icon: <LogIn width={35} height={35} color={'#202025'} />,
+    icon(width, height, color, strokeWidth) {return <LogIn width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'loginHover'
    },
   {
     type: 'account',
     page: '/account',
     text: 'account',
-    icon: <Account width={35} height={35} color={'#202025'} />,
+    icon(width, height, color, strokeWidth) {return <Account width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'accountHover'
  },
   {
     type: 'basket',
     page: '/cart',
     text: 'Shopping cart',
-    icon: <Basket width={35} height={35} color={'#202025'} fill={'none'} />,
+    icon(width, height, color, strokeWidth) {return <Basket width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'basketHover'
   },
 ];
