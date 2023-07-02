@@ -1,11 +1,11 @@
-import { useState,useEffect, useRef} from 'react';
+import { useState,useEffect } from 'react';
 import style from './index.module.scss';
 import { CartList } from '../../components/CartList';
 import { FormToBuy } from '../../components/FormToBuy';
 import { useSelector,useDispatch } from 'react-redux';
 import { reloadPageGetCart } from '../../redux/actions/cartActions';
-
-let token = localStorage.getItem('tokenCart')
+import Loader from '../../components/Loader';
+let token = localStorage.getItem('token');
 
 function sumOfOrder(cartProductsArray,products) {
   let sumOfNftPrice
@@ -22,9 +22,10 @@ function sumOfOrder(cartProductsArray,products) {
 }
 
 export function Cart() {
-  const basketItemsWrapper = useRef();
   const [orderAmount, setOrderAmount] = useState();
   const { cartProductsArray, products } = useSelector(state => state.cart);
+  // const { token } = useSelector(state => state.token);
+  const loading = useSelector((state) => state.loading.loading);
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -44,10 +45,11 @@ export function Cart() {
   },[cartProductsArray,products])
   
   return (
+    !loading ?(
     <div className={style.cart}>
-      <div className={style.cart__poster} />
       <div className={style.cart__block}>
-        <div ref={basketItemsWrapper} className={style.block__items}>
+     
+        <div className={style.block__items}>
           {
             cartProductsArray?.length > 0 ? cartProductsArray?.map((item) => (
             <CartList
@@ -63,6 +65,5 @@ export function Cart() {
           <FormToBuy orderAmount={orderAmount} />
         </div>
       </div>
-    </div>
-  );
+    </div>) :(<Loader/>));
 }

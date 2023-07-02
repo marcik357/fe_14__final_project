@@ -1,52 +1,47 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
 import style from './index.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantityInCartWithServer,changeQuantityInCartLocal,deleteFromCartProduct,deleteFromCartProductWithServer} from '../../redux/actions/cartActions';
-let token = localStorage.getItem('tokenCart');
+import { Link } from 'react-router-dom';
+import Loader from '../Loader';
+let token = localStorage.getItem('token');
+let flag;
 
 export function CartList(props) {
-    const parentElement = useRef();
     const dispatch = useDispatch();
-    const { imageUrls, name, currentPrice, sumOfOrder, setOrderAmount, id, _id } = props;
+    const { imageUrls, name, currentPrice, sumOfOrder, setOrderAmount, _id ,itemNo } = props;
     const { cartProductsArray,products } = useSelector(state => state.cart);
+    const loading = useSelector((state) => state.loading.loading);
     let currentQuantity = products.length > 0 ? (products.find(item=>item.product === _id))?.cartQuantity: 0;
- 
-  function deleteElementFromScreen(e) {
-    let id =e.target.dataset.id;
-    localStorage.getItem('tokenCart') ?
-      dispatch(deleteFromCartProductWithServer(id,cartProductsArray,products,token)) :
-    dispatch(deleteFromCartProduct(id,cartProductsArray,products));
+  function deleteProductFromCart() {
+    token ?
+    dispatch(deleteFromCartProductWithServer(_id,cartProductsArray,products,token)) :
+    dispatch(deleteFromCartProduct(_id,cartProductsArray,products));
     setOrderAmount(0)
   }
   
-  function decrease(e) {
-    let idProduct= e.target.dataset.id;
-    localStorage.getItem('tokenCart') ? (dispatch(changeQuantityInCartWithServer(idProduct,currentQuantity,products,token,false)),setOrderAmount(sumOfOrder(cartProductsAdd,products))):
-    dispatch(changeQuantityInCartLocal(idProduct,currentQuantity,products,false));
+  function changeValueOfProductInCart(flag) {
+    token? (dispatch(changeQuantityInCartWithServer(_id,currentQuantity,products,token,flag)),setOrderAmount(sumOfOrder(cartProductsArray,products))):
+    dispatch(changeQuantityInCartLocal(_id,currentQuantity,products,flag));
     setOrderAmount(sumOfOrder(cartProductsArray,products))
   }
   
-  function increase(e) {
-      let idProduct= e.target.dataset.id;
-      localStorage.getItem('tokenCart') ? (dispatch(changeQuantityInCartWithServer(idProduct,currentQuantity,products,token,true))
-      ,setOrderAmount(sumOfOrder(cartProductsArray,products))):
-      dispatch(changeQuantityInCartLocal(idProduct,currentQuantity,products,true));
 
-      setOrderAmount(sumOfOrder(cartProductsArray,products))
-  }
-
-  return (
-    <div ref={parentElement} data-id={id} className={style.cartListItem}>
+  return (!loading ?
+    <div className={style.cartListItem}>
       <div className={style.cartListItem__icon}>
+        <Link to={`/product/${itemNo}`}>
         <img
           className={style.cartListItem__icon__img}
           src={imageUrls}
           alt={name}
         />
+        </Link>
       </div>
       <div data-price={currentPrice} className={style.cartListItem__description}>
+        <Link to={`/product/${itemNo}`}>
         <p className={style.description__title}>{name}</p>
+        </Link>
         <p>Price:
         <span className={style.description__currency}>
         &#160;{currentPrice} ETH
@@ -57,10 +52,9 @@ export function CartList(props) {
         className={style.cartListItem__quantity}
       >
         <button
-          data-id={_id}
           type="submit"
           className={style.quantity__btn}
-          onClick={currentQuantity > 1 ? decrease : null}
+          onClick={currentQuantity > 1 ? (()=>changeValueOfProductInCart(false)) : null}
         > -
         </button>
        <div
@@ -69,23 +63,22 @@ export function CartList(props) {
         {products.length > 0 ? currentQuantity: 1}
        </div>
         <button
-          data-id={_id}
           type="button"
           className={style.quantity__btn}
-          onClick={increase}
+          onClick={()=> changeValueOfProductInCart(true)}
         > +
         </button>
       </div>
       <button
         type="submit"
-        data-id={_id}
         className={style.cartListItem__btnDelete}
-        onClick={deleteElementFromScreen}
+        onClick={deleteProductFromCart}
       >
         Delete
    
       </button>
     </div>
+    : <Loader/>
   );
 }
 CartList.propTypes = {
