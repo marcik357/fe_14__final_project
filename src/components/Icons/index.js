@@ -10,3 +10,5 @@ export { ArrowRight } from './arrow-right';
 export { Arrow } from './arrowSlider';
 export { Verified } from './verified';
 export { ETHIcon } from './price-icon';
+export { LogIn } from './login';
+export { Account } from './account';
