@@ -112,11 +112,16 @@ export function reloadPageGetCart(token){
 
 export function addNewProductToCart(id,token){
     return async function(dispatch){
-    const sendFetch = await fetch(`${baseUrl}cart/${id}`,{
-        method:"PUT",
-        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
-      })
-      dispatch(addToCartQuantity(id))
+        try {
+            const sendFetch = await fetch(`${baseUrl}cart/${id}`,{
+            method:"PUT",
+            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+          })
+          dispatch(addToCartQuantity(id))
+        }
+        catch(error){
+            dispatch(setErrorAction(error));
+        }
     }
 }
 
@@ -128,13 +133,22 @@ export function createCartOnTheServerFirst(id,token){
         }]
     }
     return async function(dispatch){
-        const getFetch = await fetch(`${baseUrl}cart`,{
-            method:"POST",
-            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
-            body:JSON.stringify(newCart),
-          })
-        dispatch(addToCartQuantity(id))
- }
+        try{
+            dispatch(setLoadingAction(true));
+            const getFetch = await fetch(`${baseUrl}cart`,{
+                method:"POST",
+                headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+                body:JSON.stringify(newCart),
+              })
+            dispatch(addToCartQuantity(id))
+            dispatch(setLoadingAction(false));
+            dispatch(setErrorAction(null));
+        }
+        catch(error){
+            dispatch(setLoadingAction(false));
+            dispatch(setErrorAction(error));
+        }
+}
 }
 
 export function changeQuantityInCartWithServer(id,quantity,array,token,operation){
@@ -163,12 +177,19 @@ export function changeQuantityInCartWithServer(id,quantity,array,token,operation
         products:changeProductArray
     }
     return async function (dispatch){
-        const sendFetch = await fetch(`${baseUrl}cart`,{
-            method:"PUT",
-            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
-            body:JSON.stringify(changeQuantityForServer)
-          })
-        dispatch(changeCartQuantity(changeProductArray))
+        try{
+            const sendFetch = await fetch(`${baseUrl}cart`,{
+                method:"PUT",
+                headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+                body:JSON.stringify(changeQuantityForServer)
+              })
+            dispatch(changeCartQuantity(changeProductArray));
+          dispatch(setErrorAction(null));
+        }
+        catch(error){
+            dispatch(setErrorAction(error));
+        }
+        
     }
 }
 
@@ -223,6 +244,8 @@ export function buyProduct(token){
 }
 
 export async function addProductNftToCart(dispatch,cartProductsArray,products,idProduct,token,itemNo){
+    try{
+        dispatch(setLoadingAction(true));
         const getFetch = await fetch(`${baseUrl}products/${itemNo}`)
         const response = await getFetch.json();
         token ?
@@ -231,4 +254,11 @@ export async function addProductNftToCart(dispatch,cartProductsArray,products,id
         ):dispatch(createCartOnTheServerFirst(idProduct,token)))
         :dispatch(addToCartQuantity(idProduct));
         dispatch(addToCartProduct(response));
+        dispatch(setLoadingAction(false));
+        dispatch(setErrorAction(null));
+    }
+    catch(error){
+        dispatch(setLoadingAction(false));
+        dispatch(setErrorAction(error));
+    }
     }
