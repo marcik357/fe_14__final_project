@@ -12,16 +12,16 @@ function MobilNav(props) {
             <Search width={30} height={30} color="#202025" />
          </button>
          {!isLogin ? (
-         <NavLink to='/login' className={style.mobilNav__login}>
-           <LogIn width={30} height={30} color={'#202025'} />
+         <NavLink to='/authorization' className={style.mobilNav__login}>
+           <LogIn width={30} height={30} color={'#202025'} strokeWidth={isActive('/authorization') ? '2.2' : '1.5'} />
          </NavLink>
          ) : (
-         <NavLink to='/accaunt' className={style.mobilNav__account}>
-           <Account width={30} height={30} color={'#202025'} />
+         <NavLink to='/accaunt' className={style.mobilNav__account} >
+           <Account width={30} height={30} color={'#202025'} strokeWidth={isActive('/accaunt') ? '2.2' : '1.5'} />
          </NavLink>
          )}
          <NavLink to='/cart' className={style.mobilNav__basket}>
-           <Basket width={30} height={30} color={'#202025'} fill={isActive ? '#686A6C' : 'none'} />
+           <Basket width={30} height={30} color={'#202025'} strokeWidth={isActive('/cart') ? '2.2' : '1.5'} />
          </NavLink>
         <button type="button" className={`${style.mobilNav__burger} ${isOpen ? style.active : ''}`} onClick={toggleBurgerMenu}> </button>
       </div>

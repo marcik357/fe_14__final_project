@@ -7,24 +7,18 @@ function MenuLink(props) {
 	const { classItem, classHover, page, isActive, classActive, closeBurgerMenu, text, isDesktop, icon } = props;
 
 	return (
-		<>
-			<li className={`${classItem} ${classHover}`}>
-				<NavLink to={page} className={isActive ? classActive : ''} onClick={!isDesktop ? closeBurgerMenu : null}>
-					{icon && isDesktop ? (
-						icon.type === Basket ? (
-							React.cloneElement(icon, {fill: isActive ? '#686A6C' : 'none'})
-						) : (
-							icon
-						)
-					) : (
-						<>
-							<span>{text}</span>
-							{!isDesktop ? <ArrowRight /> : null}
-						</>
-					)}
-				</NavLink>
-			</li>
-		</>
+		<li className={`${classItem} ${classHover}`}>
+			<NavLink to={page} className={isActive ? classActive : ''} onClick={!isDesktop ? closeBurgerMenu : null}>
+				{icon && isDesktop ?
+					(isActive ? (icon(35, 35, '#202025', '2.2')) : (icon(35, 35, '#202025', '1.5')))
+					:
+					<>
+						<span>{text}</span>
+						{!isDesktop ? <ArrowRight /> : null}
+					</>
+				}
+			</NavLink>
+		</li>
 	);
 }
 
@@ -36,7 +30,7 @@ MenuLink.propTypes = {
 	closeBurgerMenu: PropTypes.func,
 	text: PropTypes.string,
 	isDesktop: PropTypes.bool,
-	icon: PropTypes.element,
+	icon: PropTypes.func,
 };
 
 MenuLink.defaultProps = {

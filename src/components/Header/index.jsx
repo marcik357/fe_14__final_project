@@ -139,7 +139,7 @@ function Header() {
               <MobilNav
                 toggleSearchView={() => toggleSearchView()}
                 isLogin={isLogin}
-                isActive={isActive('/cart')}
+                isActive={isActive}
                 isOpen={isOpen}
                 toggleBurgerMenu={() => toggleBurgerMenu()}
               />
