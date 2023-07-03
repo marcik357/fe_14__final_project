@@ -130,3 +130,25 @@ export function deleteFromCart(cart, id, token) {
     }
   }
 }
+
+export function buyProduct(token) {
+	return async function (dispatch) {
+	  try {
+		 dispatch(setLoadingAction(true));
+		 const sendFetch = await fetchData(`${baseUrl}cart`, {
+			method: "DELETE",
+			headers: {
+			  Authorization: `Bearer ${token}`,
+			  'Content-Type': 'application/json'
+			},
+		 })
+		 // dispatch(setCart());
+		 dispatch(setLoadingAction(false));
+		 dispatch(setErrorAction(null));
+	  }
+	  catch (error) {
+		 dispatch(setLoadingAction(false));
+		 dispatch(setErrorAction(error));
+	  }
+	}
+ }
