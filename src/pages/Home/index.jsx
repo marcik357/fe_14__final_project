@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataAction } from '../../redux/actions/getDataActions';
-import { addProductsAction, addPromoAction } from '../../redux/actions/productsActions';
+import { addPromoAction } from '../../redux/actions/productsActions';
+// import { addProductsAction, addPromoAction } from '../../redux/actions/productsActions';
 import SliderPromo from '../../components/SliderPromo';
 import ProductList from '../../components/ProductList';
 import Filter from '../../components/Filter';
@@ -19,7 +20,7 @@ export function Home() {
 
   useEffect(() => {
     dispatch(getDataAction(`${baseUrl}slides`, addPromoAction));
-    dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
+    // dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
   }, [dispatch]);
 
   return (

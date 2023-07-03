@@ -1,15 +1,16 @@
-import { setArtNumAction } from "../redux/actions/artNumActions";
+// import { setArtNumAction } from "../redux/actions/artNumActions";
+import { addToCart } from "../redux/actions/cartActions";
 import { setModalType } from "../redux/actions/modalActions";
 
-const handleError = (response, code) => {
+export const handleError = (response, code) => {
   if (response.status === code) {
     throw new Error(response.status)
   }
 }
 
-export async function fetchData(url) {
+export async function fetchData(url, reqBody) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, reqBody);
     if (!response.ok) {
       handleError(response, 401);
       const error = await response.json();
@@ -21,50 +22,51 @@ export async function fetchData(url) {
   }
 }
 
-export async function postData(url, data) {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    if (!response.ok) {
-      handleError(response, 401);
-      const error  = await response.json()
-      throw new Error(error?.loginOrEmail || error?.password || error?.message || error?.email || error);
-    }
-    return await response.json();
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
+// export async function postData(url, data) {
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     });
+//     if (!response.ok) {
+//       handleError(response, 401);
+//       const error  = await response.json()
+//       throw new Error(error?.loginOrEmail || error?.password || error?.message || error?.email || error);
+//     }
+//     return await response.json();
+//   } catch (error) {
+//     throw new Error(error.message);
+//   }
+// }
 
-export async function postDataAuthorized(url, data, token) {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    if (!response.ok) {
-      handleError(response, 401);
-      const error = await response.json()
-      throw new Error(error);
-    }
-    return await response.json();
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
+// export async function postDataAuthorized(url, data, token) {
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     });
+//     if (!response.ok) {
+//       handleError(response, 401);
+//       const error = await response.json()
+//       throw new Error(error);
+//     }
+//     return await response.json();
+//   } catch (error) {
+//     throw new Error(error.message);
+//   }
+// }
 
-export function buyNowHandler(dispatch, artNum) {
+export function buyNowHandler(dispatch, id, token) {
+  dispatch(addToCart(id, token))
   dispatch(setModalType('buy'))
-  dispatch(setArtNumAction(artNum))
+  // dispatch(setArtNumAction(id))
 }
 
 export const getDataFromLS = (key) => {
