@@ -32,38 +32,12 @@ function Footer() {
                     <MenuLink
                       key={type}
                       classItem={style.info__item}
-                     //  classHover={style[classHover]}
                       page={page}
-                     //  isActive={isActive(page)}
-                     //  classActive={style.activeLink}
-                     //  closeBurgerMenu={() => toggleBurgerMenu()}
                       text={text}
-                     //  isDesktop={isDesktop}
                       isLogin={isLogin}
-                     //  icon={icon}
                   />
                   ) : null
                   ))}
-                {/* <li className={style.info__item}>
-                  <Link to="/categories">
-                    <span>Store</span>
-                  </Link>
-                </li>
-                <li className={style.info__item}>
-                  <Link to="*">
-                    <span>Blog</span>
-                  </Link>
-                </li>
-                <li className={style.info__item}>
-                  <Link to="*">
-                    <span>Help center</span>
-                  </Link>
-                </li>
-                <li className={style.info__item}>
-                  <Link to="*">
-                    <span>Shopping cart</span>
-                  </Link>
-                </li> */}
               </ul>
            </div>
            <div className={`${style.menu__soc} ${style.social}`}>
@@ -79,31 +53,12 @@ function Footer() {
                       text={type}
                   />
                   ))}
-                {/* <li className={style.social__item}>
-                  <a href="https://www.instagram.com/nft_community/" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Instagram color="#010101" />
-                  </a>
-                </li>
-                <li className={style.social__item}>
-                  <a href="https://twitter.com/nft__community" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Twitter color="#010101" />
-                  </a>
-                </li>
-                <li className={style.social__item}>
-                  <a href="https://www.facebook.com/NFTCommunity" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Facebook color="#010101" />
-                  </a>
-                </li>
-                <li className={style.social__item}>
-                  <a href="https://www.linkedin.com/groups/13992662/" className={style.social__link} target="_blank" rel="noreferrer">
-                    <Linkedin color="#010101" />
-                  </a>
-                </li> */}
               </ul>
            </div>
          </nav>
          <div className={style.footer__info}>
-           Copyright © 2022 UI8 LLC. All rights reserved
+           <span>Copyright © 2023 UI8 LLC.</span>
+           <span>&nbsp; All rights reserved</span>
          </div>
       </div>
     </footer>
