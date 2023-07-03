@@ -34,9 +34,11 @@ export function FormToBuy({ orderAmount }) {
     </div> : <Loader />
   );
 }
+
 FormToBuy.propTypes = {
   orderAmount: PropTypes.number,
 };
+
 FormToBuy.defaultProps = {
   orderAmount: 0,
 };
