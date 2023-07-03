@@ -1,22 +1,72 @@
-import { setArtNumAction } from "../redux/actions/artNumActions";
+// import { setArtNumAction } from "../redux/actions/artNumActions";
+import { addToCart } from "../redux/actions/cartActions";
 import { setModalType } from "../redux/actions/modalActions";
 
-export async function fetchData(url) {
+export const handleError = (response, code) => {
+  if (response.status === code) {
+    throw new Error(response.status)
+  }
+}
+
+export async function fetchData(url, reqBody) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, reqBody);
     if (!response.ok) {
-      throw new Error('HTTP request error');
+      handleError(response, 401);
+      const error = await response.json();
+      throw new Error(error.message);
     }
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export function buyNowHandler(dispatch, artNum) {
+// export async function postData(url, data) {
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     });
+//     if (!response.ok) {
+//       handleError(response, 401);
+//       const error  = await response.json()
+//       throw new Error(error?.loginOrEmail || error?.password || error?.message || error?.email || error);
+//     }
+//     return await response.json();
+//   } catch (error) {
+//     throw new Error(error.message);
+//   }
+// }
+
+// export async function postDataAuthorized(url, data, token) {
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     });
+//     if (!response.ok) {
+//       handleError(response, 401);
+//       const error = await response.json()
+//       throw new Error(error);
+//     }
+//     return await response.json();
+//   } catch (error) {
+//     throw new Error(error.message);
+//   }
+// }
+
+export function buyNowHandler(dispatch, id, token) {
+  dispatch(addToCart(id, token))
   dispatch(setModalType('buy'))
-  dispatch(setArtNumAction(artNum))
+  // dispatch(setArtNumAction(id))
 }
 
 export const getDataFromLS = (key) => {
@@ -29,3 +79,45 @@ export const getDataFromLS = (key) => {
     return [];
   }
 };
+
+// export async function login(url, data, dispatch) {
+//   try {
+//     const responseData = await postData(url, data);
+//     const token = responseData.token;
+
+//     localStorage.setItem('token', token);
+//     dispatch(setTokenAction(token))
+//     return responseData;
+//   } catch (err) {
+//     throw new Error(err.message);
+//   }
+// }
+
+
+// export async function login(url, data, dispatch) {
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     });
+
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       const errorMessage = errorData?.loginOrEmail || errorData?.password;
+//       throw new Error(errorMessage);
+//     }
+
+//     const responseData = await response.json();
+//     const token = responseData.token;
+
+//     localStorage.setItem('token', token);
+//     dispatch(setTokenAction(token));
+
+//     return responseData;
+//   } catch (err) {
+//     throw new Error(err.message);
+//   }
+// }

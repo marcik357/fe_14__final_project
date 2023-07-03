@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
 import { buyNowHandler } from '../../utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
 
 function ProductCard({
+  _id,
   imageUrls,
   authorIcon,
   author,
@@ -16,6 +17,8 @@ function ProductCard({
   itemNo,
 }) {
   const dispatch = useDispatch();
+  const { cartProductsArray,products} = useSelector(state => state.cart);
+  const { token } = useSelector(state => state.token);
 
   return (
     <div className={styles.productCard}>
@@ -23,20 +26,20 @@ function ProductCard({
         <img
           className={styles.productCard__img}
           src={imageUrls[0]}
-          alt='product-card'
+          alt={name}
         />
         <p className={styles.productCard__name}>{name}</p>
       </Link>
       <div className={styles.productCard__userInfo}>
-        <Link to={`/`}>
-          <div className={styles.productCard__userInfo_items}>
-            <img
-              className={styles.productCard__userInfo_userIcon}
-              src={authorIcon}
-              alt='user-avatar'
-            />
-            <p className={styles.productCard__userInfo_author}>{author}</p>
-          </div>
+        <Link
+          to={`/author/${author}`}
+          className={styles.productCard__userInfo_items}>
+          <img
+            className={styles.productCard__userInfo_userIcon}
+            src={authorIcon}
+            alt='user-avatar'
+          />
+          <p className={styles.productCard__userInfo_author}>{author}</p>
         </Link>
         <Verified />
       </div>
@@ -45,7 +48,7 @@ function ProductCard({
         <button
           className={styles.productCard__priceInfo_button}
           type='button'
-          onClick={() => buyNowHandler(dispatch, itemNo)}
+          onClick={() => buyNowHandler(dispatch, _id, token)}
         >
           Buy now
         </button>

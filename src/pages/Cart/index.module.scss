@@ -4,35 +4,35 @@ body {
 
 .cart {
   min-width: 320px;
-
-  &__poster {
-    min-height: 250px;
-    margin: 0;
-    background: url("../../components/Cart/image/Basket-header-img.png") no-repeat center/cover;
-  }
+  background: url('/components/Cart/image/Frame.png') no-repeat center / cover;
+  font-family: "Inter", sans-serif;
 
   &__block {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f7fbfa;
   }
 }
 
 .block {
   &__items {
-    flex-basis: 100%;
-    background: #010101;
+    width: 100%;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background: rgba(0, 0, 0, .7);
   }
 
   &__noItems {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50vh;
-    color: #fff;
+    height: 55vh;
+    color: #dd9b09;
     font-size: 30px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
   }
 
   &__actionToBuy {
@@ -40,6 +40,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 90%;
+    margin: 0 auto;
   }
 }
 
