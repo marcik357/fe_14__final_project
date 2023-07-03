@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../Loader';
 import { useState } from 'react';
 
-export function CartList({ imageUrls, name, currentPrice, sumOfOrder, setOrderAmount, _id, itemNo, cartQuantity }) {
+export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuantity }) {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.token.token);
