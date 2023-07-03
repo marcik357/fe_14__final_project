@@ -15,7 +15,6 @@ export function Home() {
   const products = useSelector((state) => state.products.products);
   const promo = useSelector((state) => state.products.promo);
   const loading = useSelector((state) => state.loading.loading);
-  // const error = useSelector((state) => state.error.error);
 
   useEffect(() => {
     dispatch(getDataAction(`${baseUrl}slides`, addPromoAction));
