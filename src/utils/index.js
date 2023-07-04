@@ -119,3 +119,24 @@ export const getDataFromLS = (key) => {
 //     throw new Error(err.message);
 //   }
 // }
+export async function putData(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      handleError(response, 401);
+      const error = await response.json();
+      throw new Error(error.message);
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
