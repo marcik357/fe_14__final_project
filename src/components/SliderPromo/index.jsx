@@ -11,13 +11,14 @@ import styles from './slider.module.scss';
 import { Arrow } from '../Icons';
 import { buyNowHandler } from '../../utils';
 
-function SliderPromo() {
-  const products = useSelector((state) => state.products.promo);
+function SliderPromo({ products }) {
   const dispatch = useDispatch()
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const prevBtnRef = useRef(null);
   const nextBtnRef = useRef(null);
+
+  const token = useSelector(state => state.token.token);
 
   return (
     <>
@@ -46,7 +47,7 @@ function SliderPromo() {
           </div>
         </div>
         {products.map((product) => {
-          const { _id, imageUrl, product: { itemNo, name, authorIcon, author } } = product;
+          const { imageUrl, product: { _id, itemNo, name, authorIcon, author } } = product;
           return (
             <SwiperSlide
               key={_id}
@@ -63,7 +64,7 @@ function SliderPromo() {
                       {name}
                     </Link>
                     <Link
-                      to="/"
+                      to={`/author/${author}`}
                       className={styles.promoSlider__meta_auth}
                     >
                       <div className={styles.promoSlider__meta_img}>
@@ -82,7 +83,7 @@ function SliderPromo() {
                     </Link>
                     <button
                       type='button'
-                      onClick={() => buyNowHandler(dispatch, itemNo)}
+                      onClick={() => buyNowHandler(dispatch, _id, token)}
                       className={styles.promoSlider__btns_buy}
                     >
                       BUY NOW
@@ -94,7 +95,7 @@ function SliderPromo() {
           )
         })}
       </Swiper>
-      
+
       <div className={styles.promoThumbs}>
         <Swiper
           onSwiper={setThumbsSwiper}
@@ -109,10 +110,11 @@ function SliderPromo() {
           {products.map((product) => {
             const { _id, imageUrl, product: { name } } = product
             return (
-            <SwiperSlide key={_id} className={styles.promoThumbs__thumb}>
-              <img src={imageUrl} alt={name} className={styles.promoThumbs__img} />
-            </SwiperSlide>
-          )})}
+              <SwiperSlide key={_id} className={styles.promoThumbs__thumb}>
+                <img src={imageUrl} alt={name} className={styles.promoThumbs__img} />
+              </SwiperSlide>
+            )
+          })}
         </Swiper>
       </div>
     </>

@@ -1,22 +1,29 @@
-import { setArtNumAction } from "../redux/actions/artNumActions";
+import { addToCart } from "../redux/actions/cartActions";
 import { setModalType } from "../redux/actions/modalActions";
 
-export async function fetchData(url) {
+export const handleError = (response, code) => {
+  if (response.status === code) {
+    throw new Error(response.status)
+  }
+}
+
+export async function fetchData(url, reqBody) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, reqBody);
     if (!response.ok) {
-      throw new Error('HTTP request error');
+      handleError(response, 401);
+      const error = await response.json();
+      throw new Error(error.message);
     }
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export function buyNowHandler(dispatch, artNum) {
+export function buyNowHandler(dispatch, id, token) {
+  dispatch(addToCart(id, token))
   dispatch(setModalType('buy'))
-  dispatch(setArtNumAction(artNum))
 }
 
 export const getDataFromLS = (key) => {

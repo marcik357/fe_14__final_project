@@ -33,6 +33,7 @@
   &__container {
     position: relative;
     max-width: 1470px;
+    margin: 0 auto;
     padding: 0 15px;
     z-index: 2;
     box-sizing: border-box;
@@ -278,7 +279,9 @@
 
   .promoThumbs {
     display: flex;
+    position: relative;
     max-width: 1470px;
+    margin: 0 auto;
     padding: 0 15px;
     box-sizing: border-box;
 

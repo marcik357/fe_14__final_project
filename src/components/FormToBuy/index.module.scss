@@ -1,0 +1,183 @@
+.makeOrder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 20px 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: -1px 1px 10px 10px rgba(0, 0, 0, .13);
+
+  &__slogan {
+    padding-bottom: 60px;
+    color: #202025;
+    text-align: center;
+    text-transform: uppercase;
+
+    &__text {
+      color: #dd9b09;
+    }
+  }
+
+  &__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #202025;
+  }
+
+  &__btnBuy {
+    width: 50%;
+    margin: 20px 0 30px;
+    padding: 20px;
+    padding: 1.2em 2.8em;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    border: 2px solid #202025;
+    border-radius: 12px;
+    background-color: #202025;
+    color: #dd9b09;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #dd9b09;
+      color: #202025;
+      box-shadow: 0 0 40px 40px #dd9b09 inset;
+    }
+  }
+}
+
+.block {
+  &__title {
+    color: #dd9b09;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  &__summeryPriceValue {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+}
+
+@media (min-width: 420px) {
+  .makeOrder {
+    &__btnBuy {
+      width: 70%;
+      margin: 40px 0 30px;
+      padding: 20px 5px;
+    }
+  }
+
+  .block {
+    &__title {
+      font-size: 16px;
+    }
+
+    &__summeryPriceValue {
+      font-size: 25px;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .makeOrder {
+    padding: 20px;
+
+    &__slogan {
+      padding-bottom: 70px;
+    }
+
+    &__btnBuy {
+      width: 80%;
+      margin: 40px 0 30px;
+      padding: 20px 5px;
+    }
+  }
+
+  .block {
+    &__title {
+      font-size: 22px;
+    }
+
+    &__summeryPriceValue {
+      font-size: 25px;
+    }
+  }
+}
+
+@media (min-width: 650px) {
+  .makeOrder {
+    padding: 20px 30px;
+
+    &__slogan {
+      padding-bottom: 80px;
+    }
+
+    &__btnBuy {
+      margin: 40px 0 30px;
+    }
+  }
+
+  .block {
+    &__title {
+      font-size: 20px;
+    }
+
+    &__summeryPriceValue {
+      font-size: 30px;
+      font-weight: 700;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .makeOrder {
+    width: 70%;
+    padding: 40px 30px;
+
+    &__btnBuy {
+      margin: 35px 0 20px;
+    }
+  }
+
+  .block {
+    &__title {
+      font-size: 24px;
+    }
+
+    &__summeryPriceValue {
+      font-size: 23px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .makeOrder {
+    padding: 30px 20px;
+
+    &__btnBuy {
+      width: 80%;
+      margin: 50px 0 10px;
+    }
+  }
+
+  .block {
+    padding: 0 10px;
+
+    &__title {
+      font-size: 22px;
+    }
+
+    &__summeryPriceValue {
+      font-size: 25px;
+    }
+  }
+}

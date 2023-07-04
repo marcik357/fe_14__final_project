@@ -22,14 +22,14 @@ const menuData = [
   {
     type: 'login',
     page: '/authorization',
-    text: 'login',
+    text: 'LogIn',
     icon(width, height, color, strokeWidth) {return <LogIn width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'loginHover'
    },
   {
     type: 'account',
     page: '/account',
-    text: 'account',
+    text: 'Account',
     icon(width, height, color, strokeWidth) {return <Account width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'accountHover'
  },
