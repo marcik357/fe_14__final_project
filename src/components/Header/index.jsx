@@ -66,6 +66,13 @@ function Header() {
     return location.pathname === path;
   };
 
+  // скрол (тільки на Home Page) на початок сторінки
+  const scrollUpPage = () => {
+    if(location.pathname === '/') {
+      window.scrollTo({ top: 0, behavor: 'smooth'});
+	 }
+  };
+
   // логінізація
   const isToken = useSelector(state => state.token.token !== null)
   const [isLogin, setIsLogin] = useState(isToken);
@@ -84,7 +91,7 @@ function Header() {
         <div className={`${style.header__wrapper} ${scrolled && style.header__scrolled}`}>
           <div className={style.header__container}>
             <div className={style.header__section}>
-              <Link to="/">
+              <Link to="/" onClick={scrollUpPage}>
                 <div className={style.header__logo}>
                   <Logo />
                   <span className={style.header__title}>CRYPTER</span>
