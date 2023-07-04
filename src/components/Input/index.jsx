@@ -14,7 +14,9 @@ const Input = ({ label, ...props }) => {
                 type={props.type}
                 placeholder={props.placeholder}
                 id={props.id}
-                {...field} />
+                {...field}
+                value={field.value || ''}
+                readOnly={props.name === '_id'}/>
             {meta.touched && meta.error
                 ? <div
                     className={props.errorClass}>
