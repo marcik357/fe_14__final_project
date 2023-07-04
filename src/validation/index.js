@@ -39,3 +39,17 @@ export const validationSchemaLogin = Yup.object({
   password: Yup.string()
     .required("Required Field!"),
 });
+
+export const validationSchemaProduct = Yup.object().shape({
+  enabled: Yup.boolean(),
+  imageUrls: Yup.array().of(Yup.string()),
+  quantity: Yup.number().integer().positive(),
+  _id: Yup.string(),
+  name: Yup.string(),
+  author: Yup.string(),
+  categories: Yup.string(),
+  theme: Yup.array().of(Yup.string()),
+  currentPrice: Yup.number().positive(),
+  details: Yup.string(),
+  itemNo: Yup.string(),
+});
