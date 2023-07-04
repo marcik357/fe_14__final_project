@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Logo, Search, Basket, LogIn, Account } from '../Icons';
+import { useSelector } from 'react-redux';
 import style from './header.module.scss';
 import socialData from '../SocialLink/socialData';
 import SocialLink from '../SocialLink';
@@ -65,8 +66,17 @@ function Header() {
     return location.pathname === path;
   };
 
-  // логінізація тимчасова!!!!!
-  const [isLogin, setIsLogin] = useState(false);
+  // логінізація
+  const isToken = useSelector(state => state.token.token !== null)
+  const [isLogin, setIsLogin] = useState(isToken);
+
+  useEffect(() => {
+    if (isToken) {
+      setIsLogin(true);
+   } else {
+      setIsLogin(false);
+   }
+  }, [isToken])
 
   return (
     <>
