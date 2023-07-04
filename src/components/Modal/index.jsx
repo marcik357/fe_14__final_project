@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
-import { setArtNumAction } from '../../redux/actions/artNumActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import style from './modal.module.scss';
 
@@ -12,7 +11,6 @@ export function Modal(props) {
 
   function onCloseModal() {
     dispatch(setModalType(null));
-    dispatch(setArtNumAction(null))
     dispatch(setErrorAction(null));
   }
 

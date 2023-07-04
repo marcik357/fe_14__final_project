@@ -4,7 +4,7 @@ import Input from '../Input';
 import InputMasked from '../InputMasked';
 import { signInFormFields } from './signUpFormFields';
 import { validationSchemaUser } from '../../validation';
-import { postData } from '../../utils';
+import { fetchData, postData } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
@@ -26,7 +26,13 @@ export default function SignUpForm({ callback }) {
       validationSchema={validationSchemaUser}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          await postData(`${baseUrl}customers`, values)
+          await fetchData(`${baseUrl}customers`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+          })
           callback(true)
           setSubmitting(false);
         } catch (error) {

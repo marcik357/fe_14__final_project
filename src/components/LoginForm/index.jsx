@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import Input from '../Input';
 import { logInFormFields } from './logInFormFields';
 import { validationSchemaLogin } from '../../validation';
-import { postData } from '../../utils';
+import { fetchData, postData } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
@@ -25,7 +25,13 @@ export default function LoginForm() {
       validationSchema={validationSchemaLogin}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          const response = await postData(`${baseUrl}customers/login`, values)
+          const response = await fetchData(`${baseUrl}customers/login`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+          })
           const token = response.token;
           localStorage.setItem('token', token);
           dispatch(setTokenAction(token));
