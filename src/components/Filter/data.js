@@ -32,9 +32,13 @@ export const collectionCategory = [
 
 ];
 // [
+//   {
+//     "type": "categories",
+//     "name": "animals"
+//   },
 //     {
 //     "type": "categories",
-//     "name": "art"
+//     "name": "art side"
 //   },
 //   {
 //     "type": "categories",
@@ -42,8 +46,20 @@ export const collectionCategory = [
 //   },
 //   {
 //     "type": "categories",
-//     "name": "gaming"
+//     "name": "cute planet"
 //   },
+//   {
+//     "type": "categories",
+//     "name": "dog"
+//   },
+//   {
+//     "type": "categories",
+//     "name": "fantasy landscape"
+//   },
+//   {
+//     "type": "categories",
+//     "name": "kooler"
+//   }
 //   {
 //     "type": "categories",
 //     "name": "metaverse"
@@ -51,8 +67,13 @@ export const collectionCategory = [
 //   {
 //     "type": "categories",
 //     "name": "other"
-//   }
+//   },
+//   {
+//     "type": "categories",
+//     "name": "rainbow lion"
+//   },
 // ]
+
 
 // [
 //   {
@@ -144,3 +165,4 @@ export const collectionCategory = [
 //     "name": "@VictorDuarte"
 //   }
 // ]
+

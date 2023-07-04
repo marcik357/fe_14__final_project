@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
 
-// // Функция для сохранения данных в localStorage
+// Функция для сохранения данных в localStorage
 // const saveToLocalStorage = (key, data) => {
 //   try {
 //     localStorage.setItem(key, JSON.stringify(data));
@@ -51,7 +51,7 @@ function Filter() {
   };
 
   // useEffect(() => {
-  //   // Загрузка данных из localStorage
+  //   Загрузка данных из localStorage
   //   const savedFilters = loadFromLocalStorage('selectedFilters');
   //   const savedSortBy = loadFromLocalStorage('sortBy');
   //   const savedProducts = loadFromLocalStorage('products');
@@ -75,7 +75,7 @@ function Filter() {
   //   }
 
   //   if (savedQueryString) {
-  //     setIsOpen(savedQueryString);
+  //     setQueryString(savedQueryString);
   //   }
   // }, []);
 
@@ -142,16 +142,13 @@ function Filter() {
 
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
-
-      if (checked === true) {
-        updatedFilters[filterType].push(name);
+    
+      if (checked) {
+        updatedFilters[filterType] = [...updatedFilters[filterType], name];
       } else {
-        const filterIndex = updatedFilters[filterType].indexOf(name);
-        if (filterIndex !== -1) {
-          updatedFilters[filterType].splice(filterIndex, 1);
-        }
+        updatedFilters[filterType] = updatedFilters[filterType].filter((filter) => filter !== name);
       }
-      console.log(updatedFilters);
+    
       return updatedFilters;
     });
   };
@@ -261,12 +258,12 @@ function Filter() {
 
   // Перевірка інпутів по ціні від / до
   const isValidPriceInput = (minPriceValue, maxPriceValue) => {
-    if (minPriceValue === '' || maxPriceValue === '') {
-      return true;
-    }
-  
     if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
       return false;
+    }
+
+    if (minPriceValue === '' || maxPriceValue === '') {
+      return true;
     }
   
     return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
