@@ -1,5 +1,3 @@
-import style from './loginForm.module.scss';
-import Input from '../Input';
 import FormikForm from '../FormikForm';
 import { validationSchemaLogin } from '../../validation';
 import { logInFormFields } from './logInFormFields';

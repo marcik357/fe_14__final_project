@@ -16,9 +16,19 @@ export default function FormikForm({ initialValues, validationSchema, fields, ca
       <Form className={style.form}>
         {fields?.map(field => {
           if (field.tagType === 'masked') {
-            return <InputMasked key={field.name} {...field} />
+            return <InputMasked
+              key={field.name}
+              {...field}
+              labelClass={style.form__label}
+              inputClass={style.form__input}
+              errorClass={style.form__error} />
           }
-          return <Input key={field.name} {...field} />
+          return <Input
+            key={field.name}
+            {...field}
+            labelClass={style.form__label}
+            inputClass={style.form__input}
+            errorClass={style.form__error} />
         })}
         <button text='Checkout' className={style.form__submit} type='submit'>{submitBtn}</button>
       </Form>
