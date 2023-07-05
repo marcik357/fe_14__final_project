@@ -15,7 +15,7 @@ export const validationSchemaUser = Yup.object({
     .required("Required Field!"),
   login: Yup.string()
     .min(3, 'Must contain at least 3 letters')
-    .max(25, 'Can be no more than 25 characters')
+    .max(10, 'Can be no more than 10 characters')
     .matches(/^[a-zA-Z0-9]+$/, 'Must be a-z A-Z 0-9')
     .trim()
     .required("Required Field!"),
@@ -37,5 +37,7 @@ export const validationSchemaLogin = Yup.object({
   loginOrEmail: Yup.string()
     .required("Required Field!"),
   password: Yup.string()
+    .min(7, 'Must contain at least 7 letters')
+    .max(30, 'Can be no more than 30 characters')
     .required("Required Field!"),
 });

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './Authorization.module.scss';
 import Banner from '../../components/Banner';
-import SignUpForm from '../../components/SignUpForm';
 import LogInGreating from '../../components/LogInGreating';
+import SignUpForm from '../../components/SignUpForm';
 import LoginForm from '../../components/LoginForm';
 
 export function Authorization() {
@@ -18,7 +18,9 @@ export function Authorization() {
           type={isLogIn ? 'login' : 'signup'}
           onClickHandler={() => setIsLogIn(!isLogIn)}
           classList={styles.authorization__greating} />
-        {isLogIn ? <LoginForm /> : <SignUpForm callback={setIsLogIn}/>}
+        {isLogIn
+          ? <LoginForm />
+          : <SignUpForm callback={setIsLogIn} />}
       </div>
     </>
   );

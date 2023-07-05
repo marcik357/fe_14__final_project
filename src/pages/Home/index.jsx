@@ -24,7 +24,7 @@ export function Home() {
   return (
     !loading ? (
       <>
-        <SliderPromo products={promo} />
+        {promo.length > 0 && <SliderPromo products={promo} />}
         <div className={styles.products}>
           <Filter />
           <ProductList products={products} />
