@@ -52,6 +52,9 @@
     }
 
     &__blockButton {
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
         width: 100%;
         background-color: transparent;
         border: none;
@@ -67,5 +70,11 @@
         padding-bottom: 48px;
     }
 
-    
+    span {
+        margin-top: 7px;
+    }
+
+    &__active {
+        padding-bottom: 40px;
+    }
 }

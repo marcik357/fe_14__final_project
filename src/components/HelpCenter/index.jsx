@@ -31,7 +31,7 @@ export function HelpCenter() {
             <button
               type="button"
               className={`${styles.helpCenter__blockButton} ${
-                activeBlocks.includes(1) ? styles.active : ""
+                activeBlocks.includes(1) ? styles.helpCenter__active : ""
               }`}
               onClick={() => toggleBlock(1)}
             >
@@ -54,7 +54,7 @@ export function HelpCenter() {
             <button
               type="button"
               className={`${styles.helpCenter__blockButton} ${
-                activeBlocks.includes(2) ? styles.active : ""
+                activeBlocks.includes(2) ? styles.helpCenter__active : ""
               }`}
               onClick={() => toggleBlock(2)}
             >
@@ -77,7 +77,7 @@ export function HelpCenter() {
             <button
               type="button"
               className={`${styles.helpCenter__blockButton} ${
-                activeBlocks.includes(3) ? styles.active : ""
+                activeBlocks.includes(3) ? styles.helpCenter__active : ""
               }`}
               onClick={() => toggleBlock(3)}
             >
