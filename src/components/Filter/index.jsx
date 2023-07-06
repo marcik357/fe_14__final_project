@@ -4,37 +4,20 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable linebreak-style */
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
-
-// Функция для сохранения данных в localStorage
-// const saveToLocalStorage = (key, data) => {
-//   try {
-//     localStorage.setItem(key, JSON.stringify(data));
-//   } catch (error) {
-//     console.error('Error saving to localStorage:', error);
-//   }
-// };
-
-// const loadFromLocalStorage = (key) => {
-//   const data = localStorage.getItem(key);
-//   if (!data) return [];
-//   try {
-//     const value = JSON.parse(data);
-//     return value;
-//   } catch (e) {
-//     return [];
-//   }
-// };
+import { setQueryStringAction } from '../../redux/actions/filterActions';
 
 
 function Filter() {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [authorFilters, setAuthorFilters] = useState([]);
   const [categoryFilters, setCategoryFilters] = useState([]);
   const [products, setProducts] = useState([]);
-  const [queryString, setQueryString] = useState('');
-
+  const queryString = useSelector((state) => state.filter.queryString);
+  console.log(queryString);
   const [selectedFilters, setSelectedFilters] = useState({
     authors: [],
     categories: [],
@@ -45,69 +28,63 @@ function Filter() {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [isApplyButtonDisabled, setIsApplyButtonDisabled] = useState(false);
+  const [checkboxValues, setCheckboxValues] = useState({});
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  // useEffect(() => {
-  //   Загрузка данных из localStorage
-  //   const savedFilters = loadFromLocalStorage('selectedFilters');
-  //   const savedSortBy = loadFromLocalStorage('sortBy');
-  //   const savedProducts = loadFromLocalStorage('products');
-  //   const savedisOpen = loadFromLocalStorage('isOpen');
-  //   const savedQueryString = loadFromLocalStorage('queryString');
+  useEffect(() => {
+    const savedSortBy = localStorage.getItem('sortBy');
+    setSortBy(savedSortBy || ''); // Використовую значення з localStorage чи пусте знач, якщо його немає
 
-  //   if (savedFilters) {
-  //     setSelectedFilters(savedFilters);
-  //   }
+    const savedIsOpen = localStorage.getItem('isOpen');
+    setIsOpen(savedIsOpen || false);
 
-  //   if (savedSortBy) {
-  //     setSortBy(savedSortBy);
-  //   }
+    const savedSelectedFilters = localStorage.getItem('selectedFilters');
+    if (savedSelectedFilters) {
+      setSelectedFilters(JSON.parse(savedSelectedFilters));
+    }
 
-  //   if (savedProducts) {
-  //     setProducts(savedProducts);
-  //   }
+    const savedMinPrice = localStorage.getItem('minPrice');
+    setMinPrice(savedMinPrice || '');
 
-  //   if (savedisOpen) {
-  //     setIsOpen(savedisOpen);
-  //   }
-
-  //   if (savedQueryString) {
-  //     setQueryString(savedQueryString);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   // Сохранение данных в localStorage при изменении состояния selectedFilters, sortBy и products
-  //   saveToLocalStorage('selectedFilters', selectedFilters);
-  //   saveToLocalStorage('sortBy', sortBy);
-  //   saveToLocalStorage('products', products);
-  //   saveToLocalStorage('isOpen', isOpen);
-  //   saveToLocalStorage('queryString', queryString);
-  // }, [selectedFilters, sortBy, products, isOpen, queryString]);
+    const savedMaxPrice = localStorage.getItem('maxPrice');
+    setMaxPrice(savedMaxPrice || '');
+  }, []);
 
   useEffect(() => {
-    // Функция для получения списка товаров с API
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://plankton-app-6vr5h.ondigitalocean.app/api/products/filter');
-        if (response.ok) {
-          const data = await response.json();
-          if (data) {
-            setProducts(data.products);
-          }
-        } else {
-          throw new Error('Unable to fetch products');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    localStorage.setItem('sortBy', sortBy);
+    localStorage.setItem('isOpen', isOpen);
+    localStorage.setItem('selectedFilters', JSON.stringify(selectedFilters));
+    localStorage.setItem('minPrice', minPrice);
+    localStorage.setItem('maxPrice', maxPrice);
+  }, [sortBy, isOpen, selectedFilters, minPrice, maxPrice]);
+
+  // useEffect(() => {
+  //   localStorage.setItem('queryString', JSON.stringify(queryString));
+  // }, [queryString]);
+
+  // useEffect(() => {
+  //   // Функция для получения списка товаров с API
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch('https://plankton-app-6vr5h.ondigitalocean.app/api/products/filter');
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         if (data) {
+  //           setProducts(data.products);
+  //         }
+  //       } else {
+  //         throw new Error('Unable to fetch products');
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
   
-    fetchProducts();
-  }, []);
+  //   fetchProducts();
+  // }, []);
   console.log(products);
 
   useEffect(() => {
@@ -135,10 +112,34 @@ function Filter() {
     getFiltersByType('categories');
   }, []);
 
+  
+  // Функція для відображення товарів згідно обраних фільтрів
+  const applyFilters = () => {
+    // Запит до API з використанням queryString для фільтрації товарів
+    fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/products/filter?${queryString}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Unable to fetch filtered products');
+      })
+      .then((data) => {
+        // Опрацювання отриманих відфільтрованих товарів
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  useEffect(() => {
+    applyFilters(); // Викликати applyFilters при кожній зміні queryString
+  }, [queryString]);
+
   // Код фільтру по чекбоксам
   const valueChange = (event) => {
     const { name, checked } = event.target;
     const filterType = event.target.getAttribute('data-filter-type');
+    console.log(event.target.name);
 
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
@@ -151,7 +152,24 @@ function Filter() {
     
       return updatedFilters;
     });
+    setCheckboxValues((prevValues) => ({
+      ...prevValues,
+      [name]: checked,
+    }));
   };
+
+  // Використовувати значення checked з localstorage при рендері
+  useEffect(() => {
+    const savedCheckboxValues = localStorage.getItem('checkboxValues');
+    if (savedCheckboxValues) {
+      setCheckboxValues(JSON.parse(savedCheckboxValues));
+    }
+  }, []);
+  // Зберігати значення checked для чекбоксів при зміні стану
+  useEffect(() => {
+    localStorage.setItem('checkboxValues', JSON.stringify(checkboxValues));
+  }, [checkboxValues]);
+
   // Кнопка підтвердження фільтра від / до
   const applyPriceFilter = () => {
     setSelectedFilters((prevSelectedFilters) => {
@@ -199,7 +217,9 @@ function Filter() {
       newQueryString += `&maxPrice=${filters.maxPrice}`;
     }
 
-    setQueryString(newQueryString); // Оновлення стану queryStrin
+    // setQueryString(newQueryString); // Оновлення стану queryStrin
+    dispatch(setQueryStringAction(newQueryString));
+    localStorage.setItem('queryString', JSON.stringify(newQueryString));
     return newQueryString;
   };
 
@@ -208,29 +228,6 @@ function Filter() {
   }, [selectedFilters, sortBy]);
   console.log(selectedFilters);
   console.log(queryString);
-
-
-  // Функція для відображення обраних фільтрів
-  const applyFilters = () => {
-    // Запит до API з використанням queryString для фільтрації товарів
-    fetch(`https://plankton-app-6vr5h.ondigitalocean.app/api/products/filter?${queryString}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Unable to fetch filtered products');
-      })
-      .then((data) => {
-        // Опрацювання отриманих відфільтрованих товарів
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-  useEffect(() => {
-    applyFilters(); // Викликати applyFilters при кожній зміні queryString
-  }, [queryString]);
 
   // Очистити всі фільтри
   const clearAllFilters = () => {
@@ -244,16 +241,17 @@ function Filter() {
     setMinPrice('');
     setMaxPrice('');
     setIsApplyButtonDisabled(false);
+    setCheckboxValues({});
 
     // Скинути обрані значення checkbox
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((e) => {
-      e.checked = false;
-    });
+    // const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    // checkboxes.forEach((e) => {
+    //   e.checked = false;
+    // });
 
     // Скинути обрані значення select
-    const select = document.getElementById('sortBy');
-    select.selectedIndex = 0;
+    // const select = document.getElementById('sortBy');
+    // select.selectedIndex = 0;
   };
 
   // Перевірка інпутів по ціні від / до
@@ -287,7 +285,7 @@ function Filter() {
         <div className={styles.filter__wrapper}>
           <div className={styles.filter__nav}>
             <button className={styles.filter__openBtn} type="button" onClick={toggleModal}>Filters</button>
-            <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} onChange={(e) => setSortBy(e.target.value)}>
+            <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={sortBy || 'Sort By'} onChange={(e) => setSortBy(e.target.value)}>
               <option disabled selected hidden value="Sort By">Sort By</option>
               <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
               <option value="-currentPrice" className={styles.filter__sortValue}>Highest price</option>
@@ -316,7 +314,7 @@ function Filter() {
                   {authorFilters.map((author) => (
                     <div key={author._id} className={styles.filter__sidebarItem}>
                       <label htmlFor={author.name}>
-                        <input type="checkbox" id={author.name} name={author.name} data-filter-type="authors" onChange={valueChange} />
+                        <input type="checkbox" id={author.name} name={author.name} data-filter-type="authors" onChange={valueChange} checked={checkboxValues[author.name] || false} />
                         {author.name}
                       </label>
                     </div>
@@ -325,7 +323,7 @@ function Filter() {
                   {categoryFilters.map((category) => (
                     <div key={category._id} className={styles.filter__sidebarItem}>
                       <label htmlFor={category.name}>
-                        <input type="checkbox" id={category.name} name={category.name} data-filter-type="categories" onChange={valueChange} />
+                        <input type="checkbox" id={category.name} name={category.name} data-filter-type="categories" onChange={valueChange} checked={checkboxValues[category.name] || false} />
                         {category.name}
                       </label>
                     </div>
