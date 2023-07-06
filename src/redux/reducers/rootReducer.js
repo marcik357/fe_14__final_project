@@ -6,6 +6,7 @@ import { errorReducer as error } from './errorReducer';;
 import { modalReducer as modal } from './modalReducer';
 import { cartReducer as cart } from './cartReducer';
 import { tokenReducer as token } from './tokenReducer';
+import { partnersReducer as partners } from './partnersReducer';
 
 export const rootReducer = combineReducers({
   artNum,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
   error,
   modal,
   cart,
-  token
+  token,
+  partners
 });

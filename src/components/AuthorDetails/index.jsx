@@ -1,46 +1,52 @@
-import { Facebook, Instagram, Linkedin, Twitter } from '../Icons';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import ProductList from '../ProductList';
 import style from './authorDetails.module.scss';
 import banner from './img/author-banner.png';
-import icon from './img/avatar.png';
+import socialData from '../SocialLink/socialData';
+import SocialLink from '../SocialLink';
 
-export function AuthorDetails(){
+export function AuthorDetails({author}){
     const products = useSelector((state) => state.products.products);
-    const { authorId } = useParams();
+    const authorProducts = products.filter(product => {
+        return product.author === author.customId
+    });
+
     return (
         <div className={style.authorDetails}>
             <div className={style.authorDetails__container}>
-                <div className={style.authorDetails__banner}>
-                    <img src={banner} className={style.authorDetails__banner_image} alt="author-banner" />
-                </div>
-                <div className={style.authorDetails__author}>
-                    <img src={icon} className={style.authorDetails__author_icon} alt="author-icon" />
+                <div style={{position: 'relative'}}>
+                    <div className={style.authorDetails__banner}>
+                        <img src={banner} className={style.authorDetails__banner_image} alt="author-banner" />
+                    </div>
+                    <div className={style.authorDetails__author}>
+                        <img src={author.imageUrl || '/images/avatars/user-icon.png'} className={style.authorDetails__author_icon} alt="author-icon" />
+                    </div>
                 </div>
                 <div className={style.authorDetails__mainContent}>
                     <div className={style.authorDetails__info}>
-                        <h1 className={style.authorDetails__info_title}>{authorId.replace(/@/g, '')}</h1>
-                        <p className={style.authorDetails__info_id}>{authorId}</p>
+                        <h1 className={style.authorDetails__info_title}>{author.name}</h1>
+                        <p className={style.authorDetails__info_id}>{author.customId}</p>
                         <div className={style.authorDetails__info_container}>
                         <div className={style.authorDetails__info_text}>
                             <p className={style.authorDetails__info_subtitle}>Bio</p>
-                            <p>We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities. Join the millions of creators, collectors, and curators who are on this journey.</p>
+                            <p>{author.description}</p>
                         </div>
-                        <div className={style.authorDetails__info_links}>
-                            <Instagram />
-                            <Twitter />
-                            <Linkedin />
-                            <Facebook />
-                        </div>
+                        <ul className={style.authorDetails__info_links}>
+                            {socialData.map(({type, url, icon}) => (
+                                <SocialLink
+                                  key={type}
+                                  url={url}
+                                  icon={icon('#010101')}
+                                />
+                            ))}
+                        </ul>
                         </div>
                     </div>
                     <div className={style.authorDetails__products}>
-                        <div className={style.authorDetails__products_btns}>
-                            <button className={style.authorDetails__products_btn}>Created</button>
-                            <button className={style.authorDetails__products_btn}>Collection</button>
+                        <div className={style.authorDetails__products_container}>
+                            <p className={style.authorDetails__products_title}>Created</p>
                         </div>
-                        <ProductList products={products} />
+                        <ProductList products={authorProducts} isInAuthor={true}/>
                     </div>
                 </div>
             </div>

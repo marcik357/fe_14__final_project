@@ -4,7 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products }) {
+function ProductList({ products, isInAuthor }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -81,13 +81,17 @@ function ProductList({ products }) {
   };
 
   return (
-    <div id='products' className={styles.products}>
+    <div id='products' className={`${styles.products} ${isInAuthor ? styles.productCardInAuthor : ''}`}>
       <div className={styles.products__title}>
-        <h2>NFTs</h2>
+        {isInAuthor ? (
+          null
+        ) : (
+          <h2>NFTs</h2>
+        )}
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product._id} />
+          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}/>
         ))}
       </div>
       <div className='pagination'>

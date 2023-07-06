@@ -15,6 +15,7 @@ function ProductCard({
   currentPrice,
   name,
   itemNo,
+  isInAuthor
 }) {
   const dispatch = useDispatch();
 
