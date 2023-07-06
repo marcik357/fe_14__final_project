@@ -10,6 +10,7 @@
     flex-direction: column;
     font-family: 'Inter', sans-serif;
 
+
     &__content {
         text-align: center;
         width: 100%;
@@ -40,8 +41,31 @@
         transform: translateX(-23%) translateY(-12%);
     }
 
-    &__infoBlock {
+    &__infoBlockList {
        position: relative;
        z-index: 1;
+       padding: 0 24px 40px;
     }
+
+    &__infoBlock {
+        border-bottom: 1px solid #E1E2E2;
+    }
+
+    &__blockButton {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        color: #202025;
+        font-family: "Inter", sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 40px;
+        letter-spacing: -0.64px;
+        cursor: pointer;
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    
 }

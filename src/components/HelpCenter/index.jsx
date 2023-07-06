@@ -26,11 +26,11 @@ export function HelpCenter() {
             <img src={cube} alt="cube" />
           </div>
         </div>
-        <div className={styles.helpCenter__infoBlock}>
-          <div>
+        <div className={styles.helpCenter__infoBlockList}>
+          <div className={styles.helpCenter__infoBlock}>
             <button
               type="button"
-              className={`${styles.blockButton} ${
+              className={`${styles.helpCenter__blockButton} ${
                 activeBlocks.includes(1) ? styles.active : ""
               }`}
               onClick={() => toggleBlock(1)}
@@ -50,10 +50,10 @@ export function HelpCenter() {
               </ul>
             )}
           </div>
-          <div>
+          <div className={styles.helpCenter__infoBlock}>
             <button
               type="button"
-              className={`${styles.blockButton} ${
+              className={`${styles.helpCenter__blockButton} ${
                 activeBlocks.includes(2) ? styles.active : ""
               }`}
               onClick={() => toggleBlock(2)}
@@ -73,10 +73,10 @@ export function HelpCenter() {
               </ul>
             )}
           </div>
-          <div>
+          <div className={styles.helpCenter__infoBlock}>
             <button
               type="button"
-              className={`${styles.blockButton} ${
+              className={`${styles.helpCenter__blockButton} ${
                 activeBlocks.includes(3) ? styles.active : ""
               }`}
               onClick={() => toggleBlock(3)}
