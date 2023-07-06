@@ -1,7 +1,7 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Logo, Search, Basket, LogIn, Account } from '../Icons';
+import { Logo, Search, } from '../Icons';
 import { useSelector } from 'react-redux';
 import style from './header.module.scss';
 import socialData from '../SocialLink/socialData';

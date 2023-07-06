@@ -1,4 +1,5 @@
 import { Basket, LogIn, Account } from '../Icons';
+import { CartAmount } from '../CartAmount';
 
 const menuData = [
   {
@@ -37,7 +38,7 @@ const menuData = [
     type: 'basket',
     page: '/cart',
     text: 'Shopping cart',
-    icon(width, height, color, strokeWidth) {return <Basket width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
+    icon(width, height, color, strokeWidth) {return <><Basket width={width} height={height} color={color} strokeWidth={strokeWidth} /> <CartAmount /></>},
     classHover: 'basketHover'
   },
 ];

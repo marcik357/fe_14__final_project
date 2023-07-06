@@ -164,6 +164,7 @@ a {
     transform: translateY(0);
     background-color: transparent;
     opacity: 1;
+    overflow: inherit;
   }
 
   &.active {
@@ -354,4 +355,3 @@ a {
     justify-content: center;
   }
 }
-
