@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
 import { buyNowHandler } from '../../utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
@@ -18,6 +18,8 @@ function ProductCard({
   isInAuthor
 }) {
   const dispatch = useDispatch();
+  const { cartProductsArray,products} = useSelector(state => state.cart);
+  const { token } = useSelector(state => state.token);
 
   return (
     <div className={styles.productCard}>
@@ -47,7 +49,7 @@ function ProductCard({
         <button
           className={styles.productCard__priceInfo_button}
           type='button'
-          onClick={() => buyNowHandler(dispatch, _id)}
+          onClick={() => buyNowHandler(dispatch, _id, token)}
         >
           Buy now
         </button>

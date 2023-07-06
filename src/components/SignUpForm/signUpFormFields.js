@@ -1,12 +1,7 @@
-import style from './signUpForm.module.scss'
-
 export const signInFormFields = [
   {
     tagType: 'regular',
     label: "First name",
-    labelClass: style.form__label,
-    inputClass: style.form__input,
-    errorClass: style.form__error,
     id: "firstName",
     name: "firstName",
     type: "text",
@@ -15,9 +10,6 @@ export const signInFormFields = [
   {
     tagType: 'regular',
     label: "Last Name",
-    labelClass: style.form__label,
-    inputClass: style.form__input,
-    errorClass: style.form__error,
     id: "lastName",
     name: "lastName",
     type: "text",
@@ -26,9 +18,6 @@ export const signInFormFields = [
   {
     tagType: 'regular',
     label: "Login",
-    labelClass: style.form__label,
-    inputClass: style.form__input,
-    errorClass: style.form__error,
     id: "login",
     name: "login",
     type: "text",
@@ -37,9 +26,6 @@ export const signInFormFields = [
   {
     tagType: 'regular',
     label: "Email",
-    labelClass: style.form__label,
-    inputClass: style.form__input,
-    errorClass: style.form__error,
     id: "email",
     name: "email",
     type: "email",
@@ -48,9 +34,6 @@ export const signInFormFields = [
   {
     tagType: 'regular',
     label: "Password",
-    labelClass: style.form__label,
-    inputClass: style.form__input,
-    errorClass: style.form__error,
     id: "password",
     name: "password",
     type: "text",
@@ -59,9 +42,6 @@ export const signInFormFields = [
   {
     tagType: 'masked',
     label: "Phone number",
-    labelClass: style.form__label,
-    inputClass: style.form__input,
-    errorClass: style.form__error,
     id: "telephone",
     name: "telephone",
     type: "text",

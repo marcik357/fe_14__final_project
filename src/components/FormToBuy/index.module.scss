@@ -7,17 +7,17 @@
   margin: 20px 0;
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: -1px 1px 7px 7px rgba(0, 0, 0, .13);
+  box-shadow: -1px 1px 10px 10px rgba(0, 0, 0, .13);
 
   &__slogan {
     padding-bottom: 60px;
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-image: -webkit-linear-gradient(315deg, #aaa 21%, #050505 55%);
-    color: #aaa;
+    color: #202025;
     text-align: center;
     text-transform: uppercase;
-    -webkit-text-fill-color: transparent;
+
+    &__text {
+      color: #dd9b09;
+    }
   }
 
   &__block {
@@ -25,30 +25,43 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    border-bottom: 1px solid #e1e2e2;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #202025;
   }
 
   &__btnBuy {
-    width: 100%;
-    margin: 40px 0 20px;
-    padding: 20px 5px;
-    border: none;
-    background: #202025;
-    color: #fff;
+    width: 50%;
+    margin: 20px 0 30px;
+    padding: 20px;
+    padding: 1.2em 2.8em;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    border: 2px solid #202025;
+    border-radius: 12px;
+    background-color: #202025;
+    color: #dd9b09;
+    font-weight: 400;
     text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #dd9b09;
+      color: #202025;
+      box-shadow: 0 0 40px 40px #dd9b09 inset;
+    }
   }
 }
 
 .block {
   &__title {
-    color: #686a6c;
-    font-size: 15px;
+    color: #dd9b09;
+    font-size: 14px;
     text-transform: uppercase;
   }
 
   &__summeryPriceValue {
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -56,9 +69,8 @@
 
 @media (min-width: 420px) {
   .makeOrder {
-    width: 90%;
-
     &__btnBuy {
+      width: 70%;
       margin: 40px 0 30px;
       padding: 20px 5px;
     }
@@ -77,7 +89,6 @@
 
 @media (min-width: 500px) {
   .makeOrder {
-    width: 95%;
     padding: 20px;
 
     &__slogan {
@@ -85,6 +96,7 @@
     }
 
     &__btnBuy {
+      width: 80%;
       margin: 40px 0 30px;
       padding: 20px 5px;
     }
@@ -92,7 +104,7 @@
 
   .block {
     &__title {
-      font-size: 14px;
+      font-size: 22px;
     }
 
     &__summeryPriceValue {
@@ -103,7 +115,6 @@
 
 @media (min-width: 650px) {
   .makeOrder {
-    width: 95%;
     padding: 20px 30px;
 
     &__slogan {
@@ -139,11 +150,11 @@
 
   .block {
     &__title {
-      font-size: 14px;
+      font-size: 24px;
     }
 
     &__summeryPriceValue {
-      font-size: 17px;
+      font-size: 23px;
     }
   }
 }
