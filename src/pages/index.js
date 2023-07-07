@@ -2,6 +2,7 @@ export * from './MainLayout';
 export * from './Home';
 export * from './Cart';
 export * from './Product';
+export * from './Categories copy';
 export * from './Authorization';
 export * from './Author';
 export * from './Blog';

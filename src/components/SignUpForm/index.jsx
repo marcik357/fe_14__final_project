@@ -25,8 +25,6 @@ export default function SignUpForm({ callback }) {
       dispatch(setErrorAction(error.message));
       dispatch(setModalType('error'))
     }
-    // повідомлення про реєстрацію
-    // і потрібно залогінитись
   }
 
   return (

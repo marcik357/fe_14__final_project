@@ -64,7 +64,7 @@ export const modalProps = [
       return (
         <div className={className}>
           <NavLink to="/authorization" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
-            log in
+            Ok
           </NavLink>
         </div>
       );

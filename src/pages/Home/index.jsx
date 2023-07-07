@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import { addPromoAction } from '../../redux/actions/productsActions';
@@ -12,19 +12,22 @@ import { baseUrl } from '../../utils/vars';
 export function Home() {
   const dispatch = useDispatch();
 
+  const [slides, setSlides] = useState()
+
   const products = useSelector((state) => state.products.products);
-  const promo = useSelector((state) => state.products.promo);
+  // const promo = useSelector((state) => state.products.promo);
   const loading = useSelector((state) => state.loading.loading);
 
   useEffect(() => {
-    dispatch(getDataAction(`${baseUrl}slides`, addPromoAction));
+    dispatch(getDataAction(`${baseUrl}slides`, setSlides, {}, 'slides'));
     // dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
   }, [dispatch]);
 
   return (
     !loading ? (
       <>
-        {promo.length > 0 && <SliderPromo products={promo} />}
+        {/* {promo?.length > 0 && <SliderPromo products={promo} />} */}
+        {slides?.length > 0 && <SliderPromo products={slides} />}
         <div className={styles.products}>
           <Filter />
           <ProductList products={products} />

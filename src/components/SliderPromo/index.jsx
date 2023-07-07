@@ -32,10 +32,10 @@ function SliderPromo({ products }) {
         }}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         speed={500}
-        // autoplay={{
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         className={styles.promoSlider}
       >
         <div slot="container-start" className={styles.promoSlider__container}>
