@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { OpenList } from "../Icons/open-list";
 import { CloseList } from "../Icons/close-list";
+import { MarkerList } from "../Icons/marker-list-hc";
 import cube from "../../img/cube.png";
 import styles from "./helpCenter.module.scss";
 
@@ -41,12 +42,12 @@ export function HelpCenter() {
               </span>
             </button>
             {activeBlocks.includes(1) && (
-              <ul>
-                <li>Connect your wallet to Crypter</li>
-                <li>Guide to collection NFT artworks on Crypter</li>
-                <li>Marketplace balance</li>
-                <li>Marketplace fees</li>
-                <li>What is offer price?</li>
+              <ul className={styles.helpCenter__list}>
+                <li><MarkerList />Connect your wallet to Crypter</li>
+                <li><MarkerList />Guide to collection NFT artworks on Crypter</li>
+                <li><MarkerList />Marketplace balance</li>
+                <li><MarkerList />Marketplace fees</li>
+                <li><MarkerList />What is offer price?</li>
               </ul>
             )}
           </div>
@@ -64,12 +65,12 @@ export function HelpCenter() {
               </span>
             </button>
             {activeBlocks.includes(2) && (
-              <ul>
-                <li>Connect your wallet to Crypter</li>
-                <li>Guide to collection NFT artworks on Crypter</li>
-                <li>Marketplace balance</li>
-                <li>Marketplace fees</li>
-                <li>What is offer price?</li>
+              <ul className={styles.helpCenter__list}>
+                <li><MarkerList />Connect your wallet to Crypter</li>
+                <li><MarkerList />Guide to collection NFT artworks on Crypter</li>
+                <li><MarkerList />Marketplace balance</li>
+                <li><MarkerList />Marketplace fees</li>
+                <li><MarkerList />What is offer price?</li>
               </ul>
             )}
           </div>
@@ -87,12 +88,12 @@ export function HelpCenter() {
               </span>
             </button>
             {activeBlocks.includes(3) && (
-              <ul>
-                <li>Connect your wallet to Crypter</li>
-                <li>Guide to collection NFT artworks on Crypter</li>
-                <li>Marketplace balance</li>
-                <li>Marketplace fees</li>
-                <li>What is offer price?</li>
+              <ul className={styles.helpCenter__list}>
+                <li><MarkerList />Connect your wallet to Crypter</li>
+                <li><MarkerList />Guide to collection NFT artworks on Crypter</li>
+                <li><MarkerList />Marketplace balance</li>
+                <li><MarkerList />Marketplace fees</li>
+                <li><MarkerList />What is offer price?</li>
               </ul>
             )}
           </div>
