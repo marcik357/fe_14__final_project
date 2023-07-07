@@ -21,12 +21,14 @@ export function HelpCenter() {
   return (
     <div className={styles.helpCenter}>
       <div className={styles.helpCenter__content}>
-        <div className={styles.helpCenter__cubeBlockWrapper}>
+
+        <div className={styles.helpCenter__cubeBlockWrap}>
           <div className={styles.helpCenter__cubeBlock}>
             <h2>Gettings started on Crypter</h2>
             <img src={cube} alt="cube" />
           </div>
         </div>
+
         <div className={styles.helpCenter__infoBlockList}>
           <div className={styles.helpCenter__infoBlock}>
             <button
@@ -43,11 +45,26 @@ export function HelpCenter() {
             </button>
             {activeBlocks.includes(1) && (
               <ul className={styles.helpCenter__list}>
-                <li><MarkerList />Connect your wallet to Crypter</li>
-                <li><MarkerList />Guide to collection NFT artworks on Crypter</li>
-                <li><MarkerList />Marketplace balance</li>
-                <li><MarkerList />Marketplace fees</li>
-                <li><MarkerList />What is offer price?</li>
+                <li>
+                  <MarkerList />
+                  Connect your wallet to Crypter
+                </li>
+                <li>
+                  <MarkerList />
+                  Guide to collection NFT artworks on Crypter
+                </li>
+                <li>
+                  <MarkerList />
+                  Marketplace balance
+                </li>
+                <li>
+                  <MarkerList />
+                  Marketplace fees
+                </li>
+                <li>
+                  <MarkerList />
+                  What is offer price?
+                </li>
               </ul>
             )}
           </div>
@@ -66,11 +83,26 @@ export function HelpCenter() {
             </button>
             {activeBlocks.includes(2) && (
               <ul className={styles.helpCenter__list}>
-                <li><MarkerList />Connect your wallet to Crypter</li>
-                <li><MarkerList />Guide to collection NFT artworks on Crypter</li>
-                <li><MarkerList />Marketplace balance</li>
-                <li><MarkerList />Marketplace fees</li>
-                <li><MarkerList />What is offer price?</li>
+                <li>
+                  <MarkerList />
+                  Connect your wallet to Crypter
+                </li>
+                <li>
+                  <MarkerList />
+                  Guide to collection NFT artworks on Crypter
+                </li>
+                <li>
+                  <MarkerList />
+                  Marketplace balance
+                </li>
+                <li>
+                  <MarkerList />
+                  Marketplace fees
+                </li>
+                <li>
+                  <MarkerList />
+                  What is offer price?
+                </li>
               </ul>
             )}
           </div>
@@ -89,11 +121,26 @@ export function HelpCenter() {
             </button>
             {activeBlocks.includes(3) && (
               <ul className={styles.helpCenter__list}>
-                <li><MarkerList />Connect your wallet to Crypter</li>
-                <li><MarkerList />Guide to collection NFT artworks on Crypter</li>
-                <li><MarkerList />Marketplace balance</li>
-                <li><MarkerList />Marketplace fees</li>
-                <li><MarkerList />What is offer price?</li>
+                <li>
+                  <MarkerList />
+                  Connect your wallet to Crypter
+                </li>
+                <li>
+                  <MarkerList />
+                  Guide to collection NFT artworks on Crypter
+                </li>
+                <li>
+                  <MarkerList />
+                  Marketplace balance
+                </li>
+                <li>
+                  <MarkerList />
+                  Marketplace fees
+                </li>
+                <li>
+                  <MarkerList />
+                  What is offer price?
+                </li>
               </ul>
             )}
           </div>
