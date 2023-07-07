@@ -55,5 +55,19 @@ export const modalProps = [
         </div>
       );
     },
+  },
+  {
+    type: 'registred',
+    header: 'you have created an account',
+    text: 'Now you need to login',
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <NavLink to="/authorization" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
+            log in
+          </NavLink>
+        </div>
+      );
+    },
   }
 ];
