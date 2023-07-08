@@ -2,13 +2,25 @@ import { useSelector } from 'react-redux';
 import ProductList from '../ProductList';
 import style from './authorDetails.module.scss';
 import banner from './img/author-banner.png';
-import socialData from '../SocialLink/socialData';
 import SocialLink from '../SocialLink';
+import { getSocialIcon } from './socialIcon';
 
 export function AuthorDetails({author}){
     const products = useSelector((state) => state.products.products);
+
     const authorProducts = products.filter(product => {
         return product.author === author.customId
+    });
+    
+    const socialLinks = author.urls.map((urlObj, index) => {
+        const [key, value] = Object.entries(urlObj)[0];
+        return (
+          <SocialLink
+            key={index}
+            url={value}
+            icon={getSocialIcon(key)}
+          />
+        );
     });
 
     return (
@@ -32,13 +44,7 @@ export function AuthorDetails({author}){
                             <p>{author.description}</p>
                         </div>
                         <ul className={style.authorDetails__info_links}>
-                            {socialData.map(({type, url, icon}) => (
-                                <SocialLink
-                                  key={type}
-                                  url={url}
-                                  icon={icon('#010101')}
-                                />
-                            ))}
+                            {socialLinks}
                         </ul>
                         </div>
                     </div>
@@ -46,7 +52,7 @@ export function AuthorDetails({author}){
                         <div className={style.authorDetails__products_container}>
                             <p className={style.authorDetails__products_title}>Created</p>
                         </div>
-                        <ProductList products={authorProducts} isInAuthor={true}/>
+                        <ProductList products={authorProducts} isInAuthor={true} showPagination={false}/>
                     </div>
                 </div>
             </div>
