@@ -15,6 +15,7 @@ function ProductCard({
   currentPrice,
   name,
   itemNo,
+  isInAuthor
 }) {
   const dispatch = useDispatch();
   const { cartProductsArray,products} = useSelector(state => state.cart);
@@ -39,7 +40,7 @@ function ProductCard({
             src={authorIcon}
             alt='user-avatar'
           />
-          <p className={styles.productCard__userInfo_author}>{author}</p>
+          <p className={`${styles.productCard__userInfo_author} ${isInAuthor ? styles.productCard__userInfo_inAuthor : ''}`}>{author}</p>
         </Link>
         <Verified />
       </div>
@@ -54,11 +55,19 @@ function ProductCard({
         </button>
         <div className={styles.productCard__priceInfo_buyNow}>
           <ETHIcon />
-          <p>
+          {isInAuthor ? (
+            <p className={styles.productCard__priceInAuthor}>
             {currentPrice}
             &nbsp;
             <span>ETH</span>
-          </p>
+            </p>
+          ) : (
+            <p>
+            {currentPrice}
+            &nbsp;
+            <span>ETH</span>
+            </p>
+          )}
         </div>
       </div>
     </div>
