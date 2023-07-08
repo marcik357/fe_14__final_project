@@ -5,6 +5,7 @@ import { errorReducer as error } from './errorReducer';;
 import { modalReducer as modal } from './modalReducer';
 import { tokenReducer as token } from './tokenReducer';
 import { cartReducer as cart } from './cartReducer';
+import { filterReducer as filter } from './filterReducer';
 
 export const rootReducer = combineReducers({
   products,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   error,
   modal,
   token,
-  cart
+  cart,
+  filter,
 });
