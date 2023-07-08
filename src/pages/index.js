@@ -7,3 +7,4 @@ export * from './Author';
 export * from './Blog';
 export * from './Categories';
 export * from './NotFound';
+export * from './Order';
