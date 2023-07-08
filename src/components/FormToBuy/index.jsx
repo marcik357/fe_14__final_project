@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import style from './index.module.scss';
 import { useDispatch,useSelector} from 'react-redux';
-import { buyProduct } from '../../redux/actions/cartActions';
+// import { buyProduct } from '../../redux/actions/cartActions';
 import Loader from '../Loader';
+import { Link } from 'react-router-dom';
 let token = localStorage.getItem('token');
 
 export function FormToBuy({ orderAmount }) {
   const dispatch = useDispatch();
-  const { cartProductsArray,products } = useSelector(state => state.cart);
+  const cart = useSelector(state => state.cart);
   const loading = useSelector((state) => state.loading.loading);
 
   return (!loading ?
@@ -22,13 +23,14 @@ export function FormToBuy({ orderAmount }) {
                   <span> ETH</span>
               </div>
             </div>
+            <Link className={style.btnBuy} to='/order'>
             <button
               type="button"
-              className={style.makeOrder__btnBuy}
-              onClick={()=>dispatch(buyProduct(token))}
+              // onClick={()=>dispatch(buyProduct(token))}
             >
             buy now
             </button>
+            </Link>
         </div>:<Loader/>
   );
 }
