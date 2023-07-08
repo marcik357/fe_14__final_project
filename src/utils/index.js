@@ -1,4 +1,4 @@
-import { setArtNumAction } from "../redux/actions/artNumActions";
+import { addToCart } from "../redux/actions/cartActions";
 import { setModalType } from "../redux/actions/modalActions";
 
 export async function fetchData(url) {
@@ -55,9 +55,9 @@ export async function postDataAuthorized(url, data, token) {
   }
 }
 
-export function buyNowHandler(dispatch, artNum) {
+export function buyNowHandler(dispatch, _id,token) {
+  dispatch(addToCart(_id,token)),
   dispatch(setModalType('buy'))
-  dispatch(setArtNumAction(artNum))
 }
 
 export const getDataFromLS = (key) => {
