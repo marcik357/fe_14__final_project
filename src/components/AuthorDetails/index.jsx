@@ -39,13 +39,13 @@ export function AuthorDetails({author}){
                         <h1 className={style.authorDetails__info_title}>{author.name}</h1>
                         <p className={style.authorDetails__info_id}>{author.customId}</p>
                         <div className={style.authorDetails__info_container}>
-                        <div className={style.authorDetails__info_text}>
-                            <p className={style.authorDetails__info_subtitle}>Bio</p>
-                            <p>{author.description}</p>
-                        </div>
-                        <ul className={style.authorDetails__info_links}>
-                            {socialLinks}
-                        </ul>
+                            <div className={style.authorDetails__info_text}>
+                                <p className={style.authorDetails__info_subtitle}>Bio</p>
+                                <p>{author.description}</p>
+                            </div>
+                            <ul className={style.authorDetails__info_links}>
+                                {socialLinks}
+                            </ul>
                         </div>
                     </div>
                     <div className={style.authorDetails__products}>
