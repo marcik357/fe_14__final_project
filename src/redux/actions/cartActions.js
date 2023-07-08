@@ -4,7 +4,6 @@ import { setLoadingAction } from "./loadingActions";
 import { baseUrl } from '../../utils/vars'
 import { parseLocalStorageItem } from "../../components/Cart/LocalStorage";
 
-
 export const handleError = (response, code) => {
     if (response.status === code) {
       throw new Error(response.status)

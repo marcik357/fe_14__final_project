@@ -1,5 +1,6 @@
 import { cartTypes } from "../types/cartTypes";
 import { getDataFromLS } from "../../utils";
+import { parseLocalStorageItem } from "../../components/Cart/LocalStorage";
 
 const initialState = parseLocalStorageItem('cart') || [];
 
