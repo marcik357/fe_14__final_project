@@ -16,7 +16,7 @@ function ProductList({ products, isInAuthor, showPagination = true }) {
     pageNumbers,
   } = usePagination({
     contentPerPage: 12,
-    count: products.length,
+    count: products?.length,
   });
   const scroll = () => {
     const section = document.querySelector('#products');

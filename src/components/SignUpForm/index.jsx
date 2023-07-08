@@ -20,12 +20,11 @@ export default function SignUpForm({ callback }) {
         body: JSON.stringify(values)
       })
       callback(true)
+      dispatch(setModalType('registred'))
     } catch (error) {
       dispatch(setErrorAction(error.message));
       dispatch(setModalType('error'))
     }
-    // повідомлення про реєстрацію
-    // і потрібно залогінитись
   }
 
   return (

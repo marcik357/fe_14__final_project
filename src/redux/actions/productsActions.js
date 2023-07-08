@@ -7,9 +7,9 @@ export function addProductsAction(products) {
   };
 }
 
-export function addPromoAction(promo) {
-  return {
-    type: productsTypes.ADD_PROMO,
-    payload: promo
-  };
-}
+// export function addPromoAction(promo) {
+//   return {
+//     type: productsTypes.ADD_PROMO,
+//     payload: promo
+//   };
+// }

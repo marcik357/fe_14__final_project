@@ -78,15 +78,17 @@ function SliderPromo({ products }) {
                       to={`/product/${itemNo}`}
                       className={styles.promoSlider__btns_link}
                     >
-                      View NFT
-                      <Arrow fill="#F7FBFA" />
+                      <span>
+                        View NFT
+                        <Arrow fill="#F7FBFA" />
+                      </span>
                     </Link>
                     <button
                       type='button'
                       onClick={() => buyNowHandler(dispatch, _id, token)}
                       className={styles.promoSlider__btns_buy}
                     >
-                      BUY NOW
+                      <span>BUY NOW</span>
                     </button>
                   </div>
                 </div>
