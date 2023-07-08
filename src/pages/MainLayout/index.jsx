@@ -11,7 +11,7 @@ import { getDataAction } from '../../redux/actions/getDataActions';
 import { addProductsAction } from '../../redux/actions/productsActions';
 import { parseLocalStorageItem } from '../../components/Cart/LocalStorage';
 import { baseUrl } from '../../utils/vars';
-
+import { setModalType } from '../../redux/actions/modalActions';
 
 export function MainLayout() {
   const dispatch = useDispatch()
