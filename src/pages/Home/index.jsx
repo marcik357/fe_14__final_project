@@ -29,8 +29,10 @@ export function Home() {
         {/* {promo?.length > 0 && <SliderPromo products={promo} />} */}
         {slides?.length > 0 && <SliderPromo products={slides} />}
         <div className={styles.products}>
-          <Filter />
-          {/* <ProductList products={products} /> */}
+          <div className={styles.products__container}>
+            <Filter />
+            {/* <ProductList products={products} /> */}
+          </div>
         </div>
       </>
     ) : (
