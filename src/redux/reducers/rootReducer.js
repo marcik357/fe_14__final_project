@@ -15,6 +15,6 @@ export const rootReducer = combineReducers({
   modal,
   cart,
   token,
-  partners,
   filter,
+  partners,
 });
