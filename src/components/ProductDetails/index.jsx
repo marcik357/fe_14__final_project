@@ -4,13 +4,14 @@ import { buyNowHandler } from '../../utils';
 import style from './productDetails.module.scss';
 import { ETHIcon } from '../Icons';
 import { Link } from 'react-router-dom';
-import { addProductNftToCart } from '../../redux/actions/cartActions';
+import { addToCart } from '../../redux/actions/cartActions';
 
 
 export default function ProductDetails({ _id, itemNo, name, currentPrice, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
   const dispatch = useDispatch();
-  const { cartProductsArray,products } = useSelector(state => state.cart);
-  const { token } = useSelector(state => state.token)
+  const { products } = useSelector(state => state.cart);
+  const { token } = useSelector(state => state.token);
+
   return (
     <div className={style.productDetails}>
       <div className={style.productDetails__imgCont}>
@@ -56,7 +57,8 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
           <h3 className={style.productDetails__descr_title}>Details:</h3>
           <p className={style.productDetails__descr_text}>{details}</p>
         </div>
-        <button className={style.productDetails__actions_mainBtn} onClick={() => (buyNowHandler(dispatch, _id),addProductNftToCart(dispatch,cartProductsArray,products,_id,token,itemNo))}>Buy now</button>
+        <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, _id, token)
+          }>Buy now</button>
         <p className={style.productDetails__actions_text}>We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities. Join the millions of creators, collectors, and curators who are on this journey with you.</p>
       </div>
     </div>
