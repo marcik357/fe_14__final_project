@@ -2,154 +2,160 @@ import { cartTypes } from "../types/cartTypes";
 import { setErrorAction } from "./errorActions";
 import { setLoadingAction } from "./loadingActions";
 import { baseUrl } from '../../utils/vars'
-import { fetchData, getDataFromLS } from "../../utils";
+import { parseLocalStorageItem } from "../../components/Cart/LocalStorage";
 
-export function setCart(cart) {
-  return {
-    type: cartTypes.SET_CART,
-    payload: cart || []
+
+export const handleError = (response, code) => {
+    if (response.status === code) {
+      throw new Error(response.status)
+    }
   }
-}
-
-export function createCartFromLS(token, cartFromLS) {
-  return async function (dispatch) {
+export async function fetchData(url, reqBody) {
     try {
-      const cart = await fetchData(`${baseUrl}cart`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ products: cartFromLS })
-      });
-      dispatch(setCart(cart));
+      const response = await fetch(url, reqBody);
+      if (!response.ok) {
+        handleError(response, 401);
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+      return await response.json();
     } catch (error) {
-      dispatch(setErrorAction(error));
+      throw new Error(error.message);
     }
   }
-}
+  // export async function serverCart(token,baseUrl) {
+  //   const cart = await fetchData(`${baseUrl}cart`,
+  //   {headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'}});
+  //   return cart
+  // }
 
-async function addToCartServer(id, token, dispatch) {
-  const newCart = await fetchData(`${baseUrl}cart/${id}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
-  });
-  dispatch(setCart(newCart));
-}
-
-function addToCartLocal(id, dispatch) {
-  localStorage.setItem('cart', JSON.stringify(
-    [...getDataFromLS('cart'),
-    {
-      product: id,
-      cartQuantity: 1,
-    }]
-  ));
-  dispatch(setCart({ products: getDataFromLS('cart') }));
-}
-
-export function addToCart(id, token) {
-  return async function (dispatch) {
-    try {
-      token
-        ? addToCartServer(id, token, dispatch)
-        : addToCartLocal(id, dispatch)
+export function setCart(cart){
+    return {
+        type:cartTypes.CHANGE__CART,
+        payload:cart || [],
     }
-    catch (error) {
-      dispatch(setErrorAction(error));
-    }
-  }
 }
-
-async function changeQuantityServer(cart, token, newCart, dispatch) {
-  await fetchData(`${baseUrl}cart`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ products: newCart })
-  });
-  dispatch(setCart({ ...cart, products: newCart }))
-}
-
-function changeQuantityLocal(newCart, dispatch) {
-  localStorage.setItem('cart', JSON.stringify(newCart));
-  dispatch(setCart({ products: newCart }));
-}
-
-export function changeQuantity(cart, id, token, plus) {
-  return async function (dispatch) {
-    try {
-      const newCart = cart?.products.map(({ product, cartQuantity }) => {
-        if ((product._id || product) === id) return {
-          product: product,
-          cartQuantity: plus ? cartQuantity + 1 : cartQuantity - 1
-        }
-        return { product: product, cartQuantity: cartQuantity }
-      });
-      token
-        ? changeQuantityServer(cart, token, newCart, dispatch)
-        : changeQuantityLocal(newCart, dispatch)
-    }
-    catch (error) {
-      dispatch(setErrorAction(error));
-    }
-  }
-}
-
-async function deleteFromCartServer(cart, id, token, newCart, dispatch) {
-  await fetchData(`${baseUrl}cart/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  });
-  dispatch(setCart({ ...cart, products: newCart }))
-}
-
-function deleteFromCartLocal(newCart, dispatch) {
-  localStorage.setItem('cart', JSON.stringify(newCart))
-  dispatch(setCart({ products: newCart }))
-}
-
-export function deleteFromCart(cart, id, token) {
-  return async function (dispatch) {
-    try {
-      const newCart = cart?.products.filter(({ product }) => (product._id || product) !== id);
-      token
-        ? deleteFromCartServer(cart, id, token, newCart, dispatch)
-        : deleteFromCartLocal(newCart, dispatch)
-    }
-    catch (error) {
-      dispatch(setErrorAction(error));
-    }
-  }
-}
-
-
-export function buyProduct(token) {
-  return async function (dispatch) {
-    try {
-      dispatch(setLoadingAction(true));
-      const sendFetch = await fetchData(`${baseUrl}cart`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
+export function getDataLS(token,cart){
+  return async function(dispatch){
+    try{
+      const newCart =  await fetchData(`${baseUrl}cart`,{
+        method:"POST",
+        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+        body:JSON.stringify({products:cart})
       })
-      // dispatch(setCart());
-      dispatch(setLoadingAction(false));
-      dispatch(setErrorAction(null));
+    dispatch(setCart(newCart))
+    localStorage.setItem('cart','[]')
     }
-    catch (error) {
-      dispatch(setLoadingAction(false));
-      dispatch(setErrorAction(error));
+    catch(error){
+      dispatch(setErrorAction(error))
     }
   }
 }
+export function reloadPageSV(token){
+    return async function(dispatch){
+      try{
+        const cart = await fetchData(`${baseUrl}cart`,
+        {headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'}});
+        dispatch(setCart(cart == null ?[]:cart))
+    }
+    catch(error){
+      dispatch(setErrorAction(error))
+    }
+  }
+ }
+export function addToCart(id,token){
+   return async function(dispatch){
+    try{
+      if(token){
+        const cart = await fetchData(`${baseUrl}cart/${id}`,{
+            method:"PUT",
+            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+          })
+          dispatch(setCart(cart))
+    }
+    else{
+        const cart = [...parseLocalStorageItem('cart'),{ product:id,cartQuantity:1}]
+        localStorage.setItem("cart",JSON.stringify(cart));
+        dispatch(setCart(cart))
+    }
+    }
+    catch(error){
+      dispatch(setErrorAction(error))
+    }
+   }
+ }
+
+export function changeQuantityProduct(id,token,cart,flag) {
+  return async function(dispatch){
+    try{
+    if(token){
+     const newQuantity = cart?.products.map(({product,cartQuantity}) => {
+      if(product._id === id){
+        flag ? cartQuantity+=1 : cartQuantity-=1
+        return {product:product._id, cartQuantity:cartQuantity }
+      }
+      return {product:product._id, cartQuantity:cartQuantity }
+     });
+     const newCart =  await fetchData(`${baseUrl}cart`,{
+                        method:"PUT",
+                        headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+                        body:JSON.stringify({products:newQuantity})
+                      })
+                    dispatch(setCart(newCart))
+    }
+    else{
+      const newCart =parseLocalStorageItem('cart').map(({product,cartQuantity})=>{
+        if(product === id) {
+          flag ? cartQuantity +=1 : cartQuantity-=1
+          return {product:product, cartQuantity:cartQuantity}
+        }
+        return {product:product, cartQuantity:cartQuantity}
+      })
+        localStorage.setItem("cart",JSON.stringify(newCart));
+        dispatch(setCart(newCart))
+      }
+    }
+      catch(error){
+        dispatch(setErrorAction(error))
+      }
+  }
+}
+
+export function buyProduct(token){
+   return async function(dispatch){
+    try{
+        dispatch(setLoadingAction(true));
+        const sendFetch = await fetch(`${baseUrl}cart`,{
+            method:"DELETE",
+            headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
+          })
+          dispatch(deleteAllCart());
+          dispatch(setLoadingAction(false));
+          dispatch(setErrorAction(null));
+    }
+    catch(error){
+        dispatch(setLoadingAction(false));
+        dispatch(setErrorAction(error));
+    }
+    }
+}
+
+export async function addProductNftToCart(dispatch,cartProductsArray,products,idProduct,token,itemNo){
+    try{
+        dispatch(setLoadingAction(true));
+        const getFetch = await fetch(`${baseUrl}products/${itemNo}`)
+        const response = await getFetch.json();
+        token ?
+        ( cartProductsArray.length > 0 && products.length > 0 ?(
+          dispatch(addNewProductToCart(idProduct,token))
+        ):dispatch(createCartOnTheServerFirst(idProduct,token)))
+        :dispatch(addToCartQuantity(idProduct));
+        dispatch(addToCartProduct(response));
+        dispatch(setLoadingAction(false));
+        dispatch(setErrorAction(null));
+    }
+    catch(error){
+        dispatch(setLoadingAction(false));
+        dispatch(setErrorAction(error));
+    }
+    }

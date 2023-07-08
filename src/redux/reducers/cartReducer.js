@@ -1,16 +1,13 @@
 import { cartTypes } from "../types/cartTypes";
 import { getDataFromLS } from "../../utils";
 
-const initialState = {
-  cart: { products: getDataFromLS('cart') },
-}
+const initialState = parseLocalStorageItem('cart') || [];
 
-export function cartReducer(state = initialState, action) {
-  switch (action.type) {
-    case cartTypes.SET_CART:
-      return { ...state, cart: action.payload };
-
-    default:
-      return state;
-  }
+export function cartReducer(state=initialState, action) {
+    switch (action.type) {
+        case cartTypes.CHANGE__CART:
+           return action.payload
+        default:
+           return state;
+    }
 }

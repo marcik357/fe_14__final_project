@@ -6,6 +6,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
+import { addToCart } from '../../redux/actions/cartActions';
 
 function ProductCard({
   _id,
@@ -17,7 +18,7 @@ function ProductCard({
   itemNo,
 }) {
   const dispatch = useDispatch();
-  const { cartProductsArray,products} = useSelector(state => state.cart);
+  const cart = useSelector(state => state.cart);
   const { token } = useSelector(state => state.token);
 
   return (
@@ -48,7 +49,7 @@ function ProductCard({
         <button
           className={styles.productCard__priceInfo_button}
           type='button'
-          onClick={() => buyNowHandler(dispatch, _id, token)}
+          onClick={() => buyNowHandler(dispatch, _id,token)}
         >
           Buy now
         </button>

@@ -21,8 +21,8 @@ export async function fetchData(url, reqBody) {
   }
 }
 
-export function buyNowHandler(dispatch, id, token) {
-  dispatch(addToCart(id, token))
+export function buyNowHandler(dispatch, _id,token) {
+  dispatch(addToCart(_id,token)),
   dispatch(setModalType('buy'))
 }
 

@@ -1,82 +1,73 @@
 import PropTypes from 'prop-types';
 import style from './index.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeQuantity, deleteFromCart } from '../../redux/actions/cartActions';
+import { deleteCart,changeQuantityProduct } from '../../redux/actions/cartActions';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
-import { useState } from 'react';
+let token = localStorage.getItem('token');
+let flag;
 
-export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuantity }) {
-  const dispatch = useDispatch();
+export function CartList(props) {
+    const dispatch = useDispatch();
+    const { imageUrls, name, currentPrice, _id ,itemNo, cartQuantity } = props;
+    const cart = useSelector(state => state.cart);
+    const { token } = useSelector(state => state.token);
+    const { products } = useSelector(state => state.products);
+    const loading = useSelector((state) => state.loading.loading);
+    let currentQuantity = token ? cartQuantity :((cart?.find(item => item.product === _id)).cartQuantity);
+  
 
-  const token = useSelector((state) => state.token.token);
-  const loading = useSelector((state) => state.loading.loading);
-  const cart = useSelector((state) => state.cart.cart);
-
-  const [amount, setAmount] = useState(cartQuantity)
-
-  async function increase(plus, e) {
-    try {
-      e.target.disabled = true;
-      const disabling = setTimeout(() => {
-        e.target.disabled = null;
-        clearTimeout(disabling);
-      }, 1000);
-      dispatch(changeQuantity(cart, _id, token, plus));
-      plus
-        ? setAmount(amount + 1)
-        : setAmount(amount - 1)
-    } catch (error) {
-      dispatch(setErrorAction(error));
-    }
-  }
-
-  return (
-    !loading
-      ? <div className={style.cartListItem}>
-        <Link to={`/product/${itemNo}`} className={style.cartListItem__icon}>
-          <img
-            className={style.cartListItem__icon__img}
-            src={imageUrls}
-            alt={name}
-          />
+    return (!loading ?
+    <div className={style.cartListItem}>
+      <div className={style.cartListItem__icon}>
+        <Link to={`/product/${itemNo}`}>
+        <img
+          className={style.cartListItem__icon__img}
+          src={imageUrls}
+          alt={name}
+        />
         </Link>
-        <div data-price={currentPrice} className={style.cartListItem__description}>
-          <Link to={`/product/${itemNo}`}>
-            <p className={style.description__title}>{name}</p>
-          </Link>
-          <p>Price:
-            <span className={style.description__currency}>
-              &#160;{currentPrice} ETH
-            </span>
-          </p>
-        </div>
-        <div className={style.cartListItem__quantity}>
-          <button
-            type="submit"
-            className={style.quantity__btn}
-            onClick={amount > 1 ? (e) => increase(false, e) : null}
-          > -
-          </button>
-          <div className={style.quantity__value}>
-            {amount}
-          </div>
-          <button
-            type="button"
-            className={style.quantity__btn}
-            onClick={(e) => increase(true, e)}
-          > +
-          </button>
-        </div>
+      </div>
+      <div className={style.cartListItem__description}>
+        <Link to={`/product/${itemNo}`}>
+        <p className={style.description__title}>{name}</p>
+        </Link>
+        <p>Price:
+        <span className={style.description__currency}>
+        &#160;{currentPrice} ETH
+        </span>
+        </p>
+      </div>
+      <div
+        className={style.cartListItem__quantity}
+      >
+        <button
+          type="submit"
+          className={style.quantity__btn}
+          onClick={currentQuantity > 1 ?  ()=>(dispatch(changeQuantityProduct(_id,token,cart,false))): null}
+        > -
+        </button>
+       <div
+         className={style.quantity__value}
+       >
+      {cart?.length > 0 || cart?.products.length >0 ? currentQuantity: 0}
+       </div>
         <button
           type="button"
-          className={style.cartListItem__btnDelete}
-          onClick={() => dispatch(deleteFromCart(cart, _id, token))}
-        >
-          Delete
+          className={style.quantity__btn}
+          onClick={()=> dispatch(changeQuantityProduct(_id,token,cart,true))}
+        > +
         </button>
       </div>
-      : <Loader />
+      <button
+        type="submit"
+        className={style.cartListItem__btnDelete}
+        onClick={()=>(dispatch(deleteCart(_id,token)))}
+      >
+        &times;
+      </button>
+    </div>
+    : <Loader/>
   );
 }
 

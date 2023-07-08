@@ -7,17 +7,13 @@
   margin: 20px 0;
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: -1px 1px 10px 10px rgba(0, 0, 0, .13);
+  color: #fff;
+  box-shadow: -1px 1px 10px 10px rgba(185, 183, 183, .13);
 
   &__slogan {
     padding-bottom: 60px;
-    color: #202025;
     text-align: center;
     text-transform: uppercase;
-
-    &__text {
-      color: #dd9b09;
-    }
   }
 
   &__block {
@@ -28,34 +24,79 @@
     padding-bottom: 20px;
     border-bottom: 1px solid #202025;
   }
+}
 
-  &__btnBuy {
+.btnBuy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin: 30px auto 0;
+  padding: .7rem 2rem;
+  transition: color .3s;
+  border: 2px solid #202025;
+  border-radius: 4px;
+  background: transparent;
+  color: #202025;
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .17em;
+  line-height: 24px;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 13;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    width: max-content;
+  }
+
+  &::after {
+    position: absolute;
+    top: 100%;
     width: 50%;
-    margin: 20px 0 30px;
-    padding: 20px;
-    padding: 1.2em 2.8em;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    border: 2px solid #202025;
-    border-radius: 12px;
-    background-color: #202025;
-    color: #dd9b09;
-    font-weight: 400;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    cursor: pointer;
+    height: 50%;
+    transition: all .3s;
+    border-radius: 50%;
+    content: '';
+    z-index: -1;
+  }
 
-    &:hover {
-      border-color: #dd9b09;
-      color: #202025;
-      box-shadow: 0 0 40px 40px #dd9b09 inset;
+  &:hover {
+    &::after {
+      top: -50%;
+      width: 200%;
+      height: 200%;
     }
+  }
+
+  &::before {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-color: #f7fbfa;
+    content: '';
+    z-index: -1;
+  }
+
+  &::after {
+    background-color: #202025;
+    z-index: -1;
+  }
+
+  &:hover {
+    color: #f7fbfa;
   }
 }
 
 .block {
   &__title {
-    color: #dd9b09;
+    color: #fff;
     font-size: 14px;
     text-transform: uppercase;
   }
@@ -143,18 +184,19 @@
     width: 70%;
     padding: 40px 30px;
 
-    &__btnBuy {
-      margin: 35px 0 20px;
+    &__slogan {
+      padding-bottom: 60px;
+      font-size: 20px;
     }
   }
 
   .block {
     &__title {
-      font-size: 24px;
+      font-size: 17px;
     }
 
     &__summeryPriceValue {
-      font-size: 23px;
+      font-size: 18px;
     }
   }
 }

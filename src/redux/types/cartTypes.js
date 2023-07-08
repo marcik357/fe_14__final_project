@@ -1,3 +1,5 @@
 export const cartTypes = {
-  SET_CART: 'CART - SET_CART',
+    LOAD_CART:'Cart - LOAD_CART',
+    CHANGE__CART:'Cart -CHANGE__CART',
+    DELETE_CART:'Cart - DELETE_CART',
 }
