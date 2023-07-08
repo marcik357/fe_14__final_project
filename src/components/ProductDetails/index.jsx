@@ -18,7 +18,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
         <div className={style.productDetails__links}>
           <div className={style.productDetails__userInfo}>
             <p className={style.productDetails__userInfo_text}>Created by:</p>
-            <Link to={'/'} className={style.productDetails__userInfo_container}>
+            <Link to={`/author/${author}`} className={style.productDetails__userInfo_container}>
               <img className={style.productDetails__userInfo_userIcon} src={authorIcon} alt="user-avatar" />
               <p className={style.productDetails__userInfo_userLink}>{author}</p>
             </Link>

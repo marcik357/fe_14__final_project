@@ -134,6 +134,10 @@
     }
   }
 
+  &__priceInAuthor {
+    color: #dbff73 !important;
+  }
+
   &__priceInfo {
     display: flex;
     justify-content: space-between;
@@ -249,6 +253,10 @@
 
       &_author {
         font-size: 12px;
+      }
+
+      &_inAuthor {
+        color: #f7fbfa;
       }
     }
 

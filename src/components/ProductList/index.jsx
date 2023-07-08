@@ -4,7 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products, isInAuthor }) {
+function ProductList({ products, isInAuthor, showPagination = true }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -81,7 +81,7 @@ function ProductList({ products, isInAuthor }) {
   };
 
   return (
-    <div id='products' className={`${styles.products} ${isInAuthor ? styles.productCardInAuthor : ''}`}>
+    <div id='products' className={`${styles.products} ${isInAuthor ? styles.productListInAuthor : ''}`}>
       <div className={styles.products__title}>
         {isInAuthor ? (
           null
@@ -94,6 +94,7 @@ function ProductList({ products, isInAuthor }) {
           <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}/>
         ))}
       </div>
+      {showPagination && (
       <div className='pagination'>
         {page === 1 ? null : (
           <button onClick={(prevPage, scroll)} className='page'>
@@ -107,6 +108,7 @@ function ProductList({ products, isInAuthor }) {
           </button>
         )}
       </div>
+      )}
     </div>
   );
 }
