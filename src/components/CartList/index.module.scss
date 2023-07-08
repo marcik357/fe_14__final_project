@@ -25,34 +25,26 @@
 
   &__quantity {
     display: flex;
-    flex-basis: 40%;
+    flex-basis: 20%;
     align-items: center;
-    justify-content: space-around;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    gap: 25px;
   }
 
   &__btnDelete {
-    flex-basis: 50%;
-    width: 160px;
-    padding: 15px 0;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    border: 2px solid #dd9b09;
-    border-radius: 5px;
-    background: none;
-    color: #dd9b09;
-    font-size: 12px;
-    text-align: center;
-    text-transform: uppercase;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 3px 7px;
+    border: 2px solid #fff;
+    border-radius: 50%;
     cursor: pointer;
-
-    &:hover {
-      border-color: #dd9b09;
-      color: #202025;
-      box-shadow: 0 0 40px 40px #dd9b09 inset;
-    }
   }
 
   &__description {
-    flex-basis: 50%;
+    flex-basis: 90%;
   }
 }
 
@@ -63,8 +55,9 @@
   gap: 7px;
 
   &__title {
+    padding-bottom: 10px;
     color: #fff;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -78,45 +71,35 @@
   &__btn {
     padding: 5px 10px;
     border-radius: 50%;
-    background: #dd9b09;
+    background: #fff;
     color: #202025;
     cursor: pointer;
   }
 
   &__value {
-    color: #dd9b09;
+    color: #fff;
   }
 }
 
 @media (min-width: 420px) {
   .cartListItem {
+    flex-wrap: nowrap;
+
     &__description {
-      flex-basis: 40%;
+      flex-basis: 80%;
     }
 
     &__quantity {
-      flex-basis: 40%;
-    }
-
-    &__btnDelete {
-      flex-basis: 50%;
+      flex-basis: 30%;
+      bottom: 20px;
     }
   }
 }
 
 @media (min-width: 500px) {
   .cartListItem {
-    &__description {
-      flex-basis: 40%;
-    }
-
     &__quantity {
-      flex-basis: 40%;
-    }
-
-    &__btnDelete {
-      flex-basis: 45%;
-      font-size: 15px;
+      flex-basis: 20%;
     }
   }
 
@@ -134,22 +117,20 @@
 
 @media (min-width: 650px) {
   .cartListItem {
-    &__description {
-      flex-basis: 20%;
-    }
-
     &__quantity {
-      flex-basis: 20%;
-    }
-
-    &__btnDelete {
-      flex-basis: 30%;
+      flex-basis: 25%;
+      font-size: 20px;
+      gap: 30px;
     }
   }
 
   .description {
     &__title {
-      font-size: 18px;
+      font-size: 25px;
+    }
+
+    &__currency {
+      font-size: 20px;
     }
   }
 }
@@ -161,26 +142,22 @@
 
     &__description {
       display: block;
-      flex-basis: 20%;
-    }
-
-    &__btnDelete {
-      flex-basis: 30%;
     }
 
     &__quantity {
-      justify-content: space-between;
-      font-size: 18px;
+      font-size: 16px;
+      gap: 20px;
     }
   }
 
   .description {
     &__title {
       padding-bottom: 12px;
+      font-size: 20px;
     }
 
     &__currency {
-      font-size: 17px;
+      font-size: 15px;
     }
   }
 }
@@ -191,11 +168,10 @@
 
     &__description {
       display: block;
-      flex-basis: 20%;
     }
 
-    &__btnDelete {
-      flex-basis: 20%;
+    &__quantity {
+      gap: 30px;
     }
   }
 
