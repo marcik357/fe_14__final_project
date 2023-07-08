@@ -23,6 +23,8 @@ export function AuthorDetails({author}){
         );
     });
 
+    const productCount = authorProducts.length;
+
     return (
         <div className={style.authorDetails}>
             <div className={style.authorDetails__container}>
@@ -50,7 +52,10 @@ export function AuthorDetails({author}){
                     </div>
                     <div className={style.authorDetails__products}>
                         <div className={style.authorDetails__products_container}>
-                            <p className={style.authorDetails__products_title}>Created</p>
+                            <p className={style.authorDetails__products_title}>
+                                Created
+                                <span className={style.authorDetails__products_counter}>{productCount}</span>
+                            </p>
                         </div>
                         <ProductList products={authorProducts} isInAuthor={true} showPagination={false}/>
                     </div>
