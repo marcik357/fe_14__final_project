@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
 import { setQueryStringAction } from '../../redux/actions/filterActions';
+import ProductList from '../ProductList';
 
 
 function Filter() {
@@ -82,7 +83,7 @@ function Filter() {
   //       console.error(error);
   //     }
   //   };
-  
+
   //   fetchProducts();
   // }, []);
   console.log(products);
@@ -112,7 +113,7 @@ function Filter() {
     getFiltersByType('categories');
   }, []);
 
-  
+
   // Функція для відображення товарів згідно обраних фільтрів
   const applyFilters = () => {
     // Запит до API з використанням queryString для фільтрації товарів
@@ -143,13 +144,13 @@ function Filter() {
 
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
-    
+
       if (checked) {
         updatedFilters[filterType] = [...updatedFilters[filterType], name];
       } else {
         updatedFilters[filterType] = updatedFilters[filterType].filter((filter) => filter !== name);
       }
-    
+
       return updatedFilters;
     });
     setCheckboxValues((prevValues) => ({
@@ -174,19 +175,19 @@ function Filter() {
   const applyPriceFilter = () => {
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
-  
+
       if (minPrice === '') {
         updatedFilters.minPrice = '0';
       } else {
         updatedFilters.minPrice = minPrice;
       }
-  
+
       if (maxPrice === '') {
         updatedFilters.maxPrice = '100000';
       } else {
         updatedFilters.maxPrice = maxPrice;
       }
-  
+
       return updatedFilters;
     });
   };
@@ -212,7 +213,7 @@ function Filter() {
     if (filters.minPrice !== '') {
       newQueryString += `&minPrice=${filters.minPrice}`;
     }
-  
+
     if (filters.maxPrice !== '') {
       newQueryString += `&maxPrice=${filters.maxPrice}`;
     }
@@ -263,7 +264,7 @@ function Filter() {
     if (minPriceValue === '' || maxPriceValue === '') {
       return true;
     }
-  
+
     return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
   };
   const handleMinPriceChange = (e) => {
@@ -271,13 +272,13 @@ function Filter() {
     setMinPrice(value);
     setIsApplyButtonDisabled(!isValidPriceInput(value, maxPrice));
   };
-  
+
   const handleMaxPriceChange = (e) => {
     const { value } = e.target;
     setMaxPrice(value);
     setIsApplyButtonDisabled(!isValidPriceInput(minPrice, value));
   };
-  
+
 
   return (
     <div className={styles.filter}>
@@ -335,11 +336,10 @@ function Filter() {
               </div>
             </div>
             <section className={styles.filter__contentList}>
-              {products.productsQuantity === 0 ? (
-                <p className={styles.filter__contentNoItems}>No items with such parameters</p>
-              ) : (
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ea ipsam ab mollitia quo sunt voluptatibus quam dignissimos eaque, optio molestias atque amet harum impedit quasi commodi error cupiditate aliquid?</p>
-              )}
+              {products.productsQuantity === 0
+                ? <p className={styles.filter__contentNoItems}>No items with such parameters</p>
+                : <ProductList products={products.products} />
+              }
             </section>
           </div>
         </div>

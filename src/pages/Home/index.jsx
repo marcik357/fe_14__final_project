@@ -30,7 +30,7 @@ export function Home() {
         {slides?.length > 0 && <SliderPromo products={slides} />}
         <div className={styles.products}>
           <Filter />
-          <ProductList products={products} />
+          {/* <ProductList products={products} /> */}
         </div>
       </>
     ) : (
