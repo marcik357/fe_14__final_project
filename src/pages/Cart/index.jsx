@@ -14,8 +14,7 @@ export function Cart() {
   const { products } = useSelector(state=>state.products);
   const { token } = useSelector(state => state.token);
   const loading = useSelector((state) => state.loading.loading);
-  const cart = useSelector((state) => state.cart.cart);
-  const products = useSelector((state) => state.products.products);
+ const dispatch =useDispatch();
 
   useEffect(() => {
     dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
