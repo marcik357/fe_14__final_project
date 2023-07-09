@@ -82,19 +82,20 @@ option {
   }
 
   &__sidebarBckg {
-    position: absolute;
+    position: fixed;
     transition: opacity .3s, visibility .3s;
     background: rgba(0, 0, 0, .6);
     visibility: hidden;
     inset: 0;
+    z-index: 1;
   }
 
   &__sidebarWrapper {
     position: absolute;
-    top: 0;
+    top: 80px;
     left: 0;
     width: 300px;
-    height: 100%;
+    height: calc(100% - 80px);
     transform: translateX(-100%);
     transition: transform .5s;
     background-color: #fff;
@@ -237,10 +238,12 @@ option {
   }
 
   &__contentList {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    position: relative;
+    z-index: 0;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // width: 100%;
   }
 
   &__contentNoItems {
@@ -273,13 +276,10 @@ option {
       padding: 0 40px;
     }
 
-    &__wrapper {
-      margin-top: 64px;
-    }
-
     &__content {
       display: flex;
       align-items: flex-start;
+      margin-top: 30px;
       gap: 10px;
     }
 
@@ -295,6 +295,7 @@ option {
 
     &__sidebarWrapper.open {
       position: relative;
+      top: inherit;
       transform: translateX(0);
       transition: none;
       overflow-y: auto;

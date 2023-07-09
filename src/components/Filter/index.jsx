@@ -23,7 +23,7 @@ function Filter() {
       isOpen: false,
     });
   const [isOpen, setIsOpen] = useState(selectedFilters.isOpen);
-  const [sortBy, setSortBy] = useState(selectedFilters.sortBy);
+  // const [sortBy, setSortBy] = useState(selectedFilters.sortBy);
   const [minPrice, setMinPrice] = useState(selectedFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(selectedFilters.maxPrice);
   const [authorFilters, setAuthorFilters] = useState([]);
@@ -157,6 +157,8 @@ function Filter() {
       maxPrice: '',
       sortBy: '',
     });
+    setMinPrice('');
+    setMaxPrice('');
     setIsApplyButtonDisabled(false);
   };
 
@@ -186,7 +188,7 @@ function Filter() {
   const sortByPrice = (e) => {
     setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
     localStorage.setItem('queryString', JSON.stringify(selectedFilters));
-    setSortBy(e.target.value)
+    // setSortBy(e.target.value)
   }
 
   return (
@@ -195,15 +197,15 @@ function Filter() {
         <div className={styles.filter__wrapper}>
           <div className={styles.filter__nav}>
             <button className={styles.filter__openBtn} type="button" onClick={toggleModal}>Filters</button>
-            <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
+            <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={selectedFilters.sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
               <option disabled hidden value="Sort By">Sort By</option>
               <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
               <option value="-currentPrice" className={styles.filter__sortValue}>Highest price</option>
             </select>
           </div>
           <div className={styles.filter__content}>
-            <div className={`${styles.filter__sidebarBckg} ${isOpen ? styles.open : ''}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
-              <div className={`${styles.filter__sidebarWrapper} ${isOpen ? styles.open : ''}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+            <div className={`${styles.filter__sidebarBckg} ${isOpen && styles.open}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+              <div className={`${styles.filter__sidebarWrapper} ${isOpen && styles.open}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
                 <div className={styles.filter__sidebarHeader}>
                   <button className={styles.filter__sidebarCloseBtn} type="button" onClick={toggleModal}>
                     <LeftChevron />
