@@ -5,11 +5,11 @@ import style from './cartAmount.module.scss';
 
 export function CartAmount() {
   const cart = useSelector((state) => state.cart.cart)
-console.log(cart)
+
   const cartAmount = cart.products.reduce((total, product) => {
-	return total + product.cartQuantity
+    return total + product.cartQuantity
   }, 0)
-  console.log(cartAmount)
+
   useEffect(() => {
 	console.log('Зміни в кошику', cart);
 

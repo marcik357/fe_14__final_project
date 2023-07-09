@@ -3,9 +3,9 @@ import { CartAmount } from '../CartAmount';
 
 const menuData = [
   {
-    type: 'store',
-    page: '/categories',
-    text: 'Store',
+    type: 'Discover',
+    page: '/discover',
+    text: 'Discover',
     classHover: 'storeHover'
   },
   {
