@@ -1,3 +1,48 @@
 .products {
   display: flex;
+
+  &__filter {
+    padding: 32px 10px;
+
+    &_tabs {
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 1px solid #e1e2e2;
+    }
+
+    &_tab {
+      padding: 15px 20px;
+      border: 1px solid #fff0;
+      font-family: Inter;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 32px;
+      list-style: none;
+      cursor: pointer;
+
+      &:hover {
+        border-bottom: 1px solid #686a6c;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .products {
+    overflow-x: hidden;
+
+    &__filter {
+      padding: 32px 0;
+
+      &_tabs {
+        justify-content: start;
+        margin-left: 50px;
+        column-gap: 80px;
+      }
+
+      &_tab {
+        padding: 32px 64px;
+      }
+    }
+  }
 }

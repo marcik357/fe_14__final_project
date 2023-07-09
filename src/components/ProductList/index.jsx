@@ -4,7 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products }) {
+function ProductList({ products, listName }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -20,7 +20,7 @@ function ProductList({ products }) {
   });
   const scroll = () => {
     const section = document.querySelector('#products');
-    section.scrollIntoView({ behavior: 'smooth', top: 740 });
+    section.scrollIntoView({ behavior: 'smooth' });
   };
   const renderPageNumbers = () => {
     const ellipsis = '...';
@@ -83,7 +83,7 @@ function ProductList({ products }) {
   return (
     <div id='products' className={styles.products}>
       <div className={styles.products__title}>
-        <h2>NFTs</h2>
+        <h2>{listName}</h2>
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
