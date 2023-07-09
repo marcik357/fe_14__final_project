@@ -4,7 +4,12 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products, listName }) {
+function ProductList({
+  products,
+  listName,
+  isInAuthor,
+  showPagination = true,
+}) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -16,7 +21,7 @@ function ProductList({ products, listName }) {
     pageNumbers,
   } = usePagination({
     contentPerPage: 12,
-    count: products.length,
+    count: products?.length,
   });
   const scroll = () => {
     const section = document.querySelector('#products');
@@ -81,28 +86,35 @@ function ProductList({ products, listName }) {
   };
 
   return (
-    <div id='products' className={styles.products}>
+    <div
+      id='products'
+      className={`${styles.products} ${
+        isInAuthor ? styles.productListInAuthor : ''
+      }`}
+    >
       <div className={styles.products__title}>
-        <h2>{listName}</h2>
+        {isInAuthor ? null : <h2>{listName}</h2>}
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product._id} />
+          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor} />
         ))}
       </div>
-      <div className='pagination'>
-        {page === 1 ? null : (
-          <button onClick={(prevPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-        {renderPageNumbers()}
-        {totalPages === page ? null : (
-          <button onClick={(nextPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-      </div>
+      {showPagination && (
+        <div className='pagination'>
+          {page === 1 ? null : (
+            <button onClick={(prevPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+          {renderPageNumbers()}
+          {totalPages === page ? null : (
+            <button onClick={(nextPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

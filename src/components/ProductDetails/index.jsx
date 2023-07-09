@@ -7,9 +7,8 @@ import { Link } from 'react-router-dom';
 // import { addProductNftToCart } from '../../redux/actions/cartActions';
 
 
-export default function ProductDetails({ _id, itemNo, name, currentPrice, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
+export default function ProductDetails({ _id, itemNo, name, currentPrice, quantity, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
   const dispatch = useDispatch();
-  const { cartProductsArray, products } = useSelector(state => state.cart);
   const { token } = useSelector(state => state.token)
   return (
     <div className={style.productDetails}>
@@ -18,7 +17,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
         <div className={style.productDetails__links}>
           <div className={style.productDetails__userInfo}>
             <p className={style.productDetails__userInfo_text}>Created by:</p>
-            <Link to={'/'} className={style.productDetails__userInfo_container}>
+            <Link to={`/author/${author}`} className={style.productDetails__userInfo_container}>
               <img className={style.productDetails__userInfo_userIcon} src={authorIcon} alt="user-avatar" />
               <p className={style.productDetails__userInfo_userLink}>{author}</p>
             </Link>
@@ -42,7 +41,6 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
       <div className={style.productDetails__actions}>
         <div className={style.productDetails__actions_header}>
           <h2 className={style.productDetails__actions_title}>{name}</h2>
-          {/* <button className={style.productDetails__buttons_fav}>♡</button> */}
         </div>
         <div className={style.productDetails__actions_price}>
           <p>Price</p>

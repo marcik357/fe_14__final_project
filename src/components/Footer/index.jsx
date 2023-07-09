@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Logo, Search, Basket, LogIn, Instagram } from '../Icons';
+import { Logo } from '../Icons';
+import { useSelector } from 'react-redux';
 import style from './footer.module.scss';
 import socialData from '../SocialLink/socialData';
 import SocialLink from '../SocialLink';
@@ -8,8 +9,17 @@ import menuData from '../MenuLink/menuData';
 import MenuLink from '../MenuLink';
 
 function Footer() {
-  // логінізація тимчасова!!!!!
-  const [isLogin, setIsLogin] = useState(false);
+  // логінізація
+  const isToken = useSelector(state => state.token.token !== null)
+  const [isLogin, setIsLogin] = useState(isToken);
+
+  useEffect(() => {
+    if (isToken) {
+      setIsLogin(true);
+   } else {
+      setIsLogin(false);
+   }
+  }, [isToken])
 
   return (
     <footer className={style.footer}>

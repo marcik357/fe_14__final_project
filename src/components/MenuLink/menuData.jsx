@@ -2,9 +2,9 @@ import { Basket, LogIn, Account } from '../Icons';
 
 const menuData = [
   {
-    type: 'store',
-    page: '/categories',
-    text: 'Store',
+    type: 'Discover',
+    page: '/discover',
+    text: 'Discover',
     classHover: 'storeHover'
   },
   {

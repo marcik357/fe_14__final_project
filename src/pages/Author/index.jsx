@@ -1,28 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductDetails from '../../components/ProductDetails';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import Loader from '../../components/Loader';
+import { AuthorDetails } from '../../components/AuthorDetails';
+import { baseUrl } from '../../utils/vars';
+import { addPartnersAction } from '../../redux/actions/partnersActions';
 
 export function Author() {
   const { authorId } = useParams();
-  // const [product, setProduct] = useState(null);
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading.loading);
+  const authors = useSelector((state) => state.partners.partners);
 
-  // const loading = useSelector((state) => state.loading.loading);
+  const author = useSelector((state) => state.partners.partners.find(author => {
+    return author.customId === authorId
+  }));
 
-  // useEffect(() => {
-  //   dispatch(getDataAction(`https://plankton-app-6vr5h.ondigitalocean.app/api/products/${productId}`, setProduct));
-  // }, [dispatch, productId]);
+  useEffect(() => {
+    dispatch(getDataAction(`${baseUrl}partners`, addPartnersAction));
+  }, [dispatch]);
 
   return (
     <>
-      <div>{authorId}</div>
-      {/* {!loading ? (
-        <ProductDetails {...product} />
+      {!loading && author ? (
+        <AuthorDetails author={author} authorId={authorId}/>
       ) : (
         <Loader />
-      )} */}
+      )}
     </>)
 }

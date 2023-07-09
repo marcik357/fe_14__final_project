@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../Loader';
 import { useState } from 'react';
 
-export function CartList({ imageUrls, name, currentPrice, sumOfOrder, setOrderAmount, _id, itemNo, cartQuantity }) {
+export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuantity, quantity }) {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.token.token);
@@ -22,10 +22,17 @@ export function CartList({ imageUrls, name, currentPrice, sumOfOrder, setOrderAm
         e.target.disabled = null;
         clearTimeout(disabling);
       }, 1000);
-      dispatch(changeQuantity(cart, _id, token, plus));
-      plus
-        ? setAmount(amount + 1)
-        : setAmount(amount - 1)
+      if (plus && quantity > amount) {
+        dispatch(changeQuantity(cart, _id, token, plus));
+        setAmount(amount + 1)
+      } else if (!plus) {
+        dispatch(changeQuantity(cart, _id, token, plus));
+        setAmount(amount - 1)
+      }
+      // dispatch(changeQuantity(cart, _id, token, plus));
+      // plus
+      //   ? setAmount(amount + 1)
+      //   : setAmount(amount - 1)
     } catch (error) {
       dispatch(setErrorAction(error));
     }
@@ -45,6 +52,7 @@ export function CartList({ imageUrls, name, currentPrice, sumOfOrder, setOrderAm
           <Link to={`/product/${itemNo}`}>
             <p className={style.description__title}>{name}</p>
           </Link>
+          <p>{quantity}</p>
           <p>Price:
             <span className={style.description__currency}>
               &#160;{currentPrice} ETH
