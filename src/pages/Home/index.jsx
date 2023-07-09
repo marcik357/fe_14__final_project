@@ -15,47 +15,42 @@ import './tabs.scss';
 export function Home() {
   const dispatch = useDispatch();
 
-  const [slides, setSlides] = useState()
+  const [slides, setSlides] = useState();
+  const [partners, setPartners] = useState();
   const products = useSelector((state) => state.products.products);
   // const promo = useSelector((state) => state.products.promo);
   const loading = useSelector((state) => state.loading.loading);
-  // console.log(products);
   useEffect(() => {
     dispatch(getDataAction(`${baseUrl}slides`, setSlides, {}, 'slides'));
+    dispatch(getDataAction(`${baseUrl}partners`, setPartners, {}, 'partners'));
     // dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
   }, [dispatch]);
 
   return !loading ? (
     <>
       {/* {promo?.length > 0 && <SliderPromo products={promo} />} */}
-        {slides?.length > 0 && <SliderPromo products={slides} />}
+      {slides?.length > 0 && <SliderPromo products={slides} />}
       <div className={styles.products}>
         <div className={styles.products__container}>
-            {/* <Filter /> */}
+          {/* <Filter /> */}
           <Tabs className={styles.products__filter}>
-          <TabList className={styles.products__filter_tabs}>
-            <Tab aria-selected='false' className={styles.products__filter_tab}>
-              All
-            </Tab>
-            <Tab aria-selected='false' className={styles.products__filter_tab}>
-              Collections
-            </Tab>
-            <Tab aria-selected='false' className={styles.products__filter_tab}>
-              Artist
-            </Tab>
-          </TabList>
-          <TabPanel>
-            <ProductList products={products} listName='NFTs' />
-          </TabPanel>
-          <TabPanel>
-            <CollectionList products={products} />
-          </TabPanel>
-          <TabPanel>
-            <AuthorList />
-          </TabPanel>
-        </Tabs>
+            <TabList className={styles.products__filter_tabs}>
+              <Tab className={styles.products__filter_tab}>All</Tab>
+              <Tab className={styles.products__filter_tab}>Collections</Tab>
+              <Tab className={styles.products__filter_tab}>Artist</Tab>
+            </TabList>
+            <TabPanel>
+              <ProductList products={products} listName='NFTs' />
+            </TabPanel>
+            <TabPanel>
+              <CollectionList products={products} />
+            </TabPanel>
+            <TabPanel>
+              <AuthorList partners={partners} />
+            </TabPanel>
+          </Tabs>
         </div>
-        </div>
+      </div>
     </>
   ) : (
     <Loader />

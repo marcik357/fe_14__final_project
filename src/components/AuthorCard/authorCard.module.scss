@@ -1,0 +1,41 @@
+.authorCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e1e2e2;
+  background-color: #f1f4f4;
+  font-family: Inter;
+
+  &__image {
+    max-width: 240px;
+    height: auto;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding: 0 40px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__number {
+    display: flex;
+    align-self: flex-end;
+    margin: 10px 10px 0 0;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  &__name {
+    margin-bottom: 26px;
+    color: #202025;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+}
