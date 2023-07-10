@@ -61,7 +61,8 @@ function CollectionCard({
 
                 <div
                   style={{
-                    backgroundColor: bgColors.join(', '),
+                    backgroundColor:
+                      bgColors[Math.floor(Math.random() * bgColors.length)],
                   }}
                   className={style.collectionCard__viewAll}
                 >

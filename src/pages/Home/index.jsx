@@ -46,7 +46,7 @@ export function Home() {
               <CollectionList products={products} />
             </TabPanel>
             <TabPanel>
-              <AuthorList partners={partners} />
+              <AuthorList partners={partners} products={products}/>
             </TabPanel>
           </Tabs>
         </div>

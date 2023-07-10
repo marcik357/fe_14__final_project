@@ -1,7 +1,7 @@
 import AuthorCard from '../AuthorCard';
 import style from './authorList.module.scss';
 
-function AuthorList({ partners }) {
+function AuthorList({ partners, products }) {
   return (
     <div className={style.authorList}>
       <div className={style.authorList__title}>
@@ -9,7 +9,7 @@ function AuthorList({ partners }) {
       </div>
       <div className={style.authorList__wrapper}>
         {partners?.map((partner, index) => (
-          <AuthorCard {...partner} index={index + 1} />
+          <AuthorCard {...partner} products={products} index={index + 1} />
         ))}
       </div>
     </div>

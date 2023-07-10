@@ -9,14 +9,16 @@ import { addPartnersAction } from '../../redux/actions/partnersActions';
 
 export function Author() {
   const { authorId } = useParams();
+
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
   const authors = useSelector((state) => state.partners.partners);
 
-  const author = useSelector((state) => state.partners.partners.find(author => {
-    return author.customId === authorId
-  }));
-
+  const author = useSelector((state) =>
+    state.partners.partners.find((author) => {
+      return author.customId === authorId;
+    })
+  );
   useEffect(() => {
     dispatch(getDataAction(`${baseUrl}partners`, addPartnersAction));
   }, [dispatch]);
@@ -24,9 +26,10 @@ export function Author() {
   return (
     <>
       {!loading && author ? (
-        <AuthorDetails author={author} authorId={authorId}/>
+        <AuthorDetails author={author} authorId={authorId} />
       ) : (
         <Loader />
       )}
-    </>)
+    </>
+  );
 }

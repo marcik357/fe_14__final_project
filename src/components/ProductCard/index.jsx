@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
 import { buyNowHandler } from '../../utils';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
@@ -15,12 +15,11 @@ function ProductCard({
   currentPrice,
   name,
   itemNo,
-  isInAuthor
+  isInAuthor,
 }) {
   const dispatch = useDispatch();
-  const { cartProductsArray,products} = useSelector(state => state.cart);
-  const { token } = useSelector(state => state.token);
-
+  const { cartProductsArray, products } = useSelector((state) => state.cart);
+  const { token } = useSelector((state) => state.token);
   return (
     <div className={styles.productCard}>
       <Link to={`/product/${itemNo}`}>
@@ -34,13 +33,20 @@ function ProductCard({
       <div className={styles.productCard__userInfo}>
         <Link
           to={`/author/${author}`}
-          className={styles.productCard__userInfo_items}>
+          className={styles.productCard__userInfo_items}
+        >
           <img
             className={styles.productCard__userInfo_userIcon}
             src={authorIcon}
             alt='user-avatar'
           />
-          <p className={`${styles.productCard__userInfo_author} ${isInAuthor ? styles.productCard__userInfo_inAuthor : ''}`}>{author}</p>
+          <p
+            className={`${styles.productCard__userInfo_author} ${
+              isInAuthor ? styles.productCard__userInfo_inAuthor : ''
+            }`}
+          >
+            {author}
+          </p>
         </Link>
         <Verified />
       </div>
@@ -57,15 +63,15 @@ function ProductCard({
           <ETHIcon />
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
+              {currentPrice}
+              &nbsp;
+              <span>ETH</span>
             </p>
           ) : (
             <p>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
+              {currentPrice}
+              &nbsp;
+              <span>ETH</span>
             </p>
           )}
         </div>
