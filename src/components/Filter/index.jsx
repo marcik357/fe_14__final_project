@@ -4,7 +4,7 @@ import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
 import { setQueryStringAction } from '../../redux/actions/filterActions';
 import ProductList from '../ProductList';
-import { fetchData, getDataFromLS } from '../../utils';
+import { fetchData, getDataFromSS } from '../../utils';
 import { useCallback } from 'react';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { baseUrl } from '../../utils/vars';
@@ -12,8 +12,8 @@ import { baseUrl } from '../../utils/vars';
 
 function Filter() {
   const dispatch = useDispatch();
-  const [selectedFilters, setSelectedFilters] = useState(!Array.isArray(getDataFromLS('selectedFilters'))
-    ? getDataFromLS('selectedFilters')
+  const [selectedFilters, setSelectedFilters] = useState(!Array.isArray(getDataFromSS('selectedFilters'))
+    ? getDataFromSS('selectedFilters')
     : {
       authors: [],
       categories: [],
@@ -37,12 +37,6 @@ function Filter() {
     setSelectedFilters({ ...selectedFilters, isOpen: !isOpen })
   };
 
-  useEffect(() => {
-    localStorage.setItem('selectedFilters', JSON.stringify(selectedFilters));
-    // localStorage.setItem('minPrice', minPrice);
-    // localStorage.setItem('maxPrice', maxPrice);
-  }, [selectedFilters]);
-
   const getFiltersByType = useCallback(async (type) => {
     try {
       const data = await fetchData(`${baseUrl}filters/${type}`);
@@ -57,29 +51,19 @@ function Filter() {
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    // Виклик функції для отримання фільтрів по типам
-    getFiltersByType('author');
-    getFiltersByType('categories');
-  }, [getFiltersByType]);
+    // Функція для відображення товарів згідно обраних фільтрів
+    const applyFilters = useCallback(async () => {
+      try {
+        // Запит до API з використанням queryString для фільтрації товарів
+        const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
+        setProducts(data);
+      } catch (error) {
+        dispatch(setErrorAction(error.message))
+      }
+    }, [dispatch, queryString]);
+  
 
-
-  // Функція для відображення товарів згідно обраних фільтрів
-  const applyFilters = useCallback(async () => {
-    try {
-      // Запит до API з використанням queryString для фільтрації товарів
-      const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
-      setProducts(data);
-    } catch (error) {
-      dispatch(setErrorAction(error.message))
-    }
-  }, [dispatch, queryString]);
-
-  useEffect(() => {
-    applyFilters(); // Викликати applyFilters при кожній зміні queryString
-  }, [applyFilters]);
-
-  // Код фільтру по чекбоксам
+      // Код фільтру по чекбоксам
   const valueChange = (event) => {
     const { name, checked } = event.target;
     const filterType = event.target.getAttribute('data-filter-type');
@@ -117,6 +101,64 @@ function Filter() {
       return updatedFilters;
     });
   };
+  
+    // Перевірка інпутів по ціні від / до
+    const isValidPriceInput = (minPriceValue, maxPriceValue) => {
+      if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
+        return false;
+      }
+  
+      if (minPriceValue === '' || maxPriceValue === '') {
+        return true;
+      }
+  
+      return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
+    };
+  
+    const handleMinPriceChange = (e) => {
+      setMinPrice(e.target.value);
+      setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
+    };
+  
+    const handleMaxPriceChange = (e) => {
+      setMaxPrice(e.target.value);
+      setIsApplyButtonDisabled(!isValidPriceInput(minPrice, e.target.value));
+    };
+  
+    const sortByPrice = (e) => {
+      setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
+      // localStorage.setItem('queryString', JSON.stringify(selectedFilters));
+      // setSortBy(e.target.value)
+    }
+
+    // Очистити всі фільтри
+    const clearAllFilters = () => {
+      setSelectedFilters({
+        ...selectedFilters,
+        authors: [],
+        categories: [],
+        minPrice: '',
+        maxPrice: '',
+        sortBy: '',
+      });
+      setMinPrice('');
+      setMaxPrice('');
+      setIsApplyButtonDisabled(false);
+    };
+
+  useEffect(() => {
+    // Виклик функції для отримання фільтрів по типам
+    getFiltersByType('author');
+    getFiltersByType('categories');
+  }, [getFiltersByType]);
+
+  useEffect(() => {
+    sessionStorage.setItem('selectedFilters', JSON.stringify(selectedFilters));
+  }, [selectedFilters]);
+
+  useEffect(() => {
+    applyFilters(); // Викликати applyFilters при кожній зміні queryString
+  }, [applyFilters]);
 
   useEffect(() => {
     let newQueryString = '';
@@ -143,53 +185,9 @@ function Filter() {
       newQueryString += `&maxPrice=${selectedFilters.maxPrice}`;
     }
 
-    localStorage.setItem('queryString', JSON.stringify(newQueryString));
+    sessionStorage.setItem('queryString', JSON.stringify(newQueryString));
     dispatch(setQueryStringAction(newQueryString));
   }, [dispatch, selectedFilters]);
-
-  // Очистити всі фільтри
-  const clearAllFilters = () => {
-    setSelectedFilters({
-      ...selectedFilters,
-      authors: [],
-      categories: [],
-      minPrice: '',
-      maxPrice: '',
-      sortBy: '',
-    });
-    setMinPrice('');
-    setMaxPrice('');
-    setIsApplyButtonDisabled(false);
-  };
-
-  // Перевірка інпутів по ціні від / до
-  const isValidPriceInput = (minPriceValue, maxPriceValue) => {
-    if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
-      return false;
-    }
-
-    if (minPriceValue === '' || maxPriceValue === '') {
-      return true;
-    }
-
-    return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
-  };
-
-  const handleMinPriceChange = (e) => {
-    setMinPrice(e.target.value);
-    setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
-  };
-
-  const handleMaxPriceChange = (e) => {
-    setMaxPrice(e.target.value);
-    setIsApplyButtonDisabled(!isValidPriceInput(minPrice, e.target.value));
-  };
-
-  const sortByPrice = (e) => {
-    setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
-    localStorage.setItem('queryString', JSON.stringify(selectedFilters));
-    // setSortBy(e.target.value)
-  }
 
   return (
     <div className={styles.filter}>
