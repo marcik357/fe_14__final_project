@@ -15,7 +15,7 @@ ul {
   left: 4px;
   width: 98%;
   max-height: calc(100vh - 160px);
-  padding: 20px 5px;
+  padding: 15px 5px;
   transition: all .4s ease-out;
   border: 1px solid #e1e2e2;
   border-radius: 12px;
@@ -32,7 +32,9 @@ ul {
   @media (min-width: 993px) {
     top: 75px;
     left: unset;
-    padding: 30px 24px;
+    width: 30.5%;
+    max-width: 455px;
+    padding: 20px 24px;
   }
 
   &.scrolled {
@@ -64,6 +66,10 @@ ul {
     letter-spacing: 2px;
     line-height: 200%;
     text-transform: uppercase;
+
+    @media (min-width: 993px) {
+      padding: 10px;
+    }
   }
 
   &__list {
@@ -72,10 +78,10 @@ ul {
   }
 
   &__item {
-    padding: 18px;
+    padding: 16px;
 
     @media (min-width: 993px) {
-      padding: 24px;
+      padding: 15px 5px;
     }
   }
 
@@ -87,9 +93,10 @@ ul {
   }
 
   &__image {
+    flex-shrink: 0;
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 12px;
 
     @media (min-width: 481px) {
@@ -124,28 +131,28 @@ ul {
   }
 
   &__subtitle {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 160%;
-
-    @media (min-width: 481px) {
-      font-size: 16px;
-    }
 
     @media (min-width: 769px) {
       font-size: 20px;
     }
+
+    @media (min-width: 993px) {
+      font-size: 16px;
+    }
   }
 
   &__desc {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 150%;
 
-    @media (min-width: 481px) {
-      font-size: 13px;
+    @media (min-width: 769px) {
+      font-size: 16px;
     }
 
-    @media (min-width: 481px) {
-      font-size: 16px;
+    @media (min-width: 993px) {
+      font-size: 13px;
     }
   }
 }

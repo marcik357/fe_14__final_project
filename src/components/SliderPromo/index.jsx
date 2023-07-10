@@ -26,6 +26,7 @@ function SliderPromo({ products }) {
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         loop={true}
         spaceBetween={0}
+		  simulateTouch={false}
         navigation={{
           prevEl: prevBtnRef.current,
           nextEl: nextBtnRef.current,

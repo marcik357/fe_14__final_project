@@ -2,12 +2,13 @@ import { Search, Close } from '../Icons';
 import { useFormik } from 'formik';
 import { fetchData } from '../../utils';
 import { baseUrl } from '../../utils/vars';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { HeaderSearchResults } from '../HeaderSearchResults';
 import style from './headerSearch.module.scss';
 
 export function HeaderSearch(props) {
-  const { classForm, isSearchVisible, classActive, scrolled, classScrolled, classLabel, classInput, classClear, classClearActive, toggleSearchView } = props;
+  const { classForm, isSearchVisible, classActive, scrolled, classScrolled, classLabel,
+    classInput, classClear, classClearActive, toggleSearchView, isDesktop, setSearchVisible } = props;
 
   const [matchingData, setMatchingData] = useState({
    products: [],
@@ -72,11 +73,37 @@ export function HeaderSearch(props) {
   // Встановлюємо значення пустий рядок
   const handleClearSearch = () => {
     formik.setFieldValue("search", "");
- }
+ };
+
+  // закриття input при кліку поза ним
+  const formaRef = useRef(null);
+
+  useEffect(() => {
+    const clickOutsideForms = (e) => {
+     // Перевірка, чи подія є mousedown або touchstart
+     const isMouseEvent = e.type === 'mousedown';
+     const isTouchEvent = e.type === 'touchstart';
+
+     if (isMouseEvent || isTouchEvent) {
+       if (!formaRef.current.contains(e.target)) {
+         setSearchVisible(false);
+         formik.setFieldValue("search", "");
+      }
+     }
+   };
+
+   document.addEventListener('mousedown', clickOutsideForms);
+   document.addEventListener('touchstart', clickOutsideForms);
+
+   return () => {
+     document.removeEventListener('mousedown', clickOutsideForms);
+     document.removeEventListener('touchstart', clickOutsideForms);
+   };
+ });
 
   return (
    <>
-    <form action="" className={`${classForm} ${isSearchVisible ? classActive : ''} ${scrolled ? classScrolled : ''}`}>
+    <form action="" ref={formaRef} className={`${classForm} ${isSearchVisible ? classActive : ''} ${scrolled ? classScrolled : ''}`}>
       <label htmlFor="searchInput" className={classLabel}>
         <input
          type="text"

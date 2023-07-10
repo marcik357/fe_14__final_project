@@ -103,6 +103,8 @@ function Header() {
                   classClear={style.search__clear}
                   classClearActive={style.active}
                   toggleSearchView={toggleSearchView}
+                  isDesktop={isDesktop}
+                  setSearchVisible={setSearchVisible}
                 />
               </div>
             </div>
