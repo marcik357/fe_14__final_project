@@ -223,6 +223,7 @@ function Filter() {
                     <button className={`${styles.filter__sidebarApplyBtn} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
+                  <div className={styles.filter__sidebarList}>
                   {authorFilters.map((author) => (
                     <div key={author._id} className={styles.filter__sidebarItem}>
                       <label htmlFor={author.name}>
@@ -231,7 +232,9 @@ function Filter() {
                       </label>
                     </div>
                   ))}
+                  </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Collection</h4>
+                  <div className={styles.filter__sidebarList}>
                   {categoryFilters.map((category) => (
                     <div key={category._id} className={styles.filter__sidebarItem}>
                       <label htmlFor={category.name}>
@@ -240,6 +243,7 @@ function Filter() {
                       </label>
                     </div>
                   ))}
+                  </div>
                 </div>
                 <div className={styles.filter__sidebarFooter}>
                   <button className={styles.filter__clearBtn} type="button" onClick={clearAllFilters}>Clear All</button>
