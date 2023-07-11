@@ -1,0 +1,35 @@
+.cart_block {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        padding-bottom: 20px;
+    }
+    &__products{
+        display: grid;
+        grid-template-columns:repeat(5,1fr) ;
+        grid-template-rows: repeat(2,1fr);
+        gap:5px
+    }
+    &__total {
+        padding-top: 20px;
+        font-size: 25px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.products {
+    &__card {
+        transition:.7s ease;
+        &:hover {
+        scale: 1.5;
+    }
+  }
+}
+.card {
+    &__img {
+        border-radius: 12px;
+        width: 100px;
+    }
+}
