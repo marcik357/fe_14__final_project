@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import style from './index.module.scss';
 import { CartList } from '../../components/CartList';
 import { FormToBuy } from '../../components/FormToBuy';
 import { useSelector } from 'react-redux';
 import Loader from '../../components/Loader';
+import { Quantity } from '../../router';
 
 export function Cart() {
-  const [orderAmount, setOrderAmount] = useState(0);
-
+  const [orderAmount, setOrderAmount] = useContext(Quantity);
   const token = useSelector(state => state.token.token);
   const loading = useSelector((state) => state.loading.loading);
   const cart = useSelector((state) => state.cart.cart);
@@ -58,7 +58,7 @@ export function Cart() {
             }
           </div>
           <div className={style.block__actionToBuy}>
-            <FormToBuy orderAmount={orderAmount} />
+            <FormToBuy />
           </div>
         </div>
       </div>)
