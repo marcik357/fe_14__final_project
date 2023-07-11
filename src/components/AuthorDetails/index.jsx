@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import ProductList from '../ProductList';
 import style from './authorDetails.module.scss';
-import banner from './img/author-banner.png';
 import SocialLink from '../SocialLink';
 import { getSocialIcon } from './socialIcon';
+import Banner from '../Banner';
 
 export function AuthorDetails({author}){
     const products = useSelector((state) => state.products.products);
@@ -28,19 +28,14 @@ export function AuthorDetails({author}){
     return (
         <div className={style.authorDetails}>
             <div className={style.authorDetails__container}>
-                <div style={{position: 'relative'}}>
-                    <div className={style.authorDetails__banner}>
-                        <img src={banner} className={style.authorDetails__banner_image} alt="author-banner" />
-                    </div>
-                    <div className={style.authorDetails__author}>
-                        <img src={author.imageUrl || '/images/avatars/user-icon.png'} className={style.authorDetails__author_icon} alt="author-icon" />
-                    </div>
-                </div>
+                <Banner title={author.name} img='/images/banners/author-banner.png'/>
                 <div className={style.authorDetails__mainContent}>
                     <div className={style.authorDetails__info}>
+                        <div className={style.authorDetails__info_container}>
+                        <img src={author.imageUrl || '/images/avatars/user-icon.png'} className={style.authorDetails__authorIcon} alt="author-icon" />
                         <h1 className={style.authorDetails__info_title}>{author.name}</h1>
                         <p className={style.authorDetails__info_id}>{author.customId}</p>
-                        <div className={style.authorDetails__info_container}>
+                        <div className={style.authorDetails__info_bio}>
                             <div className={style.authorDetails__info_text}>
                                 <p className={style.authorDetails__info_subtitle}>Bio</p>
                                 <p>{author.description}</p>
@@ -48,6 +43,7 @@ export function AuthorDetails({author}){
                             <ul className={style.authorDetails__info_links}>
                                 {socialLinks}
                             </ul>
+                        </div>
                         </div>
                     </div>
                     <div className={style.authorDetails__products}>

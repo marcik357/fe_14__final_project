@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
 import { buyNowHandler } from '../../utils';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { ETHIcon } from '../Icons';
@@ -18,7 +18,7 @@ function ProductCard({
   isInAuthor
 }) {
   const dispatch = useDispatch();
-  const { cartProductsArray,products} = useSelector(state => state.cart);
+  const { cartProductsArray, products } = useSelector(state => state.cart);
   const { token } = useSelector(state => state.token);
 
   return (
@@ -54,18 +54,18 @@ function ProductCard({
           Buy now
         </button>
         <div className={styles.productCard__priceInfo_buyNow}>
-          <ETHIcon />
+          <ETHIcon fill={isInAuthor && '#dbff73'}/>
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
+              {currentPrice}
+              &nbsp;
+              <span>ETH</span>
             </p>
           ) : (
             <p>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
+              {currentPrice}
+              &nbsp;
+              <span>ETH</span>
             </p>
           )}
         </div>
