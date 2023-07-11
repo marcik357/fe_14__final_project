@@ -22,8 +22,7 @@ function Filter() {
       sortBy: '',
       isOpen: false,
     });
-  const [isOpen, setIsOpen] = useState(selectedFilters.isOpen);
-  // const [sortBy, setSortBy] = useState(selectedFilters.sortBy);
+
   const [minPrice, setMinPrice] = useState(selectedFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(selectedFilters.maxPrice);
   const [authorFilters, setAuthorFilters] = useState([]);
@@ -33,8 +32,7 @@ function Filter() {
   const queryString = useSelector((state) => state.filter.queryString);
 
   const toggleModal = () => {
-    setIsOpen(!isOpen);
-    setSelectedFilters({ ...selectedFilters, isOpen: !isOpen })
+    setSelectedFilters({ ...selectedFilters, isOpen: !selectedFilters.isOpen })
   };
 
   const getFiltersByType = useCallback(async (type) => {
@@ -202,8 +200,8 @@ function Filter() {
             </select>
           </div>
           <div className={styles.filter__content}>
-            <div className={`${styles.filter__sidebarBckg} ${isOpen && styles.open}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
-              <div className={`${styles.filter__sidebarWrapper} ${isOpen && styles.open}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+            <div className={`${styles.filter__sidebarBckg} ${selectedFilters.isOpen && styles.open}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+              <div className={`${styles.filter__sidebarWrapper} ${selectedFilters.isOpen && styles.open}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
                 <div className={styles.filter__sidebarHeader}>
                   <button className={styles.filter__sidebarCloseBtn} type="button" onClick={toggleModal}>
                     <LeftChevron />
