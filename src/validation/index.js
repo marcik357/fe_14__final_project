@@ -41,3 +41,24 @@ export const validationSchemaLogin = Yup.object({
     .max(30, 'Can be no more than 30 characters')
     .required("Required Field!"),
 });
+
+export const validationSchemaOrder = Yup.object({
+    email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+    telephone: Yup.string()
+    .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
+    .required("Required Field!"),
+});
+
+export const validationSchemaCard = Yup.object({
+  cardNumber: Yup.string()
+  .label('Card Number')
+  .max(16)
+  .required(),
+  cvv: Yup.string()
+    .label('CVV')
+    .min(3)
+    .max(4)
+    .required(),
+});
