@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { OpenList } from "../Icons/open-list";
 import { CloseList } from "../Icons/close-list";
 import { MarkerList } from "../Icons/marker-list-hc";
+import { ArrowRightBlue } from "../Icons/arrow-right-blue";
 import cube from "../../img/cube.png";
 import styles from "./helpCenter.module.scss";
 
 export function HelpCenter() {
   const [activeBlocks, setActiveBlocks] = useState([]);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   const toggleBlock = (block) => {
     if (activeBlocks.includes(block)) {
@@ -21,7 +23,6 @@ export function HelpCenter() {
   return (
     <div className={styles.helpCenter}>
       <div className={styles.helpCenter__content}>
-
         <div className={styles.helpCenter__cubeBlockWrap}>
           <div className={styles.helpCenter__cubeBlock}>
             <h2>Gettings started on Crypter</h2>
@@ -45,24 +46,39 @@ export function HelpCenter() {
             </button>
             {activeBlocks.includes(1) && (
               <ul className={styles.helpCenter__list}>
-                <li>
-                  <MarkerList />
+                <li
+                  onMouseEnter={() => setHoveredItem(1)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  {hoveredItem === 1 ? <ArrowRightBlue /> : <MarkerList />}
                   Connect your wallet to Crypter
                 </li>
-                <li>
-                  <MarkerList />
+                <li
+                  onMouseEnter={() => setHoveredItem(2)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  {hoveredItem === 2 ? <ArrowRightBlue /> : <MarkerList />}
                   Guide to collection NFT artworks on Crypter
                 </li>
-                <li>
-                  <MarkerList />
+                <li
+                  onMouseEnter={() => setHoveredItem(3)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  {hoveredItem === 3 ? <ArrowRightBlue /> : <MarkerList />}
                   Marketplace balance
                 </li>
-                <li>
-                  <MarkerList />
+                <li
+                  onMouseEnter={() => setHoveredItem(4)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  {hoveredItem === 4 ? <ArrowRightBlue /> : <MarkerList />}
                   Marketplace fees
                 </li>
-                <li>
-                  <MarkerList />
+                <li
+                  onMouseEnter={() => setHoveredItem(5)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  {hoveredItem === 5 ? <ArrowRightBlue /> : <MarkerList />}
                   What is offer price?
                 </li>
               </ul>

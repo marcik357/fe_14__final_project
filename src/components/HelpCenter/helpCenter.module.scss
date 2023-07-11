@@ -25,7 +25,6 @@
 
     h2 {
         font-size: 40px;
-        // font-family: "Inter", sans-serif;
         font-style: normal;
         font-weight: 800;
         line-height: 48px;
@@ -82,7 +81,6 @@
         position: relative;
         display: flex;
         align-items: center;
-        // font-family: "Inter", sans-serif;
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
@@ -129,6 +127,8 @@
         }
 
         &__cubeBlock {
+            position: sticky;
+            top: 0;
             height: 100vh;
             overflow: hidden;
             padding: 40px 40px;
