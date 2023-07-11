@@ -8,7 +8,7 @@ import style from './headerSearch.module.scss';
 
 export function HeaderSearch(props) {
   const { classForm, isSearchVisible, classActive, scrolled, classScrolled, classLabel,
-    classInput, classClear, classClearActive, toggleSearchView, isDesktop, setSearchVisible } = props;
+    classInput, classClear, classClearActive, toggleSearchView, setSearchVisible } = props;
 
   const [matchingData, setMatchingData] = useState({
    products: [],
@@ -77,6 +77,7 @@ export function HeaderSearch(props) {
 
   // закриття input при кліку поза ним
   const formaRef = useRef(null);
+  const headerSearchRef = useRef(null);
 
   useEffect(() => {
     const clickOutsideForms = (e) => {
@@ -85,7 +86,7 @@ export function HeaderSearch(props) {
      const isTouchEvent = e.type === 'touchstart';
 
      if (isMouseEvent || isTouchEvent) {
-       if (!formaRef.current.contains(e.target)) {
+       if (formaRef.current && headerSearchRef.current && !formaRef.current.contains(e.target) && !headerSearchRef.current.contains(e.target)) {
          setSearchVisible(false);
          formik.setFieldValue("search", "");
       }
@@ -103,7 +104,7 @@ export function HeaderSearch(props) {
 
   return (
    <>
-    <form action="" ref={formaRef} className={`${classForm} ${isSearchVisible ? classActive : ''} ${scrolled ? classScrolled : ''}`}>
+    <form action="" ref={formaRef} className={`${classForm} ${isSearchVisible && classActive} ${scrolled && classScrolled}`}>
       <label htmlFor="searchInput" className={classLabel}>
         <input
          type="text"
@@ -116,14 +117,14 @@ export function HeaderSearch(props) {
          onBlur={formik.handleBlur}
         />
       <Search />
-      <button type="button" className={`${classClear} ${inputLength > 0 ? classClearActive : ''}`} onClick={handleClearSearch}>
+      <button type="button" className={`${classClear} ${inputLength > 0 && classClearActive}`} onClick={handleClearSearch}>
         <span>CLEAR</span>
         <Close color='#A6AEAD'/>
       </button>
       </label>
      </form>
      {inputLength > 2 && dataLoaded && Object.values(matchingData).some(data => data.length > 0) &&(
-        <div className={`${style.headerSearch} ${scrolled ? style.scrolled : ''}`}>
+        <div ref={headerSearchRef} className={`${style.headerSearch} ${scrolled && style.scrolled}`}>
           {matchingData.products.length > 0 && (
             <HeaderSearchResults
               data={matchingData.products}

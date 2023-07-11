@@ -108,7 +108,7 @@ function Header() {
                 />
               </div>
             </div>
-            <nav className={`${style.nav} ${isOpen ? style.active : ''}`}>
+            <nav className={`${style.nav} ${isOpen && style.active}`}>
               <div className={style.social}>
                 <h2 className={style.social__title}>
                   <span>Join our</span>

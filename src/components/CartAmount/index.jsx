@@ -1,9 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import style from './cartAmount.module.scss';
+import { setCart } from '../../redux/actions/cartActions';
 
 export function CartAmount() {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart)
 
   const cartAmount = cart.products.reduce((total, product) => {
@@ -11,9 +13,9 @@ export function CartAmount() {
   }, 0)
 
   useEffect(() => {
-	console.log('Зміни в кошику', cart);
+   dispatch(setCart(cart))
 
-}, [cart]);
+}, [dispatch, cart]);
 
 const isDesktop = useMediaQuery({ minWidth: 993 });
 
