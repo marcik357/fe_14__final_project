@@ -23,7 +23,7 @@ function AuthorNumber({ className }) {
             width='50.6406'
             height='53.5254'
             filterUnits='userSpaceOnUse'
-            color-interpolation-filters='sRGB'
+            colorInterpolationFilters='sRGB'
           >
             <feFlood flood-opacity='0' result='BackgroundImageFix' />
             <feColorMatrix

@@ -18,10 +18,6 @@ function CollectionCard({
     '#FFA6D6',
     '#BCE6EC',
     '#B9A9FB',
-    '#DBFF73',
-    '#FFA6D6',
-    '#FFA6D6',
-    '#FFA6D6',
   ];
 
   const [isProductListVisible, setProductListVisible] = useState(false);
