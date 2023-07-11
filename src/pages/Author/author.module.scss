@@ -1,9 +1,9 @@
-.products {
-  margin: 0;
-  background-color: #f7fbfa;
+.author {
+  // min-width: 320px;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 
   &__container {
-    display: flex;
     max-width: 1470px;
     margin: 0 auto;
     padding: 0 15px;
