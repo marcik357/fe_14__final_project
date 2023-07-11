@@ -12,9 +12,8 @@ export default function Router() {
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/author/:authorId" element={<Author />} />
         <Route path="/product/:productId" element={<Product />} />
-        <Route path="/admin" element={<AdminProducts />} />
-
       </Route>
+      <Route path="/admin" element={<AdminProducts />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
