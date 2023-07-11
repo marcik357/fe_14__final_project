@@ -65,9 +65,9 @@
         padding-bottom: 48px;
     }
 
-    span {
-        margin-top: 7px;
-    }
+    // span {
+    //     margin-top: 7px;
+    // }
 
     &__active {
         padding-bottom: 40px;
@@ -77,10 +77,14 @@
         list-style-type: none;
     }
 
-    &__list li {
+    &__blockButtonItem {
         position: relative;
-        display: flex;
-        align-items: center;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        // display: flex;
+        // flex-wrap: wrap;
+        // align-items: center;
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
@@ -91,7 +95,19 @@
         cursor: pointer;
     }
 
-    &__list li:hover {
+    &__blockButtonItemTitle {
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+
+    &__activeItem p {
+        text-align: left;
+        font-weight: 400;
+        margin-left: 40px;
+    }
+
+    &__list span:hover {
         color: #202025;
     }
 
