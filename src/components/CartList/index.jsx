@@ -52,7 +52,7 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
           <Link to={`/product/${itemNo}`}>
             <p className={style.description__title}>{name}</p>
           </Link>
-          <p>{quantity}</p>
+          <p>Quantity: {quantity}</p>
           <p>Price:
             <span className={style.description__currency}>
               &#160;{currentPrice} ETH
@@ -81,7 +81,7 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
           className={style.cartListItem__btnDelete}
           onClick={() => dispatch(deleteFromCart(cart, _id, token))}
         >
-          Delete
+          &times;
         </button>
       </div>
       : <Loader />
