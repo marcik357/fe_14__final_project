@@ -1,0 +1,247 @@
+.cartListItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  padding: 10px;
+  color: #fff;
+  gap: 10px;
+
+  &__icon {
+    width: 130px;
+    height: 130px;
+    padding: 5px;
+    border: 1px solid #555;
+    border-radius: 25%;
+    box-sizing: border-box;
+
+    &__img {
+      width: 120px;
+      height: 120px;
+      border-radius: 25%;
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    flex-basis: 40%;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__btnDelete {
+    flex-basis: 50%;
+    width: 160px;
+    padding: 15px 0;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    border: 2px solid #dd9b09;
+    border-radius: 5px;
+    background: none;
+    color: #dd9b09;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #dd9b09;
+      color: #202025;
+      box-shadow: 0 0 40px 40px #dd9b09 inset;
+    }
+  }
+
+  &__description {
+    flex-basis: 50%;
+  }
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  &__title {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__currency {
+    font-size: 18px;
+  }
+}
+
+.quantity {
+  &__btn {
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: #dd9b09;
+    color: #202025;
+    cursor: pointer;
+  }
+
+  &__value {
+    color: #dd9b09;
+  }
+}
+
+@media (min-width: 420px) {
+  .cartListItem {
+    &__description {
+      flex-basis: 40%;
+    }
+
+    &__quantity {
+      flex-basis: 40%;
+    }
+
+    &__btnDelete {
+      flex-basis: 50%;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .cartListItem {
+    &__description {
+      flex-basis: 40%;
+    }
+
+    &__quantity {
+      flex-basis: 40%;
+    }
+
+    &__btnDelete {
+      flex-basis: 45%;
+      font-size: 15px;
+    }
+  }
+
+  .description {
+    &__title {
+      padding-bottom: 12px;
+      font-size: 25px;
+    }
+
+    &__currency {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (min-width: 650px) {
+  .cartListItem {
+    &__description {
+      flex-basis: 20%;
+    }
+
+    &__quantity {
+      flex-basis: 20%;
+    }
+
+    &__btnDelete {
+      flex-basis: 30%;
+    }
+  }
+
+  .description {
+    &__title {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .cartListItem {
+    padding: 10px;
+    gap: 10px;
+
+    &__description {
+      display: block;
+      flex-basis: 20%;
+    }
+
+    &__btnDelete {
+      flex-basis: 30%;
+    }
+
+    &__quantity {
+      justify-content: space-between;
+      font-size: 18px;
+    }
+  }
+
+  .description {
+    &__title {
+      padding-bottom: 12px;
+    }
+
+    &__currency {
+      font-size: 17px;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .cartListItem {
+    padding: 10px 15px;
+
+    &__description {
+      display: block;
+      flex-basis: 20%;
+    }
+
+    &__btnDelete {
+      flex-basis: 20%;
+    }
+  }
+
+  .description {
+    &__title {
+      margin: 0;
+      padding-bottom: 10px;
+    }
+
+    &__currency {
+      font-size: 20px;
+    }
+  }
+
+  .quantity {
+    &__btn {
+      padding: 10px 15px;
+      font-size: 15px;
+    }
+
+    &__value {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .description {
+    &__title {
+      margin: 0;
+      padding-bottom: 20px;
+      font-size: 22px;
+    }
+
+    &__currency {
+      font-size: 28px;
+    }
+  }
+
+  .quantity {
+    &__btn {
+      font-size: 20px;
+    }
+
+    &__value {
+      font-size: 25px;
+    }
+  }
+}
