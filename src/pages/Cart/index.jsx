@@ -15,7 +15,7 @@ export function Cart() {
 
   useEffect(() => {
     if (token) {
-      const prices = cart?.products.map(({ cartQuantity, product }) => {
+      const prices = cart?.products?.map(({ cartQuantity, product }) => {
         return (cartQuantity * product.currentPrice)
       })
       setOrderAmount(prices?.reduce((prev, next) => prev + next, 0))

@@ -143,7 +143,7 @@ export function buyProduct(token) {
           'Content-Type': 'application/json'
         },
       })
-      // dispatch(setCart());
+      dispatch(setCart([]));
       dispatch(setLoadingAction(false));
       dispatch(setErrorAction(null));
     }
