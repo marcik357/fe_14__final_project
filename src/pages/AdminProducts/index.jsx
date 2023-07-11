@@ -6,6 +6,7 @@ import { getDataAction } from '../../redux/actions/getDataActions';
 import { addProductsAction} from '../../redux/actions/productsActions';
 import { setArtNumAction } from "../../redux/actions/artNumActions";
 import EditProductForm from "../../components/EditProductForm";
+import style from "./AdminProducts.module.scss"
 
 export function AdminProducts(){
   
@@ -28,7 +29,7 @@ export function AdminProducts(){
     dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
   }, [dispatch]);
 
-    return <>
+    return <div className={style.container}>
     {openForm ?
     <EditProductForm product={product} onCloseForm={handleFormClose}/>
     : <ProductList
@@ -36,5 +37,5 @@ export function AdminProducts(){
     customButtonText="Edit"
     customButtonHandler={(dispatch, _id) => handleEditButtonClick(dispatch, _id)}
     />}
-    </>
+    </div>
 }
