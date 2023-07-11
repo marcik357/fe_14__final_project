@@ -1,8 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Author, Authorization, Discover } from '../pages';
+import { Provider } from 'react-redux';
+import { useState,createContext } from 'react';
+export const Quantity = createContext()
 
 export default function Router() {
+  const [orderAmount, setOrderAmount] = useState(0);
   return (
+    <Quantity.Provider value={[orderAmount,setOrderAmount]}>
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
@@ -16,5 +21,6 @@ export default function Router() {
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </Quantity.Provider>
   );
 }
