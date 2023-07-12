@@ -20,8 +20,6 @@ function ProductCard({
   const dispatch = useDispatch();
   const { cartProductsArray, products } = useSelector((state) => state.cart);
   const { token } = useSelector((state) => state.token);
-  const { cartProductsArray, products } = useSelector(state => state.cart);
-  const { token } = useSelector(state => state.token);
 
   return (
     <div className={styles.productCard}>
@@ -63,7 +61,7 @@ function ProductCard({
           Buy now
         </button>
         <div className={styles.productCard__priceInfo_buyNow}>
-          <ETHIcon fill={isInAuthor && '#dbff73'}/>
+          <ETHIcon fill={isInAuthor && '#dbff73'} />
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
               {currentPrice}

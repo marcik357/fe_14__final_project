@@ -38,6 +38,7 @@ export function Home() {
               <Tab className={styles.products__filter_tab}>All</Tab>
               <Tab className={styles.products__filter_tab}>Collections</Tab>
               <Tab className={styles.products__filter_tab}>Artist</Tab>
+              <Tab className={styles.products__filter_tab}>Discover</Tab>
             </TabList>
             <TabPanel>
               <ProductList products={products} listName='NFTs' />
@@ -46,7 +47,10 @@ export function Home() {
               <CollectionList products={products} />
             </TabPanel>
             <TabPanel>
-              <AuthorList partners={partners} products={products}/>
+              <AuthorList partners={partners} products={products} />
+            </TabPanel>
+            <TabPanel>
+              <h2>Discover</h2>
             </TabPanel>
           </Tabs>
         </div>

@@ -9,7 +9,12 @@ function AuthorList({ partners, products }) {
       </div>
       <div className={style.authorList__wrapper}>
         {partners?.map((partner, index) => (
-          <AuthorCard {...partner} products={products} index={index + 1} />
+          <AuthorCard
+            key={partner._id}
+            {...partner}
+            products={products}
+            index={index + 1}
+          />
         ))}
       </div>
     </div>
