@@ -4,7 +4,6 @@
 
   &__container {
     // display: flex;
-    box-sizing: border-box;
     overflow-x: hidden;
   }
 
@@ -36,23 +35,5 @@
     max-width: 1470px;
     margin: 0 auto;
     padding: 0 15px;
-
-    .products {
-      overflow-x: hidden;
-
-      &__filter {
-        padding: 32px 0;
-
-        &_tabs {
-          justify-content: start;
-          margin-left: 50px;
-          column-gap: 80px;
-        }
-
-        &_tab {
-          padding: 32px 64px;
-        }
-      }
-    }
   }
 }

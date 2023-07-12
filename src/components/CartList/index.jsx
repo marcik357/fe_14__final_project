@@ -21,7 +21,7 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
       const disabling = setTimeout(() => {
         e.target.disabled = null;
         clearTimeout(disabling);
-      }, 1000);
+      }, 500);
       if (plus && quantity > amount) {
         dispatch(changeQuantity(cart, _id, token, plus));
         setAmount(amount + 1)
@@ -29,10 +29,6 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
         dispatch(changeQuantity(cart, _id, token, plus));
         setAmount(amount - 1)
       }
-      // dispatch(changeQuantity(cart, _id, token, plus));
-      // plus
-      //   ? setAmount(amount + 1)
-      //   : setAmount(amount - 1)
     } catch (error) {
       dispatch(setErrorAction(error));
     }

@@ -19,49 +19,43 @@ export function Cart() {
         return (cartQuantity * product.currentPrice)
       })
       setOrderAmount(prices?.reduce((prev, next) => prev + next, 0))
-    } else {
-      if (products.length > 0) {
-        const prices = cart?.products?.map(({ cartQuantity, product }) => {
-          const productR = products?.find((item) => item._id === product)
-          return (cartQuantity * productR.currentPrice)
-        })
-        setOrderAmount(prices?.reduce((prev, next) => prev + next, 0))
-      }
+    } else if (products.length > 0) {
+      const prices = cart?.products?.map(({ cartQuantity, product }) => {
+        const productR = products?.find((item) => item._id === product)
+        return (cartQuantity * productR.currentPrice)
+      })
+      setOrderAmount(prices?.reduce((prev, next) => prev + next, 0))
     }
   }, [cart, products, token])
 
   return (
-    !loading ?
-      (<div className={style.cart}>
+    !loading
+      ? <div className={style.cart}>
         <div className={style.cart__block}>
           <div className={style.block__items}>
             {cart?.products?.length > 0 && products?.length > 0
-              ? <>
-                {token
-                  ? cart.products?.map(({ product, cartQuantity }) => (
-                    <CartList
-                      key={Math.random() * 1000}
-                      // key={product._id}
+              ? cart.products?.map(({ product, cartQuantity }) => {
+                const productObj = products.find((productR) => productR._id === product)
+                return (
+                  token
+                    ? <CartList
+                      key={product._id}
                       cartQuantity={cartQuantity}
                       {...product}
-                    />))
-                  : cart.products?.map(({ product, cartQuantity }) => {
-                    const productObj = products.find((productR) => productR._id === product)
-                    return (<CartList
+                    />
+                    : <CartList
                       key={productObj.itemNo}
                       cartQuantity={cartQuantity}
                       {...productObj}
                     />)
-                  })}
-              </>
-              : <p className={style.block__noItems}>No items in the Cart</p>
-            }
+              })
+              : <p className={style.block__noItems}>No items in the Cart</p>}
           </div>
           <div className={style.block__actionToBuy}>
             <FormToBuy orderAmount={orderAmount} />
           </div>
         </div>
-      </div>)
-      : (<Loader />)
+      </div>
+      : <Loader />
   );
 }

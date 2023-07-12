@@ -1,19 +1,15 @@
 .authorDetails {
-  min-width: 375px;
-  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 1rem;
+  // max-width: 1470px;
+  // padding: 0 15px;
+  // box-sizing: border-box;
 
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__banner {
-    &_image {
-      width: 100%;
-      min-height: 304px;
-    }
+  @media (min-width: 748px) {
+    flex-direction: row;
   }
 
   &__authorIcon {
@@ -28,29 +24,18 @@
     }
   }
 
-  &__mainContent {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-    margin-top: -5px;
-
-    @media (min-width: 748px) {
-      flex-direction: row;
-    }
-  }
-
   &__info {
-    min-width: 350px;
+    max-width: 1470px;
+    // min-width: 350px;
     margin-bottom: 20px;
-    padding: 0 24px;
+    // padding: 0 24px;
 
     @media (min-width: 748px) {
       width: 45%;
     }
 
     @media (min-width: 1160px) {
-      padding: 0 40px;
+      // padding: 0 40px;
     }
 
     &_container {
@@ -112,8 +97,22 @@
   }
 
   &__products {
+    position: relative;
+    margin: 0 -15px;
+
     @media (min-width: 748px) {
       width: 55%;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 56vw;
+        height: 100%;
+        background: #000;
+        content: '';
+        z-index: -1;
+      }
     }
 
     &_container {

@@ -35,8 +35,8 @@
     max-width: 1470px;
     margin: 0 auto;
     padding: 0 15px;
-    box-sizing: border-box;
     z-index: 2;
+    box-sizing: border-box;
   }
 
   &__prevBtn,
@@ -162,8 +162,8 @@
       & > span {
         display: flex;
         align-items: center;
-        gap: 1rem;
         z-index: 3;
+        gap: 1rem;
       }
 
       &::after {

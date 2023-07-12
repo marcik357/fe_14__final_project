@@ -297,8 +297,8 @@ option {
       position: relative;
       transform: translateX(0);
       transition: none;
-      overflow-y: auto;
       visibility: visible;
+      overflow-y: auto;
     }
 
     &__sidebarHeader {

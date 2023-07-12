@@ -3,7 +3,6 @@ import { OpenList } from "../Icons/open-list";
 import { CloseList } from "../Icons/close-list";
 import { MarkerList } from "../Icons/marker-list-hc";
 import { ArrowRightBlue } from "../Icons/arrow-right-blue";
-import cube from "../../img/cube.png";
 import styles from "./helpCenter.module.scss";
 
 export function HelpCenter() {
@@ -36,7 +35,7 @@ export function HelpCenter() {
         <div className={styles.helpCenter__cubeBlockWrap}>
           <div className={styles.helpCenter__cubeBlock}>
             <h2>Gettings started on Crypter</h2>
-            <img src={cube} alt="cube" />
+            <img src='/images/banners/cube.png' alt="cube" />
           </div>
         </div>
 
