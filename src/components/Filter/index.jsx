@@ -192,7 +192,7 @@ function Filter() {
       <div className={styles.filter__container}>
         <div className={styles.filter__wrapper}>
           <div className={styles.filter__nav}>
-            <button className={styles.filter__openBtn} type="button" onClick={toggleModal}>Filters</button>
+            <button className={styles.filter__openBtn +' '+ styles.btnEffect} type="button" onClick={toggleModal}>Filters</button>
             <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={selectedFilters.sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
               <option disabled hidden value="Sort By">Sort By</option>
               <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
@@ -209,14 +209,14 @@ function Filter() {
                   </button>
                 </div>
                 <div className={styles.filter__sidebarBody}>
-                  <button className={styles.filter__clearBtnHead} type="button" onClick={clearAllFilters}>Clear All</button>
+                  <button className={styles.filter__clearBtnHead +' '+ styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
                   <div className={styles.filter__sidebarItemValue}>
                     <div>
                       <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
                       <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
                     </div>
-                    <button className={`${styles.filter__sidebarApplyBtn} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
+                    <button className={`${styles.filter__sidebarApplyBtn +' '+ styles.btnEffect} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
                   <div className={styles.filter__sidebarList}>
@@ -242,7 +242,7 @@ function Filter() {
                   </div>
                 </div>
                 <div className={styles.filter__sidebarFooter}>
-                  <button className={styles.filter__clearBtn} type="button" onClick={clearAllFilters}>Clear All</button>
+                  <button className={styles.filter__clearBtn +' '+ styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
                 </div>
               </div>
             </div>
