@@ -12,6 +12,7 @@ import CollectionList from '../../components/CollectionList';
 import AuthorList from '../../components/AuthorList';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './tabs.scss';
+import { Discover } from '../Discover';
 export function Home() {
   const dispatch = useDispatch();
 
@@ -50,7 +51,7 @@ export function Home() {
               <AuthorList partners={partners} products={products} />
             </TabPanel>
             <TabPanel>
-              <h2>Discover</h2>
+              <Discover />
             </TabPanel>
           </Tabs>
         </div>
