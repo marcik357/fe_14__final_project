@@ -2,9 +2,9 @@ import { Basket, LogIn, Account } from '../Icons';
 
 const menuData = [
   {
-    type: 'store',
-    page: '/categories',
-    text: 'Store',
+    type: 'Discover',
+    page: '/discover',
+    text: 'Discover',
     classHover: 'storeHover'
   },
   {
@@ -21,23 +21,23 @@ const menuData = [
   },
   {
     type: 'login',
-    page: '/login',
-    text: 'login',
-    icon: <LogIn width={35} height={35} color={'#202025'} />,
+    page: '/authorization',
+    text: 'LogIn',
+    icon(width, height, color, strokeWidth) {return <LogIn width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'loginHover'
    },
   {
     type: 'account',
     page: '/account',
-    text: 'account',
-    icon: <Account width={35} height={35} color={'#202025'} />,
+    text: 'Account',
+    icon(width, height, color, strokeWidth) {return <Account width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'accountHover'
  },
   {
     type: 'basket',
     page: '/cart',
     text: 'Shopping cart',
-    icon: <Basket width={35} height={35} color={'#202025'} fill={'none'} />,
+    icon(width, height, color, strokeWidth) {return <Basket width={width} height={height} color={color} strokeWidth={strokeWidth}/>},
     classHover: 'basketHover'
   },
 ];

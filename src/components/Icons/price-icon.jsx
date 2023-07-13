@@ -1,7 +1,9 @@
-export function ETHIcon() {
+import PropTypes from 'prop-types';
+
+export function ETHIcon({ fill }) {
   return (
     <svg
-      fill='#000000'
+      fill={fill}
       viewBox='0 0 32 32'
       xmlns='http://www.w3.org/2000/svg'
     >
@@ -17,3 +19,11 @@ export function ETHIcon() {
     </svg>
   );
 }
+
+ETHIcon.propTypes = {
+  color: PropTypes.string,
+};
+
+ETHIcon.defaultProps = {
+  color: '#000000',
+};

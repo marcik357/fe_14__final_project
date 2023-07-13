@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types'; 3
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { buyNowHandler } from '../../utils';
 import style from './productDetails.module.scss';
 import { ETHIcon } from '../Icons';
 import { Link } from 'react-router-dom';
+// import { addProductNftToCart } from '../../redux/actions/cartActions';
 
-export default function ProductDetails({ _id, itemNo, name, currentPrice, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
+
+export default function ProductDetails({ _id, itemNo, name, currentPrice, quantity, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
   const dispatch = useDispatch();
-
+  const { token } = useSelector(state => state.token)
   return (
     <div className={style.productDetails}>
       <div className={style.productDetails__imgCont}>
@@ -15,7 +17,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
         <div className={style.productDetails__links}>
           <div className={style.productDetails__userInfo}>
             <p className={style.productDetails__userInfo_text}>Created by:</p>
-            <Link to={'/'} className={style.productDetails__userInfo_container}>
+            <Link to={`/author/${author}`} className={style.productDetails__userInfo_container}>
               <img className={style.productDetails__userInfo_userIcon} src={authorIcon} alt="user-avatar" />
               <p className={style.productDetails__userInfo_userLink}>{author}</p>
             </Link>
@@ -39,7 +41,6 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
       <div className={style.productDetails__actions}>
         <div className={style.productDetails__actions_header}>
           <h2 className={style.productDetails__actions_title}>{name}</h2>
-          {/* <button className={style.productDetails__buttons_fav}>♡</button> */}
         </div>
         <div className={style.productDetails__actions_price}>
           <p>Price</p>
@@ -53,8 +54,11 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, imageU
           <h3 className={style.productDetails__descr_title}>Details:</h3>
           <p className={style.productDetails__descr_text}>{details}</p>
         </div>
-        <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, _id)}>Buy now</button>
-        <p className={style.productDetails__actions_text}>We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities. Join the millions of creators, collectors, and curators who are on this journey with you.</p>
+        <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, _id, token)}>Buy now</button>
+        <p className={style.productDetails__actions_text}>
+          We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities.
+          Join the millions of creators, collectors, and curators who are on this journey with you.
+        </p>
       </div>
     </div>
   );

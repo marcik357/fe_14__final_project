@@ -1,28 +1,43 @@
+import style from './author.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductDetails from '../../components/ProductDetails';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import Loader from '../../components/Loader';
+import Banner from '../../components/Banner';
+import { AuthorDetails } from '../../components/AuthorDetails';
+import { baseUrl } from '../../utils/vars';
+import { useState } from 'react';
+import { useCallback } from 'react';
 
 export function Author() {
   const { authorId } = useParams();
-  // const [product, setProduct] = useState(null);
-  // const dispatch = useDispatch()
+  const [{ products, productsQuantity }, setProducts] = useState([]);
+  const [author, setAuthor] = useState({});
+  const dispatch = useDispatch();
 
-  // const loading = useSelector((state) => state.loading.loading);
+  const loading = useSelector((state) => state.loading.loading);
 
-  // useEffect(() => {
-  //   dispatch(getDataAction(`https://plankton-app-6vr5h.ondigitalocean.app/api/products/${productId}`, setProduct));
-  // }, [dispatch, productId]);
+  const getAuthor = useCallback((data) => {
+    const author = data.find((author) => author.customId === authorId);
+    setAuthor(author)
+  }, [authorId])
+
+  useEffect(() => {
+    dispatch(getDataAction(`${baseUrl}partners`, getAuthor, {}, 'author'));
+    dispatch(getDataAction(`${baseUrl}products/filter?&author=${authorId}`, setProducts, {}, 'products'));
+  }, [dispatch, getAuthor, setProducts, authorId]);
 
   return (
-    <>
-      <div>{authorId}</div>
-      {/* {!loading ? (
-        <ProductDetails {...product} />
-      ) : (
-        <Loader />
-      )} */}
-    </>)
+    !loading && products ? (
+      <div className={style.author}>
+        <Banner title={author.name} img='/images/banners/author-banner.png' />
+        <div className={style.author__container}>
+          <AuthorDetails author={author} products={products} productsQuantity={productsQuantity} />
+        </div>
+      </div>
+    ) : (
+      <Loader />
+    )
+  )
 }

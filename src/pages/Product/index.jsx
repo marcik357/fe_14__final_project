@@ -16,7 +16,7 @@ export function Product() {
   const error = useSelector(state => state.error.error)
 
   useEffect(() => {
-    dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, 'product'));
+    dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
   }, [dispatch, productId]);
 
   useEffect(() => {
