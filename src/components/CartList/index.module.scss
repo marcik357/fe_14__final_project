@@ -1,5 +1,4 @@
 .cartListItem {
-  text-align: center;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -7,7 +6,9 @@
   position: relative;
   padding: 10px;
   color: #fff;
+  text-align: center;
   gap: 10px;
+
   &__icon {
     width: 130px;
     height: 130px;
@@ -25,21 +26,24 @@
 
   &__quantity {
     display: flex;
-    justify-content: center;
     flex-basis: 20%;
-    gap:20px;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
   }
 
   &__btnDelete {
     position: absolute;
-    top:15px;right: 10px;
-    padding:2px 5px;
+    top: 15px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
     border: 1px solid #fff;
     border-radius: 50%;
     background: none;
-    color: #FFF;
+    color: #fff;
     font-size: 14px;
+    text-align: center;
     cursor: pointer;
   }
 
@@ -67,15 +71,28 @@
 }
 
 .quantity {
-  &__btn {
-    font-size: 16px;
-    text-align: center;
+  &__btn_increase,
+  &__btn_decrease {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #FFF;
+    background: #fff;
     color: #202025;
+    font-size: 16px;
+    text-align: center;
     cursor: pointer;
+  }
+
+  &__btn_increase {
+    &::before {
+      content: '-';
+    }
+  }
+
+  &__btn_decrease {
+    &::after {
+      content: '+';
+    }
   }
 }
 
@@ -83,6 +100,7 @@
   .cartListItem {
     flex-wrap: nowrap;
     text-align: left;
+
     &__description {
       flex-basis: 40%;
     }
@@ -197,10 +215,11 @@
   .cartListItem {
     &__description {
       display: block;
-      font-size: 20px;
       flex-basis: 60%;
+      font-size: 20px;
     }
   }
+
   .description {
     &__title {
       margin: 0;

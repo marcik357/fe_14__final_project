@@ -62,18 +62,18 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
         <div className={style.cartListItem__quantity}>
           <button
             type="submit"
-            className={style.quantity__btn}
+            className={style.quantity__btn_increase}
             onClick={amount > 1 ? (e) => increase(false, e) : null}
-          > -
+          >
           </button>
           <div className={style.quantity__value}>
             {amount}
           </div>
           <button
             type="button"
-            className={style.quantity__btn}
+            className={style.quantity__btn_decrease}
             onClick={(e) => increase(true, e)}
-          > +
+          >
           </button>
         </div>
         <button

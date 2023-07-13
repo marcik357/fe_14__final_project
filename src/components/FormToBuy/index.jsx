@@ -22,14 +22,14 @@ export function FormToBuy() {
           Total price:
         </p>
         <div className={style.block__summeryPriceValue}>
-          <span>{Number(orderAmount.toFixed(2)) || 0}</span>
+          <span>{Number(orderAmount?.toFixed(2)) || 0}</span>
           <span> ETH</span>
         </div>
       </div>
-      <Link  className={style.makeOrder__btnBuy} to='/order'>
+      <Link    className={style.makeOrder__btnBuy} to='/order'>
       <button
         type="button"
-        onClick={() => dispatch(buyProduct(token))}
+        // onClick={() => dispatch(buyProduct(token))}
       >
         buy now
       </button>

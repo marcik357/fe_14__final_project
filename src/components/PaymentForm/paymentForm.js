@@ -6,7 +6,7 @@ export const paymentForm = [
       id: "cardNumber",
       name: "cardNumber",
       type: "text",
-      placeholder: "Enter card 4900 **** **** ****`",
+      placeholder: "Number in format 4900 **** **** ****",
     },
     {
       tagType: 'regular',
@@ -14,7 +14,7 @@ export const paymentForm = [
       id: "validity",
       name: "validity",
       type: "text",
-      placeholder: "Enter the validity of card ",
+      placeholder: "Enter the MM/YY",
     },
     {
       tagType: 'regular',
@@ -22,7 +22,7 @@ export const paymentForm = [
       id: "cvv",
       name: "cvv",
       type: "text",
-      placeholder: "Enter the CVV *** ",
+      placeholder: "Enter the CVV",
     }
     
   ];

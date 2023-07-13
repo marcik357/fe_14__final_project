@@ -5,190 +5,190 @@
 }
 
 .helpCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+
+
+  &__content {
+    width: 100%;
+  }
+
+  &__cubeBlock {
+    position: relative;
+    height: 520px;
+    padding: 40px 24px;
+    background-color: #b9a9fb;
+    z-index: 0;
+  }
+
+  h2 {
+    width: 226px;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: -.8px;
+    line-height: 48px;
+  }
+
+  img {
+    width: 458px;
+    transform: translateX(-23%) translateY(-12%);
+  }
+
+  &__infoBlockList {
+    position: relative;
+    padding: 0 24px 40px;
+    z-index: 1;
+  }
+
+  &__infoBlock {
+    border-bottom: 1px solid #e1e2e2;
+  }
+
+  &__blockButton {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'Inter', sans-serif;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    border: none;
+    background-color: transparent;
+    color: #202025;
+    font-family: "Inter", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: -.64px;
+    line-height: 40px;
+    cursor: pointer;
+  }
 
+  // span {
+  //     margin-top: 7px;
+  // }
 
-    &__content {
-        width: 100%;
-    }
+  &__active {
+    padding-bottom: 40px;
+  }
 
-    &__cubeBlock {
-        position: relative;
-        height: 520px;
-        background-color: #B9A9FB;
-        padding: 40px 24px;
-        z-index: 0;
-    }
+  &__list {
+    list-style-type: none;
+  }
 
-    h2 {
-        font-size: 40px;
-        font-style: normal;
-        font-weight: 800;
-        line-height: 48px;
-        letter-spacing: -0.8px;
-        width: 226px;
-    }
+  &__blockButtonItem {
+    position: relative;
+    width: 100%;
+    margin-bottom: 24px;
+    border: none;
+    background-color: transparent;
+    color: #686a6c;
+    // display: flex;
+    // flex-wrap: wrap;
+    // align-items: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -.4px;
+    line-height: 32px;
+    cursor: pointer;
+  }
 
-    img {
-        width: 458px;
-        transform: translateX(-23%) translateY(-12%);
-    }
+  &__blockButtonItemTitle {
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
 
-    &__infoBlockList {
-       position: relative;
-       z-index: 1;
-       padding: 0 24px 40px;
-    }
+  &__activeItem p {
+    margin-left: 40px;
+    font-weight: 400;
+    text-align: left;
+  }
 
-    &__infoBlock {
-        border-bottom: 1px solid #E1E2E2;
-    }
+  &__list span:hover {
+    color: #202025;
+  }
 
-    &__blockButton {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        background-color: transparent;
-        border: none;
-        color: #202025;
-        font-family: "Inter", sans-serif;
-        font-size: 32px;
-        font-style: normal;
-        font-weight: 800;
-        line-height: 40px;
-        letter-spacing: -0.64px;
-        cursor: pointer;
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
+  &__list li svg {
+    margin-top: 8px;
+    margin-right: 16px;
+  }
 
-    // span {
-    //     margin-top: 7px;
-    // }
-
-    &__active {
-        padding-bottom: 40px;
-    }
-
-    &__list {
-        list-style-type: none;
-    }
-
-    &__blockButtonItem {
-        position: relative;
-        width: 100%;
-        background-color: transparent;
-        border: none;
-        // display: flex;
-        // flex-wrap: wrap;
-        // align-items: center;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 32px;
-        letter-spacing: -0.4px;
-        color: #686A6C;
-        margin-bottom: 24px;
-        cursor: pointer;
-    }
-
-    &__blockButtonItemTitle {
-        display: flex;
-        align-items: center;
-        text-align: left;
-    }
-
-    &__activeItem p {
-        text-align: left;
-        font-weight: 400;
-        margin-left: 40px;
-    }
-
-    &__list span:hover {
-        color: #202025;
-    }
-
-    &__list li svg {
-        margin-top: 8px;
-        margin-right: 16px;
-    }
-
-    &__list li:last-child {
-        margin-bottom: 48px;
-    }
+  &__list li:last-child {
+    margin-bottom: 48px;
+  }
 }
 
 @media (min-width: 1140px) {
-    .helpCenter {
-        &__content {
-            display: flex;
-        }
-
-        &__cubeBlockWrap {
-            position: relative;
-            width: 50%;
-        }
-
-        &__cubeBlockWrap::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #B9A9FB;
-        }
-
-        &__cubeBlock {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow: hidden;
-            padding: 40px 40px;
-        }
-
-        &__infoBlockList {
-            width: 50%;
-            overflow: hidden;
-        }
-
-        h2 {
-            font-size: 64px;
-            font-style: normal;
-            font-weight: 800;
-            line-height: 64px;
-            letter-spacing: -1.28px;
-            width: 360px;
-        }
-
-        img {
-            width: 532px;
-            transform: translateX(-23%) translateY(-6%);
-        }
+  .helpCenter {
+    &__content {
+      display: flex;
     }
+
+    &__cubeBlockWrap {
+      position: relative;
+      width: 50%;
+    }
+
+    &__cubeBlockWrap::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #b9a9fb;
+      content: "";
+    }
+
+    &__cubeBlock {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 40px;
+      overflow: hidden;
+    }
+
+    &__infoBlockList {
+      width: 50%;
+      overflow: hidden;
+    }
+
+    h2 {
+      width: 360px;
+      font-size: 64px;
+      font-style: normal;
+      font-weight: 800;
+      letter-spacing: -1.28px;
+      line-height: 64px;
+    }
+
+    img {
+      width: 532px;
+      transform: translateX(-23%) translateY(-6%);
+    }
+  }
 }
 
 @media (min-width: 1440px) {
-    .helpCenter {
-        &__cubeBlock {
-            padding: 64px;
-        }
-
-        h2 {
-            font-size: 80px;
-            font-style: normal;
-            font-weight: 800;
-            line-height: 80px;
-            letter-spacing: -1.6px;
-            width: 519px;
-        }
-
-        img {
-            width: 620px;
-            transform: translateX(-23%) translateY(-9%);
-        }
+  .helpCenter {
+    &__cubeBlock {
+      padding: 64px;
     }
+
+    h2 {
+      width: 519px;
+      font-size: 80px;
+      font-style: normal;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+      line-height: 80px;
+    }
+
+    img {
+      width: 620px;
+      transform: translateX(-23%) translateY(-9%);
+    }
+  }
 }

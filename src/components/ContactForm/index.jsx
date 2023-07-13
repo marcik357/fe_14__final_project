@@ -2,11 +2,22 @@ import { useSelector } from "react-redux";
 import styleText from '../../pages/Order/order.module.scss';
 import FormikForm from "../FormikForm";
 import { validationSchemaOrder } from "../../validation";
-
+import { useState,useEffect } from "react";
 export function ContactForm ({contactForm,setActive,active,setContactValue}) {
     const customer =useSelector(state=> state.cart.cart.customerId);
-    
-    
+    const loading = useSelector(state=>state.loading);
+    const token = useSelector(state=> state.token.token);
+    const [initialValues , setInitialValues] = useState({})
+
+   useEffect(()=>{
+    if(token){
+    setTimeout(()=>{
+        setInitialValues(
+            initialValues.name = customer?.firstName,
+            initialValues.email = customer?.email,
+            initialValues.telephone=customer?.telephone)
+    },500)}},[customer])
+
     const handleSubmit=(value)=>{
         setActive(!active);
         setContactValue(value)
@@ -15,9 +26,7 @@ export function ContactForm ({contactForm,setActive,active,setContactValue}) {
     return (
         <>
         <FormikForm
-        initialValues={
-            {email: customer?.email,
-            telephone:customer?.telephone}}
+        initialValues={initialValues}
         fields={contactForm}
         validationSchema={validationSchemaOrder}
         submitBtn="Continue"

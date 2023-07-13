@@ -1,5 +1,13 @@
 
 export const contactForm = [
+  {
+    tagType: 'regular',
+    label: "Name",
+    id: "name",
+    name: "name",
+    type: "text",
+    placeholder: "Enter your name",
+  },
     {
       tagType: 'regular',
       label: "Email",
