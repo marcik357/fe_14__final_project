@@ -9,7 +9,7 @@
   flex-direction: column;
   position: relative;
   width: 93%;
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 0 15px;
   transition: .2s ease;
   border-radius: 30px;
@@ -231,7 +231,7 @@
 
 @media (min-width: 768px) {
   .productCard {
-    margin-bottom: 32px;
+    // margin-bottom: 32px;
     padding: 0 10px;
 
     &:hover {

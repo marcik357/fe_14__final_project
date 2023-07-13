@@ -1,5 +1,7 @@
 .products {
-  margin: 0;
+  max-width: 1470px;
+  margin: 0 auto;
+  padding: 0 15px;
   background-color: #f7fbfa;
 
   &__container {
@@ -12,12 +14,15 @@
 
     &_tabs {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
+      margin-bottom: 2rem;
       border-bottom: 1px solid #e1e2e2;
     }
 
     &_tab {
       padding: 15px 20px;
+      color: #202025;
       font-family: Inter;
       font-size: 24px;
       font-weight: 700;

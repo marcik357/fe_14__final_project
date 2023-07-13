@@ -104,7 +104,7 @@ function ProductCard({
 
 ProductCard.propTypes = {
   _id: PropTypes.string.isRequired,
-  imageUrls: PropTypes.arrayOf(PropTypes.string)y,
+  imageUrls: PropTypes.arrayOf(PropTypes.string),
   authorIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,

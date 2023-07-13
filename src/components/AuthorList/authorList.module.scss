@@ -8,11 +8,8 @@
   &__title {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     width: 100%;
-    margin-top: 128px;
-    margin-bottom: 37px;
-    margin-left: 40px;
 
     & h2 {
       font-size: 48px;
