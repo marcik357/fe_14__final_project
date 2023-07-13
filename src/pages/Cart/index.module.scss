@@ -8,11 +8,11 @@ body {
   font-family: "Inter", sans-serif;
 
   &__block {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
 }
 
@@ -29,7 +29,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 55vh;
-    color: #FFF;
+    color: #fff;
     font-size: 30px;
     font-weight: 900;
     text-align: center;
@@ -37,12 +37,12 @@ body {
   }
 
   &__actionToBuy {
-    position: sticky;
-    top:80px;
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     align-items: center;
     justify-content: center;
+    position: sticky;
+    top: 80px;
     width: 90%;
     margin: 0 auto;
   }
@@ -65,7 +65,7 @@ body {
     min-width: 800px;
 
     &__block {
-      flex-direction: row;
+      flex-flow: row;
       flex-wrap: nowrap;
       align-items: flex-start;
     }
