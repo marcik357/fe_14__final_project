@@ -147,6 +147,7 @@
 
     &_button {
       display: flex;
+      align-items: center;
       position: relative;
       padding: 7px 35px;
       transition: .3s;
@@ -159,6 +160,12 @@
       cursor: pointer;
       overflow: hidden;
       z-index: 1;
+
+      & svg {
+        width: 15px;
+        height: 15px;
+        margin-left: 5px;
+      }
 
       &::after {
         position: absolute;

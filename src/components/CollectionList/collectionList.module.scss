@@ -1,0 +1,39 @@
+.collectionList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f7fbfa;
+  font-family: Inter;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    margin-top: 128px;
+    margin-bottom: 15px;
+    margin-left: 40px;
+
+    & h2 {
+      font-size: 48px;
+      font-weight: 800;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .collectionList {
+    &__wrapper {
+      display: grid;
+      justify-content: center;
+      padding: 0 20px;
+      column-gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+  }
+}

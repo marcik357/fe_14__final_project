@@ -4,7 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products, isInAuthor, showPagination = true, customButtonText, customButtonHandler }) {
+function ProductList({ products, listName, isInAuthor, showPagination = true, customButtonText, customButtonHandler }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -20,7 +20,7 @@ function ProductList({ products, isInAuthor, showPagination = true, customButton
   });
   const scroll = () => {
     const section = document.querySelector('#products');
-    section.scrollIntoView({ behavior: 'smooth', top: 740 });
+    section.scrollIntoView({ behavior: 'smooth' });
   };
   const renderPageNumbers = () => {
     const ellipsis = '...';
@@ -81,13 +81,14 @@ function ProductList({ products, isInAuthor, showPagination = true, customButton
   };
 
   return (
-    <div id='products' className={`${styles.products} ${isInAuthor ? styles.productListInAuthor : ''}`}>
+    <div
+      id='products'
+      className={`${styles.products} ${
+        isInAuthor ? styles.productListInAuthor : ''
+      }`}
+    >
       <div className={styles.products__title}>
-        {isInAuthor ? (
-          null
-        ) : (
-          <h2>NFTs</h2>
-        )}
+        {isInAuthor ? null : <h2>{listName}</h2>}
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
