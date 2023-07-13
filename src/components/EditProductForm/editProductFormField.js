@@ -87,7 +87,7 @@ export const editProductFormFields = [
     errorclass: style.form__error,
     divclass: style.form__checkboxes,
     checkboxclass : `${style.form__checkbox} ${style.checkbox}`,
-    id: "theme",
+    // id: "theme",
     name: "theme",
     type: "checkbox",
     options: ["art","film", "portrait", "people", "animal", "anime"],

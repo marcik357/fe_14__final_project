@@ -91,7 +91,7 @@ function ProductList({ products, customButtonText, customButtonHandler }) {
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
           <ProductCard {...product} key={product._id}
           buttonText={customButtonText}
-          buttonHandler={() => customButtonHandler(dispatch, product._id)}
+          buttonHandler={customButtonHandler}
            />
         ))}
       </div>

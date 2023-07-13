@@ -46,7 +46,7 @@ function ProductCard({
         <button
           className={styles.productCard__priceInfo_button}
           type='button'
-          onClick={buttonHandler}
+          onClick={()=>buttonHandler(itemNo)}
         >
           {buttonText}
         </button>
