@@ -4,12 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({
-  products,
-  listName,
-  isInAuthor,
-  showPagination = true,
-}) {
+function ProductList({ products, listName, isInAuthor, showPagination = true, customButtonText, customButtonHandler }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -35,10 +30,10 @@ function ProductList({
         totalPages <= 7
           ? pageNumbers
           : page <= 4
-          ? pageNumbers.slice(0, 5)
-          : page >= totalPages - 4
-          ? pageNumbers.slice(totalPages - 5)
-          : pageNumbers.slice(page - 3, page + 2);
+            ? pageNumbers.slice(0, 5)
+            : page >= totalPages - 4
+              ? pageNumbers.slice(totalPages - 5)
+              : pageNumbers.slice(page - 3, page + 2);
 
       return (
         <>
@@ -97,7 +92,10 @@ function ProductList({
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor} />
+          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}
+            buttonText={customButtonText}
+            buttonHandler={customButtonHandler}
+          />
         ))}
       </div>
       {showPagination && (

@@ -13,6 +13,9 @@ import AuthorList from '../../components/AuthorList';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './tabs.scss';
 import { Discover } from '../Discover';
+import { buyNowHandler } from '../../utils';
+
+
 export function Home() {
   const dispatch = useDispatch();
 
