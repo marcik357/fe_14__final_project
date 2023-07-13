@@ -14,10 +14,11 @@ export default function Router() {
         <Route path="/order" element={<Order />} />
         <Route path="/help" element={<Help />} />
 
-        <Route path='/account' element={<Account />} />
-        {/* <Route element={<PrivateRoute />}>
+        {/* <Route path='/account' element={<Account />} /> */}
+        <Route element={<PrivateRoute />}>
           <Route path='/account' element={<Account />} />
-        </Route> */}
+        </Route>
+
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/author/:authorId" element={<Author />} />
         <Route path="/product/:productId" element={<Product />} />

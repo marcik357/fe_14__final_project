@@ -6,6 +6,7 @@ import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
 import { AdminProducts } from '../AdminProducts';
+import { Link } from 'react-router-dom';
 
 
 export function Account() {
@@ -27,17 +28,35 @@ export function Account() {
 
   return (
     <>
-      {/* {!loading && user
-        ? <> */}
+      {user &&
+        <>
           <Banner
             title='Hello there!'
             subtitle={`General ${user?.login}`}
             img='/images/banners/account-banner.webp' />
-          {user?.isAdmin
+          {user?.isAdmin && <Link to={'/admin'}>Admin panel</Link>}
+          {/* {user?.isAdmin
             ? <AdminProducts />
-            : <h4>List of your orders:</h4>}
-        {/* </>
-        : <Loader />
-      } */}
-    </>)
+            : <h4>List of your orders:</h4>} */}
+          <h4>List of your orders:</h4>
+        </>
+      }
+    </>
+
+    // !loading && user
+    //   ? <>{user &&
+    //     <>
+    //       <Banner
+    //         title='Hello there!'
+    //         subtitle={`General ${user?.login}`}
+    //         img='/images/banners/account-banner.webp' />
+    //       {user?.isAdmin && <Link to={'/admin'}>Admin</Link>}
+    //       {/* {user?.isAdmin
+    //         ? <AdminProducts />
+    //         : <h4>List of your orders:</h4>} */}
+    //       <h4>List of your orders:</h4>
+    //     </>
+    //   }</>
+    //  : <Loader />
+  )
 }
