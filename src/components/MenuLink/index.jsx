@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { ArrowRight, Basket } from '../Icons';
+import { ArrowRight } from '../Icons';
 
 function MenuLink(props) {
 	const { classItem, classHover, page, isActive, classActive, closeBurgerMenu, text, isDesktop, icon } = props;
