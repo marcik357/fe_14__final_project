@@ -15,7 +15,9 @@ function ProductCard({
   currentPrice,
   name,
   itemNo,
-  isInAuthor
+  isInAuthor,
+  buttonText,
+  buttonHandler
 }) {
   const dispatch = useDispatch();
   const { cartProductsArray, products } = useSelector(state => state.cart);
@@ -49,12 +51,16 @@ function ProductCard({
         <button
           className={styles.productCard__priceInfo_button}
           type='button'
-          onClick={() => buyNowHandler(dispatch, _id, token)}
+          onClick={
+            !buttonHandler
+              ? () => buyNowHandler(dispatch, _id, token)
+              : () => buttonHandler(itemNo)
+          }
         >
-          Buy now
+          {buttonText}
         </button>
         <div className={styles.productCard__priceInfo_buyNow}>
-          <ETHIcon fill={isInAuthor && '#dbff73'}/>
+          <ETHIcon fill={isInAuthor && '#dbff73'} />
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
               {currentPrice}
@@ -79,6 +85,8 @@ ProductCard.propTypes = {
   authorIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,
+  buttonText: PropTypes.string,
+  buttonHandler: PropTypes.func
 };
 
 ProductCard.defaultProps = {
@@ -86,6 +94,7 @@ ProductCard.defaultProps = {
   authorIcon: '/images/avatars/user-icon.png',
   author: 'varios author',
   currentPrice: 0,
+  buttonText: "Buy now",
 };
 
 export default ProductCard;

@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Author, Authorization, Discover, Help } from '../pages';
+import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Author, Authorization, Discover, Help, AdminProducts } from '../pages';
 
 export default function Router() {
   return (
@@ -15,6 +15,7 @@ export default function Router() {
         <Route path="/author/:authorId" element={<Author />} />
         <Route path="/product/:productId" element={<Product />} />
       </Route>
+      <Route path="/admin" element={<AdminProducts />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -8,6 +8,7 @@ import Filter from '../../components/Filter';
 import Loader from '../../components/Loader';
 import styles from './Home.module.scss';
 import { baseUrl } from '../../utils/vars';
+import { buyNowHandler } from '../../utils';
 
 export function Home() {
   const dispatch = useDispatch();

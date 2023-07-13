@@ -4,7 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products, isInAuthor, showPagination = true }) {
+function ProductList({ products, isInAuthor, showPagination = true, customButtonText, customButtonHandler }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -30,10 +30,10 @@ function ProductList({ products, isInAuthor, showPagination = true }) {
         totalPages <= 7
           ? pageNumbers
           : page <= 4
-          ? pageNumbers.slice(0, 5)
-          : page >= totalPages - 4
-          ? pageNumbers.slice(totalPages - 5)
-          : pageNumbers.slice(page - 3, page + 2);
+            ? pageNumbers.slice(0, 5)
+            : page >= totalPages - 4
+              ? pageNumbers.slice(totalPages - 5)
+              : pageNumbers.slice(page - 3, page + 2);
 
       return (
         <>
@@ -91,23 +91,26 @@ function ProductList({ products, isInAuthor, showPagination = true }) {
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}/>
+          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}
+            buttonText={customButtonText}
+            buttonHandler={customButtonHandler}
+          />
         ))}
       </div>
       {showPagination && (
-      <div className='pagination'>
-        {page === 1 ? null : (
-          <button onClick={(prevPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-        {renderPageNumbers()}
-        {totalPages === page ? null : (
-          <button onClick={(nextPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-      </div>
+        <div className='pagination'>
+          {page === 1 ? null : (
+            <button onClick={(prevPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+          {renderPageNumbers()}
+          {totalPages === page ? null : (
+            <button onClick={(nextPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

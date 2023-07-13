@@ -41,3 +41,17 @@ export const validationSchemaLogin = Yup.object({
     .max(30, 'Can be no more than 30 characters')
     .required("Required Field!"),
 });
+
+export const validationSchemaProduct = Yup.object().shape({
+  enabled: Yup.boolean(),
+  imageUrls: Yup.array().of(Yup.string()).required("Required Field!"),
+  quantity: Yup.number().integer().positive().required("Required Field!"),
+  _id: Yup.string(),
+  name: Yup.string().required("Required Field!"),
+  author: Yup.string().required("Required Field!"),
+  categories: Yup.string().required("Required Field!"),
+  theme: Yup.array().of(Yup.string()).required("Required Field!"),
+  currentPrice: Yup.number().positive().required("Required Field!"),
+  details: Yup.string(),
+  itemNo: Yup.string(),
+});
