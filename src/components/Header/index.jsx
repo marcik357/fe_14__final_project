@@ -9,6 +9,7 @@ import SocialLink from '../SocialLink';
 import menuData from '../MenuLink/menuData';
 import MenuLink from '../MenuLink';
 import MobilNav from '../MobilNav';
+import { useFormik } from 'formik';
 import { HeaderSearch } from '../HeaderSearch';
 
 function Header() {
@@ -37,11 +38,19 @@ function Header() {
   // прапор для компонентів, щоб не рендерити іх на десктопі
   const isDesktop = useMediaQuery({ minWidth: 993 });
 
+  // створення об'єкта formik, який управляє формою
+  const formik = useFormik({
+	initialValues: {
+	  search: "",
+	}
+  })
+
   // показуємо та ховаємо радок пошуку input
   const [isSearchVisible, setSearchVisible] = useState(false);
 
   function toggleSearchView() {
     setSearchVisible(!isSearchVisible);
+    formik.setFieldValue("search", "");
   }
 
   // відміна прокрутки при відкритому бургер меню
@@ -105,6 +114,7 @@ function Header() {
                   toggleSearchView={toggleSearchView}
                   isDesktop={isDesktop}
                   setSearchVisible={setSearchVisible}
+                  formik={formik}
                 />
               </div>
             </div>

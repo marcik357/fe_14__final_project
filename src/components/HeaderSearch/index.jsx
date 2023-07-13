@@ -1,5 +1,4 @@
 import { Search, Close } from '../Icons';
-import { useFormik } from 'formik';
 import { fetchData } from '../../utils';
 import { baseUrl } from '../../utils/vars';
 import { useState, useEffect, useRef } from 'react';
@@ -8,7 +7,7 @@ import style from './headerSearch.module.scss';
 
 export function HeaderSearch(props) {
   const { classForm, isSearchVisible, classActive, scrolled, classScrolled, classLabel,
-    classInput, classClear, classClearActive, toggleSearchView, setSearchVisible } = props;
+    classInput, classClear, classClearActive, toggleSearchView, isDesktop, formik } = props;
 
   const [matchingData, setMatchingData] = useState({
    products: [],
@@ -18,12 +17,6 @@ export function HeaderSearch(props) {
 
   const [inputLength, setInputLength] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
-
-  const formik = useFormik({
-    initialValues: {
-      search: "",
-    }
-   })
 
   useEffect(() => {
     let timeoutId;
@@ -75,36 +68,28 @@ export function HeaderSearch(props) {
     formik.setFieldValue("search", "");
  };
 
-  // закриття input при кліку поза ним
-  const formaRef = useRef(null);
-  const headerSearchRef = useRef(null);
+  // вирівнювання результатів пошуку під рядком пошуку
+  const formRef = useRef(null);
+  const containerRef = useRef(null);
+  const [containerLeft, setContainerLeft] = useState(0);
 
   useEffect(() => {
-    const clickOutsideForms = (e) => {
-     // Перевірка, чи подія є mousedown або touchstart
-     const isMouseEvent = e.type === 'mousedown';
-     const isTouchEvent = e.type === 'touchstart';
-
-     if (isMouseEvent || isTouchEvent) {
-       if (formaRef.current && headerSearchRef.current && !formaRef.current.contains(e.target) && !headerSearchRef.current.contains(e.target)) {
-         setSearchVisible(false);
-         formik.setFieldValue("search", "");
-      }
-     }
+   const updateContainerLeft = () => {
+     const formRect = formRef.current.getBoundingClientRect();
+     setContainerLeft(formRect.left);
    };
 
-   document.addEventListener('mousedown', clickOutsideForms);
-   document.addEventListener('touchstart', clickOutsideForms);
+   window.addEventListener('resize', updateContainerLeft);
+   updateContainerLeft();
 
    return () => {
-     document.removeEventListener('mousedown', clickOutsideForms);
-     document.removeEventListener('touchstart', clickOutsideForms);
+     window.removeEventListener('resize', updateContainerLeft);
    };
- });
+ }, []);
 
   return (
    <>
-    <form action="" ref={formaRef} className={`${classForm} ${isSearchVisible && classActive} ${scrolled && classScrolled}`}>
+    <form action="" ref={formRef} className={`${classForm} ${isSearchVisible && classActive} ${scrolled && classScrolled}`}>
       <label htmlFor="searchInput" className={classLabel}>
         <input
          type="text"
@@ -124,33 +109,35 @@ export function HeaderSearch(props) {
       </label>
      </form>
      {inputLength > 2 && dataLoaded && Object.values(matchingData).some(data => data.length > 0) &&(
-        <div ref={headerSearchRef} className={`${style.headerSearch} ${scrolled && style.scrolled}`}>
-          {matchingData.products.length > 0 && (
-            <HeaderSearchResults
-              data={matchingData.products}
-              type='NFTs'
-              handleClearSearch={handleClearSearch}
-              toggleSearchView={toggleSearchView}
-            />
-          )}
+        <div className={`${style.headerSearch} ${scrolled && style.scrolled}`} role="button" tabIndex={0} onClick={toggleSearchView} onKeyDown={toggleSearchView}>
+          <div className={style.headerSearch__container} style={isDesktop ? { left: containerLeft } : null}  ref={containerRef}>
+            {matchingData.products.length > 0 && (
+              <HeaderSearchResults
+                data={matchingData.products}
+                type='NFTs'
+                handleClearSearch={handleClearSearch}
+                toggleSearchView={toggleSearchView}
+              />
+            )}
 
-          {matchingData.collections.length > 0 && (
-            <HeaderSearchResults
-              data={matchingData.collections}
-              type='Collections'
-              handleClearSearch={handleClearSearch}
-              toggleSearchView={toggleSearchView}
-            />
-          )}
+            {matchingData.collections.length > 0 && (
+              <HeaderSearchResults
+                data={matchingData.collections}
+                type='Collections'
+                handleClearSearch={handleClearSearch}
+                toggleSearchView={toggleSearchView}
+              />
+            )}
 
-          {matchingData.authors.length > 0 && (
-            <HeaderSearchResults
-              data={matchingData.authors}
-              type='Authors'
-              handleClearSearch={handleClearSearch}
-              toggleSearchView={toggleSearchView}
-            />
-          )}
+            {matchingData.authors.length > 0 && (
+              <HeaderSearchResults
+                data={matchingData.authors}
+                type='Authors'
+                handleClearSearch={handleClearSearch}
+                toggleSearchView={toggleSearchView}
+              />
+            )}
+           </div>
         </div>
       )}
 	  </>
