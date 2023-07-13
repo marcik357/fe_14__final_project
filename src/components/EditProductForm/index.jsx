@@ -8,7 +8,7 @@ import { baseUrl } from '../../utils/vars';
 import { Formik, Form } from 'formik';
 import { validationSchemaProduct } from '../../validation';
 import Select from '../Select';
-import { putData } from '../../utils';
+import { fetchData} from '../../utils';
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import Checkbox from '../Checkbox';
@@ -31,8 +31,16 @@ export default function EditProductForm({ product, onCloseForm }) {
       onSubmit={
         async (values, { setSubmitting }) => {
           try {
-            await putData(`${baseUrl}products/${product._id}`, values)
+            // await putData(`${baseUrl}products/${product._id}`, values)
             // navigate("/admin")
+            await fetchData(`${baseUrl}products/${product._id}`, {
+              method: "PUT",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(values)
+            });
             onCloseForm()
             setSubmitting(false);
           } catch (error) {

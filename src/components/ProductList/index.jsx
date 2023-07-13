@@ -3,10 +3,8 @@ import styles from './productList.module.scss';
 import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
-import { useDispatch } from 'react-redux';
 
-function ProductList({ products, customButtonText, customButtonHandler }) {
-  const dispatch = useDispatch()
+function ProductList({ products, isInAuthor, showPagination = true, customButtonText, customButtonHandler }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -32,10 +30,10 @@ function ProductList({ products, customButtonText, customButtonHandler }) {
         totalPages <= 7
           ? pageNumbers
           : page <= 4
-          ? pageNumbers.slice(0, 5)
-          : page >= totalPages - 4
-          ? pageNumbers.slice(totalPages - 5)
-          : pageNumbers.slice(page - 3, page + 2);
+            ? pageNumbers.slice(0, 5)
+            : page >= totalPages - 4
+              ? pageNumbers.slice(totalPages - 5)
+              : pageNumbers.slice(page - 3, page + 2);
 
       return (
         <>
@@ -83,31 +81,37 @@ function ProductList({ products, customButtonText, customButtonHandler }) {
   };
 
   return (
-    <div id='products' className={styles.products}>
+    <div id='products' className={`${styles.products} ${isInAuthor ? styles.productListInAuthor : ''}`}>
       <div className={styles.products__title}>
-        <h2>NFTs</h2>
+        {isInAuthor ? (
+          null
+        ) : (
+          <h2>NFTs</h2>
+        )}
       </div>
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product._id}
-          buttonText={customButtonText}
-          buttonHandler={customButtonHandler}
-           />
+          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}
+            buttonText={customButtonText}
+            buttonHandler={customButtonHandler}
+          />
         ))}
       </div>
-      <div className='pagination'>
-        {page === 1 ? null : (
-          <button onClick={(prevPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-        {renderPageNumbers()}
-        {totalPages === page ? null : (
-          <button onClick={(nextPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-      </div>
+      {showPagination && (
+        <div className='pagination'>
+          {page === 1 ? null : (
+            <button onClick={(prevPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+          {renderPageNumbers()}
+          {totalPages === page ? null : (
+            <button onClick={(nextPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

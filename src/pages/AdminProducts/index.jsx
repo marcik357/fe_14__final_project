@@ -15,11 +15,11 @@ export function AdminProducts() {
   const products = useSelector((state) => state.products.products);
   const [product, setProduct] = useState(null)
 
-
   function handleEditButtonClick(id) {
     setProductId(id)
     setOpenForm(true);
   }
+  
   function handleFormClose() {
     setOpenForm(false);
     setProductId(null);
