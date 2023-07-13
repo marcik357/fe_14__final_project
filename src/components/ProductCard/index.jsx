@@ -5,7 +5,7 @@ import { buyNowHandler } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
-import { ETHIcon } from '../Icons';
+import { ArrowRight, ETHIcon } from '../Icons';
 
 function ProductCard({
   _id,
@@ -18,7 +18,10 @@ function ProductCard({
   isInAuthor,
 }) {
   const dispatch = useDispatch();
-  const { cartProductsArray, products } = useSelector((state) => state.cart);
+  const cartProductsArray = useSelector((state) => state.cart.cart.products);
+  const isInCart = cartProductsArray.find(
+    (product) => product.product._id === _id
+  );
   const { token } = useSelector((state) => state.token);
 
   return (
@@ -53,15 +56,27 @@ function ProductCard({
       </div>
 
       <div className={styles.productCard__priceInfo}>
-        <button
-          className={styles.productCard__priceInfo_button}
-          type='button'
-          onClick={() => buyNowHandler(dispatch, _id, token)}
-        >
-          Buy now
-        </button>
+        {isInCart ? (
+          <Link
+            to={'/cart'}
+            className={styles.productCard__priceInfo_button}
+            type='button'
+          >
+            view cart
+            <ArrowRight />
+          </Link>
+        ) : (
+          <button
+            className={styles.productCard__priceInfo_button}
+            type='button'
+            onClick={() => buyNowHandler(dispatch, _id, token)}
+          >
+            Buy now
+          </button>
+        )}
+
         <div className={styles.productCard__priceInfo_buyNow}>
-          <ETHIcon fill={isInAuthor && '#dbff73'} />
+          <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
               {currentPrice}
@@ -82,17 +97,13 @@ function ProductCard({
 }
 
 ProductCard.propTypes = {
-  imageUrls: PropTypes.array,
-  authorIcon: PropTypes.string,
-  author: PropTypes.string,
-  currentPrice: PropTypes.number,
-};
-
-ProductCard.defaultProps = {
-  imageUrls: [],
-  authorIcon: '/images/avatars/user-icon.png',
-  author: 'varios author',
-  currentPrice: 0,
+  _id: PropTypes.string.isRequired,
+  imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+  authorIcon: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  currentPrice: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  itemNo: PropTypes.string.isRequired,
 };
 
 export default ProductCard;
