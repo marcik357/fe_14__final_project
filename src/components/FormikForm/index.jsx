@@ -10,6 +10,7 @@ export default function FormikForm({ initialValues, validationSchema, fields, ca
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting }) => {
+        console.log('+++++');
         callback(values);
         setSubmitting(false);
       }} >

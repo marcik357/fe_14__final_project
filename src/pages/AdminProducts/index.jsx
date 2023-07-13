@@ -6,9 +6,12 @@ import { getDataAction } from '../../redux/actions/getDataActions';
 import { addProductsAction } from '../../redux/actions/productsActions';
 import EditProductForm from "../../components/EditProductForm";
 import style from "./AdminProducts.module.scss"
+import { fetchData } from "../../utils";
+import Loader from "../../components/Loader";
 
 export function AdminProducts() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading.loading);
 
   const [openForm, setOpenForm] = useState(false);
   const [productId, setProductId] = useState(null)
@@ -19,27 +22,30 @@ export function AdminProducts() {
     setProductId(id)
     setOpenForm(true);
   }
-  
+
   function handleFormClose() {
-    setOpenForm(false);
     setProductId(null);
     setProduct(null);
+    setOpenForm(false);
   }
-  useEffect(() => {
-    dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
-  }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
+  // }, [dispatch]);
 
   useEffect(() => {
     productId && dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
-  }, [dispatch, productId, product]);
+  }, [dispatch, productId]);
 
-  return <div className={style.container}>
-    {openForm && product
-      ? <EditProductForm product={product} onCloseForm={handleFormClose} />
-      : <ProductList
-        products={products}
-        customButtonText="Edit"
-        customButtonHandler={handleEditButtonClick} />
-    }
-  </div>
+  return (
+    <div className={style.container}>
+      {openForm && product
+        ? <EditProductForm product={product} onCloseForm={handleFormClose} />
+        : <ProductList
+          products={products}
+          customButtonText="Edit"
+          customButtonHandler={handleEditButtonClick} />
+      }
+    </div>
+  )
 }
