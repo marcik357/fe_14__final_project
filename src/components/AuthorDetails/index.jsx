@@ -25,18 +25,20 @@ export function AuthorDetails({ author, products, productsQuantity }) {
   return (
     <div className={style.authorDetails}>
       <div className={style.authorDetails__info}>
-        <div className={style.authorDetails__info_container}>
-          <img src={author.imageUrl || '/images/avatars/user-icon.png'} className={style.authorDetails__authorIcon} alt="author-icon" />
-          <h1 className={style.authorDetails__info_title}>{author.name}</h1>
-          <p className={style.authorDetails__info_id}>{author.customId}</p>
-          <div className={style.authorDetails__info_bio}>
-            <div className={style.authorDetails__info_text}>
-              <p className={style.authorDetails__info_subtitle}>Bio</p>
-              <p>{author.description}</p>
+        <div className={style.authorDetails__info_wrapper}>
+          <div className={style.authorDetails__info_container}>
+            <img src={author.imageUrl || '/images/avatars/user-icon.png'} className={style.authorDetails__authorIcon} alt="author-icon" />
+            <h1 className={style.authorDetails__info_title}>{author.name}</h1>
+            <p className={style.authorDetails__info_id}>{author.customId}</p>
+            <div className={style.authorDetails__info_bio}>
+              <div className={style.authorDetails__info_text}>
+                <p className={style.authorDetails__info_subtitle}>Bio</p>
+                <p>{author.description}</p>
+              </div>
+              <ul className={style.authorDetails__info_links}>
+                {socialLinks}
+              </ul>
             </div>
-            <ul className={style.authorDetails__info_links}>
-              {socialLinks}
-            </ul>
           </div>
         </div>
       </div>

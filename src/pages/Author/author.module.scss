@@ -1,7 +1,11 @@
 .author {
-  // min-width: 320px;
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
+
+  @media (min-width: 748px) {
+    &__wrapper {
+      background: linear-gradient(90deg, transparent 50%, black 50%);
+    }
+  }
 
   &__container {
     max-width: 1470px;

@@ -32,8 +32,10 @@ export function Author() {
     !loading && products ? (
       <div className={style.author}>
         <Banner title={author.name} img='/images/banners/author-banner.png' />
-        <div className={style.author__container}>
-          <AuthorDetails author={author} products={products} productsQuantity={productsQuantity} />
+        <div className={style.author__wrapper}>
+          <div className={style.author__container}>
+            <AuthorDetails author={author} products={products} productsQuantity={productsQuantity} />
+          </div>
         </div>
       </div>
     ) : (

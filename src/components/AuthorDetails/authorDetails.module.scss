@@ -30,6 +30,14 @@
     margin-bottom: 20px;
     // padding: 0 24px;
 
+    &_wrapper {
+      @media (min-width: 748px) {
+        position: sticky;
+        top: 70px;
+        left: 0;
+      }
+    }
+
     @media (min-width: 748px) {
       width: 45%;
     }
@@ -40,12 +48,6 @@
 
     &_container {
       margin-top: -80px;
-
-      @media (min-width: 748px) {
-        position: sticky;
-        top: 70px;
-        left: 0;
-      }
     }
 
     &_title {
@@ -102,17 +104,6 @@
 
     @media (min-width: 748px) {
       width: 55%;
-
-      &::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 56vw;
-        height: 100%;
-        background: #000;
-        content: '';
-        z-index: -1;
-      }
     }
 
     &_container {
