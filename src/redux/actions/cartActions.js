@@ -162,19 +162,17 @@ async function cleanCartServer(token, dispatch) {
     },
 
   });
-  console.log("work2");
   dispatch(setCart([]))
 }
 
 function cleanCartLocal(dispatch) {
-  localStorage.setItem('cart', JSON.stringify([]))
   dispatch(setCart({ products: [] }))
 }
 
 export function cleanCart (token) {
   return async function (dispatch) {
     try {
-      console.log("work");
+      localStorage.setItem('cart', JSON.stringify([]))
       token
         ? cleanCartServer(token, dispatch)
         : cleanCartLocal(dispatch)
