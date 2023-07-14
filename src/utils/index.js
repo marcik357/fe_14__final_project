@@ -36,3 +36,14 @@ export const getDataFromLS = (key) => {
     return [];
   }
 };
+
+export const getDataFromSS = (key) => {
+  const lsData = sessionStorage.getItem(key);
+  if (!lsData) return [];
+  try {
+    const value = JSON.parse(lsData);
+    return value;
+  } catch (e) {
+    return [];
+  }
+};
