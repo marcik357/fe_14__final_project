@@ -6,6 +6,7 @@
   position: relative;
   padding: 10px;
   color: #fff;
+  text-align: center;
   gap: 10px;
 
   &__icon {
@@ -25,34 +26,29 @@
 
   &__quantity {
     display: flex;
-    flex-basis: 40%;
+    flex-basis: 20%;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
   }
 
   &__btnDelete {
-    flex-basis: 50%;
-    width: 160px;
-    padding: 15px 0;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    border: 2px solid #dd9b09;
-    border-radius: 5px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    border-radius: 50%;
     background: none;
-    color: #dd9b09;
-    font-size: 12px;
+    color: #fff;
+    font-size: 14px;
     text-align: center;
-    text-transform: uppercase;
     cursor: pointer;
-
-    &:hover {
-      border-color: #dd9b09;
-      color: #202025;
-      box-shadow: 0 0 40px 40px #dd9b09 inset;
-    }
   }
 
   &__description {
-    flex-basis: 50%;
+    flex-basis: 80%;
   }
 }
 
@@ -75,31 +71,42 @@
 }
 
 .quantity {
-  &__btn {
-    padding: 5px 10px;
+  &__btn_increase,
+  &__btn_decrease {
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
-    background: #dd9b09;
+    background: #fff;
     color: #202025;
+    font-size: 16px;
+    text-align: center;
     cursor: pointer;
   }
 
-  &__value {
-    color: #dd9b09;
+  &__btn_increase {
+    &::before {
+      content: '-';
+    }
+  }
+
+  &__btn_decrease {
+    &::after {
+      content: '+';
+    }
   }
 }
 
 @media (min-width: 420px) {
   .cartListItem {
+    flex-wrap: nowrap;
+    text-align: left;
+
     &__description {
       flex-basis: 40%;
     }
 
     &__quantity {
-      flex-basis: 40%;
-    }
-
-    &__btnDelete {
-      flex-basis: 50%;
+      flex-basis: 10%;
     }
   }
 }
@@ -111,19 +118,14 @@
     }
 
     &__quantity {
-      flex-basis: 40%;
-    }
-
-    &__btnDelete {
-      flex-basis: 45%;
-      font-size: 15px;
+      flex-basis: 20%;
     }
   }
 
   .description {
     &__title {
       padding-bottom: 12px;
-      font-size: 25px;
+      font-size: 23px;
     }
 
     &__currency {
@@ -135,21 +137,17 @@
 @media (min-width: 650px) {
   .cartListItem {
     &__description {
-      flex-basis: 20%;
+      flex-basis: 50%;
     }
 
     &__quantity {
-      flex-basis: 20%;
-    }
-
-    &__btnDelete {
-      flex-basis: 30%;
+      flex-basis: 10%;
     }
   }
 
   .description {
     &__title {
-      font-size: 18px;
+      font-size: 22px;
     }
   }
 }
@@ -161,11 +159,7 @@
 
     &__description {
       display: block;
-      flex-basis: 20%;
-    }
-
-    &__btnDelete {
-      flex-basis: 30%;
+      flex-basis: 40%;
     }
 
     &__quantity {
@@ -191,11 +185,7 @@
 
     &__description {
       display: block;
-      flex-basis: 20%;
-    }
-
-    &__btnDelete {
-      flex-basis: 20%;
+      flex-basis: 50%;
     }
   }
 
@@ -212,7 +202,6 @@
 
   .quantity {
     &__btn {
-      padding: 10px 15px;
       font-size: 15px;
     }
 
@@ -223,6 +212,14 @@
 }
 
 @media (min-width: 1200px) {
+  .cartListItem {
+    &__description {
+      display: block;
+      flex-basis: 60%;
+      font-size: 20px;
+    }
+  }
+
   .description {
     &__title {
       margin: 0;
@@ -231,7 +228,7 @@
     }
 
     &__currency {
-      font-size: 28px;
+      font-size: 20px;
     }
   }
 
@@ -241,7 +238,7 @@
     }
 
     &__value {
-      font-size: 25px;
+      font-size: 20px;
     }
   }
 }
