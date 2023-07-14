@@ -74,3 +74,17 @@ export const validationSchemaCard = Yup.object({
     .length(3)
     .required(),
 });
+
+export const validationSchemaProduct = Yup.object().shape({
+  enabled: Yup.boolean(),
+  imageUrls: Yup.array().of(Yup.string()).required("Required Field!"),
+  quantity: Yup.number().integer().positive().required("Required Field!"),
+  _id: Yup.string(),
+  name: Yup.string().required("Required Field!"),
+  author: Yup.string().required("Required Field!"),
+  categories: Yup.string().required("Required Field!"),
+  theme: Yup.array().of(Yup.string()).required("Required Field!"),
+  currentPrice: Yup.number().positive().required("Required Field!"),
+  details: Yup.string(),
+  itemNo: Yup.string(),
+});

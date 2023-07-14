@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Search, Basket, LogIn, Account } from '../Icons';
+import { CartAmount } from '../CartAmount';
 import style from './mobilNav.module.scss';
 
 function MobilNav(props) {
@@ -21,7 +22,7 @@ function MobilNav(props) {
          </NavLink>
          )}
          <NavLink to='/cart' className={style.mobilNav__basket}>
-           <Basket width={30} height={30} color={'#202025'} strokeWidth={isActive('/cart') ? '2.2' : '1.5'} />
+           <Basket width={30} height={30} color={'#202025'} strokeWidth={isActive('/cart') ? '2.2' : '1.5'} /> <CartAmount />
          </NavLink>
         <button type="button" className={`${style.mobilNav__burger} ${isOpen ? style.active : ''}`} onClick={toggleBurgerMenu}> </button>
       </div>

@@ -1,7 +1,7 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Logo, Search, Basket, LogIn, Account } from '../Icons';
+import { Logo } from '../Icons';
 import { useSelector } from 'react-redux';
 import style from './header.module.scss';
 import socialData from '../SocialLink/socialData';
@@ -9,6 +9,8 @@ import SocialLink from '../SocialLink';
 import menuData from '../MenuLink/menuData';
 import MenuLink from '../MenuLink';
 import MobilNav from '../MobilNav';
+import { useFormik } from 'formik';
+import { HeaderSearch } from '../HeaderSearch';
 
 function Header() {
   // зміна розмірів та прозорості хедера при прокрутці
@@ -26,13 +28,6 @@ function Header() {
     window.addEventListener('scroll', handleScroll);
   }, []);
 
-  // поточне значення введеного тексту в input та значення placeholder
-  const [searchValue, setSearchValue] = useState('');
-
-  function handleInputChange(e) {
-    setSearchValue(e.target.value);
-  }
-
   // відкриття бургер-меню
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,11 +38,19 @@ function Header() {
   // прапор для компонентів, щоб не рендерити іх на десктопі
   const isDesktop = useMediaQuery({ minWidth: 993 });
 
+  // створення об'єкта formik, який управляє формою
+  const formik = useFormik({
+	initialValues: {
+	  search: "",
+	}
+  })
+
   // показуємо та ховаємо радок пошуку input
   const [isSearchVisible, setSearchVisible] = useState(false);
 
   function toggleSearchView() {
     setSearchVisible(!isSearchVisible);
+    formik.setFieldValue("search", "");
   }
 
   // відміна прокрутки при відкритому бургер меню
@@ -98,22 +101,24 @@ function Header() {
                 </div>
               </Link>
               <div className={`${style.header__search} ${style.search}`}>
-                <form action="" className={`${style.search__form} ${isSearchVisible ? style.active : ''} ${scrolled ? style.scrolled : null}`}>
-                  <label htmlFor="searchInput" className={style.search__label}>
-                    <input
-                      id="searchInput"
-                      type="text"
-                      placeholder="Search"
-                      className={style.search__input}
-                      value={searchValue}
-                      onChange={handleInputChange}
-                    />
-                    <Search />
-                  </label>
-                </form>
+                <HeaderSearch
+                  classForm={style.search__form}
+                  isSearchVisible={isSearchVisible}
+                  classActive={style.active}
+                  scrolled={scrolled}
+                  classScrolled={style.scrolled}
+                  classLabel={style.search__label}
+                  classInput={style.search__input}
+                  classClear={style.search__clear}
+                  classClearActive={style.active}
+                  toggleSearchView={toggleSearchView}
+                  isDesktop={isDesktop}
+                  setSearchVisible={setSearchVisible}
+                  formik={formik}
+                />
               </div>
             </div>
-            <nav className={`${style.nav} ${isOpen ? style.active : ''}`}>
+            <nav className={`${style.nav} ${isOpen && style.active}`}>
               <div className={style.social}>
                 <h2 className={style.social__title}>
                   <span>Join our</span>

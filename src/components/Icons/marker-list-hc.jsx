@@ -8,8 +8,8 @@ export function MarkerList() {
         viewBox="0 0 24 24"
         fill="none"
       >
-        <circle cx="12" cy="12" r="11" stroke="#1966F7" stroke-width="2" />
-        <circle cx="12" cy="12" r="1" stroke="#1966F7" stroke-width="2" />
+        <circle cx="12" cy="12" r="11" stroke="#1966F7" strokeWidth="2" />
+        <circle cx="12" cy="12" r="1" stroke="#1966F7" strokeWidth="2" />
       </svg>
     </div>
   );
