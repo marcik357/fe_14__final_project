@@ -29,13 +29,18 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
         dispatch(changeQuantity(cart, _id, token, plus));
         setAmount(amount - 1)
       }
-      // dispatch(changeQuantity(cart, _id, token, plus));
-      // plus
-      //   ? setAmount(amount + 1)
-      //   : setAmount(amount - 1)
     } catch (error) {
       dispatch(setErrorAction(error));
     }
+  }
+
+  async function deleteItem(e) {
+    e.target.disabled = true;
+    const disabling = setTimeout(() => {
+      e.target.disabled = null;
+      clearTimeout(disabling);
+    }, 3000);
+    dispatch(deleteFromCart(cart, _id, token))
   }
 
   return (
@@ -79,7 +84,7 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
         <button
           type="button"
           className={style.cartListItem__btnDelete}
-          onClick={() => dispatch(deleteFromCart(cart, _id, token))}
+          onClick={(e) => deleteItem(e)}
         >
           &times;
         </button>
