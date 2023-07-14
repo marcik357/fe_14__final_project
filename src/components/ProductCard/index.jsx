@@ -5,7 +5,7 @@ import { buyNowHandler } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
-import { ArrowRight, ETHIcon } from '../Icons';
+import { Basket, ETHIcon } from '../Icons';
 
 function ProductCard({
   _id,
@@ -17,7 +17,7 @@ function ProductCard({
   itemNo,
   isInAuthor,
   buttonText,
-  buttonHandler
+  buttonHandler,
 }) {
   const dispatch = useDispatch();
   const cartProductsArray = useSelector((state) => state.cart.cart.products);
@@ -61,21 +61,21 @@ function ProductCard({
         {isInCart ? (
           <Link
             to={'/cart'}
-            className={styles.productCard__priceInfo_button}
+            className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
             type='button'
           >
             view cart
-            <ArrowRight />
+            <Basket color='#202025' strokeWidth='2.5' />
           </Link>
         ) : (
           <button
             className={styles.productCard__priceInfo_button}
             type='button'
             onClick={
-            !buttonHandler
-              ? () => buyNowHandler(dispatch, _id, token)
-              : () => buttonHandler(itemNo)
-          }
+              !buttonHandler
+                ? () => buyNowHandler(dispatch, _id, token)
+                : () => buttonHandler(itemNo)
+            }
           >
             {buttonText}
           </button>
@@ -104,12 +104,12 @@ function ProductCard({
 
 ProductCard.propTypes = {
   _id: PropTypes.string.isRequired,
-  imageUrls: PropTypes.arrayOf(PropTypes.string)y,
+  imageUrls: PropTypes.arrayOf(PropTypes.string),
   authorIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,
   buttonText: PropTypes.string,
-  buttonHandler: PropTypes.func
+  buttonHandler: PropTypes.func,
 };
 
 ProductCard.defaultProps = {
@@ -117,7 +117,7 @@ ProductCard.defaultProps = {
   authorIcon: '/images/avatars/user-icon.png',
   author: 'varios author',
   currentPrice: 0,
-  buttonText: "Buy now",
+  buttonText: 'Buy now',
 };
 
 export default ProductCard;
