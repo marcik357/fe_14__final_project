@@ -125,8 +125,6 @@ function Filter() {
   
     const sortByPrice = (e) => {
       setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
-      // localStorage.setItem('queryString', JSON.stringify(selectedFilters));
-      // setSortBy(e.target.value)
     }
 
     // Очистити всі фільтри
