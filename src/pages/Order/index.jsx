@@ -31,7 +31,7 @@ export function Order() {
       totalSum: orderAmount,
       letterHtml: `
       <h1>${contactValue?.name},Your order is placed.&#9989;</h1> 
-      <p></p>Number of order <b>${Date.now() }</b></p>
+      <p></p>Number of order <b>${Date.now()}</b></p>
       <p>Total sum of order is ${Number(orderAmount).toFixed(2)}ETH </p>
       <p>Money was debited from the card &#128179; ${contactValue?.cardNumber}</p>
       <p>We will miss you&#128546;,come back soon </p>
@@ -70,28 +70,32 @@ export function Order() {
     <>
       <Banner title="You orders in one touch" img="/images/banners/order-banner.png" />
       <div className={styling.order}>
-        <BuyInfo className={styling.order_block__buy_info} />
-        <div className={styling.order__user_info}>
-          <h2 className={styling.user_info__title}>Contact form</h2>
-          <button
-            className={!active ? styling.user_info__btn_hidden : styling.user_info__back}
-            onClick={() => setActive(!active)}
-          >Back</button>
-          {!active
-            ?
-            <ContactForm
-              className={styling.user_info__contact_form}
-              contactForm={contactForm}
-              setActive={setActive}
-              setContactValue={setContactValue}
-              active={active}
-            />
-            :
-            <PaymentForm
-              sendOrder={sendOrder}
-              paymentForm={paymentForm}
-              setContactValue={setContactValue}
-            />}
+        <div className={styling.order__container}>
+          <div className={styling.order__wrapper}>
+            <BuyInfo className={styling.order_block__buy_info} />
+            <div className={styling.order__user_info}>
+              <h2 className={styling.user_info__title}>Contact form</h2>
+              <button
+                className={!active ? styling.user_info__btn_hidden : styling.user_info__back}
+                onClick={() => setActive(!active)}
+              >Back</button>
+              {!active
+                ?
+                <ContactForm
+                  className={styling.user_info__contact_form}
+                  contactForm={contactForm}
+                  setActive={setActive}
+                  setContactValue={setContactValue}
+                  active={active}
+                />
+                :
+                <PaymentForm
+                  sendOrder={sendOrder}
+                  paymentForm={paymentForm}
+                  setContactValue={setContactValue}
+                />}
+            </div>
+          </div>
         </div>
       </div>
     </>

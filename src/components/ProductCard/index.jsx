@@ -21,7 +21,7 @@ function ProductCard({
 }) {
   const dispatch = useDispatch();
   const cartProductsArray = useSelector((state) => state.cart.cart.products);
-  const isInCart = cartProductsArray.find(
+  const isInCart = cartProductsArray?.find(
     (product) => product.product._id === _id
   );
   const { token } = useSelector((state) => state.token);

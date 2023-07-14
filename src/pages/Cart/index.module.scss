@@ -7,6 +7,12 @@ body {
   background: url('../../components/Cart/image/cart-BG.png') no-repeat center / cover;
   font-family: "Inter", sans-serif;
 
+  &__container {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
   &__block {
     display: flex;
     flex-direction: column;

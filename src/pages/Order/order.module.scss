@@ -1,9 +1,17 @@
 .order {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
   font-family: "Inter", sans-serif;
-  gap: 50px;
+
+  &__container {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
 
   &__user_info {
     flex-basis: 50%;
@@ -99,7 +107,10 @@
 
 @media (min-width: 700px) {
   .order {
-    flex-direction: row;
+
+    &__wrapper {
+      flex-direction: row;
+    }
 
     &__user_info {
       flex-basis: 70%;
