@@ -216,7 +216,7 @@ function Filter() {
                       <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
                       <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
                     </div>
-                    <button className={`${styles.filter__sidebarApplyBtn +' '+ styles.btnEffect} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
+                    <button className={`${styles.filter__sidebarApplyBtn} ${!isApplyButtonDisabled && styles.btnEffect} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
                   <div className={styles.filter__sidebarList}>
