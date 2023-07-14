@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
 import { buyNowHandler } from '../../utils';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
-import { ETHIcon } from '../Icons';
+import { ArrowRight, ETHIcon } from '../Icons';
 
 function ProductCard({
   _id,
@@ -15,11 +15,16 @@ function ProductCard({
   currentPrice,
   name,
   itemNo,
-  isInAuthor
+  isInAuthor,
+  buttonText,
+  buttonHandler
 }) {
   const dispatch = useDispatch();
-  const { cartProductsArray,products} = useSelector(state => state.cart);
-  const { token } = useSelector(state => state.token);
+  const cartProductsArray = useSelector((state) => state.cart.cart.products);
+  const isInCart = cartProductsArray?.find(
+    (product) => product.product._id === _id
+  );
+  const { token } = useSelector((state) => state.token);
 
   return (
     <div className={styles.productCard}>
@@ -34,38 +39,61 @@ function ProductCard({
       <div className={styles.productCard__userInfo}>
         <Link
           to={`/author/${author}`}
-          className={styles.productCard__userInfo_items}>
+          className={styles.productCard__userInfo_items}
+        >
           <img
             className={styles.productCard__userInfo_userIcon}
             src={authorIcon}
             alt='user-avatar'
           />
-          <p className={`${styles.productCard__userInfo_author} ${isInAuthor ? styles.productCard__userInfo_inAuthor : ''}`}>{author}</p>
+          <p
+            className={`${styles.productCard__userInfo_author} ${
+              isInAuthor ? styles.productCard__userInfo_inAuthor : ''
+            }`}
+          >
+            {author}
+          </p>
         </Link>
         <Verified />
       </div>
 
       <div className={styles.productCard__priceInfo}>
-        <button
-          className={styles.productCard__priceInfo_button}
-          type='button'
-          onClick={() => buyNowHandler(dispatch, _id, token)}
-        >
-          Buy now
-        </button>
+        {isInCart ? (
+          <Link
+            to={'/cart'}
+            className={styles.productCard__priceInfo_button}
+            type='button'
+          >
+            view cart
+            <ArrowRight />
+          </Link>
+        ) : (
+          <button
+            className={styles.productCard__priceInfo_button}
+            type='button'
+            onClick={
+            !buttonHandler
+              ? () => buyNowHandler(dispatch, _id, token)
+              : () => buttonHandler(itemNo)
+          }
+          >
+            {buttonText}
+          </button>
+        )}
+
         <div className={styles.productCard__priceInfo_buyNow}>
-          <ETHIcon />
+          <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
+              {currentPrice}
+              &nbsp;
+              <span>ETH</span>
             </p>
           ) : (
             <p>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
+              {currentPrice}
+              &nbsp;
+              <span>ETH</span>
             </p>
           )}
         </div>
@@ -75,10 +103,13 @@ function ProductCard({
 }
 
 ProductCard.propTypes = {
-  imageUrls: PropTypes.array,
+  _id: PropTypes.string.isRequired,
+  imageUrls: PropTypes.arrayOf(PropTypes.string),
   authorIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,
+  buttonText: PropTypes.string,
+  buttonHandler: PropTypes.func
 };
 
 ProductCard.defaultProps = {
@@ -86,6 +117,7 @@ ProductCard.defaultProps = {
   authorIcon: '/images/avatars/user-icon.png',
   author: 'varios author',
   currentPrice: 0,
+  buttonText: "Buy now",
 };
 
 export default ProductCard;

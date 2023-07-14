@@ -1,0 +1,138 @@
+.order {
+  font-family: "Inter", sans-serif;
+
+  &__container {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  &__user_info {
+    flex-basis: 50%;
+    position: relative;
+  }
+
+  &__buy_info {
+    flex-basis: 50%;
+  }
+}
+
+.user_info {
+  &__title {
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #000;
+  }
+
+  &__btn_hidden {
+    display: none;
+  }
+
+  &__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 30%;
+    margin: 0 auto;
+    padding: .7rem 2rem;
+    transition: color .3s;
+    border: 2px solid #202025;
+    border-radius: 4px;
+    background: transparent;
+    color: #202025;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .17em;
+    line-height: 24px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+    cursor: pointer;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+      width: max-content;
+    }
+
+    &::after {
+      position: absolute;
+      top: 100%;
+      width: 50%;
+      height: 50%;
+      transition: all .3s;
+      border-radius: 50%;
+      content: '';
+      z-index: -1;
+    }
+
+    &:hover {
+      &::after {
+        top: -50%;
+        width: 200%;
+        height: 200%;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      top: -5%;
+      left: -5%;
+      width: 110%;
+      height: 110%;
+      background-color: #f7fbfa;
+      content: '';
+      z-index: -1;
+    }
+
+    &::after {
+      background-color: #202025;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: #f7fbfa;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .order {
+    &__wrapper {
+      flex-direction: row;
+    }
+
+    &__user_info {
+      flex-basis: 70%;
+    }
+
+    &__buy_info {
+      flex-basis: 20%;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .order {
+    &__user_info {
+      flex-basis: 50%;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .order {
+    &__user_info {
+      flex-basis: 40%;
+    }
+  }
+}

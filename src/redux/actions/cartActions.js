@@ -112,7 +112,7 @@ async function deleteFromCartServer(cart, id, token, newCart, dispatch) {
   dispatch(setCart({ ...cart, products: newCart }))
 }
 
-function deleteFromCartLocal(newCart, dispatch) {
+export function deleteFromCartLocal(newCart, dispatch) {
   localStorage.setItem('cart', JSON.stringify(newCart))
   dispatch(setCart({ products: newCart }))
 }
@@ -143,12 +143,41 @@ export function buyProduct(token) {
           'Content-Type': 'application/json'
         },
       })
-      // dispatch(setCart());
+      dispatch(setCart([]));
       dispatch(setLoadingAction(false));
       dispatch(setErrorAction(null));
     }
     catch (error) {
       dispatch(setLoadingAction(false));
+      dispatch(setErrorAction(error));
+    }
+  }
+}
+async function cleanCartServer(token, dispatch) {
+  await fetchData(`${baseUrl}cart`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+
+  });
+  dispatch(setCart([]))
+}
+
+function cleanCartLocal(dispatch) {
+  dispatch(setCart({ products: [] }))
+}
+
+export function cleanCart (token) {
+  return async function (dispatch) {
+    try {
+      localStorage.setItem('cart', JSON.stringify([]))
+      token
+        ? cleanCartServer(token, dispatch)
+        : cleanCartLocal(dispatch)
+    }
+    catch (error) {
       dispatch(setErrorAction(error));
     }
   }

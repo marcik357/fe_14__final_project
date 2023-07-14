@@ -29,13 +29,18 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
         dispatch(changeQuantity(cart, _id, token, plus));
         setAmount(amount - 1)
       }
-      // dispatch(changeQuantity(cart, _id, token, plus));
-      // plus
-      //   ? setAmount(amount + 1)
-      //   : setAmount(amount - 1)
     } catch (error) {
       dispatch(setErrorAction(error));
     }
+  }
+
+  async function deleteItem(e) {
+    e.target.disabled = true;
+    const disabling = setTimeout(() => {
+      e.target.disabled = null;
+      clearTimeout(disabling);
+    }, 3000);
+    dispatch(deleteFromCart(cart, _id, token))
   }
 
   return (
@@ -52,7 +57,7 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
           <Link to={`/product/${itemNo}`}>
             <p className={style.description__title}>{name}</p>
           </Link>
-          <p>{quantity}</p>
+          <p>Quantity: {quantity}</p>
           <p>Price:
             <span className={style.description__currency}>
               &#160;{currentPrice} ETH
@@ -62,26 +67,26 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
         <div className={style.cartListItem__quantity}>
           <button
             type="submit"
-            className={style.quantity__btn}
+            className={style.quantity__btn_increase}
             onClick={amount > 1 ? (e) => increase(false, e) : null}
-          > -
+          >
           </button>
           <div className={style.quantity__value}>
             {amount}
           </div>
           <button
             type="button"
-            className={style.quantity__btn}
+            className={style.quantity__btn_decrease}
             onClick={(e) => increase(true, e)}
-          > +
+          >
           </button>
         </div>
         <button
           type="button"
           className={style.cartListItem__btnDelete}
-          onClick={() => dispatch(deleteFromCart(cart, _id, token))}
+          onClick={(e) => deleteItem(e)}
         >
-          Delete
+          &times;
         </button>
       </div>
       : <Loader />

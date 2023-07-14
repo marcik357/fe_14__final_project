@@ -408,8 +408,8 @@ option {
       top: inherit;
       transform: translateX(0);
       transition: none;
-      overflow-y: auto;
       visibility: visible;
+      overflow-y: auto;
     }
 
     &__sidebarHeader {
