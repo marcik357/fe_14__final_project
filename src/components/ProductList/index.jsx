@@ -96,7 +96,7 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
           />
         ))}
       </div>
-      {showPagination && (
+      {(showPagination && totalPages > 1) && (
         <div className='pagination'>
           {page === 1 ? null : (
             <button onClick={(prevPage, scroll)} className='page'>
