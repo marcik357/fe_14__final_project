@@ -20,9 +20,6 @@ function CollectionList({ products }) {
 
   return (
     <div className={style.collectionList}>
-      <div className={style.collectionList__title}>
-        <h2>Collections</h2>
-      </div>
       <div className={style.collectionList__wrapper}>
         {categories.map((category) => (
           <CollectionCard

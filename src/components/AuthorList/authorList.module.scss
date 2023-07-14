@@ -5,18 +5,6 @@
   margin-bottom: 60px;
   font-family: Inter;
 
-  &__title {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-
-    & h2 {
-      font-size: 48px;
-      font-weight: 800;
-    }
-  }
-
   &__wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(50%, 50%));

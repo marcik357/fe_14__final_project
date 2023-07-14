@@ -5,18 +5,6 @@
   background-color: #f7fbfa;
   font-family: Inter;
 
-  &__title {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-
-    & h2 {
-      font-size: 48px;
-      font-weight: 800;
-    }
-  }
-
   &__wrapper {
     display: flex;
     flex-direction: column;
