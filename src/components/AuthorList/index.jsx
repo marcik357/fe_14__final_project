@@ -1,6 +1,5 @@
 import AuthorCard from '../AuthorCard';
 import style from './authorList.module.scss';
-
 function AuthorList({ partners, products }) {
   return (
     <div className={style.authorList}>

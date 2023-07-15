@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ProductList from '../ProductList';
 import style from './collectionCard.module.scss';
-import { ArrowRight } from '../Icons';
-
 function CollectionCard({
   category,
   products,
@@ -21,7 +19,6 @@ function CollectionCard({
   ];
 
   const [isProductListVisible, setProductListVisible] = useState(false);
-
   const renderList = () => {
     setCollectionVisible(false);
     setProductListVisible(true);
