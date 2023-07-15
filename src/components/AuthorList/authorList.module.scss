@@ -51,3 +51,11 @@
     }
   }
 }
+
+@media (min-width: 1290px) {
+  .authorList {
+    &__wrapper {
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    }
+  }
+}

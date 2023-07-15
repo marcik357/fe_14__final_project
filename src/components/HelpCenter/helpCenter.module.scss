@@ -68,12 +68,12 @@
   //     margin-top: 7px;
   // }
 
-  &__active {
-    padding-bottom: 40px;
-  }
-
   &__list {
     list-style-type: none;
+  }
+
+  &__active {
+    padding-bottom: 40px;
   }
 
   &__blockButtonItem {
@@ -143,7 +143,7 @@
 
     &__cubeBlock {
       position: sticky;
-      top: 0;
+      top: 50px;
       height: 100vh;
       padding: 40px;
       overflow: hidden;

@@ -20,10 +20,7 @@ function ProductCard({
   buttonHandler,
 }) {
   const dispatch = useDispatch();
-  const cartProductsArray = useSelector((state) => state.cart.cart.products);
-  const isInCart = cartProductsArray.find(
-    (product) => product.product._id === _id
-  );
+  const { cartProductsArray, products } = useSelector((state) => state.cart);
   const { token } = useSelector((state) => state.token);
 
   return (
@@ -41,11 +38,20 @@ function ProductCard({
           to={`/author/${author}`}
           className={styles.productCard__userInfo_items}
         >
+          className={styles.productCard__userInfo_items}
+        >
           <img
             className={styles.productCard__userInfo_userIcon}
             src={authorIcon}
             alt='user-avatar'
           />
+          <p
+            className={`${styles.productCard__userInfo_author} ${
+              isInAuthor ? styles.productCard__userInfo_inAuthor : ''
+            }`}
+          >
+            {author}
+          </p>
           <p
             className={`${styles.productCard__userInfo_author} ${
               isInAuthor ? styles.productCard__userInfo_inAuthor : ''
@@ -83,6 +89,7 @@ function ProductCard({
 
         <div className={styles.productCard__priceInfo_buyNow}>
           <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
+          <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
               {currentPrice}
@@ -103,6 +110,8 @@ function ProductCard({
 }
 
 ProductCard.propTypes = {
+  _id: PropTypes.string.isRequired,
+  imageUrls: PropTypes.arrayOf(PropTypes.string),
   _id: PropTypes.string.isRequired,
   imageUrls: PropTypes.arrayOf(PropTypes.string),
   authorIcon: PropTypes.string,

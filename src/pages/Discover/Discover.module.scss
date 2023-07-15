@@ -1,11 +1,10 @@
 .products {
   margin: 0;
+  background: #f7fbfa;
 
   &__container {
-    display: flex;
     max-width: 1470px;
     margin: 0 auto;
-    padding: 0 15px;
     box-sizing: border-box;
   }
 }

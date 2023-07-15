@@ -8,7 +8,7 @@ export function CartAmount() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart)
 
-  const cartAmount = cart.products.reduce((total, product) => {
+  const cartAmount = cart?.products?.reduce((total, product) => {
     return total + product.cartQuantity
   }, 0)
 

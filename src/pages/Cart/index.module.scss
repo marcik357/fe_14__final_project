@@ -4,14 +4,21 @@ body {
 
 .cart {
   min-width: 320px;
-  background: url('/components/Cart/image/Frame.png') no-repeat center / cover;
+  background: url('../../components/Cart/image/cart-BG.png') no-repeat center / cover;
   font-family: "Inter", sans-serif;
+
+  &__container {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
 
   &__block {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
 }
 
@@ -28,7 +35,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 55vh;
-    color: #dd9b09;
+    color: #fff;
     font-size: 30px;
     font-weight: 900;
     text-align: center;
@@ -37,9 +44,11 @@ body {
 
   &__actionToBuy {
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     align-items: center;
     justify-content: center;
+    position: sticky;
+    top: 80px;
     width: 90%;
     margin: 0 auto;
   }
@@ -62,6 +71,7 @@ body {
     min-width: 800px;
 
     &__block {
+      flex-flow: row;
       flex-wrap: nowrap;
       align-items: flex-start;
     }
@@ -85,11 +95,11 @@ body {
 
   .block {
     &__items {
-      flex-basis: 60%;
+      flex-basis: 50%;
     }
 
     &__actionToBuy {
-      flex-basis: 40%;
+      flex-basis: 50%;
     }
   }
 }
@@ -101,11 +111,11 @@ body {
 
   .block {
     &__items {
-      flex-basis: 60%;
+      flex-basis: 50%;
     }
 
     &__actionToBuy {
-      flex-basis: 40%;
+      flex-basis: 50%;
     }
   }
 }
