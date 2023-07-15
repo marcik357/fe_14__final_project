@@ -193,7 +193,7 @@ option {
   }
 
   &__sidebarList {
-    height: 22vh;
+    height: 23.5vh;
     padding: 5px;
     border-radius: 10px 0 0 10px;
     box-shadow: -1px 1px 15px 5px rgba(0, 0, 0, .13);
@@ -375,6 +375,7 @@ option {
 
 @media (min-width: 768px) {
   .filter {
+
     &__openBtn,
     &__applyBtn {
       width: 260px;
@@ -402,7 +403,12 @@ option {
     &__sidebarBckg.open {
       position: relative;
       visibility: hidden;
+      transition: none;
       inset: unset;
+    }
+
+    &__sidebarWrapper {
+      transition: none;
     }
 
     &__sidebarWrapper.open {

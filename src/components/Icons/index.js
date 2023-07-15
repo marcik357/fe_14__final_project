@@ -7,7 +7,7 @@ export { Facebook } from './facebook';
 export { Twitter } from './twitter';
 export { Close } from './close';
 export { ArrowRight } from './arrow-right';
-export { Arrow } from './arrowSlider';
+export { Arrow } from './arrow';
 export { Verified } from './verified';
 export { ETHIcon } from './price-icon';
 export { LogIn } from './login';
