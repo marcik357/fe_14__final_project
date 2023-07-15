@@ -68,12 +68,12 @@
   //     margin-top: 7px;
   // }
 
-  &__active {
-    padding-bottom: 40px;
-  }
-
   &__list {
     list-style-type: none;
+  }
+
+  &__active {
+    padding-bottom: 40px;
   }
 
   &__blockButtonItem {
