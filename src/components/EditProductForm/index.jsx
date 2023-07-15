@@ -8,7 +8,7 @@ import { baseUrl } from '../../utils/vars';
 import { Formik, Form } from 'formik';
 import { validationSchemaProduct } from '../../validation';
 import Select from '../Select';
-import { fetchData} from '../../utils';
+import { fetchData } from '../../utils';
 import Checkbox from '../Checkbox';
 
 export default function EditProductForm({ product, onCloseForm }) {
@@ -79,9 +79,14 @@ export default function EditProductForm({ product, onCloseForm }) {
           }
           return null;
         })}
-        <button className={style.form__submit} type="submit">
-          Save Changes
-        </button>
+        <div className={style.form__btns}>
+          <button className={style.form__submit} type="submit">
+            Save Changes
+          </button>
+          <button onClick={onCloseForm} type='button' className={style.form__submit}>
+            Cancel
+          </button>
+        </div>
       </Form>
     </Formik>
   )

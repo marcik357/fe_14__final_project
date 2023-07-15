@@ -71,7 +71,7 @@
 
 .orders {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
   &__title {
     margin-bottom: 2rem;
@@ -148,10 +148,21 @@
     }
   }
 
+  &__amount {
+    display: flex;
+    flex: 0 0 150px;
+    flex-direction: column;
+    gap: .5rem;
+    order: 2;
+  }
+
+  &__quantity {
+    font-size: .8rem;
+  }
+
   &__price {
     display: flex;
     align-items: flex-end;
-    order: 2;
     font-size: 1.1rem;
     font-weight: 700;
     gap: .5rem;

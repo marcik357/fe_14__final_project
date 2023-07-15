@@ -7,7 +7,7 @@ export * from './Account';
 export * from './Authorization';
 export * from './Author';
 export * from './Blog';
-export * from './AdminProducts'
+// export * from '../AdminProducts'
 export * from './Discover';
 export * from './Help';
 export * from './NotFound';
