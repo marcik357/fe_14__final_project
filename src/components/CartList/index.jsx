@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
 import { useState } from 'react';
+import { Close } from '../Icons';
 
 export function CartList({
   imageUrls,
@@ -96,7 +97,7 @@ export function CartList({
           className={style.cartListItem__btnDelete}
           onClick={(e) => deleteItem(e)}
         >
-          &times;
+          <Close color='#fff' width={20} height={20}/>
         </button>
       </div>
       : <Loader />
