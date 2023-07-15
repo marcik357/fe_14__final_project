@@ -15,8 +15,6 @@ export function PaymentForm({getOrder,setContactValue}) {
         setContactValue(value);
         getOrder();
         dispatch(setModalType('order'));
-        <Modal/>
-     
     }
 
     return(
