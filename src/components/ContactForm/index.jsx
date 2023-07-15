@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector } from 'react-redux';
 import styleText from '../../pages/Order/order.module.scss';
 import FormikForm from '../FormikForm';
@@ -32,7 +33,7 @@ export function ContactForm({
         (initialValues.email = customer?.email),
         (initialValues.telephone = customer?.telephone)
       );
-  }, [customer, token, initialValues]);
+  }, [customer, token]);
 
   const handleSubmit = (value) => {
     setActive(!active);
