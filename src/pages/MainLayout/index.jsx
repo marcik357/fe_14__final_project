@@ -69,7 +69,7 @@ export function MainLayout() {
         setOrderAmount(prices?.reduce((prev, next) => prev + next, 0))
       }
     }
-  }, [cart, products, token])
+  }, [cart, products, token, setOrderAmount])
   return (
     <>
       {modalType && (

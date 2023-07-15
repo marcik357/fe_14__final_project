@@ -4,7 +4,7 @@ import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
 
-function ProductList({ products, isInAuthor, showPagination = true }) {
+function ProductList({ products, listName, isInAuthor = false, showPagination = true, customButtonText, customButtonHandler }) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -20,7 +20,7 @@ function ProductList({ products, isInAuthor, showPagination = true }) {
   });
   const scroll = () => {
     const section = document.querySelector('#products');
-    section.scrollIntoView({ behavior: 'smooth', top: 740 });
+    section.scrollIntoView({ behavior: 'smooth' });
   };
   const renderPageNumbers = () => {
     const ellipsis = '...';
@@ -30,10 +30,10 @@ function ProductList({ products, isInAuthor, showPagination = true }) {
         totalPages <= 7
           ? pageNumbers
           : page <= 4
-          ? pageNumbers.slice(0, 5)
-          : page >= totalPages - 4
-          ? pageNumbers.slice(totalPages - 5)
-          : pageNumbers.slice(page - 3, page + 2);
+            ? pageNumbers.slice(0, 5)
+            : page >= totalPages - 4
+              ? pageNumbers.slice(totalPages - 5)
+              : pageNumbers.slice(page - 3, page + 2);
 
       return (
         <>
@@ -81,33 +81,35 @@ function ProductList({ products, isInAuthor, showPagination = true }) {
   };
 
   return (
-    <div id='products' className={`${styles.products} ${isInAuthor ? styles.productListInAuthor : ''}`}>
-      <div className={styles.products__title}>
-        {isInAuthor ? (
-          null
-        ) : (
-          <h2>NFTs</h2>
-        )}
-      </div>
+    <div
+      id='products'
+      className={`${styles.products} ${isInAuthor && styles.productListInAuthor}`}>
+      {!isInAuthor &&
+        <div className={styles.products__title}>
+          <h2>{listName}</h2>
+        </div>}
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
-          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}/>
+          <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}
+            buttonText={customButtonText}
+            buttonHandler={customButtonHandler}
+          />
         ))}
       </div>
       {showPagination && (
-      <div className='pagination'>
-        {page === 1 ? null : (
-          <button onClick={(prevPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-        {renderPageNumbers()}
-        {totalPages === page ? null : (
-          <button onClick={(nextPage, scroll)} className='page'>
-            <ArrowRight />
-          </button>
-        )}
-      </div>
+        <div className='pagination'>
+          {page === 1 ? null : (
+            <button onClick={(prevPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+          {renderPageNumbers()}
+          {totalPages === page ? null : (
+            <button onClick={(nextPage, scroll)} className='page'>
+              <ArrowRight />
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

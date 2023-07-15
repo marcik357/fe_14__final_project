@@ -11,16 +11,16 @@ export function ArrowRightBlue() {
         <path
           d="M3 12H21"
           stroke="#1966F7"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M13 4L21 12L13 20"
           stroke="#1966F7"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>
