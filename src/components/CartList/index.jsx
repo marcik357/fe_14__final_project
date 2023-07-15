@@ -5,6 +5,7 @@ import { changeQuantity, deleteFromCart } from '../../redux/actions/cartActions'
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
 import { useState } from 'react';
+import { Close } from '../Icons';
 
 export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuantity, quantity }) {
   const dispatch = useDispatch();
@@ -86,7 +87,7 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
           className={style.cartListItem__btnDelete}
           onClick={(e) => deleteItem(e)}
         >
-          &times;
+          <Close color='#fff' width={20} height={20}/>
         </button>
       </div>
       : <Loader />
