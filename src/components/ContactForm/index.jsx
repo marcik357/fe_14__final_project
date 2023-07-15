@@ -24,7 +24,6 @@ export function ContactForm({ contactForm, setActive, active, setContactValue })
           initialValues.telephone = customer?.telephone)
     } catch (error) {
       return
-      // dispatch(setErrorAction(error.message));
     }
   }, [dispatch, customer, token])
 
