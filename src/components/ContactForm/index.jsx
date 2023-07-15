@@ -1,17 +1,22 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import styleText from '../../pages/Order/order.module.scss';
-import FormikForm from "../FormikForm";
-import { validationSchemaOrder } from "../../validation";
-import { useState, useEffect } from "react";
-export function ContactForm({ contactForm, setActive, active, setContactValue }) {
-  const customer = useSelector(state => state.cart.cart.customerId);
+import FormikForm from '../FormikForm';
+import { validationSchemaOrder } from '../../validation';
+import { useState, useEffect } from 'react';
+export function ContactForm({
+  contactForm,
+  setActive,
+  active,
+  setContactValue,
+}) {
+  const customer = useSelector((state) => state.cart.cart.customerId);
   // const loading = useSelector(state => state.loading);
-  const token = useSelector(state => state.token.token);
+  const token = useSelector((state) => state.token.token);
   const [initialValues, setInitialValues] = useState({
     name: '',
     email: '',
-    telephone: ''
-  })
+    telephone: '',
+  });
 
   useEffect(() => {
     // (token && customer) &&
@@ -20,17 +25,19 @@ export function ContactForm({ contactForm, setActive, active, setContactValue })
     //   name: customer?.firstName,
     //   email: customer?.email,
     //   telephone: customer?.telephone})
-    (token && customer) &&
+    token &&
+      customer &&
       setInitialValues(
-        initialValues.name = customer?.firstName,
-        initialValues.email = customer?.email,
-        initialValues.telephone = customer?.telephone)
-  }, [customer, token])
+        (initialValues.name = customer?.firstName),
+        (initialValues.email = customer?.email),
+        (initialValues.telephone = customer?.telephone)
+      );
+  }, [customer, token, initialValues]);
 
   const handleSubmit = (value) => {
     setActive(!active);
-    setContactValue(value)
-  }
+    setContactValue(value);
+  };
 
   return (
     <>
@@ -38,10 +45,10 @@ export function ContactForm({ contactForm, setActive, active, setContactValue })
         initialValues={initialValues}
         fields={contactForm}
         validationSchema={validationSchemaOrder}
-        submitBtn="Continue"
+        submitBtn='Continue'
         callback={handleSubmit}
       />
       <h2 className={styleText.user_info__title}>Payment</h2>
     </>
-  )
+  );
 }
