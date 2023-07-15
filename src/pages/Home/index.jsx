@@ -11,13 +11,7 @@ import AuthorList from '../../components/AuthorList';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './tabs.scss';
 import { Discover } from '../Discover';
-import CollectionList from '../../components/CollectionList';
-import AuthorList from '../../components/AuthorList';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import './tabs.scss';
 import { Link } from 'react-router-dom';
-
-
 
 export function Home() {
   const dispatch = useDispatch();
@@ -42,7 +36,9 @@ export function Home() {
               <Tab className={styles.products__filter_tab}>All</Tab>
               <Tab className={styles.products__filter_tab}>Collections</Tab>
               <Tab className={styles.products__filter_tab}>Artist</Tab>
-              <Link to={'/discover'} className={styles.products__filter_tab}>Discover</Link>
+              <Link to={'/discover'} className={styles.products__filter_tab}>
+                Discover
+              </Link>
             </TabList>
             <TabPanel>
               <ProductList products={products} />
@@ -53,9 +49,9 @@ export function Home() {
             <TabPanel>
               <AuthorList partners={partners} products={products} />
             </TabPanel>
-            {/* <TabPanel>
+            <TabPanel>
               <Link to={'/discover'} />
-            </TabPanel> */}
+            </TabPanel>
           </Tabs>
         </div>
       </div>
