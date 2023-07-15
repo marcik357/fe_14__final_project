@@ -3,8 +3,8 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
-  gap: 1rem;
   margin-right: -15px;
+  gap: 1rem;
 
   @media (min-width: 748px) {
     flex-direction: row;
@@ -93,7 +93,6 @@
 
     @media (min-width: 748px) {
       width: 70%;
-
     }
 
     &_container {
