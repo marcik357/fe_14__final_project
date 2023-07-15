@@ -1,0 +1,27 @@
+.collectionList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f7fbfa;
+  font-family: Inter;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .collectionList {
+    &__wrapper {
+      display: grid;
+      justify-content: center;
+      padding: 0 20px;
+      column-gap: 30px;
+
+      &:has(>a) {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      }
+    }
+  }
+}

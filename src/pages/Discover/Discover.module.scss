@@ -1,0 +1,10 @@
+.products {
+  margin: 0;
+  background: #f7fbfa;
+
+  &__container {
+    max-width: 1470px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+}
