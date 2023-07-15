@@ -26,6 +26,10 @@ function CollectionCard({
     setCollectionVisible(false);
     setProductListVisible(true);
   };
+  const renderCollection = () => {
+    setCollectionVisible(true);
+    setProductListVisible(false);
+  };
 
   return (
     <>
@@ -68,7 +72,18 @@ function CollectionCard({
           <p className={style.collectionCard__name}>{category}</p>
         </Link>
       )}
-      {isProductListVisible && <ProductList products={products} listName={category} />}
+      {isProductListVisible
+        &&
+        <>
+          <button
+            className={style.collectionCard__showCollection}
+            onClick={renderCollection}
+          >
+            Show all collections
+          </button>
+          <ProductList products={products} listName={category} />
+        </>
+      }
     </>
   );
 }

@@ -60,11 +60,15 @@ export function Order() {
   }
 
   async function sendOrder() {
-    await fetchData(`${baseUrl}orders`, {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(createOrder())
-    })
+    try {
+      await fetchData(`${baseUrl}orders`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(createOrder())
+      })
+    } catch (error) {
+      dispatch(setErrorAction(error.message));
+    }
   }
 
   return (
