@@ -375,7 +375,6 @@ option {
 
 @media (min-width: 768px) {
   .filter {
-
     &__openBtn,
     &__applyBtn {
       width: 260px;
@@ -402,8 +401,8 @@ option {
 
     &__sidebarBckg.open {
       position: relative;
-      visibility: hidden;
       transition: none;
+      visibility: hidden;
       inset: unset;
     }
 
