@@ -16,12 +16,6 @@ export function ContactForm({ contactForm, setActive, active, setContactValue })
   })
 
   useEffect(() => {
-    // (token && customer) &&
-    // setInitialValues({
-    //   ...initialValues,
-    //   name: customer?.firstName,
-    //   email: customer?.email,
-    //   telephone: customer?.telephone})
     try {
       (token && customer) &&
         setInitialValues(
@@ -29,7 +23,7 @@ export function ContactForm({ contactForm, setActive, active, setContactValue })
           initialValues.email = customer?.email,
           initialValues.telephone = customer?.telephone)
     } catch (error) {
-      dispatch(setErrorAction(error.message));
+      return
     }
   }, [dispatch, customer, token, initialValues])
 
