@@ -15,12 +15,13 @@
   background: #202025;
 }
 
-// html,
-// body {
-//   height: 100%;
-//   background-color: #f7fbfa;
-//   overflow-x: hidden;
-// }
+html,
+body {
+  min-width: 320px;
+  // height: 100%;
+  // background-color: #f7fbfa;
+  // overflow-x: hidden;
+}
 
 // #root {
 //   display: flex;

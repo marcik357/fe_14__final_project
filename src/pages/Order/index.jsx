@@ -10,6 +10,7 @@ import { BuyInfo } from '../../components/BuyInfo';
 import { paymentForm } from '../../components/PaymentForm/paymentForm.js';
 import { Quantity } from '../../router';
 import { fetchData } from '../../utils';
+import { getDataAction } from '../../redux/actions/getDataActions';
 
 export function Order() {
   const token = useSelector(state => state.token.token);
@@ -59,11 +60,15 @@ export function Order() {
   }
 
   async function sendOrder() {
-    await fetchData(`${baseUrl}orders`, {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(createOrder())
-    })
+    try {
+      await fetchData(`${baseUrl}orders`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(createOrder())
+      })
+    } catch (error) {
+      dispatch(setErrorAction(error.message));
+    }
   }
 
   return (
