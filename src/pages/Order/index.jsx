@@ -10,6 +10,7 @@ import { BuyInfo } from '../../components/BuyInfo';
 import { paymentForm } from '../../components/PaymentForm/paymentForm.js';
 import { Quantity } from '../../router';
 import { fetchData } from '../../utils';
+import { Link } from 'react-router-dom';
 
 export function Order() {
   const token = useSelector(state => state.token.token);
@@ -75,10 +76,18 @@ export function Order() {
             <BuyInfo className={styling.order_block__buy_info} />
             <div className={styling.order__user_info}>
               <h2 className={styling.user_info__title}>Contact form</h2>
+              <Link to={!active && !token ? '/authorization':''}>
               <button
-                className={!active ? styling.user_info__btn_hidden : styling.user_info__back}
-                onClick={() => setActive(!active)}
-              >Back</button>
+                className={
+                  !active ?
+                  ( token ?
+                    styling.user_info__btn_hidden
+                    : styling.user_info__back
+                  )
+                    : styling.user_info__back}
+                onClick={() => active ?setActive(!active):""}
+              >{!active && !token ? "Login": "Back"}</button>
+              </Link>
               {!active
                 ?
                 <ContactForm
