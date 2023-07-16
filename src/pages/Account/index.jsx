@@ -7,6 +7,7 @@ import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
 import { AdminProducts } from '../../components/AdminProducts';
+import { Link } from 'react-router-dom';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -66,10 +67,14 @@ export function Account() {
                             <div
                               className={styles.orders__item}
                               key={Math.random() * 1000}>
-                              <img
-                                className={styles.orders__img}
-                                src={product.imageUrls}
-                                alt={product.name} />
+                              <Link
+                                to={`/product/${product.itemNo}`}
+                                className={styles.orders__link}>
+                                <img
+                                  className={styles.orders__img}
+                                  src={product.imageUrls}
+                                  alt={product.name} />
+                              </Link>
                               <div className={styles.orders__about}>
                                 <p className={styles.orders__name}>
                                   {product.name}
