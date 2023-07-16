@@ -86,7 +86,7 @@ option {
     position: relative;
     min-width: 150px;
     height: 45px;
-    transition: color .3s;
+    transition: color .3s, width .3s;
     border: 2px solid #202025;
     border-radius: 4px;
     background: transparent;
