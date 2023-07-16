@@ -7,7 +7,8 @@ import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
 import { AdminProducts } from '../../components/AdminProducts';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { setTokenAction } from '../../redux/actions/tokenActions';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -17,6 +18,12 @@ export function Account() {
   const [user, setUser] = useState(null)
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
+
+  function logOut() {
+    localStorage.removeItem('token');
+    dispatch(setTokenAction(null));
+    return <Navigate to="/authorization" />;
+  }
 
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
@@ -46,13 +53,21 @@ export function Account() {
             img='/images/banners/account-banner.webp' />
           <div className={styles.user}>
             <div className={styles.user__container}>
-              {user?.isAdmin
-                && <button
-                  className={styles.user__adminBtn}
-                  onClick={() => setAdminPanel(!adminPanel)}
+              <div className={styles.user__btns}>
+                <button
+                  className={styles.user__btnsItem}
+                  onClick={logOut}
                   type='button'>
-                  {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-                </button>}
+                  Log out
+                </button>
+                {user?.isAdmin
+                  && <button
+                    className={styles.user__btnsItem}
+                    onClick={() => setAdminPanel(!adminPanel)}
+                    type='button'>
+                    {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
+                  </button>}
+              </div>
               {!adminPanel
                 ? <>
                   <h4 className={styles.orders__title}>List of your orders:</h4>

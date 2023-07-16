@@ -8,7 +8,13 @@
     padding: 0 15px;
   }
 
-  &__adminBtn {
+  &__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__btnsItem {
     display: flex;
     align-items: center;
     justify-content: center;
