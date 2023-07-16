@@ -26,18 +26,20 @@
     max-width: 1470px;
     margin-bottom: 20px;
 
+    &_wrapper {
+      @media (min-width: 748px) {
+        position: sticky;
+        top: 70px;
+        left: 0;
+      }
+    }
+
     @media (min-width: 748px) {
       width: 45%;
     }
 
     &_container {
       margin-top: -80px;
-
-      @media (min-width: 748px) {
-        position: sticky;
-        top: 70px;
-        left: 0;
-      }
     }
 
     &_title {
