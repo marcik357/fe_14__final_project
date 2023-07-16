@@ -5,7 +5,7 @@ import { buyNowHandler } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
-import { ArrowRight, ETHIcon } from '../Icons';
+import { Basket, ETHIcon } from '../Icons';
 
 function ProductCard({
   _id,
@@ -17,7 +17,7 @@ function ProductCard({
   itemNo,
   isInAuthor,
   buttonText,
-  buttonHandler
+  buttonHandler,
 }) {
   const dispatch = useDispatch();
   const cartProductsArray = useSelector((state) => state.cart.cart.products);
@@ -61,11 +61,11 @@ function ProductCard({
         {isInCart ? (
           <Link
             to={'/cart'}
-            className={styles.productCard__priceInfo_button}
+            className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
             type='button'
           >
             view cart
-            <ArrowRight />
+            <Basket color='#202025' strokeWidth='2.5' />
           </Link>
         ) : (
           <button

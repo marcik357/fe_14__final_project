@@ -190,7 +190,7 @@ function Filter() {
       <div className={styles.filter__container}>
         <div className={styles.filter__wrapper}>
           <div className={styles.filter__nav}>
-            <button className={styles.filter__openBtn +' '+ styles.btnEffect} type="button" onClick={toggleModal}>Filters</button>
+            <button className={`${styles.filter__openBtn +' '+ styles.btnEffect} ${selectedFilters.isOpen && styles.open}`} type="button" onClick={toggleModal}>Filters</button>
             <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={selectedFilters.sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
               <option disabled hidden value="Sort By">Sort By</option>
               <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
