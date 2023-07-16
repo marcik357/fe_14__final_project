@@ -22,8 +22,12 @@ export async function fetchData(url, reqBody) {
 }
 
 export function buyNowHandler(dispatch, id, token) {
-  dispatch(addToCart(id, token))
-  dispatch(setModalType('buy'))
+  try {
+    dispatch(addToCart(id, token))
+    dispatch(setModalType('buy'))
+  } catch (error) {
+    dispatch(setErrorAction(error.message));
+  }
 }
 
 export const getDataFromLS = (key) => {
