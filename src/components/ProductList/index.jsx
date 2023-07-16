@@ -84,10 +84,11 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
     <div
       id='products'
       className={`${styles.products} ${isInAuthor && styles.productListInAuthor}`}>
-      {!isInAuthor &&
+      {!isInAuthor && (
         <div className={styles.products__title}>
           <h2>{listName}</h2>
-        </div>}
+        </div>
+      )}
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
           <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}

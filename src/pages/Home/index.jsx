@@ -46,9 +46,6 @@ export function Home() {
             <TabPanel>
               <AuthorList partners={partners} products={products} />
             </TabPanel>
-            {/* <TabPanel>
-              <Link to={'/discover'} />
-            </TabPanel> */}
           </Tabs>
         </div>
       </div>
