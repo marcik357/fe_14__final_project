@@ -62,6 +62,12 @@
     }
   }
 
+  &__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
   &__submit {
     display: flex;
     align-items: center;

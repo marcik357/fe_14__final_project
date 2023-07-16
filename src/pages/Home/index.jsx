@@ -38,7 +38,7 @@ export function Home() {
               <Link to={'/discover'} className={styles.products__filter_tab}>Discover</Link>
             </TabList>
             <TabPanel>
-              <ProductList products={products} listName='NFTs' />
+              <ProductList products={products} />
             </TabPanel>
             <TabPanel>
               <CollectionList products={products} />
@@ -46,9 +46,6 @@ export function Home() {
             <TabPanel>
               <AuthorList partners={partners} products={products} />
             </TabPanel>
-            {/* <TabPanel>
-              <Link to={'/discover'} />
-            </TabPanel> */}
           </Tabs>
         </div>
       </div>

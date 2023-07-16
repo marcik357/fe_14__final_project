@@ -145,6 +145,27 @@
     min-width: 100%;
     margin-bottom: 24px;
 
+    &_cartButton {
+      background-color: #f7fbfa !important;
+      color: #202025 !important;
+
+      &:hover {
+        color: #f7fbfa !important;
+
+        & svg {
+          & path {
+            stroke: #f7fbfa;
+          }
+        }
+      }
+
+      & svg {
+        width: 20px;
+        height: 17px;
+        margin-left: 5px;
+      }
+    }
+
     &_button {
       display: flex;
       align-items: center;

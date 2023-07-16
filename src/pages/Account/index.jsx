@@ -6,7 +6,7 @@ import Loader from '../../components/Loader';
 import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
-// import { AdminProducts } from '../AdminProducts';
+import { AdminProducts } from '../../components/AdminProducts';
 import { Link } from 'react-router-dom';
 
 export function Account() {
@@ -15,6 +15,7 @@ export function Account() {
   const token = useSelector((state) => state.token.token);
 
   const [user, setUser] = useState(null)
+  const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
 
   useEffect(() => {
@@ -34,9 +35,6 @@ export function Account() {
     }, 'account-data'));
   }, [dispatch, token]);
 
-  // console.log(user);
-  console.log(orders);
-
   return (
     <>
       {!loading
@@ -46,90 +44,76 @@ export function Account() {
             title='Hello there!'
             subtitle={`General ${user?.login}`}
             img='/images/banners/account-banner.webp' />
-
           <div className={styles.user}>
             <div className={styles.user__container}>
-
               {user?.isAdmin
-                && <Link
+                && <button
                   className={styles.user__adminBtn}
-                  to={'/admin'}>
-                  Admin panel
-                </Link>}
-
-              <div className={`${styles.user__orders} ${styles.orders}`}>
-                <h4 className={styles.orders__title}>List of your orders:</h4>
-                {orders?.length > 0 && orders?.map((order) => (
-                  <div
-                    className={styles.orders__wrapper}
-                    key={Math.random() * 1000}>
-                    <div
-                      className={styles.orders__content}>
-                      {order?.products.map(({ product }) => (
+                  onClick={() => setAdminPanel(!adminPanel)}
+                  type='button'>
+                  {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
+                </button>}
+              {!adminPanel
+                ? <>
+                  <h4 className={styles.orders__title}>List of your orders:</h4>
+                  <div className={`${styles.user__orders} ${styles.orders}`}>
+                    {orders?.length > 0 && orders?.map((order) => (
+                      <div
+                        className={styles.orders__wrapper}
+                        key={Math.random() * 1000}>
                         <div
-                          className={styles.orders__item}
-                          key={Math.random() * 1000}>
-                          <img
-                            className={styles.orders__img}
-                            src={product.imageUrls}
-                            alt={product.name} />
-                          <div className={styles.orders__about}>
-                            <p className={styles.orders__name}>
-                              {product.name}
-                            </p>
-                            <p className={styles.orders__details}>
-                              {product.details}
-                            </p>
-                          </div>
-                          <p
-                            className={styles.orders__price}>
-                            <span>Price:</span>
-                            <span>{product.currentPrice}</span>
-                          </p>
+                          className={styles.orders__content}>
+                          {order?.products.map(({ product, cartQuantity }) => (
+                            <div
+                              className={styles.orders__item}
+                              key={Math.random() * 1000}>
+                              <Link
+                                to={`/product/${product.itemNo}`}
+                                className={styles.orders__link}>
+                                <img
+                                  className={styles.orders__img}
+                                  src={product.imageUrls}
+                                  alt={product.name} />
+                              </Link>
+                              <div className={styles.orders__about}>
+                                <p className={styles.orders__name}>
+                                  {product.name}
+                                </p>
+                                <p className={styles.orders__details}>
+                                  {product.details}
+                                </p>
+                              </div>
+                              <div className={styles.orders__amount}>
+                                <p className={styles.orders__quantity}>
+                                  <span>Quantity: </span>
+                                  <span>{cartQuantity}</span>
+                                </p>
+                                <p className={styles.orders__price}>
+                                  <span>Price:</span>
+                                  <span>{Number(product.currentPrice?.toFixed(2))}</span>
+                                </p>
+                                <p className={styles.orders__price}>
+                                  <span>Total price:</span>
+                                  <span>{Number((cartQuantity * product.currentPrice).toFixed(2))}</span>
+                                </p>
+                              </div>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                    <div className={styles.orders__info}>
-                      <span>Total price:</span>
-                      <span>{order.totalSum.toFixed(2)} ETH</span>
-                    </div>
+                        <div className={styles.orders__info}>
+                          <span>Total price:</span>
+                          <span>{order.totalSum.toFixed(2)} ETH</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+                : <AdminProducts />}
             </div>
           </div>
         </>
         : <Loader />
       }
     </>
-    // {user &&
-    //   <>
-    //     <Banner
-    //       title='Hello there!'
-    //       subtitle={`General ${user?.login}`}
-    //       img='/images/banners/account-banner.webp' />
-    //     {user?.isAdmin && <Link to={'/admin'}>Admin panel</Link>}
-    //     {/* {user?.isAdmin
-    //       ? <AdminProducts />
-    //       : <h4>List of your orders:</h4>} */}
-    //     <h4>List of your orders:</h4>
-    //   </>
-    // }
-
-    // !loading && user
-    //   ? <>{user &&
-    //     <>
-    //       <Banner
-    //         title='Hello there!'
-    //         subtitle={`General ${user?.login}`}
-    //         img='/images/banners/account-banner.webp' />
-    //       {user?.isAdmin && <Link to={'/admin'}>Admin</Link>}
-    //       {/* {user?.isAdmin
-    //         ? <AdminProducts />
-    //         : <h4>List of your orders:</h4>} */}
-    //       <h4>List of your orders:</h4>
-    //     </>
-    //   }</>
-    //  : <Loader />
   )
 }

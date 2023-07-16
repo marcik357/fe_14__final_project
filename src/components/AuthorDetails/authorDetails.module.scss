@@ -3,10 +3,8 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
+  margin-right: -15px;
   gap: 1rem;
-  // max-width: 1470px;
-  // padding: 0 15px;
-  // box-sizing: border-box;
 
   @media (min-width: 748px) {
     flex-direction: row;
@@ -26,9 +24,7 @@
 
   &__info {
     max-width: 1470px;
-    // min-width: 350px;
     margin-bottom: 20px;
-    // padding: 0 24px;
 
     &_wrapper {
       @media (min-width: 748px) {
@@ -40,10 +36,6 @@
 
     @media (min-width: 748px) {
       width: 45%;
-    }
-
-    @media (min-width: 1160px) {
-      // padding: 0 40px;
     }
 
     &_container {
@@ -100,10 +92,9 @@
 
   &__products {
     position: relative;
-    margin: 0 -15px;
 
     @media (min-width: 748px) {
-      width: 55%;
+      width: 70%;
     }
 
     &_container {

@@ -17,8 +17,8 @@ function MobilNav(props) {
            <LogIn width={30} height={30} color={'#202025'} strokeWidth={isActive('/authorization') ? '2.2' : '1.5'} />
          </NavLink>
          ) : (
-         <NavLink to='/accaunt' className={style.mobilNav__account} >
-           <Account width={30} height={30} color={'#202025'} strokeWidth={isActive('/accaunt') ? '2.2' : '1.5'} />
+         <NavLink to='/account' className={style.mobilNav__account} >
+           <Account width={30} height={30} color={'#202025'} strokeWidth={isActive('/account') ? '2.2' : '1.5'} />
          </NavLink>
          )}
          <NavLink to='/cart' className={style.mobilNav__basket}>
