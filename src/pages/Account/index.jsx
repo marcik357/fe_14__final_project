@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { AdminProducts } from '../../components/AdminProducts';
 import { Link, Navigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
+import { setCart } from '../../redux/actions/cartActions';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -21,7 +22,9 @@ export function Account() {
 
   function logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('cart');
     dispatch(setTokenAction(null));
+    dispatch(setCart(null));
     return <Navigate to="/authorization" />;
   }
 

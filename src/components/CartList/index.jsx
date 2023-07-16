@@ -87,7 +87,7 @@ export function CartList({ imageUrls, name, currentPrice, _id, itemNo, cartQuant
           className={style.cartListItem__btnDelete}
           onClick={(e) => deleteItem(e)}
         >
-          <Close color='#fff' width={20} height={20}/>
+          <Close color='#fff' width={20} height={20} />
         </button>
       </div>
       : <Loader />

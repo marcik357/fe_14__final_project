@@ -22,7 +22,7 @@ export function Cart() {
                   return (
                     token
                       ? <CartList
-                        key={product._id}
+                        key={product}
                         cartQuantity={cartQuantity}
                         {...product}
                       />

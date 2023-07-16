@@ -1,4 +1,4 @@
-import { useEffect,useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../components/Footer';
@@ -22,7 +22,7 @@ export function MainLayout() {
   const cart = useSelector((state) => state.cart.cart);
   const error = useSelector((state) => state.error.error);
   const products = useSelector((state) => state.products.products);
-  const [orderAmount,setOrderAmount ]=useContext(Quantity)
+  const [orderAmount, setOrderAmount] = useContext(Quantity)
 
   useEffect(() => {
     if (error == 401) {
@@ -51,10 +51,6 @@ export function MainLayout() {
   }, [dispatch, token])
 
   useEffect(() => {
-    if (cart.length === 0) dispatch(createCartFromLS(token, getDataFromLS('cart')));
-  }, [cart, token, dispatch])
-
-  useEffect(() => {
     if (token) {
       const prices = cart?.products?.map(({ cartQuantity, product }) => {
         return (cartQuantity * product.currentPrice)
@@ -70,6 +66,11 @@ export function MainLayout() {
       }
     }
   }, [cart, products, token, setOrderAmount])
+
+  useEffect(() => {
+    if (cart?.products.length === 0) dispatch(createCartFromLS(token, getDataFromLS('cart')));
+  }, [cart, token, dispatch])
+  
   return (
     <>
       {modalType && (

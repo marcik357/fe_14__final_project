@@ -1,7 +1,7 @@
 import style from './index.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useContext } from 'react';
-import { buyProduct } from '../../redux/actions/cartActions';
+// import { buyProduct } from '../../redux/actions/cartActions';
 import Loader from '../Loader';
 import { Link } from 'react-router-dom';
 import { Quantity } from '../../router';
