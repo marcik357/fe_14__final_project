@@ -5,11 +5,6 @@ import SocialLink from '../SocialLink';
 import { getSocialIcon } from './socialIcon';
 
 export function AuthorDetails({ author, products, productsQuantity }) {
-  // const products = useSelector((state) => state.products.products);
-
-  // const authorProducts = products.filter(product => {
-  //   return product.author === author.customId
-  // });
 
   const socialLinks = author?.urls?.map((urlObj, index) => {
     const [key, value] = Object.entries(urlObj)[0];

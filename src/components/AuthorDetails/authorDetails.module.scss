@@ -92,9 +92,11 @@
 
   &__products {
     position: relative;
+    margin-left: -15px;
 
     @media (min-width: 748px) {
       width: 70%;
+      margin-left: 0;
     }
 
     &_container {
