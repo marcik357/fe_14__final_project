@@ -20,11 +20,11 @@ export function Account() {
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
 
-  function logOut() {
+  async function logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
-    dispatch(setTokenAction(null));
-    dispatch(setCart(null));
+    await dispatch(setTokenAction(null));
+    await dispatch(setCart(null));
     return <Navigate to="/authorization" />;
   }
 

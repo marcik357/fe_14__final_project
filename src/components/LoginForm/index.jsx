@@ -25,6 +25,7 @@ export default function LoginForm() {
       })
       const token = response.token;
       localStorage.setItem('token', token);
+      // localStorage.removeItem('cart');
       dispatch(setTokenAction(token));
       navigate("/")
     } catch (error) {

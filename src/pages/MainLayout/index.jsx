@@ -36,9 +36,11 @@ export function MainLayout() {
 
   useEffect(() => {
     dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
+    console.log(token);
     if (!token) {
       dispatch(setTokenAction(localStorage.getItem('token')));
-      setCart(getDataFromLS('cart'));
+      dispatch(setCart({ products: getDataFromLS('cart') }));
+      // dispatch(setCart(getDataFromLS('cart')));
     } else {
       dispatch(getDataAction(`${baseUrl}cart`, setCart, {
         method: "GET",
@@ -68,9 +70,22 @@ export function MainLayout() {
   }, [cart, products, token, setOrderAmount])
 
   useEffect(() => {
-    if (cart?.products.length === 0) dispatch(createCartFromLS(token, getDataFromLS('cart')));
+    try {
+      if (token && cart?.products?.length === 0 || Array.isArray(cart)) {
+        // console.log(cart?.products);
+        // console.log(token);
+        console.log('111111111');
+        dispatch(createCartFromLS(token, "PUT", getDataFromLS('cart')))
+      } else if (token && cart === null) {
+        console.log('222222222');
+        dispatch(createCartFromLS(token, "POST", getDataFromLS('cart')))
+      };
+    } catch (error) {
+      console.log(error);
+      return
+    }
   }, [cart, token, dispatch])
-  
+
   return (
     <>
       {modalType && (
