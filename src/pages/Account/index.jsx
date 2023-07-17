@@ -7,7 +7,9 @@ import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
 import { AdminProducts } from '../../components/AdminProducts';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { setTokenAction } from '../../redux/actions/tokenActions';
+import { setCart } from '../../redux/actions/cartActions';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -17,6 +19,14 @@ export function Account() {
   const [user, setUser] = useState(null)
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
+
+  async function logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('cart');
+    await dispatch(setTokenAction(null));
+    await dispatch(setCart(null));
+    return <Navigate to="/authorization" />;
+  }
 
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
@@ -46,13 +56,21 @@ export function Account() {
             img='/images/banners/account-banner.webp' />
           <div className={styles.user}>
             <div className={styles.user__container}>
-              {user?.isAdmin
-                && <button
-                  className={styles.user__adminBtn}
-                  onClick={() => setAdminPanel(!adminPanel)}
+              <div className={styles.user__btns}>
+                <button
+                  className={styles.user__btnsItem}
+                  onClick={logOut}
                   type='button'>
-                  {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-                </button>}
+                  Log out
+                </button>
+                {user?.isAdmin
+                  && <button
+                    className={styles.user__btnsItem}
+                    onClick={() => setAdminPanel(!adminPanel)}
+                    type='button'>
+                    {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
+                  </button>}
+              </div>
               {!adminPanel
                 ? <>
                   <h4 className={styles.orders__title}>List of your orders:</h4>
@@ -60,13 +78,13 @@ export function Account() {
                     {orders?.length > 0 && orders?.map((order) => (
                       <div
                         className={styles.orders__wrapper}
-                        key={Math.random() * 1000}>
+                        key={order._id}>
                         <div
                           className={styles.orders__content}>
                           {order?.products.map(({ product, cartQuantity }) => (
                             <div
                               className={styles.orders__item}
-                              key={Math.random() * 1000}>
+                              key={product._id}>
                               <Link
                                 to={`/product/${product.itemNo}`}
                                 className={styles.orders__link}>
