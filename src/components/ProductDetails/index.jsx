@@ -2,9 +2,10 @@ import PropTypes from 'prop-types'; 3
 import { useDispatch, useSelector } from 'react-redux';
 import { buyNowHandler, isInCart } from '../../utils';
 import style from './productDetails.module.scss';
-import { Basket, ETHIcon } from '../Icons';
+import { ETHIcon } from '../Icons';
 import { Link } from 'react-router-dom';
-// import { addProductNftToCart } from '../../redux/actions/cartActions';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 export default function ProductDetails({ _id, itemNo, name, currentPrice, quantity, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
@@ -15,7 +16,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, quanti
   return (
     <div className={style.productDetails}>
       <div className={style.productDetails__imgCont}>
-        <img className={style.productDetails__img} src={imageUrls} alt={name || "product image"} />
+        <LazyLoadImage className={style.productDetails__img} src={imageUrls} alt={name || "product image"} effect="blur" />
         <div className={style.productDetails__links}>
           <div className={style.productDetails__userInfo}>
             <p className={style.productDetails__userInfo_text}>Created by:</p>

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { Basket, ETHIcon } from '../Icons';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function ProductCard({
   _id,
@@ -29,10 +31,11 @@ function ProductCard({
   return (
     <div className={styles.productCard}>
       <Link to={`/product/${itemNo}`}>
-        <img
+        <LazyLoadImage
           className={styles.productCard__img}
           src={imageUrls[0]}
           alt={name}
+          effect="blur"
         />
         <p className={styles.productCard__name}>{name}</p>
       </Link>
@@ -41,7 +44,7 @@ function ProductCard({
           to={`/author/${author}`}
           className={styles.productCard__userInfo_items}
         >
-          <img
+          <LazyLoadImage
             className={styles.productCard__userInfo_userIcon}
             src={authorIcon}
             alt='user-avatar'

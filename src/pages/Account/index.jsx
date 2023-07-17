@@ -10,6 +10,8 @@ import { AdminProducts } from '../../components/AdminProducts';
 import { Link, Navigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -88,9 +90,10 @@ export function Account() {
                               <Link
                                 to={`/product/${product.itemNo}`}
                                 className={styles.orders__link}>
-                                <img
+                                <LazyLoadImage
                                   className={styles.orders__img}
                                   src={product.imageUrls}
+                                  effect="blur"
                                   alt={product.name} />
                               </Link>
                               <div className={styles.orders__about}>

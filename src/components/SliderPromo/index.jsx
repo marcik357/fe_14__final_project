@@ -54,7 +54,8 @@ function SliderPromo({ products }) {
               key={_id}
               className={styles.promoSlider__slide}
             >
-              <img src={imageUrl} alt={name} className={styles.promoSlider__slide_img} />
+              <img src={imageUrl} alt={name} className={styles.promoSlider__slide_img} loading="lazy" />
+              <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
               <div className={styles.promoSlider__container}>
                 <div className={styles.promoSlider__inner}>
                   <div className={styles.promoSlider__meta}>

@@ -6,6 +6,8 @@ import styles from './blog.module.scss';
 import Loader from '../../components/Loader';
 import { BlogIcon } from '../../components/Icons/icon-blog';
 import Banner from '../../components/Banner';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export function Blog() {
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ export function Blog() {
             return (
               <div key={id} className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                 <div className={styles.blog__postImgBlock}>
-                  <img className={styles.blog__postImg} src={url} alt={`img ${id}`} />
+                  <LazyLoadImage className={styles.blog__postImg} src={url} alt={`img ${id}`} effect="blur" />
                   <Link to="*" className={styles.blog__btnImg}>
                     {textButton}
                   </Link>
