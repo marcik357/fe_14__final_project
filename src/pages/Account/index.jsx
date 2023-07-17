@@ -48,7 +48,7 @@ export function Account() {
   }, [dispatch, token]);
 
   return (
-    <>
+    <div id='main'>
       {!loading
         ? user &&
         <>
@@ -135,6 +135,6 @@ export function Account() {
         </>
         : <Loader />
       }
-    </>
+    </div>
   )
 }

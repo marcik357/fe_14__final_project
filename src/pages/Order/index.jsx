@@ -71,7 +71,7 @@ export function Order() {
   }
 
   return (
-    <>
+    <div id='main'>
       <Banner title="You orders in one touch" img="/images/banners/order-banner.png" />
       <div className={styling.order}>
         <div className={styling.order__container}>
@@ -110,6 +110,6 @@ export function Order() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

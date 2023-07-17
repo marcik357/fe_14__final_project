@@ -26,7 +26,7 @@ export function Home() {
   }, [dispatch]);
 
   return !loading ? (
-    <>
+    <div id='main'>
       {slides?.length > 0 && <SliderPromo products={slides} />}
       <div className={styles.products}>
         <div className={styles.products__container}>
@@ -49,7 +49,7 @@ export function Home() {
           </Tabs>
         </div>
       </div>
-    </>
+    </div>
   ) : (
     <Loader />
   );

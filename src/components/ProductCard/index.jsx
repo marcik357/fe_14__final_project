@@ -30,7 +30,7 @@ function ProductCard({
 
   return (
     <div className={styles.productCard}>
-      <Link to={`/product/${itemNo}`}>
+      <Link to={`/product/${itemNo}`} className={styles.productCard__link}>
         <LazyLoadImage
           className={styles.productCard__img}
           src={imageUrls[0]}

@@ -29,17 +29,19 @@ export function Author() {
   }, [dispatch, getAuthor, setProducts, authorId]);
 
   return (
-    !loading && products ? (
-      <div className={style.author}>
-        <Banner title={author.name} img='/images/banners/author-banner.png' />
-        <div className={style.author__wrapper}>
-          <div className={style.author__container}>
-            <AuthorDetails author={author} products={products} productsQuantity={productsQuantity} />
+    <div id='main'>
+      {!loading && products ? (
+        <div className={style.author}>
+          <Banner title={author.name} img='/images/banners/author-banner.png' />
+          <div className={style.author__wrapper}>
+            <div className={style.author__container}>
+              <AuthorDetails author={author} products={products} productsQuantity={productsQuantity} />
+            </div>
           </div>
         </div>
-      </div>
-    ) : (
-      <Loader />
-    )
+      ) : (
+        <Loader />
+      )}
+    </div>
   )
 }

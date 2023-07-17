@@ -11,35 +11,37 @@ export function Cart() {
   const products = useSelector((state) => state.products.products);
 
   return (
-    !loading
-      ? <div className={style.cart}>
-        <div className={style.cart__container}>
-          <div className={style.cart__block}>
-            <div className={style.block__items}>
-              {cart?.products?.length > 0 && products?.length > 0
-                ? cart.products?.map(({ product, cartQuantity }) => {
-                  const productObj = products.find((productR) => productR._id === product)
-                  return (
-                    token
-                      ? <CartList
-                        key={product._id}
-                        cartQuantity={cartQuantity}
-                        {...product}
-                      />
-                      : <CartList
-                        key={productObj.itemNo}
-                        cartQuantity={cartQuantity}
-                        {...productObj}
-                      />)
-                })
-                : <p className={style.block__noItems}>No items in the Cart</p>}
-            </div>
-            <div className={style.block__actionToBuy}>
-              <FormToBuy />
+    <div id='main'>
+      {!loading
+        ? <div className={style.cart}>
+          <div className={style.cart__container}>
+            <div className={style.cart__block}>
+              <div className={style.block__items}>
+                {cart?.products?.length > 0 && products?.length > 0
+                  ? cart.products?.map(({ product, cartQuantity }) => {
+                    const productObj = products.find((productR) => productR._id === product)
+                    return (
+                      token
+                        ? <CartList
+                          key={product._id}
+                          cartQuantity={cartQuantity}
+                          {...product}
+                        />
+                        : <CartList
+                          key={productObj.itemNo}
+                          cartQuantity={cartQuantity}
+                          {...productObj}
+                        />)
+                  })
+                  : <p className={style.block__noItems}>No items in the Cart</p>}
+              </div>
+              <div className={style.block__actionToBuy}>
+                <FormToBuy />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      : <Loader />
+        : <Loader />}
+    </div>
   );
 }

@@ -18,10 +18,20 @@
 html,
 body {
   min-width: 320px;
+  height: 100%;
   font-family: "Inter", sans-serif;
-  // height: 100%;
   // background-color: #f7fbfa;
   // overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#main {
+  flex: 1 0 auto;
 }
 
 // #root {

@@ -12,24 +12,25 @@ export function Authorization() {
   const loading = useSelector((state) => state.loading.loading);
 
   return (
-    <>
-      {!loading
-        ?
+    <div id='main'>
+      {!loading ?
         <>
           <Banner
             title='Crypter authorization'
             img='/images/banners/authorization-banner.jpg' />
           <div className={styles.authorization}>
-            <LogInGreating
-              type={isLogIn ? 'login' : 'signup'}
-              onClickHandler={() => setIsLogIn(!isLogIn)}
-              classList={styles.authorization__greating} />
-            {isLogIn
-              ? <LoginForm />
-              : <SignUpForm callback={setIsLogIn} />}
+            <div className={styles.authorization__container}>
+              <LogInGreating
+                type={isLogIn ? 'login' : 'signup'}
+                onClickHandler={() => setIsLogIn(!isLogIn)}
+                classList={styles.authorization__greating} />
+              {isLogIn
+                ? <LoginForm />
+                : <SignUpForm callback={setIsLogIn} />}
+            </div>
           </div>
         </>
         : <Loader />}
-    </>
+    </div>
   );
 }

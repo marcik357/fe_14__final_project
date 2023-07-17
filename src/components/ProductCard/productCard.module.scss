@@ -83,6 +83,17 @@
     pointer-events: none;
   }
 
+  &__link {
+    width: 100%;
+    height: 100%;
+
+    & > span {
+      display: block !important;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   &__img {
     display: flex;
     position: relative;
