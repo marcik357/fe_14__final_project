@@ -1,12 +1,38 @@
 .products {
-  margin: 0;
   background-color: #f7fbfa;
 
   &__container {
-    display: flex;
     max-width: 1470px;
     margin: 0 auto;
     padding: 0 15px;
     box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  &__filter {
+    padding: 32px 0;
+
+    &_tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e1e2e2;
+    }
+
+    &_tab {
+      padding: 15px 20px;
+      color: #202025;
+      font-family: Inter;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 32px;
+      list-style: none;
+      cursor: pointer;
+
+      &:hover {
+        border-bottom: 1px solid #686a6c;
+      }
+    }
   }
 }

@@ -1,25 +1,19 @@
 import Input from '../Input';
 import style from './editProductForm.module.scss';
 import { editProductFormFields } from './editProductFormField';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { baseUrl } from '../../utils/vars';
 import { Formik, Form } from 'formik';
 import { validationSchemaProduct } from '../../validation';
 import Select from '../Select';
-import { fetchData} from '../../utils';
-import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { fetchData } from '../../utils';
 import Checkbox from '../Checkbox';
 
 export default function EditProductForm({ product, onCloseForm }) {
   const dispatch = useDispatch();
-  const [selectedThemes, setSelectedThemes] = useState(product.theme || []);
-  // const navigate = useNavigate();
-  // const handleCheckboxChange  = (value) => {
-  //   setSelectedThemes(value);
-  // };
+  const token = useSelector((state) => state.token.token);
 
   return (
     <Formik
@@ -31,8 +25,6 @@ export default function EditProductForm({ product, onCloseForm }) {
       onSubmit={
         async (values, { setSubmitting }) => {
           try {
-            // await putData(`${baseUrl}products/${product._id}`, values)
-            // navigate("/admin")
             await fetchData(`${baseUrl}products/${product._id}`, {
               method: "PUT",
               headers: {
@@ -78,7 +70,6 @@ export default function EditProductForm({ product, onCloseForm }) {
                         key={option}
                         children={option}
                         value={product.theme}
-                        // onChange={setSelectedThemes}
                         {...field} />
                     )
                   })}
@@ -88,9 +79,14 @@ export default function EditProductForm({ product, onCloseForm }) {
           }
           return null;
         })}
-        <button className={style.form__submit} type="submit">
-          Save Changes
-        </button>
+        <div className={style.form__btns}>
+          <button className={style.form__submit} type="submit">
+            Save Changes
+          </button>
+          <button onClick={onCloseForm} type='button' className={style.form__submit}>
+            Cancel
+          </button>
+        </div>
       </Form>
     </Formik>
   )

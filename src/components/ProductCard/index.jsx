@@ -5,7 +5,7 @@ import { buyNowHandler } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
-import { ETHIcon } from '../Icons';
+import { Basket, ETHIcon } from '../Icons';
 
 function ProductCard({
   _id,
@@ -17,11 +17,14 @@ function ProductCard({
   itemNo,
   isInAuthor,
   buttonText,
-  buttonHandler
+  buttonHandler,
 }) {
   const dispatch = useDispatch();
-  const { cartProductsArray, products } = useSelector(state => state.cart);
-  const { token } = useSelector(state => state.token);
+  const cartProductsArray = useSelector((state) => state.cart.cart.products);
+  const isInCart = cartProductsArray?.find(
+    (product) => product.product._id === _id
+  );
+  const { token } = useSelector((state) => state.token);
 
   return (
     <div className={styles.productCard}>
@@ -36,31 +39,50 @@ function ProductCard({
       <div className={styles.productCard__userInfo}>
         <Link
           to={`/author/${author}`}
-          className={styles.productCard__userInfo_items}>
+          className={styles.productCard__userInfo_items}
+        >
           <img
             className={styles.productCard__userInfo_userIcon}
             src={authorIcon}
             alt='user-avatar'
           />
-          <p className={`${styles.productCard__userInfo_author} ${isInAuthor ? styles.productCard__userInfo_inAuthor : ''}`}>{author}</p>
+          <p
+            className={`${styles.productCard__userInfo_author} ${
+              isInAuthor ? styles.productCard__userInfo_inAuthor : ''
+            }`}
+          >
+            {author}
+          </p>
         </Link>
         <Verified />
       </div>
 
       <div className={styles.productCard__priceInfo}>
-        <button
-          className={styles.productCard__priceInfo_button}
-          type='button'
-          onClick={
+        {isInCart ? (
+          <Link
+            to={'/cart'}
+            className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
+            type='button'
+          >
+            view cart
+            <Basket color='#202025' strokeWidth='2.5' />
+          </Link>
+        ) : (
+          <button
+            className={styles.productCard__priceInfo_button}
+            type='button'
+            onClick={
             !buttonHandler
               ? () => buyNowHandler(dispatch, _id, token)
               : () => buttonHandler(itemNo)
           }
-        >
-          {buttonText}
-        </button>
+          >
+            {buttonText}
+          </button>
+        )}
+
         <div className={styles.productCard__priceInfo_buyNow}>
-          <ETHIcon fill={isInAuthor && '#dbff73'} />
+          <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
           {isInAuthor ? (
             <p className={styles.productCard__priceInAuthor}>
               {currentPrice}
@@ -81,7 +103,8 @@ function ProductCard({
 }
 
 ProductCard.propTypes = {
-  imageUrls: PropTypes.array,
+  _id: PropTypes.string.isRequired,
+  imageUrls: PropTypes.arrayOf(PropTypes.string),
   authorIcon: PropTypes.string,
   author: PropTypes.string,
   currentPrice: PropTypes.number,

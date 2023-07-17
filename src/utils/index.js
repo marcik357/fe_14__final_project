@@ -22,12 +22,27 @@ export async function fetchData(url, reqBody) {
 }
 
 export function buyNowHandler(dispatch, id, token) {
-  dispatch(addToCart(id, token))
-  dispatch(setModalType('buy'))
+  try {
+    dispatch(addToCart(id, token))
+    dispatch(setModalType('buy'))
+  } catch (error) {
+    dispatch(setErrorAction(error.message));
+  }
 }
 
 export const getDataFromLS = (key) => {
   const lsData = localStorage.getItem(key);
+  if (!lsData) return [];
+  try {
+    const value = JSON.parse(lsData);
+    return value;
+  } catch (e) {
+    return [];
+  }
+};
+
+export const getDataFromSS = (key) => {
+  const lsData = sessionStorage.getItem(key);
   if (!lsData) return [];
   try {
     const value = JSON.parse(lsData);

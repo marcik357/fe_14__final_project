@@ -1,0 +1,190 @@
+.collectionCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px 15px;
+  transition: all .2s ease;
+  border-radius: 25px;
+  background-color: #f7fbfa;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #202025;
+  }
+
+  &:hover .collectionCard__name {
+    color: #f7fbfa;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  &__name {
+    margin: 10px 0 15px 20px;
+    color: #202025;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+    border-radius: 20px;
+
+    &_sm {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    &_sm img {
+      max-width: 32%;
+      border-radius: 20px;
+    }
+  }
+
+  &__viewAll {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32%;
+    border-radius: 20px;
+    // background-color: #b9a9fb;
+    color: #202025;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+
+  &__showCollection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: max-content;
+    margin: 1rem 0;
+    padding: .7rem;
+    transition: color .3s;
+    border: 2px solid #202025;
+    border-radius: 4px;
+    background: transparent;
+    color: #f7fbfa;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+      position: absolute;
+      top: -5%;
+      left: -5%;
+      width: 110%;
+      height: 110%;
+      background-color: #202025;
+      content: '';
+      z-index: -1;
+    }
+
+    &::after {
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      height: 100%;
+      transition: all .3s;
+      border-radius: 50%;
+      background-color: #f7fbfa;
+      content: '';
+      z-index: -1;
+    }
+
+    &:hover {
+      color: #202025;
+    }
+
+    &:hover {
+      &::after {
+        top: -50%;
+        width: 200%;
+        height: 200%;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .collectionCard {
+    &__wrapper {
+      padding: 10px;
+    }
+
+    &__name {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .collectionCard {
+    margin: 20px 0;
+
+    &__name {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .collectionCard {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    border: 1px solid #e1e2e2;
+
+    &__wrapper {
+      flex-direction: row;
+      padding: 7px;
+    }
+
+    &__image {
+      max-width: 80%;
+      border-radius: 20px;
+
+      &_sm {
+        display: grid;
+        justify-content: space-between;
+        margin-top: 0;
+        margin-left: 10px;
+        grid-template-rows: repeat(3, 1fr);
+        row-gap: 10px;
+      }
+
+      &_sm img {
+        max-width: 100%;
+        min-height: 102%;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+    }
+
+    &__viewAll {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+}

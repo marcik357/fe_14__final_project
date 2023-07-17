@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Success } from '../Icons/success-icon';
+import { SuccessOrder } from '../Icons';
+import { newOrder } from '../../utils/vars';
 import style from './modal.module.scss';
 
 export const modalProps = [
@@ -64,6 +66,20 @@ export const modalProps = [
       return (
         <div className={className}>
           <NavLink to="/authorization" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
+            Ok
+          </NavLink>
+        </div>
+      );
+    },
+  },
+  {
+    type: 'order',
+    header: 'Thank you for the order!',
+    icon:<SuccessOrder width='150px' />,
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <NavLink to="/" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
             Ok
           </NavLink>
         </div>

@@ -9,7 +9,7 @@
   flex-direction: column;
   position: relative;
   width: 93%;
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 0 15px;
   transition: .2s ease;
   border-radius: 30px;
@@ -145,8 +145,30 @@
     min-width: 100%;
     margin-bottom: 24px;
 
+    &_cartButton {
+      background-color: #f7fbfa !important;
+      color: #202025 !important;
+
+      &:hover {
+        color: #f7fbfa !important;
+
+        & svg {
+          & path {
+            stroke: #f7fbfa;
+          }
+        }
+      }
+
+      & svg {
+        width: 20px;
+        height: 17px;
+        margin-left: 5px;
+      }
+    }
+
     &_button {
       display: flex;
+      align-items: center;
       position: relative;
       padding: 7px 35px;
       transition: .3s;
@@ -159,6 +181,12 @@
       cursor: pointer;
       overflow: hidden;
       z-index: 1;
+
+      & svg {
+        width: 15px;
+        height: 15px;
+        margin-left: 5px;
+      }
 
       &::after {
         position: absolute;
@@ -224,7 +252,7 @@
 
 @media (min-width: 768px) {
   .productCard {
-    margin-bottom: 32px;
+    // margin-bottom: 32px;
     padding: 0 10px;
 
     &:hover {
