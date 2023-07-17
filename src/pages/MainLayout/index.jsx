@@ -51,7 +51,7 @@ export function MainLayout() {
   }, [dispatch, token])
 
   useEffect(() => {
-    if (cart.length === 0) {
+    if (cart.length === 0 && getDataFromLS('cart').length > 0) {
       dispatch(createCartFromLS(token, getDataFromLS('cart')));
       localStorage.removeItem('cart');
     };
