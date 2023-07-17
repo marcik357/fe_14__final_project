@@ -8,8 +8,8 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
-import { Arrow } from '../Icons';
-import { buyNowHandler } from '../../utils';
+import { Arrow, Basket } from '../Icons';
+import { buyNowHandler, isInCart } from '../../utils';
 
 function SliderPromo({ products }) {
   const dispatch = useDispatch()
@@ -19,6 +19,7 @@ function SliderPromo({ products }) {
   const nextBtnRef = useRef(null);
 
   const token = useSelector(state => state.token.token);
+  const cart = useSelector((state) => state.cart.cart);
 
   return (
     <>
@@ -32,10 +33,10 @@ function SliderPromo({ products }) {
         }}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         speed={500}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 5000,
+        //   disableOnInteraction: false,
+        // }}
         className={styles.promoSlider}
       >
         <div slot="container-start" className={styles.promoSlider__container}>
@@ -83,13 +84,31 @@ function SliderPromo({ products }) {
                         <Arrow fill="#F7FBFA" />
                       </span>
                     </Link>
-                    <button
+                    {!isInCart(cart, _id)
+                      ?
+                      <button
+                        type='button'
+                        onClick={() => buyNowHandler(dispatch, _id, token)}
+                        className={styles.promoSlider__btns_buy}>
+                        <span>BUY NOW</span>
+                      </button>
+                      : <Link
+                        to={'/cart'}
+                        className={styles.promoSlider__btns_buy}
+                        type='button'>
+                        <span>
+                          view cart
+                          <Basket color='#202025' strokeWidth='2.5' />
+                        </span>
+                      </Link>
+                    }
+                    {/* <button
                       type='button'
                       onClick={() => buyNowHandler(dispatch, _id, token)}
                       className={styles.promoSlider__btns_buy}
                     >
                       <span>BUY NOW</span>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

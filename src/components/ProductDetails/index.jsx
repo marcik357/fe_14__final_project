@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'; 3
 import { useDispatch, useSelector } from 'react-redux';
-import { buyNowHandler } from '../../utils';
+import { buyNowHandler, isInCart } from '../../utils';
 import style from './productDetails.module.scss';
-import { ETHIcon } from '../Icons';
+import { Basket, ETHIcon } from '../Icons';
 import { Link } from 'react-router-dom';
 // import { addProductNftToCart } from '../../redux/actions/cartActions';
 
@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 export default function ProductDetails({ _id, itemNo, name, currentPrice, quantity, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
   const dispatch = useDispatch();
   const { token } = useSelector(state => state.token)
+  const cart = useSelector((state) => state.cart.cart);
+
   return (
     <div className={style.productDetails}>
       <div className={style.productDetails__imgCont}>
@@ -54,7 +56,22 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, quanti
           <h3 className={style.productDetails__descr_title}>Details:</h3>
           <p className={style.productDetails__descr_text}>{details}</p>
         </div>
-        <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, _id, token)}>Buy now</button>
+        {!isInCart(cart, _id)
+          ?
+          <button
+            type='button'
+            onClick={() => buyNowHandler(dispatch, _id, token)}
+            className={style.productDetails__actions_mainBtn}>
+            <span>BUY NOW</span>
+          </button>
+          : <Link
+            to={'/cart'}
+            className={style.productDetails__actions_mainBtn}
+            type='button'>
+            <span>view cart</span>
+          </Link>
+        }
+        {/* <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, _id, token)}>Buy now</button> */}
         <p className={style.productDetails__actions_text}>
           We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities.
           Join the millions of creators, collectors, and curators who are on this journey with you.

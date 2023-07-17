@@ -51,3 +51,6 @@ export const getDataFromSS = (key) => {
     return [];
   }
 };
+
+export const isInCart = (cart, id) => cart.products.find((product) => product.product._id === id || product.product === id)
+// export const isInCart = (cart, id) => cart?.products?.find((product) => product.product._id === id);

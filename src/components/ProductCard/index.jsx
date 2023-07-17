@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
-import { buyNowHandler } from '../../utils';
+import { buyNowHandler, isInCart } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
@@ -20,10 +20,10 @@ function ProductCard({
   buttonHandler,
 }) {
   const dispatch = useDispatch();
-  const cartProductsArray = useSelector((state) => state.cart.cart.products);
-  const isInCart = cartProductsArray?.find(
-    (product) => product.product._id === _id
-  );
+  const cart = useSelector((state) => state.cart.cart);
+  // const isInCart = cartProductsArray?.find(
+  //   (product) => product.product._id === _id
+  // );
   const { token } = useSelector((state) => state.token);
 
   return (
@@ -58,7 +58,7 @@ function ProductCard({
       </div>
 
       <div className={styles.productCard__priceInfo}>
-        {isInCart ? (
+        {isInCart(cart, _id) ? (
           <Link
             to={'/cart'}
             className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
