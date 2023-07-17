@@ -60,14 +60,14 @@ export function MainLayout() {
   useEffect(() => {
     if (token) {
       const prices = cart?.products?.map(({ cartQuantity, product }) => {
-        return (cartQuantity * product.currentPrice)
+        return (cartQuantity * product?.currentPrice)
       })
       setOrderAmount(prices?.reduce((prev, next) => prev + next, 0))
     } else {
       if (products.length > 0) {
         const prices = cart?.products?.map(({ cartQuantity, product }) => {
           const productR = products?.find((item) => item._id === product)
-          return (cartQuantity * productR.currentPrice)
+          return (cartQuantity * productR?.currentPrice)
         })
         setOrderAmount(prices?.reduce((prev, next) => prev + next, 0))
       }
