@@ -56,5 +56,12 @@ export const isInCart = (cart, id) => cart?.products?.find((product) => product.
 
 export const scrollTo = (start) => {
   const section = document.querySelector(start);
-  section.scrollIntoView({ behavior: 'smooth' });
+  section.scrollIntoView({behavior: 'smooth' });
+};
+
+// скрол (тільки на Home Page) на початок сторінки
+export const scrollUpPage = () => {
+  if (location.pathname === '/') {
+    window.scrollTo({ top: 0, behavor: 'smooth' });
+  }
 };

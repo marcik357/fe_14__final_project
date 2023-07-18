@@ -7,6 +7,7 @@ import socialData from '../SocialLink/socialData';
 import SocialLink from '../SocialLink';
 import menuData from '../MenuLink/menuData';
 import MenuLink from '../MenuLink';
+import { scrollUpPage } from '../../utils';
 
 function Footer() {
   // логінізація
@@ -25,7 +26,7 @@ function Footer() {
     <footer className={style.footer}>
       <div className={style.footer__container}>
          <div className={style.footer__section}>
-           <Link to="/" className={style.footer__logo}>
+          <Link to="/" className={style.footer__logo} onClick={scrollUpPage}>
               <Logo width={48} height={48} color={'#202025'} />
               <span className={style.footer__title}>CRYPTER</span>
            </Link>

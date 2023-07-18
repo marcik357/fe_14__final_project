@@ -209,7 +209,7 @@ option {
   }
 
   &__sidebarItem {
-    max-width: 200px;
+    // max-width: 200px;
     font-size: 16px;
   }
 
@@ -222,8 +222,9 @@ option {
   }
 
   &__sidebarItem label:hover {
-    border-radius: 4px;
-    outline: 2px solid black;
+    // border-radius: 4px;
+    // outline: 2px solid black;
+    background-color: rgba(0, 0, 0, .2);
   }
 
   // Кастомний чекбокс
