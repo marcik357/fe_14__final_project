@@ -29,6 +29,7 @@ export default function Router() {
           <Route path="/product/:productId" element={<Product />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="/admin" element={<AdminProducts />} />
       </Routes>
     </Quantity.Provider>
   );
