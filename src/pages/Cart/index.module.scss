@@ -1,4 +1,5 @@
-body,html {
+body:has(.cart),
+html:has(.cart) {
   height: 100%;
 }
 

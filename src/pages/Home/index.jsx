@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import SliderPromo from '../../components/SliderPromo';
@@ -22,18 +22,18 @@ export function Home() {
   const products = useSelector((state) => state.products.products);
   const loading = useSelector((state) => state.loading.loading);
 
-  async function homeLoad() {
+  const homeLoad = useCallback(async () => {
     dispatch(setLoadingAction(true));
     const slides = await fetchData(`${baseUrl}slides`)
     const partners = await fetchData(`${baseUrl}partners`)
     setSlides(slides);
     setPartners(partners);
     dispatch(setLoadingAction(false))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     homeLoad()
-  }, [dispatch]);
+  }, [homeLoad]);
 
   return !loading ? (
     <div id='main'>

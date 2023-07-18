@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../components/Footer';
@@ -25,7 +25,7 @@ export function MainLayout() {
   const products = useSelector((state) => state.products.products);
   const [orderAmount, setOrderAmount] = useContext(Quantity)
 
-  async function mainLoad() {
+  const mainLoad = useCallback(async () => {
     dispatch(setLoadingAction(true));
     dispatch(setTokenAction(localStorage.getItem('token')));
     const products = await fetchData(`${baseUrl}products`)
@@ -43,7 +43,11 @@ export function MainLayout() {
       dispatch(setCart(cart));
     }
     dispatch(setLoadingAction(false))
-  }
+  }, [dispatch, token])
+
+  useEffect(() => {
+    mainLoad()
+  }, [mainLoad])
 
   useEffect(() => {
     if (error == 401) {
@@ -53,11 +57,8 @@ export function MainLayout() {
     modalType
       ? document.body.style.overflow = 'hidden'
       : document.body.style.overflow = 'auto';
-  }, [token, error, modalType, dispatch])
-
-  useEffect(() => {
-    mainLoad()
-  }, [dispatch])
+  }, [dispatch, error, modalType])
+  // }, [token, error, modalType, dispatch])
 
   useEffect(() => {
     if (cart.length === 0 && getDataFromLS('cart').length > 0) {
@@ -82,6 +83,7 @@ export function MainLayout() {
       }
     }
   }, [cart, products, token, setOrderAmount])
+  
   return (
     <>
       {modalType && (
