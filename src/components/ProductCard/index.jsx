@@ -8,7 +8,6 @@ import { Verified } from '../Icons/verified';
 import { Basket, ETHIcon } from '../Icons';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import pic from './@Art_ofbitcoin_Elon_praying_for_bitcoin_Art.png'
 
 function ProductCard({
   _id,
@@ -37,7 +36,7 @@ function ProductCard({
           src={imageUrls[0]}
           alt={name}
           effect="blur"
-          placeholderSrc={'./images/products/@Art_ofbitcoin_Elon_praying_for_bitcoin_Art.png'}
+          placeholderSrc={'./images/products/placeholder.jpg'}
           height={250}
           width={250}
         />

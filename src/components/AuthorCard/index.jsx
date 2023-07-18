@@ -13,7 +13,13 @@ function AuthorCard({ index, name, imageUrl, products, customId }) {
         <AuthorNumber className={style.authorCard__number_svg} />
         <span>{index}</span>
       </div>
-      <LazyLoadImage className={style.authorCard__image} src={imageUrl} alt={name} effect="blur" />
+      <LazyLoadImage
+        className={style.authorCard__image}
+        src={imageUrl} alt={name}
+        effect="blur"
+        placeholderSrc={'./images/products/placeholder.jpg'}
+        width={200}
+        height={200} />
       <p className={style.authorCard__name}>@{name}</p>
     </Link>
   );
