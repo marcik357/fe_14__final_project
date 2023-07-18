@@ -53,3 +53,8 @@ export const getDataFromSS = (key) => {
 };
 
 export const isInCart = (cart, id) => cart?.products?.find((product) => product.product._id === id || product.product === id)
+
+export const scrollTo = (start) => {
+  const section = document.querySelector(start);
+  section.scrollIntoView({ behavior: 'smooth' });
+};

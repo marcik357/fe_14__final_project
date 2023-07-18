@@ -4,6 +4,7 @@ import ProductList from '../ProductList';
 import style from './collectionCard.module.scss';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { scrollTo } from '../../utils';
 
 function CollectionCard({
   category,
@@ -26,10 +27,12 @@ function CollectionCard({
   const renderList = () => {
     setCollectionVisible(false);
     setProductListVisible(true);
+    scrollTo('#collections');
   };
   const renderCollection = () => {
     setCollectionVisible(true);
     setProductListVisible(false);
+    scrollTo('#collections');
   };
 
   return (
