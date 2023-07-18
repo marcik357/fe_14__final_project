@@ -68,10 +68,6 @@ option {
     padding: 0 15px;
   }
 
-  &__wrapper {
-    margin-top: 40px;
-  }
-
   &__nav {
     display: flex;
     align-items: center;
@@ -80,11 +76,12 @@ option {
   }
 
   &__openBtn {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    min-width: 150px;
+    width: 150px;
     height: 45px;
     transition: color .3s, width .3s;
     border: 2px solid #202025;
@@ -101,8 +98,8 @@ option {
   }
 
   &__sortBtn {
-    width: 170px;
-    height: 30px;
+    width: 150px;
+    height: 45px;
     border: 1px solid;
     border-radius: 4px;
     color: black;
@@ -360,6 +357,7 @@ option {
   }
 
   &__contentList {
+    padding-bottom: 1.5rem;
     position: relative;
     width: 100%;
     z-index: 0;
@@ -379,10 +377,6 @@ option {
       width: 180px;
     }
 
-    &__openBtn.open {
-      width: 260px;
-    }
-
     &__sortValue {
       padding: 10px 0;
       font-size: 12px;
@@ -400,6 +394,10 @@ option {
       align-items: flex-start;
       margin-top: 30px;
       gap: 10px;
+    }
+
+    &__openBtn.open {
+      width: 260px;
     }
 
     &__sidebarBckg.open {

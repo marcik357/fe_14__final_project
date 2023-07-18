@@ -49,19 +49,19 @@ function Filter() {
     }
   }, [dispatch]);
 
-    // Функція для відображення товарів згідно обраних фільтрів
-    const applyFilters = useCallback(async () => {
-      try {
-        // Запит до API з використанням queryString для фільтрації товарів
-        const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
-        setProducts(data);
-      } catch (error) {
-        dispatch(setErrorAction(error.message))
-      }
-    }, [dispatch, queryString]);
-  
+  // Функція для відображення товарів згідно обраних фільтрів
+  const applyFilters = useCallback(async () => {
+    try {
+      // Запит до API з використанням queryString для фільтрації товарів
+      const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
+      setProducts(data);
+    } catch (error) {
+      dispatch(setErrorAction(error.message))
+    }
+  }, [dispatch, queryString]);
 
-      // Код фільтру по чекбоксам
+
+  // Код фільтру по чекбоксам
   const valueChange = (event) => {
     const { name, checked } = event.target;
     const filterType = event.target.getAttribute('data-filter-type');
@@ -99,48 +99,48 @@ function Filter() {
       return updatedFilters;
     });
   };
-  
-    // Перевірка інпутів по ціні від / до
-    const isValidPriceInput = (minPriceValue, maxPriceValue) => {
-      if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
-        return false;
-      }
-  
-      if (minPriceValue === '' || maxPriceValue === '') {
-        return true;
-      }
-  
-      return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
-    };
-  
-    const handleMinPriceChange = (e) => {
-      setMinPrice(e.target.value);
-      setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
-    };
-  
-    const handleMaxPriceChange = (e) => {
-      setMaxPrice(e.target.value);
-      setIsApplyButtonDisabled(!isValidPriceInput(minPrice, e.target.value));
-    };
-  
-    const sortByPrice = (e) => {
-      setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
+
+  // Перевірка інпутів по ціні від / до
+  const isValidPriceInput = (minPriceValue, maxPriceValue) => {
+    if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
+      return false;
     }
 
-    // Очистити всі фільтри
-    const clearAllFilters = () => {
-      setSelectedFilters({
-        ...selectedFilters,
-        authors: [],
-        categories: [],
-        minPrice: '',
-        maxPrice: '',
-        sortBy: '',
-      });
-      setMinPrice('');
-      setMaxPrice('');
-      setIsApplyButtonDisabled(false);
-    };
+    if (minPriceValue === '' || maxPriceValue === '') {
+      return true;
+    }
+
+    return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
+  };
+
+  const handleMinPriceChange = (e) => {
+    setMinPrice(e.target.value);
+    setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
+  };
+
+  const handleMaxPriceChange = (e) => {
+    setMaxPrice(e.target.value);
+    setIsApplyButtonDisabled(!isValidPriceInput(minPrice, e.target.value));
+  };
+
+  const sortByPrice = (e) => {
+    setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
+  }
+
+  // Очистити всі фільтри
+  const clearAllFilters = () => {
+    setSelectedFilters({
+      ...selectedFilters,
+      authors: [],
+      categories: [],
+      minPrice: '',
+      maxPrice: '',
+      sortBy: '',
+    });
+    setMinPrice('');
+    setMaxPrice('');
+    setIsApplyButtonDisabled(false);
+  };
 
   useEffect(() => {
     // Виклик функції для отримання фільтрів по типам
@@ -188,34 +188,33 @@ function Filter() {
   return (
     <div className={styles.filter}>
       <div className={styles.filter__container}>
-        <div className={styles.filter__wrapper}>
-          <div className={styles.filter__nav}>
-            <button className={`${styles.filter__openBtn +' '+ styles.btnEffect} ${selectedFilters.isOpen && styles.open}`} type="button" onClick={toggleModal}>Filters</button>
-            <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={selectedFilters.sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
-              <option disabled hidden value="Sort By">Sort By</option>
-              <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
-              <option value="-currentPrice" className={styles.filter__sortValue}>Highest price</option>
-            </select>
-          </div>
-          <div className={styles.filter__content}>
-            <div className={`${styles.filter__sidebarBckg} ${selectedFilters.isOpen && styles.open}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
-              <div className={`${styles.filter__sidebarWrapper} ${selectedFilters.isOpen && styles.open}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
-                <div className={styles.filter__sidebarHeader}>
-                  <button className={styles.filter__sidebarCloseBtn} type="button" onClick={toggleModal}>
-                    <LeftChevron />
-                    Filters
-                  </button>
+        <div className={styles.filter__nav}>
+          <button className={`${styles.filter__openBtn + ' ' + styles.btnEffect} ${selectedFilters.isOpen && styles.open}`} type="button" onClick={toggleModal}>Filters</button>
+          <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={selectedFilters.sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
+            <option disabled hidden value="Sort By">Sort By</option>
+            <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
+            <option value="-currentPrice" className={styles.filter__sortValue}>Highest price</option>
+          </select>
+        </div>
+        <div className={styles.filter__content}>
+          <div className={`${styles.filter__sidebarBckg} ${selectedFilters.isOpen && styles.open}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+            <div className={`${styles.filter__sidebarWrapper} ${selectedFilters.isOpen && styles.open}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+              <div className={styles.filter__sidebarHeader}>
+                <button className={styles.filter__sidebarCloseBtn} type="button" onClick={toggleModal}>
+                  <LeftChevron />
+                  Filters
+                </button>
+              </div>
+              <div className={styles.filter__sidebarBody}>
+                <button className={styles.filter__clearBtnHead + ' ' + styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
+                <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
+                <div className={styles.filter__sidebarItemValue}>
+                  <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
+                  <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
+                  <button className={`${styles.filter__sidebarApplyBtn} ${!isApplyButtonDisabled && styles.btnEffect} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
                 </div>
-                <div className={styles.filter__sidebarBody}>
-                  <button className={styles.filter__clearBtnHead +' '+ styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
-                  <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
-                  <div className={styles.filter__sidebarItemValue}>
-                      <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
-                      <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
-                    <button className={`${styles.filter__sidebarApplyBtn} ${!isApplyButtonDisabled && styles.btnEffect} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
-                  </div>
-                  <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
-                  <div className={styles.filter__sidebarList}>
+                <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
+                <div className={styles.filter__sidebarList}>
                   {authorFilters.map((author) => (
                     <div key={author._id} className={styles.filter__sidebarItem}>
                       <label htmlFor={author.name}>
@@ -224,9 +223,9 @@ function Filter() {
                       </label>
                     </div>
                   ))}
-                  </div>
-                  <h4 className={styles.filter__sidebarCategoryTitle}>Collection</h4>
-                  <div className={styles.filter__sidebarList}>
+                </div>
+                <h4 className={styles.filter__sidebarCategoryTitle}>Collection</h4>
+                <div className={styles.filter__sidebarList}>
                   {categoryFilters.map((category) => (
                     <div key={category._id} className={styles.filter__sidebarItem}>
                       <label htmlFor={category.name}>
@@ -235,20 +234,19 @@ function Filter() {
                       </label>
                     </div>
                   ))}
-                  </div>
-                </div>
-                <div className={styles.filter__sidebarFooter}>
-                  <button className={styles.filter__clearBtn +' '+ styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
                 </div>
               </div>
+              <div className={styles.filter__sidebarFooter}>
+                <button className={styles.filter__clearBtn + ' ' + styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
+              </div>
             </div>
-            <section className={styles.filter__contentList}>
-              {productsQuantity === 0
-                ? <p className={styles.filter__contentNoItems}>No items with such parameters</p>
-                : <ProductList products={products} />
-              }
-            </section>
           </div>
+          <section className={styles.filter__contentList}>
+            {productsQuantity === 0
+              ? <p className={styles.filter__contentNoItems}>No items with such parameters</p>
+              : <ProductList products={products} />
+            }
+          </section>
         </div>
       </div>
     </div>
