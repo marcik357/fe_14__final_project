@@ -78,7 +78,6 @@ export function Account() {
                   {orders?.length > 0 && <OrdersList orders={orders}/>}
                 </>
                 : <AdminProducts />}
-              <OrdersList orders={orders} />
             </div>
           </div>
         </>
