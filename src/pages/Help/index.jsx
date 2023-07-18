@@ -14,7 +14,7 @@ export function Help() {
   const loading = useSelector((state) => state.loading.loading);
 
   useEffect(() => {
-    dispatch(getDataAction('/data/blog.json', setData));
+    dispatch(getDataAction('/data/blog.json', setData, {}, 'blog'));
   }, [dispatch])
 
   return (

@@ -11,7 +11,8 @@ import AuthorList from '../../components/AuthorList';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './tabs.scss';
 import { Link } from 'react-router-dom';
-
+import { fetchData } from '../../utils';
+import { setLoadingAction } from '../../redux/actions/loadingActions';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -20,14 +21,23 @@ export function Home() {
   const [partners, setPartners] = useState();
   const products = useSelector((state) => state.products.products);
   const loading = useSelector((state) => state.loading.loading);
+
+  async function homeLoad() {
+    dispatch(setLoadingAction(true));
+    const slides = await fetchData(`${baseUrl}slides`)
+    const partners = await fetchData(`${baseUrl}partners`)
+    setSlides(slides);
+    setPartners(partners);
+    dispatch(setLoadingAction(false))
+  }
+
   useEffect(() => {
-    dispatch(getDataAction(`${baseUrl}slides`, setSlides, {}, 'slides'));
-    dispatch(getDataAction(`${baseUrl}partners`, setPartners, {}, 'partners'));
+    homeLoad()
   }, [dispatch]);
 
   return !loading ? (
     <div id='main'>
-      {slides?.length > 0 && <SliderPromo products={slides} />}
+      {slides?.length > 0 ? <SliderPromo products={slides} /> : <SliderPromo products={[]} />}
       <div className={styles.products}>
         <div className={styles.products__container}>
           <Tabs className={styles.products__filter}>
