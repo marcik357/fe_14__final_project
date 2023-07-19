@@ -56,7 +56,7 @@ export const isInCart = (cart, id) => cart?.products?.find((product) => product.
 
 export const scrollTo = (start) => {
   const section = document.querySelector(start);
-  const coord = section.offsetTop === 0 ? window.pageYOffset - Math.abs(section.getBoundingClientRect().top) - 80 : section.offsetTop - 80
+  const coord = section.offsetTop === 0 ? window.scrollY - Math.abs(section.getBoundingClientRect().top) - 80 : section.offsetTop - 80
   window.scrollTo({ top: coord, behavor: 'smooth' });
 };
 // export const scrollTo = (start) => {
