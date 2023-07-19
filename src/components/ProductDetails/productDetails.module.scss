@@ -1,18 +1,19 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .productDetails {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #f1f4f4;
   font-family: 'Inter', sans-serif;
-  overflow: hidden;
 
-  @media (min-width: 748px) {
-    flex-direction: row;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+    @media (min-width: 748px) {
+      flex-direction: row;
+    }
   }
 
   &__imgCont {
@@ -132,7 +133,7 @@
   }
 
   &__actions {
-    margin: 20px;
+    margin: 20px 0;
     padding: 20px;
     border-radius: 18px;
     background-color: white;

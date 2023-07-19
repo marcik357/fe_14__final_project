@@ -34,13 +34,12 @@ export function Order() {
       <h1>${contactValue?.name},Your order is placed.&#9989;</h1> 
       <p></p>Number of order <b>${Date.now()}</b></p>
       <p>Total sum of order is ${Number(orderAmount).toFixed(2)}ETH </p>
-      <p>Money was debited from the card &#128179; ${contactValue?.cardNumber}</p>
       <p>We will miss you&#128546;,come back soon </p>
       <p>Thank you for order, your crypto&#128154;</p>
       <br/>
       <br/>
       <p>Email &#128233 :crypter.mailer@gmail.com</p>
-      <a href="http://localhost:3000">OUR HOME PAGE</a>
+      <a href="https://crypter-ten.vercel.app/">OUR HOME PAGE</a>
     `
     };
 
@@ -72,7 +71,7 @@ export function Order() {
   }
 
   return (
-    <>
+    <div id='main'>
       <Banner title="You orders in one touch" img="/images/banners/order-banner.png" />
       <div className={styling.order}>
         <div className={styling.order__container}>
@@ -111,6 +110,6 @@ export function Order() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

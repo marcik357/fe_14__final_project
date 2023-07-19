@@ -22,8 +22,12 @@ export async function fetchData(url, reqBody) {
 }
 
 export function buyNowHandler(dispatch, id, token) {
-  dispatch(addToCart(id, token))
-  dispatch(setModalType('buy'))
+  try {
+    dispatch(addToCart(id, token))
+    dispatch(setModalType('buy'))
+  } catch (error) {
+    dispatch(setErrorAction(error.message));
+  }
 }
 
 export const getDataFromLS = (key) => {
@@ -45,5 +49,19 @@ export const getDataFromSS = (key) => {
     return value;
   } catch (e) {
     return [];
+  }
+};
+
+export const isInCart = (cart, id) => cart?.products?.find((product) => product.product._id === id || product.product === id)
+
+export const scrollTo = (start) => {
+  const section = document.querySelector(start);
+  section.scrollIntoView({behavior: 'smooth' });
+};
+
+// скрол (тільки на Home Page) на початок сторінки
+export const scrollUpPage = () => {
+  if (location.pathname === '/') {
+    window.scrollTo({ top: 0, behavor: 'smooth' });
   }
 };

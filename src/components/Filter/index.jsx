@@ -50,19 +50,19 @@ function Filter() {
     }
   }, [dispatch]);
 
-    // Функція для відображення товарів згідно обраних фільтрів
-    const applyFilters = useCallback(async () => {
-      try {
-        // Запит до API з використанням queryString для фільтрації товарів
-        const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
-        setProducts(data);
-      } catch (error) {
-        dispatch(setErrorAction(error.message))
-      }
-    }, [dispatch, queryString]);
-  
+  // Функція для відображення товарів згідно обраних фільтрів
+  const applyFilters = useCallback(async () => {
+    try {
+      // Запит до API з використанням queryString для фільтрації товарів
+      const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
+      setProducts(data);
+    } catch (error) {
+      dispatch(setErrorAction(error.message))
+    }
+  }, [dispatch, queryString]);
 
-      // Код фільтру по чекбоксам
+
+  // Код фільтру по чекбоксам
   const valueChange = (event) => {
     const { name, checked } = event.target;
     const filterType = event.target.getAttribute('data-filter-type');
@@ -100,49 +100,46 @@ function Filter() {
       return updatedFilters;
     });
   };
-  
-    // Перевірка інпутів по ціні від / до
-    const isValidPriceInput = (minPriceValue, maxPriceValue) => {
-      if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
-        return false;
-      }
-  
-      if (minPriceValue === '' || maxPriceValue === '') {
-        return true;
-      }
-  
-      return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
-    };
-  
-    const handleMinPriceChange = (e) => {
-      setMinPrice(e.target.value);
-      setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
-    };
-  
-    const handleMaxPriceChange = (e) => {
-      setMaxPrice(e.target.value);
-      setIsApplyButtonDisabled(!isValidPriceInput(minPrice, e.target.value));
-    };
-  
-    const sortByPrice = (e) => {
-      setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
+
+  // Перевірка інпутів по ціні від / до
+  const isValidPriceInput = (minPriceValue, maxPriceValue) => {
+    if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
+      return false;
     }
 
-    // Очистити всі фільтри
-    const clearAllFilters = () => {
-      setSelectedFilters({
-        ...selectedFilters,
-        authors: [],
-        categories: [],
-        theme: [],
-        minPrice: '',
-        maxPrice: '',
-        sortBy: '',
-      });
-      setMinPrice('');
-      setMaxPrice('');
-      setIsApplyButtonDisabled(false);
-    };
+    if (minPriceValue === '' || maxPriceValue === '') {
+      return true;
+    }
+
+  const handleMinPriceChange = (e) => {
+    setMinPrice(e.target.value);
+    setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
+  };
+
+  const handleMaxPriceChange = (e) => {
+    setMaxPrice(e.target.value);
+    setIsApplyButtonDisabled(!isValidPriceInput(minPrice, e.target.value));
+  };
+
+  const sortByPrice = (e) => {
+    setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
+  }
+
+  // Очистити всі фільтри
+  const clearAllFilters = () => {
+    setSelectedFilters({
+      ...selectedFilters,
+      authors: [],
+      categories: [],
+      theme: [],
+      minPrice: '',
+      maxPrice: '',
+      sortBy: '',
+    });
+    setMinPrice('');
+    setMaxPrice('');
+    setIsApplyButtonDisabled(false);
+  };
 
   useEffect(() => {
     // Виклик функції для отримання фільтрів по типам
@@ -260,14 +257,17 @@ function Filter() {
                   <button className={styles.filter__clearBtn +' '+ styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
                 </div>
               </div>
+              <div className={styles.filter__sidebarFooter}>
+                <button className={styles.filter__clearBtn + ' ' + styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
+              </div>
             </div>
-            <section className={styles.filter__contentList}>
-              {productsQuantity === 0
-                ? <p className={styles.filter__contentNoItems}>No items with such parameters</p>
-                : <ProductList products={products} />
-              }
-            </section>
           </div>
+          <section className={styles.filter__contentList}>
+            {productsQuantity === 0
+              ? <p className={styles.filter__contentNoItems}>No items with such parameters</p>
+              : <ProductList products={products} />
+            }
+          </section>
         </div>
       </div>
     </div>

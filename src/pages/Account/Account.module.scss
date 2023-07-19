@@ -8,7 +8,13 @@
     padding: 0 15px;
   }
 
-  &__adminBtn {
+  &__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__btnsItem {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,153 +70,9 @@
     }
   }
 
-  &__orders {
-    width: 100%;
-  }
-}
-
-.orders {
-  display: flex;
-  flex-direction: column-reverse;
-
   &__title {
     margin-bottom: 2rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
-  }
-
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    background: rgba(75, 75, 75, .8);
-    box-shadow: -1px 1px 10px 10px rgba(0, 0, 0, .13);
-    overflow: hidden;
-    gap: 1rem;
-
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: stretch;
-    }
-  }
-
-  &__content {
-    display: flex;
-    flex-flow: row wrap;
-    color: #f7fbfa;
-    gap: 1.5rem;
-  }
-
-  &__item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    position: relative;
-    max-width: 100%;
-    gap: 1rem;
-
-    &:not(:last-child)::after {
-      position: absolute;
-      bottom: -.75rem;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: #202025;
-      content: '';
-    }
-
-    @media (min-width: 768px) {
-      flex-wrap: nowrap;
-    }
-  }
-
-  &__info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 -1rem -1rem -1rem;
-    padding: 1rem;
-    background: #202025;
-    color: #dbff73;
-    gap: 10px;
-
-    & > *:last-child {
-      font-weight: 800;
-    }
-
-    @media (min-width: 768px) {
-      flex: 0 0 150px;
-      max-width: 150px;
-      margin: -1rem -1rem -1rem 0;
-    }
-  }
-
-  &__amount {
-    display: flex;
-    flex: 0 0 150px;
-    flex-direction: column;
-    gap: .5rem;
-    order: 2;
-  }
-
-  &__quantity {
-    font-size: .8rem;
-  }
-
-  &__price {
-    display: flex;
-    align-items: flex-end;
-    font-size: 1.1rem;
-    font-weight: 700;
-    gap: .5rem;
-
-    & > *:last-child {
-      font-size: 1.2rem;
-      font-weight: 800;
-    }
-
-    @media (min-width: 768px) {
-      order: initial;
-    }
-  }
-
-  &__img {
-    order: 1;
-    width: 100px;
-    height: 100px;
-    border-radius: 7%;
-    background: transparent;
-    object-fit: cover;
-
-    @media (min-width: 768px) {
-      order: initial;
-    }
-  }
-
-  &__about {
-    align-self: start;
-    order: 3;
-    max-width: 100%;
-
-    & > *::first-letter {
-      text-transform: uppercase;
-    }
-
-    @media (min-width: 768px) {
-      order: initial;
-    }
-  }
-
-  &__name {
-    margin-bottom: .5rem;
-    font-size: 1.2rem;
-    font-weight: 800;
-  }
-
-  &__details {
-    font-size: .9rem;
   }
 }

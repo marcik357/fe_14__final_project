@@ -1,14 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .helpCenter {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  height: 100%;
   font-family: 'Inter', sans-serif;
+
+  &__container {
+    max-width: 1470px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
 
   &__content {
     width: 100%;
@@ -16,8 +17,8 @@
 
   &__cubeBlock {
     position: relative;
-    height: 520px;
-    padding: 40px 24px;
+    // height: 520px;
+    padding: 40px 24px 0;
     background-color: #b9a9fb;
     z-index: 0;
   }
@@ -32,8 +33,10 @@
   }
 
   img {
-    width: 458px;
-    transform: translateX(-23%) translateY(-12%);
+    position: relative;
+    top: -50px;
+    left: -50px;
+    width: 270px;
   }
 
   &__infoBlockList {
@@ -120,38 +123,41 @@
   }
 }
 
-@media (min-width: 1140px) {
+@media (min-width: 768px) {
   .helpCenter {
     &__content {
       display: flex;
     }
 
-    &__cubeBlockWrap {
-      position: relative;
-      width: 50%;
+    img {
+      position: static;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .helpCenter {
+    background: linear-gradient(270deg, transparent 50%, #b9a9fb 50%);
+
+    &__content {
+      display: flex;
     }
 
-    &__cubeBlockWrap::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #b9a9fb;
-      content: "";
+    &__cubeBlockWrap {
+      width: 50%;
     }
 
     &__cubeBlock {
       position: sticky;
-      top: 50px;
-      height: 100vh;
+      top: 80px;
+      // height: 100vh;
       padding: 40px;
-      overflow: hidden;
+      // overflow: hidden;
     }
 
     &__infoBlockList {
       width: 50%;
-      overflow: hidden;
+      // overflow: hidden;
     }
 
     h2 {
@@ -163,10 +169,10 @@
       line-height: 64px;
     }
 
-    img {
-      width: 532px;
-      transform: translateX(-23%) translateY(-6%);
-    }
+    // img {
+    //   width: 532px;
+    //   transform: translateX(-23%) translateY(-6%);
+    // }
   }
 }
 

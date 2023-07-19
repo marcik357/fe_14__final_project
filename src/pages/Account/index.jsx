@@ -7,6 +7,10 @@ import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
 import { AdminProducts } from '../../components/AdminProducts';
+import { Link, Navigate } from 'react-router-dom';
+import { setTokenAction } from '../../redux/actions/tokenActions';
+import { setCart } from '../../redux/actions/cartActions';
+import OrdersList from '../../components/OrdersList';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -16,6 +20,14 @@ export function Account() {
   const [user, setUser] = useState(null)
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
+
+  async function logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('cart');
+    await dispatch(setTokenAction(null));
+    await dispatch(setCart(null));
+    return <Navigate to="/authorization" />;
+  }
 
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
@@ -35,7 +47,7 @@ export function Account() {
   }, [dispatch, token]);
 
   return (
-    <>
+    <div id='main'>
       {!loading
         ? user &&
         <>
@@ -45,63 +57,25 @@ export function Account() {
             img='/images/banners/account-banner.webp' />
           <div className={styles.user}>
             <div className={styles.user__container}>
-              {user?.isAdmin
-                && <button
-                  className={styles.user__adminBtn}
-                  onClick={() => setAdminPanel(!adminPanel)}
+              <div className={styles.user__btns}>
+                <button
+                  className={styles.user__btnsItem}
+                  onClick={logOut}
                   type='button'>
-                  {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-                </button>}
+                  Log out
+                </button>
+                {user?.isAdmin
+                  && <button
+                    className={styles.user__btnsItem}
+                    onClick={() => setAdminPanel(!adminPanel)}
+                    type='button'>
+                    {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
+                  </button>}
+              </div>
               {!adminPanel
                 ? <>
-                  <h4 className={styles.orders__title}>List of your orders:</h4>
-                  <div className={`${styles.user__orders} ${styles.orders}`}>
-                    {orders?.length > 0 && orders?.map((order) => (
-                      <div
-                        className={styles.orders__wrapper}
-                        key={Math.random() * 1000}>
-                        <div
-                          className={styles.orders__content}>
-                          {order?.products.map(({ product, cartQuantity }) => (
-                            <div
-                              className={styles.orders__item}
-                              key={Math.random() * 1000}>
-                              <img
-                                className={styles.orders__img}
-                                src={product.imageUrls}
-                                alt={product.name} />
-                              <div className={styles.orders__about}>
-                                <p className={styles.orders__name}>
-                                  {product.name}
-                                </p>
-                                <p className={styles.orders__details}>
-                                  {product.details}
-                                </p>
-                              </div>
-                              <div className={styles.orders__amount}>
-                                <p className={styles.orders__quantity}>
-                                  <span>Quantity: </span>
-                                  <span>{cartQuantity}</span>
-                                </p>
-                                <p className={styles.orders__price}>
-                                  <span>Price:</span>
-                                  <span>{Number(product.currentPrice?.toFixed(2))}</span>
-                                </p>
-                                <p className={styles.orders__price}>
-                                  <span>Total price:</span>
-                                  <span>{Number((cartQuantity * product.currentPrice).toFixed(2))}</span>
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className={styles.orders__info}>
-                          <span>Total price:</span>
-                          <span>{order.totalSum.toFixed(2)} ETH</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <h4 className={styles.user__title}>List of your orders:</h4>
+                  {orders?.length > 0 && <OrdersList orders={orders}/>}
                 </>
                 : <AdminProducts />}
             </div>
@@ -109,6 +83,6 @@ export function Account() {
         </>
         : <Loader />
       }
-    </>
+    </div>
   )
 }
