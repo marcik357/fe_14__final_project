@@ -23,12 +23,17 @@ export function Home() {
   const loading = useSelector((state) => state.loading.loading);
 
   const homeLoad = useCallback(async () => {
-    dispatch(setLoadingAction(true));
-    const slides = await fetchData(`${baseUrl}slides`)
-    const partners = await fetchData(`${baseUrl}partners`)
-    setSlides(slides);
-    setPartners(partners);
-    dispatch(setLoadingAction(false))
+    try {
+      dispatch(setLoadingAction(true));
+      const slides = await fetchData(`${baseUrl}slides`)
+      const partners = await fetchData(`${baseUrl}partners`)
+      await setSlides(slides);
+      await setPartners(partners);
+      dispatch(setLoadingAction(false))
+    } catch (error) {
+      dispatch(setLoadingAction(false))
+      dispatch(setErrorAction(error.message));
+    }
   }, [dispatch])
 
   useEffect(() => {
