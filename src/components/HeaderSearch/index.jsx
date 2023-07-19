@@ -3,6 +3,7 @@ import { fetchData } from '../../utils';
 import { baseUrl } from '../../utils/vars';
 import { useState, useEffect, useRef } from 'react';
 import { HeaderSearchResults } from '../HeaderSearchResults';
+import { motion, AnimatePresence } from 'framer-motion';
 import style from './headerSearch.module.scss';
 
 export function HeaderSearch(props) {
@@ -87,10 +88,43 @@ export function HeaderSearch(props) {
    };
  }, []);
 
+  // стан для об"єкт matchingData пустий він чи ні
+  const [isSearchArray, setIsSearchArray] = useState(false);
+
+  useEffect(() => {
+	 setIsSearchArray(Object.values(matchingData).some(data => data.length > 0));
+  }, [matchingData]);
+  
+
+  // анімація framer-motion
+ const items = [
+	{ key: 'products', data: matchingData.products },
+	{ key: 'collections', data: matchingData.collections },
+	{ key: 'authors', data: matchingData.authors },
+ ];
+
+ const searchAnimation = {
+	initial:{opacity: 0},
+	animate:{opacity: 1, transition: {delay: 0.1, duration: 0.6, ease: "easeOut" }},
+	exit:{opacity: 0, transition: {delay: 0.7, duration: 0.3, ease: "easeIn"}}
+ };
+
+ const containerAnimation = {
+	initial:{opacity: 0, height: 0},
+	animate:{opacity: 1, transition: {delay: 0.2, duration: 0.6, ease: "easeOut"}, height: 'auto'},
+	exit:{opacity: 0, transition: {delay: 0.5, duration: 0.3, ease: "easeIn" }, height: 'auto'}
+ };
+
+ const bodyAnimation = (index) => ({
+	initial:{ opacity: 0, y: -20 },
+   animate:{ opacity: 1, y: 0, transition: { delay: 0.3 + index * 0.2, duration: 0.4, ease: "easeOut" }},
+   exit:{ opacity: 0, y: -20, transition: { delay: 0.2 + index * 0.2, duration: 0.3, ease: "easeIn"}}
+ });
+ 
   return (
    <>
     <form action="" ref={formRef} className={`${classForm} ${isSearchVisible && classActive} ${scrolled && classScrolled}`}>
-        <label htmlFor="search" className={classLabel}>
+      <label htmlFor="searchInput" className={classLabel}>
         <input
          type="text"
          name="search"
@@ -108,38 +142,41 @@ export function HeaderSearch(props) {
       </button>
       </label>
      </form>
-     {inputLength > 2 && dataLoaded && Object.values(matchingData).some(data => data.length > 0) &&(
-        <div className={`${style.headerSearch} ${scrolled && style.scrolled}`} role="button" tabIndex={0} onClick={toggleSearchView} onKeyDown={toggleSearchView}>
-          <div className={style.headerSearch__container} style={isDesktop ? { left: containerLeft } : null}  ref={containerRef}>
-            {matchingData.products.length > 0 && (
-              <HeaderSearchResults
-                data={matchingData.products}
-                type='NFTs'
-                handleClearSearch={handleClearSearch}
-                toggleSearchView={toggleSearchView}
-              />
-            )}
-
-            {matchingData.collections.length > 0 && (
-              <HeaderSearchResults
-                data={matchingData.collections}
-                type='Collections'
-                handleClearSearch={handleClearSearch}
-                toggleSearchView={toggleSearchView}
-              />
-            )}
-
-            {matchingData.authors.length > 0 && (
-              <HeaderSearchResults
-                data={matchingData.authors}
-                type='Authors'
-                handleClearSearch={handleClearSearch}
-                toggleSearchView={toggleSearchView}
-              />
-            )}
-           </div>
-        </div>
+     <AnimatePresence>
+     {inputLength > 2 && dataLoaded && isSearchArray && (
+        <motion.div
+          className={`${style.headerSearch} ${scrolled && style.scrolled}`}
+          role="button" tabIndex={0}
+          onClick={toggleSearchView}
+          onKeyDown={toggleSearchView}
+          {...searchAnimation}
+        >
+          <motion.div
+            className={style.headerSearch__container}
+            style={isDesktop ? { left: containerLeft } : null}
+            ref={containerRef}
+            {...containerAnimation}
+          >
+            {items.map(({ key, data }, index) => (
+                <motion.div
+                 key={key}
+                 className={style.headerSearch__body}
+                 {...bodyAnimation(index)}
+                >
+                  {data.length > 0 && (
+                    <HeaderSearchResults
+                      data={data}
+                      type={key === 'products' ? 'NFTs' : key === 'collections' ? 'Collections' : 'Authors'}
+                      handleClearSearch={handleClearSearch}
+                      toggleSearchView={toggleSearchView}
+                    />
+                  )}
+                </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       )}
+     </AnimatePresence>
 	  </>
   )
 }
