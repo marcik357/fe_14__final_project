@@ -93,7 +93,9 @@ export function Account() {
               {!adminPanel
                 ? <>
                   <h4 className={styles.user__title}>List of your orders:</h4>
-                  {orders?.length > 0 && <OrdersList orders={orders}/>}
+                  {orders?.length > 0
+                    ? <OrdersList orders={orders} />
+                    : <p className={styles.user__empty}>you still haven't bought anything...</p>}
                 </>
                 : <AdminProducts />}
             </div>
