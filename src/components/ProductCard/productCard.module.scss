@@ -1,16 +1,10 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .productCard {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 93%;
-  margin-top: 20px;
-  padding: 0 15px;
+  // width: 93%;
+  // margin-top: 20px;
+  padding: 1rem;
   transition: .2s ease;
   border-radius: 30px;
   font-family: 'Inter', sans-serif;
@@ -38,7 +32,7 @@
   &:hover {
     transform: scale(1.03);
     transition: .2s ease;
-    background-color: #202025;
+    background: #202025;
   }
 
   &:hover .productCard__priceInfo_buyNow {
@@ -76,20 +70,32 @@
     bottom: 58px;
     width: 100%;
     height: 100px;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 1rem 1rem;
     background: linear-gradient(to top, rgba(0, 0, 0, .744), transparent);
     content: '';
     z-index: 6;
     pointer-events: none;
   }
 
+  &__link {
+    width: 100%;
+    height: 100%;
+
+    & > span {
+      display: block !important;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   &__img {
     display: flex;
     position: relative;
     width: 100%;
-    height: auto;
-    margin-top: 18px;
-    border-radius: 7%;
+    height: 100%;
+    object-fit: cover;
+    // margin-top: 18px;
+    border-radius: 1rem;
     cursor: pointer;
     z-index: 4;
   }
@@ -170,7 +176,7 @@
       display: flex;
       align-items: center;
       position: relative;
-      padding: 7px 35px;
+      padding: 7px 30px;
       transition: .3s;
       border: 1px solid #202025;
       border-radius: 50px;
@@ -181,6 +187,10 @@
       cursor: pointer;
       overflow: hidden;
       z-index: 1;
+
+      &:has(> svg) {
+        padding: 7px 15px;
+      }
 
       & svg {
         width: 15px;
@@ -253,7 +263,7 @@
 @media (min-width: 768px) {
   .productCard {
     // margin-bottom: 32px;
-    padding: 0 10px;
+    // padding: 0 10px;
 
     &:hover {
       border-radius: 20px;
@@ -262,15 +272,15 @@
     &:hover .productCard__userInfo::before {
       bottom: 64px;
       width: 100%;
-      border-radius: 0 0 13px 13px;
+      border-radius: 0 0 1rem 1rem;
     }
 
-    &__img {
-      margin-top: 10px;
-    }
+    // &__img {
+    //   margin-top: 10px;
+    // }
 
     &__name {
-      bottom: 160px;
+      bottom: 175px;
       left: 20px;
       font-size: 20px;
     }
@@ -316,15 +326,15 @@
 
 @media (min-width: 1024px) {
   .productCard {
-    padding: 0 10px;
+    // padding: 0 10px;
 
     &:hover {
       border-radius: 20px;
     }
 
-    &__img {
-      margin-top: 10px;
-    }
+    // &__img {
+    //   margin-top: 10px;
+    // }
 
     &__name {
       left: 20px;
@@ -334,7 +344,6 @@
     &:hover .productCard__userInfo::before {
       bottom: 64px;
       width: 100%;
-      border-radius: 0 0 14px 14px;
     }
 
     &__userInfo {
@@ -353,7 +362,7 @@
       min-width: 100%;
 
       &_button {
-        padding: 8px 25px;
+        padding: 8px 20px;
         font-size: 12px;
       }
 
@@ -373,15 +382,15 @@
 
 @media (min-width: 1400px) {
   .productCard {
-    padding: 0 15px;
+    // padding: 0 15px;
 
     &:hover {
       border-radius: 25px;
     }
 
-    &__img {
-      margin-top: 15px;
-    }
+    // &__img {
+    //   margin-top: 15px;
+    // }
 
     &__name {
       bottom: 180px;
@@ -389,13 +398,9 @@
       font-size: 23px;
     }
 
-    &:hover .productCard__userInfo::before {
-      border-radius: 0 0 21px 21px;
-    }
-
     &__userInfo {
       &_author {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
 
@@ -406,7 +411,7 @@
       min-width: 100%;
 
       &_button {
-        padding: 10px 40px;
+        padding: 10px 20px;
         font-size: 14px;
       }
 
@@ -417,7 +422,7 @@
         }
 
         & p {
-          font-size: 20px;
+          font-size: 18px;
         }
       }
     }

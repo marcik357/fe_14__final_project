@@ -11,6 +11,7 @@ import MenuLink from '../MenuLink';
 import MobilNav from '../MobilNav';
 import { useFormik } from 'formik';
 import { HeaderSearch } from '../HeaderSearch';
+import { scrollUpPage } from '../../utils';
 
 function Header() {
   // зміна розмірів та прозорості хедера при прокрутці
@@ -67,13 +68,6 @@ function Header() {
 
   const isActive = (path) => {
     return location.pathname === path;
-  };
-
-  // скрол (тільки на Home Page) на початок сторінки
-  const scrollUpPage = () => {
-    if(location.pathname === '/') {
-      window.scrollTo({ top: 0, behavor: 'smooth'});
-	 }
   };
 
   // логінізація

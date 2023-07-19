@@ -1,38 +1,36 @@
 .authorList {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
   margin-bottom: 60px;
   font-family: Inter;
 
   &__wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50%, 50%));
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (min-width: 480px) {
+  .authorList {
+    &__wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 50%);
+      grid-template-rows: auto;
+    }
   }
 }
 
 @media (min-width: 768px) {
   .authorList {
     &__wrapper {
-      padding: 0 40px;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      grid-template-columns: repeat(auto-fill, 33.33%);
     }
   }
 }
 
-@media (min-width: 1140px) {
+@media (min-width: 1024px) {
   .authorList {
     &__wrapper {
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    }
-  }
-}
-
-@media (min-width: 1290px) {
-  .authorList {
-    &__wrapper {
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fill, 25%);
     }
   }
 }

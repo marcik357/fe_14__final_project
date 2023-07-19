@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
-import { buyNowHandler } from '../../utils';
+import { buyNowHandler, isInCart } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { Basket, ETHIcon } from '../Icons';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function ProductCard({
   _id,
@@ -20,19 +22,23 @@ function ProductCard({
   buttonHandler,
 }) {
   const dispatch = useDispatch();
-  const cartProductsArray = useSelector((state) => state.cart.cart.products);
-  const isInCart = cartProductsArray?.find(
-    (product) => product.product._id === _id
-  );
+  const cart = useSelector((state) => state.cart.cart);
+  // const isInCart = cartProductsArray?.find(
+  //   (product) => product.product._id === _id
+  // );
   const { token } = useSelector((state) => state.token);
 
   return (
     <div className={styles.productCard}>
-      <Link to={`/product/${itemNo}`}>
-        <img
+      <Link to={`/product/${itemNo}`} className={styles.productCard__link}>
+        <LazyLoadImage
           className={styles.productCard__img}
           src={imageUrls[0]}
           alt={name}
+          effect="blur"
+          placeholderSrc={'./images/products/placeholder.jpg'}
+          height={250}
+          width={250}
         />
         <p className={styles.productCard__name}>{name}</p>
       </Link>
@@ -41,7 +47,7 @@ function ProductCard({
           to={`/author/${author}`}
           className={styles.productCard__userInfo_items}
         >
-          <img
+          <LazyLoadImage
             className={styles.productCard__userInfo_userIcon}
             src={authorIcon}
             alt='user-avatar'
@@ -58,7 +64,7 @@ function ProductCard({
       </div>
 
       <div className={styles.productCard__priceInfo}>
-        {isInCart ? (
+        {isInCart(cart, _id) ? (
           <Link
             to={'/cart'}
             className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}

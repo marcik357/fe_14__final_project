@@ -9,21 +9,22 @@ export function Discover() {
   const loading = useSelector((state) => state.loading.loading);
 
   return (
-
-    !loading ? (
-      <>
-        <Banner
-          title='Crypter discover'
-          subtitle='Discover endless world of NFTs'
-          img='/images/banners/discover-banner.png' />
-        <div className={styles.products}>
-          <div className={styles.products__container}>
-            <Filter />
+    <div id='main'>
+      {!loading ? (
+        <>
+          <Banner
+            title='Crypter discover'
+            subtitle='Discover endless world of NFTs'
+            img='/images/banners/discover-banner.png' />
+          <div className={styles.products}>
+            <div className={styles.products__container}>
+              <Filter />
+            </div>
           </div>
-        </div>
-      </>
-    ) : (
-      <Loader />
-    )
+        </>
+      ) : (
+        <Loader />
+      )}
+    </div>
   );
 }
