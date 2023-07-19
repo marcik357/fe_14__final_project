@@ -17,16 +17,19 @@ function Filter() {
     : {
       authors: [],
       categories: [],
+      theme: [],
       minPrice: '',
       maxPrice: '',
       sortBy: '',
       isOpen: false,
     });
-
+  const [filters, setFilters] = useState({
+    authorFilters: [],
+    categoriesFilters: [],
+    themeFilters: []
+  });
   const [minPrice, setMinPrice] = useState(selectedFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(selectedFilters.maxPrice);
-  const [authorFilters, setAuthorFilters] = useState([]);
-  const [categoryFilters, setCategoryFilters] = useState([]);
   const [{ products, productsQuantity }, setProducts] = useState([]);
   const [isApplyButtonDisabled, setIsApplyButtonDisabled] = useState(false);
   const queryString = useSelector((state) => state.filter.queryString);
@@ -38,12 +41,10 @@ function Filter() {
   const getFiltersByType = useCallback(async (type) => {
     try {
       const data = await fetchData(`${baseUrl}filters/${type}`);
-      // Розділ фільтрів по типам
-      if (type === 'author') {
-        setAuthorFilters(data);
-      } else if (type === 'categories') {
-        setCategoryFilters(data);
-      }
+      setFilters(prevFilters => ({
+        ...prevFilters,
+        [`${type}Filters`]: data
+      }));
     } catch (error) {
       dispatch(setErrorAction(error.message))
     }
@@ -133,6 +134,7 @@ function Filter() {
       ...selectedFilters,
       authors: [],
       categories: [],
+      theme: [],
       minPrice: '',
       maxPrice: '',
       sortBy: '',
@@ -146,6 +148,7 @@ function Filter() {
     // Виклик функції для отримання фільтрів по типам
     getFiltersByType('author');
     getFiltersByType('categories');
+    getFiltersByType('theme');
   }, [getFiltersByType]);
 
   useEffect(() => {
@@ -167,6 +170,11 @@ function Filter() {
     if (selectedFilters.categories.length > 0) {
       const categoriesString = selectedFilters.categories.join(',');
       newQueryString += `&categories=${categoriesString}`;
+    }
+
+    if (selectedFilters.theme.length > 0) {
+      const themeString = selectedFilters.theme.join(',');
+      newQueryString += `&theme=${themeString}`;
     }
 
     if (selectedFilters.sortBy) {
@@ -215,10 +223,10 @@ function Filter() {
                 </div>
                 <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
                 <div className={styles.filter__sidebarList}>
-                  {authorFilters.map((author) => (
+                  {filters?.authorFilters?.map((author) => (
                     <div key={author._id} className={styles.filter__sidebarItem}>
-                      <label htmlFor={author.name}>
-                        <input type="checkbox" id={author.name} name={author.name} data-filter-type="authors" onChange={valueChange} checked={selectedFilters.authors.includes(author.name) ? true : false} />
+                      <label htmlFor={author._id}>
+                        <input type="checkbox" id={author._id} name={author.name} data-filter-type="authors" onChange={valueChange} checked={selectedFilters.authors.includes(author.name) ? true : false} />
                         {author.name}
                       </label>
                     </div>
@@ -226,11 +234,22 @@ function Filter() {
                 </div>
                 <h4 className={styles.filter__sidebarCategoryTitle}>Collection</h4>
                 <div className={styles.filter__sidebarList}>
-                  {categoryFilters.map((category) => (
+                  {filters?.categoriesFilters?.map((category) => (
                     <div key={category._id} className={styles.filter__sidebarItem}>
-                      <label htmlFor={category.name}>
-                        <input type="checkbox" id={category.name} name={category.name} data-filter-type="categories" onChange={valueChange} checked={selectedFilters.categories.includes(category.name) ? true : false} />
+                      <label htmlFor={category._id}>
+                        <input type="checkbox" id={category._id} name={category.name} data-filter-type="categories" onChange={valueChange} checked={selectedFilters.categories.includes(category.name) ? true : false} />
                         {category.name}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+                <h4 className={styles.filter__sidebarCategoryTitle}>Tags</h4>
+                <div className={styles.filter__sidebarList}>
+                  {filters.themeFilters.map((theme) => (
+                    <div key={theme._id} className={styles.filter__sidebarItem}>
+                      <label htmlFor={theme._id}>
+                        <input type="checkbox" id={theme._id} name={theme.name} data-filter-type="theme" onChange={valueChange} checked={selectedFilters.theme.includes(theme.name) ? true : false} />
+                        {theme.name}
                       </label>
                     </div>
                   ))}
