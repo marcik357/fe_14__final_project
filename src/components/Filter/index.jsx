@@ -41,10 +41,10 @@ function Filter() {
   const getFiltersByType = useCallback(async (type) => {
     try {
       const data = await fetchData(`${baseUrl}filters/${type}`);
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      [`${type}Filters`]: data
-    }));
+      setFilters(prevFilters => ({
+        ...prevFilters,
+        [`${type}Filters`]: data
+      }));
     } catch (error) {
       dispatch(setErrorAction(error.message))
     }
@@ -110,7 +110,8 @@ function Filter() {
     if (minPriceValue === '' || maxPriceValue === '') {
       return true;
     }
-
+  }
+  
   const handleMinPriceChange = (e) => {
     setMinPrice(e.target.value);
     setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
@@ -195,7 +196,7 @@ function Filter() {
       <div className={styles.filter__container}>
         <div className={styles.filter__wrapper}>
           <div className={styles.filter__nav}>
-            <button className={`${styles.filter__openBtn +' '+ styles.btnEffect} ${selectedFilters.isOpen && styles.open}`} type="button" onClick={toggleModal}>Filters</button>
+            <button className={`${styles.filter__openBtn + ' ' + styles.btnEffect} ${selectedFilters.isOpen && styles.open}`} type="button" onClick={toggleModal}>Filters</button>
             <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={selectedFilters.sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
               <option disabled hidden value="Sort By">Sort By</option>
               <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
@@ -212,49 +213,49 @@ function Filter() {
                   </button>
                 </div>
                 <div className={styles.filter__sidebarBody}>
-                  <button className={styles.filter__clearBtnHead +' '+ styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
+                  <button className={styles.filter__clearBtnHead + ' ' + styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
                   <div className={styles.filter__sidebarItemValue}>
-                      <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
-                      <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
+                    <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
+                    <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
                     <button className={`${styles.filter__sidebarApplyBtn} ${!isApplyButtonDisabled && styles.btnEffect} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
                   <div className={styles.filter__sidebarList}>
-                  {filters.authorFilters.map((author) => (
-                    <div key={author._id} className={styles.filter__sidebarItem}>
-                      <label htmlFor={author._id}>
-                        <input type="checkbox" id={author._id} name={author.name} data-filter-type="authors" onChange={valueChange} checked={selectedFilters.authors.includes(author.name) ? true : false} />
-                        {author.name}
-                      </label>
-                    </div>
-                  ))}
+                    {filters.authorFilters.map((author) => (
+                      <div key={author._id} className={styles.filter__sidebarItem}>
+                        <label htmlFor={author._id}>
+                          <input type="checkbox" id={author._id} name={author.name} data-filter-type="authors" onChange={valueChange} checked={selectedFilters.authors.includes(author.name) ? true : false} />
+                          {author.name}
+                        </label>
+                      </div>
+                    ))}
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Collection</h4>
                   <div className={styles.filter__sidebarList}>
-                  {filters.categoriesFilters.map((category) => (
-                    <div key={category._id} className={styles.filter__sidebarItem}>
-                      <label htmlFor={category._id}>
-                        <input type="checkbox" id={category._id} name={category.name} data-filter-type="categories" onChange={valueChange} checked={selectedFilters.categories.includes(category.name) ? true : false} />
-                        {category.name}
-                      </label>
-                    </div>
-                  ))}
+                    {filters.categoriesFilters.map((category) => (
+                      <div key={category._id} className={styles.filter__sidebarItem}>
+                        <label htmlFor={category._id}>
+                          <input type="checkbox" id={category._id} name={category.name} data-filter-type="categories" onChange={valueChange} checked={selectedFilters.categories.includes(category.name) ? true : false} />
+                          {category.name}
+                        </label>
+                      </div>
+                    ))}
                   </div>
                   <h4 className={styles.filter__sidebarCategoryTitle}>Tags</h4>
                   <div className={styles.filter__sidebarList}>
-                  {filters.themeFilters.map((theme) => (
-                    <div key={theme._id} className={styles.filter__sidebarItem}>
-                      <label htmlFor={theme._id}>
-                        <input type="checkbox" id={theme._id} name={theme.name} data-filter-type="theme" onChange={valueChange} checked={selectedFilters.theme.includes(theme.name) ? true : false} />
-                        {theme.name}
-                      </label>
-                    </div>
-                  ))}
+                    {filters.themeFilters.map((theme) => (
+                      <div key={theme._id} className={styles.filter__sidebarItem}>
+                        <label htmlFor={theme._id}>
+                          <input type="checkbox" id={theme._id} name={theme.name} data-filter-type="theme" onChange={valueChange} checked={selectedFilters.theme.includes(theme.name) ? true : false} />
+                          {theme.name}
+                        </label>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className={styles.filter__sidebarFooter}>
-                  <button className={styles.filter__clearBtn +' '+ styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
+                  <button className={styles.filter__clearBtn + ' ' + styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
                 </div>
               </div>
               <div className={styles.filter__sidebarFooter}>
