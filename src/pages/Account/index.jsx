@@ -1,6 +1,6 @@
 import styles from './Account.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import Loader from '../../components/Loader';
 import { baseUrl } from '../../utils/vars';
@@ -11,6 +11,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
+import { async } from 'q';
+import { fetchData } from '../../utils';
+import { setLoadingAction } from '../../redux/actions/loadingActions';
+import { setErrorAction } from '../../redux/actions/errorActions';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -29,31 +33,45 @@ export function Account() {
     return <Navigate to="/authorization" />;
   }
 
+  const accountLoad = useCallback(async () => {
+    try {
+      if (token) {
+        dispatch(setLoadingAction(true));
+        const user = await fetchData(`${baseUrl}customers/customer`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+        })
+        await setUser(user)
+        const orders = await fetchData(`${baseUrl}orders`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+        })
+        await setOrders(orders)
+        dispatch(setLoadingAction(false))
+      }
+    } catch (error) {
+      dispatch(setLoadingAction(false))
+      dispatch(setErrorAction(error.message));
+    }
+  }, [dispatch, token])
+
   useEffect(() => {
-    token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-    }, 'account-data'));
-    token && dispatch(getDataAction(`${baseUrl}orders`, setOrders, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-    }, 'account-data'));
-  }, [dispatch, token]);
+    accountLoad()
+  }, [accountLoad]);
 
   return (
     <div id='main'>
       {!loading
-        ? user &&
-        <>
+        ? <>
           <Banner
             title='Hello there!'
-            subtitle={`General ${user?.login}`}
+            subtitle={`General ${user?.login || ''}`}
             img='/images/banners/account-banner.webp' />
           <div className={styles.user}>
             <div className={styles.user__container}>
@@ -75,7 +93,9 @@ export function Account() {
               {!adminPanel
                 ? <>
                   <h4 className={styles.user__title}>List of your orders:</h4>
-                  {orders?.length > 0 && <OrdersList orders={orders}/>}
+                  {orders?.length > 0
+                    ? <OrdersList orders={orders} />
+                    : <p className={styles.user__empty}>you still haven't bought anything...</p>}
                 </>
                 : <AdminProducts />}
             </div>

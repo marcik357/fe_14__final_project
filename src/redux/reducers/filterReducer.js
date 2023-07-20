@@ -1,20 +1,8 @@
 import { filterTypes } from '../types/filterTypes';
-
-const getItemFromLS = (key) => {
-  const lsItem = localStorage.getItem(key);
-  if (!lsItem) return '';
-  try {
-    const value = JSON.parse(lsItem);
-    return value;
-  } catch (e) {
-    return '';
-  }
-};
-
-const lsQueryString = getItemFromLS('queryString');
+import { getDataFromSS } from '../../utils/index'
 
 const initialState = {
-  queryString: lsQueryString,
+  queryString: getDataFromSS('queryString'),
 };
 
 export const filterReducer = (state = initialState, action) => {

@@ -75,4 +75,13 @@
     font-size: 2.5rem;
     font-weight: 800;
   }
+
+  &__empty {
+    padding: 3rem 0;
+    text-align: center;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
 }

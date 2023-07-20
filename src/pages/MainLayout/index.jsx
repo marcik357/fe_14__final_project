@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../components/Footer';
@@ -12,17 +12,42 @@ import { getDataAction } from '../../redux/actions/getDataActions';
 import { addProductsAction } from '../../redux/actions/productsActions';
 import { baseUrl } from '../../utils/vars';
 import { createCartFromLS, setCart } from '../../redux/actions/cartActions';
-import { getDataFromLS } from '../../utils';
+import { fetchData, getDataFromLS } from '../../utils';
 import { Quantity } from '../../router';
+import { setLoadingAction } from '../../redux/actions/loadingActions';
 
 export function MainLayout() {
   const dispatch = useDispatch()
   const modalType = useSelector((state) => state.modal.modal);
-  const token = useSelector((state) => state.token.token);
+  const token = useSelector((state) => state.token.token) || localStorage.getItem('token');
   const cart = useSelector((state) => state.cart.cart);
   const error = useSelector((state) => state.error.error);
   const products = useSelector((state) => state.products.products);
   const [orderAmount, setOrderAmount] = useContext(Quantity)
+
+  const mainLoad = useCallback(async () => {
+    dispatch(setLoadingAction(true));
+    dispatch(setTokenAction(localStorage.getItem('token')));
+    const products = await fetchData(`${baseUrl}products`)
+    dispatch(addProductsAction(products));
+    if (!token) {
+      setCart(getDataFromLS('cart'));
+    } else {
+      const cart = await fetchData(`${baseUrl}cart`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+      })
+      dispatch(setCart(cart));
+    }
+    dispatch(setLoadingAction(false))
+  }, [dispatch, token])
+
+  useEffect(() => {
+    mainLoad()
+  }, [mainLoad])
 
   useEffect(() => {
     if (error == 401) {
@@ -32,23 +57,8 @@ export function MainLayout() {
     modalType
       ? document.body.style.overflow = 'hidden'
       : document.body.style.overflow = 'auto';
-  }, [token, error, modalType, dispatch])
-
-  useEffect(() => {
-    dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
-    if (!token) {
-      dispatch(setTokenAction(localStorage.getItem('token')));
-      setCart(getDataFromLS('cart'));
-    } else {
-      dispatch(getDataAction(`${baseUrl}cart`, setCart, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-      }));
-    }
-  }, [dispatch, token])
+  }, [dispatch, error, modalType])
+  // }, [token, error, modalType, dispatch])
 
   useEffect(() => {
     if (cart.length === 0 && getDataFromLS('cart').length > 0) {
@@ -73,6 +83,7 @@ export function MainLayout() {
       }
     }
   }, [cart, products, token, setOrderAmount])
+  
   return (
     <>
       {modalType && (

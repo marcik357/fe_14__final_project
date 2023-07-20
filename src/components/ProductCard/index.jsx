@@ -36,6 +36,9 @@ function ProductCard({
           src={imageUrls[0]}
           alt={name}
           effect="blur"
+          placeholderSrc={'./images/products/placeholder.jpg'}
+          height={250}
+          width={250}
         />
         <p className={styles.productCard__name}>{name}</p>
       </Link>
