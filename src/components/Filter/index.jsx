@@ -8,7 +8,7 @@ import { fetchData, getDataFromSS } from '../../utils';
 import { useCallback } from 'react';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { baseUrl } from '../../utils/vars';
-
+import { useNavigate } from 'react-router-dom';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ function Filter() {
   const [isApplyButtonDisabled, setIsApplyButtonDisabled] = useState(false);
   const queryString = useSelector((state) => state.filter.queryString);
 
+  const navigate = useNavigate();
   const toggleModal = () => {
     setSelectedFilters({ ...selectedFilters, isOpen: !selectedFilters.isOpen })
   };
@@ -46,7 +47,7 @@ function Filter() {
         [`${type}Filters`]: data
       }));
     } catch (error) {
-      dispatch(setErrorAction(error.message))
+      dispatch(setErrorAction(error.message));
     }
   }, [dispatch]);
 
@@ -56,10 +57,12 @@ function Filter() {
       // Запит до API з використанням queryString для фільтрації товарів
       const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
       setProducts(data);
+      // Оновлення URL з актуальними параметрами фільтрації
+      navigate(`/discover?${queryString}`);
     } catch (error) {
-      dispatch(setErrorAction(error.message))
+      dispatch(setErrorAction(error.message));
     }
-  }, [dispatch, queryString]);
+  }, [dispatch, queryString, navigate]);
 
 
   // Код фільтру по чекбоксам
