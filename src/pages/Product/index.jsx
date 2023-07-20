@@ -24,9 +24,9 @@ export function Product() {
   }, [error, navigate]);
 
   return (
-    <>
+    <div id='main'>
       {!loading
         ? <ProductDetails {...product} />
         : <Loader />}
-    </>)
+    </div>)
 }

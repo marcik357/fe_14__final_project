@@ -3,6 +3,7 @@ import styles from './productList.module.scss';
 import './pagination.scss';
 import usePagination from '../../Hooks/usePagination';
 import { ArrowRight } from '../Icons';
+import { scrollTo } from '../../utils';
 
 function ProductList({ products, listName, isInAuthor = false, showPagination = true, customButtonText, customButtonHandler }) {
   const {
@@ -18,10 +19,7 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
     contentPerPage: 12,
     count: products?.length,
   });
-  const scroll = () => {
-    const section = document.querySelector('#products');
-    section.scrollIntoView({ behavior: 'smooth' });
-  };
+
   const renderPageNumbers = () => {
     const ellipsis = '...';
 
@@ -53,7 +51,7 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
             <button
               onClick={() => {
                 setPage(number);
-                scroll();
+                scrollTo('#products');
               }}
               key={number}
               className={`page ${page === number ? 'active' : ''}`}
@@ -84,10 +82,11 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
     <div
       id='products'
       className={`${styles.products} ${isInAuthor && styles.productListInAuthor}`}>
-      {!isInAuthor &&
+      {!isInAuthor && (
         <div className={styles.products__title}>
           <h2>{listName}</h2>
-        </div>}
+        </div>
+      )}
       <div className={styles.products__wrapper}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
           <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}
@@ -99,13 +98,23 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
       {(showPagination && totalPages > 1) && (
         <div className='pagination'>
           {page === 1 ? null : (
-            <button onClick={(prevPage, scroll)} className='page'>
+            <button
+              onClick={() => {
+                prevPage();
+                scrollTo('#products')
+              }}
+              className='page'>
               <ArrowRight />
             </button>
           )}
           {renderPageNumbers()}
           {totalPages === page ? null : (
-            <button onClick={(nextPage, scroll)} className='page'>
+            <button
+              onClick={() => {
+                nextPage();
+                scrollTo('#products')
+              }}
+              className='page'>
               <ArrowRight />
             </button>
           )}

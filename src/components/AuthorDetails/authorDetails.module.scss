@@ -3,7 +3,6 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
-  margin-right: -15px;
   gap: 1rem;
 
   @media (min-width: 748px) {
@@ -26,18 +25,20 @@
     max-width: 1470px;
     margin-bottom: 20px;
 
+    &_wrapper {
+      @media (min-width: 748px) {
+        position: sticky;
+        top: 70px;
+        left: 0;
+      }
+    }
+
     @media (min-width: 748px) {
       width: 45%;
     }
 
     &_container {
       margin-top: -80px;
-
-      @media (min-width: 748px) {
-        position: sticky;
-        top: 70px;
-        left: 0;
-      }
     }
 
     &_title {
@@ -90,9 +91,11 @@
 
   &__products {
     position: relative;
+    margin: 0 -15px;
 
     @media (min-width: 748px) {
       width: 70%;
+      margin: 0;
     }
 
     &_container {

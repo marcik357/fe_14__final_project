@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ProductList from '../ProductList';
 import style from './collectionCard.module.scss';
-import { ArrowRight } from '../Icons';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { scrollTo } from '../../utils';
 
 function CollectionCard({
   category,
@@ -25,10 +27,12 @@ function CollectionCard({
   const renderList = () => {
     setCollectionVisible(false);
     setProductListVisible(true);
+    scrollTo('#collections');
   };
   const renderCollection = () => {
     setCollectionVisible(true);
     setProductListVisible(false);
+    scrollTo('#collections');
   };
 
   return (
@@ -41,21 +45,22 @@ function CollectionCard({
         >
           <div className={style.collectionCard__wrapper}>
             {products[1]?.imageUrls.map((imageUrl, index) => (
-              <img
+              <LazyLoadImage
                 key={index}
                 className={style.collectionCard__image}
                 src={imageUrl}
                 alt='collectionCardName'
+                effect="blur"
               />
             ))}
 
             <div className={style.collectionCard__image_sm}>
               {products[2]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
-                <img key={index} src={imageUrl} alt='collectionCardName' />
+                <LazyLoadImage key={index} src={imageUrl} alt='collectionCardName' />
               ))}
 
               {products[3]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
-                <img key={index} src={imageUrl} alt='collectionCardName' />
+                <LazyLoadImage key={index} src={imageUrl} alt='collectionCardName' />
               ))}
 
               <div

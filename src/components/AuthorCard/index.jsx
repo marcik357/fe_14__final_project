@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import AuthorNumber from '../Icons/authorNumber';
 import style from './authorCard.module.scss';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function AuthorCard({ index, name, imageUrl, products, customId }) {
   const author = products.find((product) => product.author === customId);
@@ -11,7 +13,7 @@ function AuthorCard({ index, name, imageUrl, products, customId }) {
         <AuthorNumber className={style.authorCard__number_svg} />
         <span>{index}</span>
       </div>
-      <img className={style.authorCard__image} src={imageUrl} alt={name} />
+      <LazyLoadImage className={style.authorCard__image} src={imageUrl} alt={name} effect="blur" />
       <p className={style.authorCard__name}>@{name}</p>
     </Link>
   );

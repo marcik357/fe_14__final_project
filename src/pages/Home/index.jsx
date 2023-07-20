@@ -26,7 +26,7 @@ export function Home() {
   }, [dispatch]);
 
   return !loading ? (
-    <>
+    <div id='main'>
       {slides?.length > 0 && <SliderPromo products={slides} />}
       <div className={styles.products}>
         <div className={styles.products__container}>
@@ -34,7 +34,7 @@ export function Home() {
             <TabList className={styles.products__filter_tabs}>
               <Tab className={styles.products__filter_tab}>All</Tab>
               <Tab className={styles.products__filter_tab}>Collections</Tab>
-              <Tab className={styles.products__filter_tab}>Artist</Tab>
+              <Tab className={styles.products__filter_tab}>Authors</Tab>
               <Link to={'/discover'} className={styles.products__filter_tab}>Discover</Link>
             </TabList>
             <TabPanel>
@@ -46,13 +46,10 @@ export function Home() {
             <TabPanel>
               <AuthorList partners={partners} products={products} />
             </TabPanel>
-            {/* <TabPanel>
-              <Link to={'/discover'} />
-            </TabPanel> */}
           </Tabs>
         </div>
       </div>
-    </>
+    </div>
   ) : (
     <Loader />
   );

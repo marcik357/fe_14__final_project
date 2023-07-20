@@ -1,5 +1,12 @@
 .author {
+  height: 100%;
   font-family: 'Inter', sans-serif;
+
+  @media (min-width: 748px) {
+    &__wrapper {
+      background: linear-gradient(90deg, white 46%, black 46%);
+    }
+  }
 
   &__container {
     max-width: 1470px;

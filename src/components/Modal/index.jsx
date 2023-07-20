@@ -27,9 +27,9 @@ export function Modal(props) {
             <h3 className={style.modal__title}>{header}</h3>
           </div>
           <div className={style.modal__text}>
-            <div className={style.modal__icon}>
+            {icon && <div className={style.modal__icon}>
               {icon}
-            </div>
+            </div>}
             {type !== 'buy' && <p>{text || error}</p>}
           </div>
           {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}

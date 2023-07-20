@@ -18,10 +18,12 @@ export function Help() {
   }, [dispatch])
 
   return (
-    !loading ? (
-      <HelpCenter/>
-    ) : (
-      <Loader />
-    )
+    <div id='main'>
+      {!loading ? (
+        <HelpCenter />
+      ) : (
+        <Loader />
+      )}
+    </div>
   );
 }

@@ -1,12 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts } from '../pages';
 import PrivateRoute from './PrivateRoute';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { useState, createContext } from 'react';
 export const Quantity = createContext()
 
 export default function Router() {
   const [orderAmount, setOrderAmount] = useState(0);
+  const token = useSelector((state) => state.token.token);
 
   return (
     <Quantity.Provider value={[orderAmount, setOrderAmount]}>
@@ -19,7 +20,6 @@ export default function Router() {
           <Route path="/order" element={<Order />} />
           <Route path="/help" element={<Help />} />
 
-          {/* <Route path='/account' element={<Account />} /> */}
           <Route element={<PrivateRoute />}>
             <Route path='/account' element={<Account />} />
           </Route>
@@ -27,13 +27,7 @@ export default function Router() {
           <Route path="/authorization" element={<Authorization />} />
           <Route path="/author/:authorId" element={<Author />} />
           <Route path="/product/:productId" element={<Product />} />
-          {/* <Route element={<PrivateRoute adminPanel={true} />}>
-            <Route path="/admin" element={<AdminProducts />} />
-          </Route> */}
         </Route>
-
-        {/* <Route path="/admin" element={<AdminProducts />} /> */}
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Quantity.Provider>

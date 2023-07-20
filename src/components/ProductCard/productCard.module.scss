@@ -83,6 +83,17 @@
     pointer-events: none;
   }
 
+  &__link {
+    width: 100%;
+    height: 100%;
+
+    & > span {
+      display: block !important;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   &__img {
     display: flex;
     position: relative;
@@ -144,6 +155,27 @@
     position: relative;
     min-width: 100%;
     margin-bottom: 24px;
+
+    &_cartButton {
+      background-color: #f7fbfa !important;
+      color: #202025 !important;
+
+      &:hover {
+        color: #f7fbfa !important;
+
+        & svg {
+          & path {
+            stroke: #f7fbfa;
+          }
+        }
+      }
+
+      & svg {
+        width: 20px;
+        height: 17px;
+        margin-left: 5px;
+      }
+    }
 
     &_button {
       display: flex;
@@ -332,7 +364,7 @@
       min-width: 100%;
 
       &_button {
-        padding: 8px 25px;
+        padding: 8px 20px;
         font-size: 12px;
       }
 
