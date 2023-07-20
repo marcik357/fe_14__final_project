@@ -9,53 +9,26 @@ import { validationSchemaProduct } from '../../validation';
 import Select from '../Select';
 import { fetchData } from '../../utils';
 import Checkbox from '../Checkbox';
-import FormData from 'form-data';
 import { addProductFormFields } from './addProductFormField';
 import { useState } from 'react';
+import  PhotoUploader  from '../PhotoUploader/index';
 
 export default function AddProductForm({ onCloseForm }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
-//   const [isFileUploaded, setIsFileUploaded] = useState(false);
-//   const [uploadedFileName, setUploadedFileName] = useState('');
+  const [uploadedImageUrl, setUploadedImageUrl] = useState([]);
 
-  const [file, setFile] = useState()
-    function handleFile (event){
-setFile(event.target.files[0])
-console.log(event.target.files[0]);
-    }
-    
-    function handleUpload (){
-      event.preventDefault()
-      const formData = new FormData()
-      formData.append("photos", file)
-      console.log(formData);
-fetch (`${baseUrl}products/images`,
-{
-  method : 'POST',
-  headers: {
-    path: `./static/images/products/`,
-  },
-  body : formData
-}).then((response) => response.json).then(
-  (result) => {
-    // setIsFileUploaded(true);
-    // setUploadedFileName(file.name);
-    // if (file) {
-        // setUploadedFileName(file.name);
-        console.log('success',result);
-      
-  }
-).catch(error => {
-  console.error('Error', error)
-})}
-
+  const handleImageUpload = (url) => {
+    console.log(url);
+    setUploadedImageUrl(url);
+  };
+  
   return (
     <Formik
       initialValues={{
   name: '',
   enabled: true,
-  imageUrls: [],
+  imageUrls: [uploadedImageUrl] || [],
   quantity: 0,
   author: '',
   categories: '',
@@ -93,18 +66,9 @@ fetch (`${baseUrl}products/images`,
               <Input
                 key={field.name}
                 {...field} />
-            );
+            )
           } else if (field.tagType === 'button') {
-            return (<div>
-              <Input
-                key={field.name}
-                {...field}
-                onChange = {() => handleFile}
-                // value={uploadedFileName || ''}
-                // style={{ color: isFileUploaded ? 'green' : 'inherit' }}
-                />
-                <button type='button' onClick={handleUpload} className={style.form__submit} >Upload</button>
-                </div>
+            return (<PhotoUploader key={field.id} onImageUpload={handleImageUpload}/>
             );
           }
           else if (field.tagType === 'select') {
