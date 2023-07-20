@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import Loader from '../../components/Loader';
-import { baseUrl } from '../../utils/vars';
+import { baseUrl, reqGet } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
 import { AdminProducts } from '../../components/AdminProducts';
@@ -37,21 +37,9 @@ export function Account() {
     try {
       if (token) {
         dispatch(setLoadingAction(true));
-        const user = await fetchData(`${baseUrl}customers/customer`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-        })
+        const user = await fetchData(`${baseUrl}customers/customer`, reqGet)
         await setUser(user)
-        const orders = await fetchData(`${baseUrl}orders`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-        })
+        const orders = await fetchData(`${baseUrl}orders`, reqGet)
         await setOrders(orders)
         dispatch(setLoadingAction(false))
       }

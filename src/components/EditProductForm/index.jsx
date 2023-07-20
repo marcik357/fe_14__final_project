@@ -4,7 +4,7 @@ import { editProductFormFields } from './editProductFormField';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
-import { baseUrl } from '../../utils/vars';
+import { baseUrl, reqPut } from '../../utils/vars';
 import { Formik, Form } from 'formik';
 import { validationSchemaProduct } from '../../validation';
 import Select from '../Select';
@@ -25,14 +25,7 @@ export default function EditProductForm({ product, onCloseForm }) {
       onSubmit={
         async (values, { setSubmitting }) => {
           try {
-            await fetchData(`${baseUrl}products/${product._id}`, {
-              method: "PUT",
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(values)
-            });
+            await fetchData(`${baseUrl}products/${product._id}`, reqPut(JSON.stringify(values)));
             onCloseForm()
             setSubmitting(false);
           } catch (error) {
