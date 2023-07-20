@@ -1,0 +1,21 @@
+.collection {
+  font-family: 'Inter', sans-serif;
+
+  @media (min-width: 748px) {
+    &__wrapper {
+      background: linear-gradient(90deg, transparent 50%, black 50%);
+    }
+  }
+
+  & h3 {
+    text-decoration: overline;
+    text-transform: uppercase;
+  }
+
+  &__container {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+}
