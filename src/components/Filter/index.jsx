@@ -110,8 +110,10 @@ function Filter() {
     if (minPriceValue === '' || maxPriceValue === '') {
       return true;
     }
-  }
-  
+
+    return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
+  };
+
   const handleMinPriceChange = (e) => {
     setMinPrice(e.target.value);
     setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));

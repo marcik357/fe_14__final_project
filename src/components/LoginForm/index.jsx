@@ -7,7 +7,7 @@ import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { setModalType } from '../../redux/actions/modalActions';
 import { fetchData } from '../../utils';
-import { baseUrl } from '../../utils/vars';
+import { baseUrl, reqPost } from '../../utils/vars';
 
 
 export default function LoginForm() {
@@ -16,13 +16,7 @@ export default function LoginForm() {
 
   async function onSubmitHandler(values) {
     try {
-      const response = await fetchData(`${baseUrl}customers/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      })
+      const response = await fetchData(`${baseUrl}customers/login`, reqPost(JSON.stringify(values)))
       const token = response.token;
       localStorage.setItem('token', token);
       dispatch(setTokenAction(token));

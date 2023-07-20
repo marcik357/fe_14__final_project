@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
-import { buyNowHandler, isInCart } from '../../utils';
+import { buyNowHandler, isInCart} from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
@@ -36,6 +36,9 @@ function ProductCard({
           src={imageUrls[0]}
           alt={name}
           effect="blur"
+          placeholderSrc={'./images/products/placeholder.jpg'}
+          height={250}
+          width={250}
         />
         <p className={styles.productCard__name}>{name}</p>
       </Link>
