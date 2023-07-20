@@ -26,17 +26,22 @@ export function MainLayout() {
   const [orderAmount, setOrderAmount] = useContext(Quantity)
 
   const mainLoad = useCallback(async () => {
-    dispatch(setLoadingAction(true));
-    dispatch(setTokenAction(localStorage.getItem('token')));
-    const products = await fetchData(`${baseUrl}products`)
-    dispatch(addProductsAction(products));
-    if (!token) {
-      setCart(getDataFromLS('cart'));
-    } else {
-      const cart = await fetchData(`${baseUrl}cart`, reqGet)
-      dispatch(setCart(cart));
+    try {
+      dispatch(setLoadingAction(true));
+      dispatch(setTokenAction(localStorage.getItem('token')));
+      const products = await fetchData(`${baseUrl}products`)
+      dispatch(addProductsAction(products));
+      if (!token) {
+        setCart(getDataFromLS('cart'));
+      } else {
+        const cart = await fetchData(`${baseUrl}cart`, reqGet)
+        dispatch(setCart(cart));
+      }
+      dispatch(setLoadingAction(false))
+    } catch (error) {
+      dispatch(setLoadingAction(false))
+      dispatch(setErrorAction(error.message));
     }
-    dispatch(setLoadingAction(false))
   }, [dispatch, token])
 
   useEffect(() => {
