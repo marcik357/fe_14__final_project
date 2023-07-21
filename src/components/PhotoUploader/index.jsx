@@ -8,6 +8,7 @@ export default function PhotoUploader () {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [imageUrl, setImageUrl] = useState("")
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -31,6 +32,11 @@ export default function PhotoUploader () {
 
       const data = await response.json();
       setImageUrl(data.secure_url)
+      setShowSuccessMessage(true);
+
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
     } catch (error) {
       console.error('Error uploading image:', error);
     }
@@ -51,6 +57,9 @@ export default function PhotoUploader () {
     </div>
       {fileName && <p className={style.fileName} >{fileName}</p>}
       <Input key={inputFields.name} {...inputFields} value={imageUrl}/>
+      {showSuccessMessage && (
+      <p className={style.successMessage}>Photo successfully uploaded!</p>
+    )}
       </div>
   );
 };

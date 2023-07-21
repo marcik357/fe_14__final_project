@@ -155,3 +155,18 @@ svg {
   }
 }
 
+.successMessage {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  padding: 8px 16px;
+  transform: translateX(-50%);
+  border: 2px solid #202025;
+  border-radius: 4px;
+  background-color: #f7fbfa;
+  color: #202025;
+  font-size: 14px;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 1;
+}
