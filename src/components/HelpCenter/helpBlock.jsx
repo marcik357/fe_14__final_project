@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { OpenList } from "../Icons/open-list.jsx";
 import { CloseList } from "../Icons/close-list.jsx";
 import { MarkerList } from "../Icons/marker-list-hc.jsx";
@@ -36,7 +37,12 @@ export default function HelpBlock({
         <span>{activeBlocks.includes(id) ? <CloseList /> : <OpenList />}</span>
       </button>
       {activeBlocks.includes(id) && (
-        <ul className={styles.helpCenter__list}>
+        <motion.ul
+          className={styles.helpCenter__list}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {items.map((item) => (
             <li
               key={item.id}
@@ -58,7 +64,7 @@ export default function HelpBlock({
               </button>
             </li>
           ))}
-        </ul>
+        </motion.ul>
       )}
     </div>
   );
