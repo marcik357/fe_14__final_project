@@ -51,19 +51,36 @@ function CollectionCard({
                 src={imageUrl}
                 alt='collectionCardName'
                 effect="blur"
+                placeholderSrc={'./images/products/placeholder.jpg'}
+                height={300}
+                width={300}
               />
             ))}
 
             <div className={style.collectionCard__image_sm}>
               {products[2]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
-                <LazyLoadImage key={index} src={imageUrl} alt='collectionCardName' />
+                <LazyLoadImage
+                key={index}
+                src={imageUrl}
+                alt='collectionCardName'
+                effect="blur"
+                placeholderSrc={'./images/products/placeholder.jpg'}
+                height={96}
+                width={96} />
               ))}
 
               {products[3]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
-                <LazyLoadImage key={index} src={imageUrl} alt='collectionCardName' />
+                <LazyLoadImage
+                key={index}
+                src={imageUrl}
+                alt='collectionCardName'
+                effect="blur"
+                placeholderSrc={'./images/products/placeholder.jpg'}
+                height={96}
+                width={96} />
               ))}
 
-              <div
+              {products.length - 3 >0 && <div
                 style={{
                   backgroundColor:
                     bgColors[Math.floor(Math.random() * bgColors.length)],
@@ -71,7 +88,7 @@ function CollectionCard({
                 className={style.collectionCard__viewAll}
               >
                 +{products.length - 3}
-              </div>
+              </div>}
             </div>
           </div>
           <p className={style.collectionCard__name}>{category}</p>

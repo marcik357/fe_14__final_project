@@ -1,8 +1,8 @@
 import { cartTypes } from "../types/cartTypes";
 import { setErrorAction } from "./errorActions";
-import { setLoadingAction } from "./loadingActions";
-import { baseUrl, headers, reqDelete, reqPost, reqPut } from '../../utils/vars'
+import { baseUrl } from '../../utils/vars'
 import { fetchData, getDataFromLS } from "../../utils";
+import { reqDelete, reqPost, reqPut } from "../../utils/requestBody";
 
 export function setCart(cart) {
   return {
@@ -82,7 +82,7 @@ export function changeQuantity(cart, id, token, plus) {
 }
 
 async function deleteFromCartServer(cart, id, token, newCart, dispatch) {
-  await fetchData(`${baseUrl}cart/${id}`, reqDelete);
+  await fetchData(`${baseUrl}cart/${id}`, reqDelete(token));
   dispatch(setCart({ ...cart, products: newCart }))
 }
 
@@ -105,26 +105,8 @@ export function deleteFromCart(cart, id, token) {
   }
 }
 
-// export function buyProduct(token) {
-//   return async function (dispatch) {
-//     try {
-//       dispatch(setLoadingAction(true));
-//       const sendFetch = await fetchData(`${baseUrl}cart`, {
-//         method: "DELETE",
-//         headers,
-//       })
-//       dispatch(setCart([]));
-//       dispatch(setLoadingAction(false));
-//       dispatch(setErrorAction(null));
-//     }
-//     catch (error) {
-//       dispatch(setLoadingAction(false));
-//       dispatch(setErrorAction(error));
-//     }
-//   }
-// }
 async function cleanCartServer(token, dispatch) {
-  await fetchData(`${baseUrl}cart`, reqDelete);
+  await fetchData(`${baseUrl}cart`, reqDelete(token));
   dispatch(setCart([]))
 }
 

@@ -4,8 +4,9 @@ import { fetchData } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
-import { baseUrl, reqPost } from '../../utils/vars';
+import { baseUrl } from '../../utils/vars';
 import FormikForm from '../FormikForm';
+import { reqPost } from '../../utils/requestBody';
 
 export default function SignUpForm({ callback }) {
   const dispatch = useDispatch();
