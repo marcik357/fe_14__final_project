@@ -54,11 +54,11 @@ function Filter() {
   // Функція для відображення товарів згідно обраних фільтрів
   const applyFilters = useCallback(async () => {
     try {
+      // Оновлення URL з актуальними параметрами фільтрації
+      navigate(`/discover?${queryString}`);
       // Запит до API з використанням queryString для фільтрації товарів
       const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
       setProducts(data);
-      // Оновлення URL з актуальними параметрами фільтрації
-      navigate(`/discover?${queryString}`);
     } catch (error) {
       dispatch(setErrorAction(error.message));
     }
