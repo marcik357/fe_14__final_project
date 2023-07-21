@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { OpenList } from "../Icons/open-list.jsx";
 import { CloseList } from "../Icons/close-list.jsx";
 import { MarkerList } from "../Icons/marker-list-hc.jsx";
@@ -8,14 +8,20 @@ import styles from "./helpCenter.module.scss";
 export default function HelpBlock({
   blockData,
   activeBlocks,
-  hoveredItem,
-  clickedItem,
+  activeClickedItem,
   toggleBlock,
   handleClickItem,
-  handleHoverItem,
-  handleLeaveItem,
 }) {
   const { id, title, items } = blockData;
+  const [hoveredItemId, setHoveredItemId] = useState(null);
+
+  const handleHoverItem = (itemId) => {
+    setHoveredItemId(itemId);
+  };
+
+  const handleLeaveItem = () => {
+    setHoveredItemId(null);
+  };
 
   return (
     <div className={styles.helpCenter__infoBlock}>
@@ -41,18 +47,14 @@ export default function HelpBlock({
                 type="button"
                 onClick={() => handleClickItem(item.id)}
                 className={`${styles.helpCenter__blockButtonItem} ${
-                  clickedItem === item.id ? styles.helpCenter__activeItem : ""
+                  activeClickedItem === item.id ? styles.helpCenter__activeItem : ""
                 }`}
               >
                 <span className={styles.helpCenter__blockButtonItemTitle}>
-                  {hoveredItem === item.id ? (
-                    <ArrowRightBlue />
-                  ) : (
-                    <MarkerList />
-                  )}
+                  {hoveredItemId === item.id ? <ArrowRightBlue /> : <MarkerList />}
                   {item.title}
                 </span>
-                {clickedItem === item.id && <p>{item.content}</p>}
+                {activeClickedItem === item.id && <p>{item.content}</p>}
               </button>
             </li>
           ))}
