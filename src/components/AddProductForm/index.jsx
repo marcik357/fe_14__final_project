@@ -10,25 +10,18 @@ import Select from '../Select';
 import { fetchData } from '../../utils';
 import Checkbox from '../Checkbox';
 import { addProductFormFields } from './addProductFormField';
-import { useState } from 'react';
 import  PhotoUploader  from '../PhotoUploader/index';
 
 export default function AddProductForm({ onCloseForm }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
-  const [uploadedImageUrl, setUploadedImageUrl] = useState([]);
-
-  const handleImageUpload = (url) => {
-    console.log(url);
-    setUploadedImageUrl(url);
-  };
   
   return (
     <Formik
       initialValues={{
   name: '',
   enabled: true,
-  imageUrls: [uploadedImageUrl] || [],
+  imageUrls: [],
   quantity: 0,
   author: '',
   categories: '',
@@ -68,7 +61,7 @@ export default function AddProductForm({ onCloseForm }) {
                 {...field} />
             )
           } else if (field.tagType === 'button') {
-            return (<PhotoUploader key={field.id} onImageUpload={handleImageUpload}/>
+            return (<PhotoUploader key={field.id} />
             );
           }
           else if (field.tagType === 'select') {

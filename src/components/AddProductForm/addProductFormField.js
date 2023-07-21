@@ -12,18 +12,18 @@ export const addProductFormFields = [
     type: "select",
     options: ["true", "false"],
   },
-  {
-    tagType: 'regular',
-    label: "Image URLs",
-    labelClass: style.form__label,
-    inputClass: style.form__input,
-    errorClass: style.form__error,
-    id: "imageUrls",
-    name: "imageUrls",
-    type: "text",
-    placeholder: "Enter image URLs",
+  // {
+  //   tagType: 'regular',
+  //   label: "Image URLs",
+  //   labelClass: style.form__label,
+  //   inputClass: style.form__input,
+  //   errorClass: style.form__error,
+  //   id: "imageUrls",
+  //   name: "imageUrls",
+  //   type: "text",
+  //   placeholder: "Enter image URLs",
     
-  },
+  // },
   {
     tagType: 'button',
     label: "Add image",
@@ -70,7 +70,7 @@ export const addProductFormFields = [
     placeholder: "Enter name",
   },
   {
-    tagType: 'regular',
+    tagType: 'select',
     label: "Author",
     labelClass: style.form__label,
     inputClass: style.form__input,
@@ -79,6 +79,8 @@ export const addProductFormFields = [
     name: "author",
     type: "text",
     placeholder: "Enter author",
+    options: ["@Art_ofbitcoin","@ArtWarsNFT", "@cybrpnk","@DaSucker","@ElifOnur","@elnafrederick","@Hakaji","@Hanzo","@illestrater", "@Ilya_Shapko","@Jabarvizu","@Jayeola_Muniz","@jessygrosch","@KingLe713","@kishuinu","@Kuchoka","@Monero","@OscarLlorens","@randomdash","@Subh77","@SUPERGUCCI","@VictorDuarte"],
+
   },
   {
     tagType: 'select',

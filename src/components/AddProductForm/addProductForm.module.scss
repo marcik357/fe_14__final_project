@@ -29,14 +29,6 @@
       outline: 2px solid #202025;
     }
 
-    // &:has(+div) {
-    //   margin-bottom: .3rem;
-
-    //   & + div {
-    //     margin-bottom: .8rem;
-    //   }
-    // }
-
     &:has(+.form__error) {
       outline: 2px solid red;
       box-shadow: 0 5px 10px 8px rgba(255, 0, 0, .05);
@@ -165,12 +157,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    // width: 16px;
-    // height: 16px;
-    // margin-bottom: .6rem;
-    // padding: 1rem;
-    // border-radius: .3rem;
-    // box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+
     &::before {
       display: inline-block;
       width: 22px;
