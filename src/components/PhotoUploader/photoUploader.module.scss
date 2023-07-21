@@ -123,3 +123,35 @@ svg {
     display: block;
   }
 }
+
+.label {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: .5rem;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: .3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+
+  &::placeholder {
+    color: #888;
+  }
+
+  &:focus {
+    border-color: transparent;
+    outline: 2px solid #202025;
+  }
+
+  &:has(+.error) {
+    outline: 2px solid red;
+    box-shadow: 0 5px 10px 8px rgba(255, 0, 0, .05);
+  }
+}
+

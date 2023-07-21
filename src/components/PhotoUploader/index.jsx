@@ -1,11 +1,13 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import style from "./photoUploader.module.scss"
 import { UploadFile } from '../Icons';
+import Input from '../Input';
+import { inputFields } from './inputFields';
 
-export default function PhotoUploader ({ onImageUpload }) {
+export default function PhotoUploader () {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState(null);
-//   const fileInputRef = useRef(null);
+  const [imageUrl, setImageUrl] = useState("")
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -28,8 +30,7 @@ export default function PhotoUploader ({ onImageUpload }) {
       );
 
       const data = await response.json();
-      console.log('Image uploaded:', data.secure_url);
-      onImageUpload(data.secure_url);
+      setImageUrl(data.secure_url)
     } catch (error) {
       console.error('Error uploading image:', error);
     }
@@ -38,7 +39,6 @@ export default function PhotoUploader ({ onImageUpload }) {
   return (<div>
     <div  className={style.container}>
       <input type="file" onChange={handleFileChange} className={style.fileInput} id='file'
-    //   ref={fileInputRef}
       />
       <label htmlFor='file' className={style.fileInput__btn}>
        <UploadFile/>
@@ -50,6 +50,7 @@ export default function PhotoUploader ({ onImageUpload }) {
 
     </div>
       {fileName && <p className={style.fileName} >{fileName}</p>}
+      <Input key={inputFields.name} {...inputFields} value={imageUrl}/>
       </div>
   );
 };
