@@ -107,7 +107,7 @@ export function HeaderSearch(props) {
   return (
    <>
     <form action="" ref={formRef} className={`${classForm} ${isSearchVisible && classActive} ${scrolled && classScrolled}`}>
-      <label htmlFor="searchInput" className={classLabel}>
+        <label htmlFor="search" className={classLabel}>
         <input
          type="text"
          name="search"

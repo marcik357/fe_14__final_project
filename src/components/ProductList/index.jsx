@@ -1,7 +1,7 @@
 import ProductCard from '../ProductCard';
 import styles from './productList.module.scss';
 import './pagination.scss';
-import usePagination from '../../Hooks/usePagination';
+import usePagination from '../../hooks/usePagination';
 import { ArrowRight } from '../Icons';
 import { scrollTo } from '../../utils';
 
