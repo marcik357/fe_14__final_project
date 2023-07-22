@@ -11,3 +11,4 @@ export * from './Blog';
 export * from './Discover';
 export * from './Help';
 export * from './NotFound';
+export * from './Collection';

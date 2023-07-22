@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts } from '../pages';
+import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, Collection } from '../pages';
 import PrivateRoute from './PrivateRoute';
 import { Provider, useSelector } from 'react-redux';
 import { useState, createContext } from 'react';
@@ -26,6 +26,7 @@ export default function Router() {
 
           <Route path="/authorization" element={<Authorization />} />
           <Route path="/author/:authorId" element={<Author />} />
+          <Route path="/collection/:collectionId" element={<Collection />} />
           <Route path="/product/:productId" element={<Product />} />
         </Route>
         <Route path="*" element={<NotFound />} />

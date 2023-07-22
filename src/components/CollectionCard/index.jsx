@@ -38,7 +38,7 @@ function CollectionCard({
   return (
     <>
       {isCollectionVisible && (
-        <Link
+        <Link to='/'
           style={{ display: display }}
           onClick={renderList}
           className={style.collectionCard}
@@ -80,12 +80,18 @@ function CollectionCard({
       {isProductListVisible
         &&
         <>
-          <button
-            className={style.collectionCard__showCollection}
-            onClick={renderCollection}
-          >
-            Show all collections
-          </button>
+          <div className={style.collectionCard__btns}>
+            <button
+              className={style.collectionCard__btn}
+              onClick={renderCollection}>
+              Show all collections
+            </button>
+            <Link
+              className={style.collectionCard__btn}
+              to={`/collection/${category}`}>
+              Show details
+            </Link>
+          </div>
           <ProductList products={products} listName={category} />
         </>
       }
