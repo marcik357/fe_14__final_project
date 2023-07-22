@@ -7,7 +7,7 @@ import { inputFields } from './inputFields';
 export default function PhotoUploader () {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState(null);
-  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState([])
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleFileChange = (event) => {
@@ -31,7 +31,8 @@ export default function PhotoUploader () {
       );
 
       const data = await response.json();
-      setImageUrl(data.secure_url)
+      // setImageUrl(data.secure_url)
+      setImageUrl((prevUrls) => [...prevUrls, data.secure_url]);
       setShowSuccessMessage(true);
 
     setTimeout(() => {
