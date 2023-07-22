@@ -27,8 +27,8 @@ export function Home() {
       dispatch(setLoadingAction(true));
       const slides = await fetchData(`${baseUrl}slides`)
       const partners = await fetchData(`${baseUrl}partners`)
-      await setSlides(slides);
-      await setPartners(partners);
+      setSlides(slides);
+      setPartners(partners);
       dispatch(setLoadingAction(false))
     } catch (error) {
       dispatch(setLoadingAction(false))

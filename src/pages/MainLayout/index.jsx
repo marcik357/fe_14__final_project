@@ -10,7 +10,7 @@ import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import { addProductsAction } from '../../redux/actions/productsActions';
-import { baseUrl } from '../../utils/vars';
+import { baseUrl, reqGet } from '../../utils/vars';
 import { createCartFromLS, setCart } from '../../redux/actions/cartActions';
 import { fetchData, getDataFromLS } from '../../utils';
 import { Quantity } from '../../router';
@@ -26,23 +26,22 @@ export function MainLayout() {
   const [orderAmount, setOrderAmount] = useContext(Quantity)
 
   const mainLoad = useCallback(async () => {
-    dispatch(setLoadingAction(true));
-    dispatch(setTokenAction(localStorage.getItem('token')));
-    const products = await fetchData(`${baseUrl}products`)
-    dispatch(addProductsAction(products));
-    if (!token) {
-      setCart(getDataFromLS('cart'));
-    } else {
-      const cart = await fetchData(`${baseUrl}cart`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-      })
-      dispatch(setCart(cart));
+    try {
+      dispatch(setLoadingAction(true));
+      dispatch(setTokenAction(localStorage.getItem('token')));
+      const products = await fetchData(`${baseUrl}products`)
+      dispatch(addProductsAction(products));
+      if (!token) {
+        setCart(getDataFromLS('cart'));
+      } else {
+        const cart = await fetchData(`${baseUrl}cart`, reqGet)
+        dispatch(setCart(cart));
+      }
+      dispatch(setLoadingAction(false))
+    } catch (error) {
+      dispatch(setLoadingAction(false))
+      dispatch(setErrorAction(error.message));
     }
-    dispatch(setLoadingAction(false))
   }, [dispatch, token])
 
   useEffect(() => {
@@ -62,7 +61,7 @@ export function MainLayout() {
 
   useEffect(() => {
     if (cart.length === 0 && getDataFromLS('cart').length > 0) {
-      dispatch(createCartFromLS(token, getDataFromLS('cart')));
+      dispatch(createCartFromLS(getDataFromLS('cart')));
       localStorage.removeItem('cart');
     };
   }, [cart, token, dispatch])

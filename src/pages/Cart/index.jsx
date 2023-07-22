@@ -35,9 +35,10 @@ export function Cart() {
                   })
                   : <p className={style.block__noItems}>No items in the Cart</p>}
               </div>
-              <div className={style.block__actionToBuy}>
-                <FormToBuy />
-              </div>
+              {cart?.products?.length > 0
+                && <div className={style.block__actionToBuy}>
+                  <FormToBuy />
+                </div>}
             </div>
           </div>
         </div>
