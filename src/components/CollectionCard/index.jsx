@@ -38,7 +38,7 @@ function CollectionCard({
   return (
     <>
       {isCollectionVisible && (
-        <Link
+        <Link to={`/collection/${category}`}
           style={{ display: display }}
           onClick={renderList}
           className={style.collectionCard}

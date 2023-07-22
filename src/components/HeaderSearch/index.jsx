@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { HeaderSearchResults } from '../HeaderSearchResults';
 import { motion, AnimatePresence } from 'framer-motion';
 import style from './headerSearch.module.scss';
+import { wrapperAnimation, bodyAnimation, containerAnimation } from '../../animation';
 
 export function HeaderSearch(props) {
   const { classForm, isSearchVisible, classActive, scrolled, classScrolled, classLabel,
@@ -102,29 +103,11 @@ export function HeaderSearch(props) {
 	{ key: 'collections', data: matchingData.collections },
 	{ key: 'authors', data: matchingData.authors },
  ];
-
- const searchAnimation = {
-	initial:{opacity: 0},
-	animate:{opacity: 1, transition: {delay: 0.1, duration: 0.6, ease: "easeOut" }},
-	exit:{opacity: 0, transition: {delay: 0.7, duration: 0.3, ease: "easeIn"}}
- };
-
- const containerAnimation = {
-	initial:{opacity: 0, height: 0},
-	animate:{opacity: 1, transition: {delay: 0.2, duration: 0.6, ease: "easeOut"}, height: 'auto'},
-	exit:{opacity: 0, transition: {delay: 0.5, duration: 0.3, ease: "easeIn" }, height: 'auto'}
- };
-
- const bodyAnimation = (index) => ({
-	initial:{ opacity: 0, y: -20 },
-   animate:{ opacity: 1, y: 0, transition: { delay: 0.3 + index * 0.2, duration: 0.4, ease: "easeOut" }},
-   exit:{ opacity: 0, y: -20, transition: { delay: 0.2 + index * 0.2, duration: 0.3, ease: "easeIn"}}
- });
  
   return (
    <>
     <form action="" ref={formRef} className={`${classForm} ${isSearchVisible && classActive} ${scrolled && classScrolled}`}>
-        <label htmlFor="search" className={classLabel}>
+      <label htmlFor="searchInput" className={classLabel}>
         <input
          type="text"
          name="search"
@@ -149,7 +132,7 @@ export function HeaderSearch(props) {
           role="button" tabIndex={0}
           onClick={toggleSearchView}
           onKeyDown={toggleSearchView}
-          {...searchAnimation}
+          {...wrapperAnimation}
         >
           <motion.div
             className={style.headerSearch__container}
