@@ -1,3 +1,5 @@
+// helpBlock.jsx
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { OpenList } from "../Icons/open-list.jsx";
@@ -41,7 +43,7 @@ export default function HelpBlock({
           className={styles.helpCenter__list}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5 }}
         >
           {items.map((item) => (
             <li
@@ -49,19 +51,32 @@ export default function HelpBlock({
               onMouseEnter={() => handleHoverItem(item.id)}
               onMouseLeave={handleLeaveItem}
             >
-              <button
+              <motion.button
                 type="button"
                 onClick={() => handleClickItem(item.id)}
                 className={`${styles.helpCenter__blockButtonItem} ${
-                  activeClickedItem === item.id ? styles.helpCenter__activeItem : ""
+                  activeClickedItem === item.id
+                    ? styles.helpCenter__activeItem
+                    : ""
                 }`}
+                whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
               >
                 <span className={styles.helpCenter__blockButtonItemTitle}>
-                  {hoveredItemId === item.id ? <ArrowRightBlue /> : <MarkerList />}
+                  {hoveredItemId === item.id ? (
+                    <ArrowRightBlue />
+                  ) : (
+                    <MarkerList />
+                  )}
                   {item.title}
                 </span>
-                {activeClickedItem === item.id && <p>{item.content}</p>}
-              </button>
+                <motion.div
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{ opacity: 1, y: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {activeClickedItem === item.id && <p>{item.content}</p>}
+                </motion.div>
+              </motion.button>
             </li>
           ))}
         </motion.ul>
