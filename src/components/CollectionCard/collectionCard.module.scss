@@ -38,6 +38,7 @@
   &__image {
     max-width: 100%;
     border-radius: 20px;
+    object-fit: cover;
 
     &_sm {
       display: flex;
@@ -65,10 +66,10 @@
 
   &__btns {
     display: flex;
-    flex-direction: column;
+    flex-flow: wrap column;
     justify-content: center;
     gap: 2rem;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
 
     @media (min-width: 768px) {
       flex-direction: row;
