@@ -29,7 +29,7 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, quanti
             <div className={style.productDetails__userInfo}>
               <p className={style.productDetails__userInfo_text}>Collection:</p>
               <div className={style.productDetails__userInfo_container}>
-                <Link to='/' className={style.productDetails__userInfo_userCollection} >{categories}</Link>
+                <Link to={`/collection/${categories}`} className={style.productDetails__userInfo_userCollection} >{categories}</Link>
               </div>
             </div>
             <div className={style.productDetails__userInfo}>

@@ -38,13 +38,13 @@ function CollectionCard({
   return (
     <>
       {isCollectionVisible && (
-        <Link
+        <Link to='/'
           style={{ display: display }}
           onClick={renderList}
           className={style.collectionCard}
         >
           <div className={style.collectionCard__wrapper}>
-            {products[1]?.imageUrls.map((imageUrl, index) => (
+            {products[0]?.imageUrls.map((imageUrl, index) => (
               <LazyLoadImage
                 key={index}
                 className={style.collectionCard__image}
@@ -58,7 +58,7 @@ function CollectionCard({
             ))}
 
             <div className={style.collectionCard__image_sm}>
-              {products[2]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
+              {products[1]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
                 <LazyLoadImage
                 key={index}
                 src={imageUrl}
@@ -69,7 +69,7 @@ function CollectionCard({
                 width={96} />
               ))}
 
-              {products[3]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
+              {products[2]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
                 <LazyLoadImage
                 key={index}
                 src={imageUrl}
@@ -97,12 +97,18 @@ function CollectionCard({
       {isProductListVisible
         &&
         <>
-          <button
-            className={style.collectionCard__showCollection}
-            onClick={renderCollection}
-          >
-            Show all collections
-          </button>
+          <div className={style.collectionCard__btns}>
+            <button
+              className={style.collectionCard__btn}
+              onClick={renderCollection}>
+              Show all collections
+            </button>
+            <Link
+              className={style.collectionCard__btn}
+              to={`/collection/${category}`}>
+              Show details
+            </Link>
+          </div>
           <ProductList products={products} listName={category} />
         </>
       }

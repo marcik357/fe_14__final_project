@@ -63,13 +63,25 @@
     line-height: 32px;
   }
 
-  &__showCollection {
+  &__btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  &__btn {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    width: max-content;
-    margin: 1rem 0;
+    // width: max-content;
+    // margin: 1rem 0;
     padding: .7rem;
     transition: color .3s;
     border: 2px solid #202025;
