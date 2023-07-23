@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, Collection } from '../pages';
 import PrivateRoute from './PrivateRoute';
-import { Provider, useSelector } from 'react-redux';
 import { useState, createContext } from 'react';
 export const Quantity = createContext()
 
@@ -32,6 +31,7 @@ export default function Router() {
           <Route path="/product/:productId" element={<Product />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="/admin" element={<AdminProducts />} />
       </Routes>
     </Quantity.Provider>
   );

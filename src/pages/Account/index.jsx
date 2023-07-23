@@ -5,7 +5,6 @@ import Loader from '../../components/Loader';
 import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
-import { AdminProducts } from '../../components/AdminProducts';
 import { Link, Navigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
@@ -16,10 +15,8 @@ import { reqGet } from '../../utils/requestBody';
 export function Account() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
-  const token = useSelector((state) => state.token.token);
 
   const [user, setUser] = useState(null)
-  const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
 
   function logOut() {
@@ -31,14 +28,12 @@ export function Account() {
   }
 
   const accountLoad = useCallback(async () => {
-    if (token) {
-      const user = await fetchData(`${baseUrl}customers/customer`, reqGet())
-      const orders = await fetchData(`${baseUrl}orders`, reqGet())
-      setUser(user)
-      setOrders(orders)
-    }
-  }, [token])
-  
+    const user = await fetchData(`${baseUrl}customers/customer`, reqGet())
+    const orders = await fetchData(`${baseUrl}orders`, reqGet())
+    setUser(user)
+    setOrders(orders)
+  }, [])
+
   useEffect(() => {
     loadData(dispatch, accountLoad)
   }, [dispatch, accountLoad]);
@@ -60,27 +55,17 @@ export function Account() {
               type='button'>
               Log out
             </button>
-            {user?.isAdmin
-              && <Link
+            {user?.isAdmin &&
+              <Link
                 className={styles.user__btnsItem}
                 to={'/admin'}>
-                {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
+                Show Admin panel
               </Link>}
-              {/* && <button
-                className={styles.user__btnsItem}
-                onClick={() => setAdminPanel(!adminPanel)}
-                type='button'>
-                {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-              </button>} */}
           </div>
-          {!adminPanel
-            ? <>
-              <h4 className={styles.user__title}>List of your orders:</h4>
-              {orders?.length > 0
-                ? <OrdersList orders={orders} />
-                : <p className={styles.user__empty}>you still haven't bought anything...</p>}
-            </>
-            : <AdminProducts />}
+          <h4 className={styles.user__title}>List of your orders:</h4>
+          {orders?.length > 0
+            ? <OrdersList orders={orders} />
+            : <p className={styles.user__empty}>you still haven't bought anything...</p>}
         </div>
       </div>
     </div>

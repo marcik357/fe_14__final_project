@@ -13,3 +13,4 @@ export { ETHIcon } from './price-icon';
 export { LogIn } from './login';
 export { Account } from './account';
 export { SuccessOrder } from './successOrder';
+export { UploadFile} from './uploadFile'

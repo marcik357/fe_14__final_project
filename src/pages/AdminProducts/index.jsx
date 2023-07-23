@@ -24,7 +24,7 @@ export function AdminProducts() {
     setProductId(id)
     setOpenForm(true);
   }
-
+  
   function handleFormClose() {
     setOpenForm(false);
     setProductId(null);
@@ -45,14 +45,14 @@ export function AdminProducts() {
       : addProduct ? (
         <AddProductForm onCloseForm={handleFormClose} />
       ) : <>
-        <div className={style.btns}>
-          <button className={style.addBtn} type='button' onClick={handleAddButton}>Add new product</button>
-        </div>
-        <ProductList
-          products={products}
-          customButtonText="Edit"
-          customButtonHandler={handleEditButtonClick} />
-      </>
+      <div className={style.btns}>
+      <button className={style.addBtn} type='button' onClick={handleAddButton}>Add new product</button>
+      </div>
+      <ProductList
+        products={products}
+        customButtonText="Edit"
+        customButtonHandler={handleEditButtonClick} />
+        </>
     }
   </div>
 }
