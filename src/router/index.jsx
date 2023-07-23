@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts } from '../pages';
+import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, AdminLogin } from '../pages';
 import PrivateRoute from './PrivateRoute';
 import { Provider, useSelector } from 'react-redux';
 import { useState, createContext } from 'react';
+import PrivateRouteAdmin from './PrivateRouteAdmin';
 export const Quantity = createContext()
 
 export default function Router() {
@@ -28,8 +29,15 @@ export default function Router() {
           <Route path="/author/:authorId" element={<Author />} />
           <Route path="/product/:productId" element={<Product />} />
         </Route>
+
         <Route path="*" element={<NotFound />} />
+
+        <Route element={<PrivateRouteAdmin/>}>
         <Route path="/admin" element={<AdminProducts />} />
+        </Route>
+        {/* <Route path="/admin/login" element={<AdminLogin />} /> */}
+        {/* <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/products" element={<PrivateRouteAdmin><AdminProducts/></PrivateRouteAdmin>}/> */}
       </Routes>
     </Quantity.Provider>
   );
