@@ -9,6 +9,7 @@ import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { addProductsAction } from '../../redux/actions/productsActions';
+import { setAdminAction } from '../../redux/actions/adminActions';
 import { baseUrl } from '../../utils/vars';
 import { setCart } from '../../redux/actions/cartActions';
 import { fetchData, getDataFromLS, loadData } from '../../utils';
@@ -34,15 +35,15 @@ export function MainLayout() {
     }
   }, [cart, products, setOrderAmount])
 
-  const migrateCartToServer = useCallback(async (cartSR, cartLS) => {
+  const migrateCartToServer = useCallback(async () => {
+    const cartLS = await getDataFromLS('cart');
+    const cartSR = await fetchData(`${baseUrl}cart`, reqGet(localStorage.getItem('token')))
     if ((!cartSR || cartSR?.products?.length === 0) && cartLS.length > 0) {
       const cart = await fetchData(`${baseUrl}cart`, reqPost(JSON.stringify({ products: cartLS })));
       localStorage.removeItem('cart');
       dispatch(setCart(cart));
-      // countOrderAmount(cart)
     } else {
       dispatch(setCart(cartSR));
-      // countOrderAmount(cartSR)
     }
   }, [dispatch])
 
@@ -50,19 +51,17 @@ export function MainLayout() {
     dispatch(setTokenAction(localStorage.getItem('token')));
     const products = await fetchData(`${baseUrl}products`)
     dispatch(addProductsAction(products));
-    const cartLS = await getDataFromLS('cart');
-    if (!token) {
-      setCart(cartLS);
-    } else {
-      const cartSR = await fetchData(`${baseUrl}cart`, reqGet(localStorage.getItem('token')))
-      await migrateCartToServer(cartSR, cartLS)
+    if (token) {
+      const user = await fetchData(`${baseUrl}customers/customer`, reqGet())
+      dispatch(setAdminAction(user?.isAdmin))
+      await migrateCartToServer()
     }
   }, [dispatch, token, migrateCartToServer])
 
   useEffect(() => {
     loadData(dispatch, mainLoad)
   }, [dispatch, mainLoad])
-  
+
   useEffect(() => {
     countOrderAmount()
   }, [countOrderAmount])

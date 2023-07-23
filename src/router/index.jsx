@@ -7,7 +7,6 @@ export const Quantity = createContext()
 
 export default function Router() {
   const [orderAmount, setOrderAmount] = useState(0);
-  const token = useSelector((state) => state.token.token);
 
   return (
     <Quantity.Provider value={[orderAmount, setOrderAmount]}>
@@ -22,6 +21,9 @@ export default function Router() {
 
           <Route element={<PrivateRoute />}>
             <Route path='/account' element={<Account />} />
+          </Route>
+          <Route element={<PrivateRoute adminPanel={true}/>}>
+            <Route path='/admin' element={<AdminProducts />} />
           </Route>
 
           <Route path="/authorization" element={<Authorization />} />

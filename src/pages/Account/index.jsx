@@ -6,7 +6,7 @@ import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
 import { AdminProducts } from '../../components/AdminProducts';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
@@ -61,12 +61,17 @@ export function Account() {
               Log out
             </button>
             {user?.isAdmin
-              && <button
+              && <Link
+                className={styles.user__btnsItem}
+                to={'/admin'}>
+                {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
+              </Link>}
+              {/* && <button
                 className={styles.user__btnsItem}
                 onClick={() => setAdminPanel(!adminPanel)}
                 type='button'>
                 {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-              </button>}
+              </button>} */}
           </div>
           {!adminPanel
             ? <>
