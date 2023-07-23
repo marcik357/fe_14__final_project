@@ -19,7 +19,7 @@ export function Authorization() {
           onClickHandler={() => setIsLogIn(!isLogIn)}
           classList={styles.authorization__greating} />
         {isLogIn
-          ? <LoginForm />
+          ? <LoginForm redirectUrl= "/"/>
           : <SignUpForm callback={setIsLogIn} />}
       </div>
     </>
