@@ -43,7 +43,7 @@ export default function PhotoUploader () {
     }
   };
 
-  return (<div>
+  return (<div className={style.wrapper}>
     <div  className={style.container}>
       <input type="file" onChange={handleFileChange} className={style.fileInput} id='file'
       />
