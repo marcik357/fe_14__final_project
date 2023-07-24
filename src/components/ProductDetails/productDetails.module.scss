@@ -140,6 +140,8 @@ body:has(.productDetails) {
   }
 
   &__actions {
+    position: sticky;
+    top: 75px;
     margin: 20px 0;
     padding: 20px;
     border-radius: 18px;
