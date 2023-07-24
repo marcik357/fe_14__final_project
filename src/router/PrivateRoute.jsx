@@ -1,13 +1,28 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
+import { baseUrl } from '../utils/vars';
+import { reqGet } from '../utils/requestBody';
+import { fetchData } from '../utils';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function PrivateRoute({ adminPanel }) {
   const token = useSelector((state) => state.token.token) || localStorage.getItem('token');
-  const isAdmin = useSelector((state) => state.admin.admin);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  if (!token) return <Navigate to="/authorization" replace />
+  const checkPermition = useCallback(async () => {
+    if (token) {
+      const user = await fetchData(`${baseUrl}customers/customer`, reqGet())
+      setIsAdmin(user?.isAdmin)
+    }
+  }, [token])
 
-  if (adminPanel && !isAdmin) return <Navigate to="/account" replace />
+  useEffect(() => {
+    checkPermition()
+  }, [checkPermition])
+
+  if (!token) return <Navigate to="/authorization" />
+
+  if (adminPanel && !isAdmin) return <Navigate to="/account" />
 
   return <Outlet />
 }
