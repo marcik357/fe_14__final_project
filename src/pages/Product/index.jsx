@@ -23,10 +23,10 @@ export function Product() {
     error && navigate("/not-found");
   }, [error, navigate]);
 
+  if (loading) return <Loader />
+
   return (
     <div id='main'>
-      {!loading
-        ? <ProductDetails {...product} />
-        : <Loader />}
+      <ProductDetails {...product} />
     </div>)
 }
