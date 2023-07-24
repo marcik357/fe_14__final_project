@@ -42,7 +42,7 @@ export function Author() {
     <div id='main'>
       {author && (
         <div className={style.author}>
-          <Banner title={author.name} img='/images/banners/author-banner.png' />
+          <Banner title={author.name} img='/images/banners/author-banner.webp' />
           <div className={style.author__wrapper}>
             <div className={style.author__container}>
               {products

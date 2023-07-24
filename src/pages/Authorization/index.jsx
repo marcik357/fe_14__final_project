@@ -17,7 +17,7 @@ export function Authorization() {
     <div id='main'>
       <Banner
         title='Crypter authorization'
-        img='/images/banners/authorization-banner.jpg' />
+        img='/images/banners/authorization-banner.webp' />
       <div className={styles.authorization}>
         <div className={styles.authorization__container}>
           <LogInGreating

@@ -14,7 +14,7 @@ export function Discover() {
       <Banner
         title='Crypter discover'
         subtitle='Discover endless world of NFTs'
-        img='/images/banners/discover-banner.png' />
+        img='/images/banners/discover-banner.webp' />
       <div className={styles.products}>
         <div className={styles.products__container}>
           <Filter />

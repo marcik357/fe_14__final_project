@@ -135,7 +135,7 @@ export function HelpCenter() {
           <div className={styles.helpCenter__cubeBlockWrap}>
             <div className={styles.helpCenter__cubeBlock}>
               <h2>Gettings started on Crypter</h2>
-              <img src="/images/banners/cube.png" alt="cube" />
+              <img src="/images/banners/cube.webp" alt="cube" />
             </div>
           </div>
 

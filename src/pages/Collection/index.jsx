@@ -39,7 +39,7 @@ export function Collection() {
   return (
     products && (
       <div className={style.collection}>
-        <Banner title={'Collection'} subtitle={collection?.name} img='/images/banners/collection-banner.png' />
+        <Banner title={'Collection'} subtitle={collection?.name} img='/images/banners/collection-banner.webp' />
         <div className={style.collection__wrapper}>
           <div className={style.collection__container}>
             <CollectionDetails collection={collection} products={products} productsQuantity={productsQuantity} />

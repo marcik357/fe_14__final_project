@@ -32,7 +32,7 @@ export function Blog() {
         <Banner
           title='Crypter Blog'
           subtitle='Crypter NFT marketplace blog'
-          img='/images/banners/blog-banner.jpg' />
+          img='/images/banners/blog-banner.webp' />
         <div className={styles.blog__container}>
           <div className={styles.blog__posts}>
             {data.map(({ url, id, textButton, capturePost, authorPost, dataPost, textPost }, index) => {
