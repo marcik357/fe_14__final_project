@@ -21,7 +21,7 @@ export default function Router() {
           <Route element={<PrivateRoute />}>
             <Route path='/account' element={<Account />} />
           </Route>
-          <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoute adminPanel={true} />}>
             <Route path='/admin' element={<AdminProducts />} />
           </Route>
 
