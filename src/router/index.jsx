@@ -21,7 +21,7 @@ export default function Router() {
           <Route element={<PrivateRoute />}>
             <Route path='/account' element={<Account />} />
           </Route>
-          <Route element={<PrivateRoute adminPanel={true}/>}>
+          <Route element={<PrivateRoute />}>
             <Route path='/admin' element={<AdminProducts />} />
           </Route>
 
@@ -31,7 +31,6 @@ export default function Router() {
           <Route path="/product/:productId" element={<Product />} />
         </Route>
         <Route path="*" element={<NotFound />} />
-        <Route path="/admin" element={<AdminProducts />} />
       </Routes>
     </Quantity.Provider>
   );
