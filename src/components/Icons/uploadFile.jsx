@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 
 export function UploadFile () {
     return (
