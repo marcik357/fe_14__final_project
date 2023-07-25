@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getDataAction } from '../../redux/actions/getDataActions';
 import Loader from '../../components/Loader';
 import Banner from '../../components/Banner';
-import { CollectionDetails } from '../../CollectionDetails';
+import { CollectionDetails } from '../../components/CollectionDetails';
 import { baseUrl } from '../../utils/vars';
 
 export function Collection() {
