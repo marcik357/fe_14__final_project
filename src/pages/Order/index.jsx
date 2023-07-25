@@ -2,7 +2,7 @@ import styling from './order.module.scss';
 import Banner from "../../components/Banner";
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useContext } from "react";
-import { baseUrl, reqPost } from '../../utils/vars';
+import { baseUrl } from '../../utils/vars';
 import { contactForm } from "../../components/ContactForm/contactForm.js";
 import { ContactForm } from '../../components/ContactForm';
 import { PaymentForm } from '../../components/PaymentForm';
@@ -12,6 +12,7 @@ import { Quantity } from '../../router';
 import { fetchData } from '../../utils';
 import { Link } from 'react-router-dom';
 import { setErrorAction } from '../../redux/actions/errorActions';
+import { reqPost } from '../../utils/requestBody';
 
 export function Order() {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ export function Order() {
 
   async function sendOrder() {
     try {
-      await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createOrder())))
+      await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createOrder()), token))
     } catch (error) {
       dispatch(setErrorAction(error.message));
     }

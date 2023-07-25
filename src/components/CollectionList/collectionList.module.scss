@@ -5,23 +5,39 @@
   background-color: #f7fbfa;
   font-family: Inter;
 
+  // &__wrapper {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
   &__wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-}
+    display: grid;
+    justify-content: center;
+    gap: 2rem;
 
-@media (min-width: 768px) {
-  .collectionList {
-    &__wrapper {
-      display: grid;
-      // justify-content: center;
-      // padding: 0 20px;
-      column-gap: 30px;
+    &:has(> a) {
+      justify-content: space-around;
+      grid-template-columns: repeat(auto-fill, 320px);
+    }
 
-      &:has(> a) {
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      }
+    &:not(:has(> a)) {
+      display: flex;
+      flex-direction: column;
+      // grid-template-columns: repeat(auto-fill, 325px);
     }
   }
 }
+
+// @media (min-width: 768px) {
+//   .collectionList {
+//     &__wrapper {
+//       display: grid;
+//       // justify-content: center;
+//       padding: 0 20px;
+//       column-gap: 30px;
+
+//       &:has(> a) {
+//         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+//       }
+//     }
+//   }
+// }

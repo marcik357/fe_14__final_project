@@ -138,11 +138,14 @@ export function HelpCenter() {
 
   return (
     <div className={styles.helpCenter}>
-      <div className={styles.helpCenter__content}>
-        <div className={styles.helpCenter__cubeBlockWrap}>
-          <div className={styles.helpCenter__cubeBlock}>
-            <h2>Gettings started on Crypter</h2>
-            <img src="/images/banners/cube.png" alt="cube" />
+
+      <div className={styles.helpCenter__container}>
+        <div className={styles.helpCenter__content}>
+          <div className={styles.helpCenter__cubeBlockWrap}>
+            <div className={styles.helpCenter__cubeBlock}>
+              <h2>Gettings started on Crypter</h2>
+              <img src="/images/banners/cube.webp" alt="cube" />
+            </div>
           </div>
         </div>
 
