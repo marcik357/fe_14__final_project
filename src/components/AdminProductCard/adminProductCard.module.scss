@@ -1,0 +1,59 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 4fr 2fr 2fr 2fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 25px;
+  font-family: 'Inter', sans-serif;
+
+  .icon {
+    width: 130px;
+    height: 130px;
+    padding: 5px;
+    border: 1px solid #555;
+    border-radius: 25%;
+    box-sizing: border-box;
+
+    &__img {
+      width: 120px;
+      height: 120px;
+      border-radius: 25%;
+    }
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .name {
+    text-align: left;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .author {
+    text-align: left;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // svg {
+    //   padding-top: 5px;
+    // }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
