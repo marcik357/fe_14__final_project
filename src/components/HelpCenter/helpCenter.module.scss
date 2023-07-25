@@ -20,7 +20,7 @@
   }
 
   h2 {
-    width: 226px;
+    // width: 226px;
     font-size: 40px;
     font-style: normal;
     font-weight: 800;
@@ -114,22 +114,19 @@
 
 @media (min-width: 768px) {
   .helpCenter {
-    &__content {
-      display: flex;
-    }
-
+    background: linear-gradient(270deg, transparent 50%, #b9a9fb 50%);
     img {
       position: static;
     }
-  }
-}
 
-@media (min-width: 768px) {
-  .helpCenter {
-    background: linear-gradient(270deg, transparent 50%, #b9a9fb 50%);
+    &__container {
+      display: flex;
+    }
 
     &__content {
       display: flex;
+      flex: 1 0 50%;
+      width: 50%;
     }
 
     &__cubeBlockWrap {
@@ -143,6 +140,7 @@
     }
 
     &__infoBlockList {
+      flex: 1 0 50%;
       width: 50%;
     }
 
@@ -164,7 +162,7 @@
     }
 
     h2 {
-      width: 519px;
+      max-width: 519px;
       font-size: 80px;
       font-style: normal;
       font-weight: 800;
