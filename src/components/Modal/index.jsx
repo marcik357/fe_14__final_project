@@ -6,7 +6,7 @@ import style from './modal.module.scss';
 
 export function Modal(props) {
   const dispatch = useDispatch();
-  const { data: { type, header, text, actions, icon } } = props;
+  const { data: { type, header, text, actions, icon }, onDelete } = props;
   const error = useSelector((state) => state.error.error)
 
   function onCloseModal() {
@@ -15,6 +15,9 @@ export function Modal(props) {
   }
 
   function onSubmitModal() {
+    if (onDelete && typeof onDelete === 'function') {
+      onDelete();
+    }
     onCloseModal();
   }
 

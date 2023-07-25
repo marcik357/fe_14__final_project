@@ -45,6 +45,7 @@ export default function AddProductForm({ onCloseForm }) {
             });
             onCloseForm()
             setSubmitting(false);
+            dispatch(setModalType('saved'))
           } catch (error) {
             dispatch(setErrorAction(error.message));
             dispatch(setModalType('error'))

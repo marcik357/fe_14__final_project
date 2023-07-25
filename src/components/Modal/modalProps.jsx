@@ -85,5 +85,29 @@ export const modalProps = [
         </div>
       );
     },
+  },
+  {
+    type: 'deleteProduct',
+    header: 'Are you sure?',
+    text: 'Do you want to delete this product?',
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <button type='button' onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Delete</button>
+          <button type='button' onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>Cancel</button>
+        </div>
+      );
+    },
+  }, {
+    type: 'saved',
+    header: 'Changes saved',
+    icon: <Success />,
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <button onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Close</button>
+        </div>
+      );
+    },
   }
 ];
