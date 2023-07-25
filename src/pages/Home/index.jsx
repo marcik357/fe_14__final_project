@@ -13,6 +13,7 @@ import './tabs.scss';
 import { Link } from 'react-router-dom';
 import { fetchData } from '../../utils';
 import { setLoadingAction } from '../../redux/actions/loadingActions';
+import MintPage from '../../components/MintPage';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -25,24 +26,28 @@ export function Home() {
   const homeLoad = useCallback(async () => {
     try {
       dispatch(setLoadingAction(true));
-      const slides = await fetchData(`${baseUrl}slides`)
-      const partners = await fetchData(`${baseUrl}partners`)
+      const slides = await fetchData(`${baseUrl}slides`);
+      const partners = await fetchData(`${baseUrl}partners`);
       await setSlides(slides);
       await setPartners(partners);
-      dispatch(setLoadingAction(false))
+      dispatch(setLoadingAction(false));
     } catch (error) {
-      dispatch(setLoadingAction(false))
+      dispatch(setLoadingAction(false));
       dispatch(setErrorAction(error.message));
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
-    homeLoad()
+    homeLoad();
   }, [homeLoad]);
 
   return !loading ? (
     <div id='main'>
-      {slides?.length > 0 ? <SliderPromo products={slides} /> : <SliderPromo products={[]} />}
+      {slides?.length > 0 ? (
+        <SliderPromo products={slides} />
+      ) : (
+        <SliderPromo products={[]} />
+      )}
       <div className={styles.products}>
         <div className={styles.products__container}>
           <Tabs className={styles.products__filter}>
@@ -50,7 +55,10 @@ export function Home() {
               <Tab className={styles.products__filter_tab}>All</Tab>
               <Tab className={styles.products__filter_tab}>Collections</Tab>
               <Tab className={styles.products__filter_tab}>Authors</Tab>
-              <Link to={'/discover'} className={styles.products__filter_tab}>Discover</Link>
+              <Link to={'/discover'} className={styles.products__filter_tab}>
+                Discover
+              </Link>
+              <Tab className={styles.products__filter_tab}>Mint</Tab>
             </TabList>
             <TabPanel>
               <ProductList products={products} />
@@ -60,6 +68,9 @@ export function Home() {
             </TabPanel>
             <TabPanel>
               <AuthorList partners={partners} products={products} />
+            </TabPanel>
+            <TabPanel>
+              <MintPage />
             </TabPanel>
           </Tabs>
         </div>

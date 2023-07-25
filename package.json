@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "formik": "^2.4.2",
-    "framer-motion": "^10.12.22",
+    "framer-motion": "^10.13.0",
     "inter": "^2.1.0",
     "npm-run-all": "^4.1.1",
     "npm-watch": "^0.3.0",
