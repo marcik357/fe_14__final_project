@@ -79,3 +79,13 @@
 .productListInAuthor {
   background-color: black;
 }
+
+.productListAdmin {
+  display: flex;
+  background-color: white;
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+  }
+}

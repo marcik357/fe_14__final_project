@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { Basket, ETHIcon } from '../Icons';
+import { AdminProductCard } from '../AdminProductCard';
 
 function ProductCard({
   _id,
@@ -18,6 +19,9 @@ function ProductCard({
   isInAuthor,
   buttonText,
   buttonHandler,
+  deleteButtonHandler,
+  customCard = false,
+  quantity
 }) {
   const dispatch = useDispatch();
   const cartProductsArray = useSelector((state) => state.cart.cart.products);
@@ -26,79 +30,83 @@ function ProductCard({
   );
   const { token } = useSelector((state) => state.token);
 
-  return (
-    <div className={styles.productCard}>
-      <Link to={`/product/${itemNo}`}>
-        <img
-          className={styles.productCard__img}
-          src={imageUrls[0]}
-          alt={name}
-        />
-        <p className={styles.productCard__name}>{name}</p>
+  return (<>{customCard ? (
+    <AdminProductCard _id={_id} imageUrls={imageUrls}
+    currentPrice={currentPrice} itemNo={itemNo} name={name}
+    quantity={quantity} buttonHandler={() => buttonHandler(itemNo)} author={author} deleteButtonHandler={() => deleteButtonHandler(itemNo)}/>
+  ) : (<div className={styles.productCard}>
+  <Link to={`/product/${itemNo}`}>
+    <img
+      className={styles.productCard__img}
+      src={imageUrls[0]}
+      alt={name}
+    />
+    <p className={styles.productCard__name}>{name}</p>
+  </Link>
+  <div className={styles.productCard__userInfo}>
+    <Link
+      to={`/author/${author}`}
+      className={styles.productCard__userInfo_items}
+    >
+      <img
+        className={styles.productCard__userInfo_userIcon}
+        src={authorIcon}
+        alt='user-avatar'
+      />
+      <p
+        className={`${styles.productCard__userInfo_author} ${
+          isInAuthor ? styles.productCard__userInfo_inAuthor : ''
+        }`}
+      >
+        {author}
+      </p>
+    </Link>
+    <Verified />
+  </div>
+
+  <div className={styles.productCard__priceInfo}>
+    {isInCart ? (
+      <Link
+        to={'/cart'}
+        className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
+        type='button'
+      >
+        view cart
+        <Basket color='#202025' strokeWidth='2.5' />
       </Link>
-      <div className={styles.productCard__userInfo}>
-        <Link
-          to={`/author/${author}`}
-          className={styles.productCard__userInfo_items}
-        >
-          <img
-            className={styles.productCard__userInfo_userIcon}
-            src={authorIcon}
-            alt='user-avatar'
-          />
-          <p
-            className={`${styles.productCard__userInfo_author} ${
-              isInAuthor ? styles.productCard__userInfo_inAuthor : ''
-            }`}
-          >
-            {author}
-          </p>
-        </Link>
-        <Verified />
-      </div>
+    ) : (
+      <button
+        className={styles.productCard__priceInfo_button}
+        type='button'
+        onClick={
+        !buttonHandler
+          ? () => buyNowHandler(dispatch, _id, token)
+          : () => buttonHandler(itemNo)
+      }
+      >
+        {buttonText}
+      </button>
+    )}
 
-      <div className={styles.productCard__priceInfo}>
-        {isInCart ? (
-          <Link
-            to={'/cart'}
-            className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
-            type='button'
-          >
-            view cart
-            <Basket color='#202025' strokeWidth='2.5' />
-          </Link>
-        ) : (
-          <button
-            className={styles.productCard__priceInfo_button}
-            type='button'
-            onClick={
-            !buttonHandler
-              ? () => buyNowHandler(dispatch, _id, token)
-              : () => buttonHandler(itemNo)
-          }
-          >
-            {buttonText}
-          </button>
-        )}
-
-        <div className={styles.productCard__priceInfo_buyNow}>
-          <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
-          {isInAuthor ? (
-            <p className={styles.productCard__priceInAuthor}>
-              {currentPrice}
-              &nbsp;
-              <span>ETH</span>
-            </p>
-          ) : (
-            <p>
-              {currentPrice}
-              &nbsp;
-              <span>ETH</span>
-            </p>
-          )}
-        </div>
-      </div>
+    <div className={styles.productCard__priceInfo_buyNow}>
+      <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
+      {isInAuthor ? (
+        <p className={styles.productCard__priceInAuthor}>
+          {currentPrice}
+          &nbsp;
+          <span>ETH</span>
+        </p>
+      ) : (
+        <p>
+          {currentPrice}
+          &nbsp;
+          <span>ETH</span>
+        </p>
+      )}
     </div>
+  </div>
+</div>)}</>
+    
   );
 }
 
@@ -109,7 +117,8 @@ ProductCard.propTypes = {
   author: PropTypes.string,
   currentPrice: PropTypes.number,
   buttonText: PropTypes.string,
-  buttonHandler: PropTypes.func
+  buttonHandler: PropTypes.func,
+  customCard: PropTypes.bool
 };
 
 ProductCard.defaultProps = {
