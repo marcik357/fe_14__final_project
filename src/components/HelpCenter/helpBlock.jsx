@@ -41,8 +41,8 @@ export default function HelpBlock({
       {activeBlocks.includes(id) && (
         <motion.ul
           className={styles.helpCenter__list}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 10 }}
           transition={{ duration: 0.5 }}
         >
           {items.map((item) => (
@@ -59,7 +59,6 @@ export default function HelpBlock({
                     ? styles.helpCenter__activeItem
                     : ""
                 }`}
-                whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
               >
                 <span className={styles.helpCenter__blockButtonItemTitle}>
                   {hoveredItemId === item.id ? (
@@ -69,13 +68,15 @@ export default function HelpBlock({
                   )}
                   {item.title}
                 </span>
-                <motion.div
-                  initial={{ opacity: 0, y: 0 }}
-                  animate={{ opacity: 1, y: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {activeClickedItem === item.id && <p>{item.content}</p>}
-                </motion.div>
+                {activeClickedItem === item.id && (
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {item.content}
+                  </motion.p>
+                )}
               </motion.button>
             </li>
           ))}
