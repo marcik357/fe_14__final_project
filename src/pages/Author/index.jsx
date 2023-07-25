@@ -45,7 +45,7 @@ export function Author() {
           <Banner title={author.name} img='/images/banners/author-banner.webp' />
           <div className={style.author__wrapper}>
             <div className={style.author__container}>
-              {products
+              {products?.length > 0
                 ? <AuthorDetails author={author} products={products} productsQuantity={productsQuantity} />
                 : <p className = {style.author__text}>Sorry, but at this moment we don't have any NFT's of this author</p>}
             </div>

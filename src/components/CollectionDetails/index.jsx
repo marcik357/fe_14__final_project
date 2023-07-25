@@ -1,5 +1,5 @@
 import style from './collectionDetails.module.scss';
-import ProductList from '../components/ProductList';
+import ProductList from '../ProductList';
 
 export function CollectionDetails({collection, products, productsQuantity}) {
 

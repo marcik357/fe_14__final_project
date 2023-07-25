@@ -17,14 +17,14 @@ export default function Router() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/order" element={<Order />} />
           <Route path="/help" element={<Help />} />
-
-          <Route element={<PrivateRoute />}>
+          {/* <Route element={<PrivateRoute />}>
             <Route path='/account' element={<Account />} />
-          </Route>
-          <Route element={<PrivateRoute adminPanel={true} />}>
+          </Route> */}
+          <Route path='/account' element={<PrivateRoute />} />
+          <Route path='/admin' element={<PrivateRoute adminPanel={true} />} />
+          {/* <Route element={<PrivateRoute adminPanel={true} />}>
             <Route path='/admin' element={<AdminProducts />} />
-          </Route>
-
+          </Route> */}
           <Route path="/authorization" element={<Authorization />} />
           <Route path="/author/:authorId" element={<Author />} />
           <Route path="/collection/:collectionId" element={<Collection />} />

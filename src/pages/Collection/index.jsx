@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import Banner from '../../components/Banner';
-import { CollectionDetails } from '../../CollectionDetails';
+import { CollectionDetails } from '../../components/CollectionDetails';
 import { baseUrl } from '../../utils/vars';
 import { fetchData, loadData } from '../../utils';
 
