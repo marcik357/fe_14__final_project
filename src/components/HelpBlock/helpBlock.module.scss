@@ -1,0 +1,133 @@
+.helpInfo {
+  border-bottom: 1px solid #e1e2e2;
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    border: none;
+    background-color: transparent;
+    color: #202025;
+    font-family: "Inter", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: -.64px;
+    line-height: 40px;
+    cursor: pointer;
+
+    &_active {
+      padding-bottom: 40px;
+    }
+  }
+
+  &__wrapper {
+    height: auto;
+  }
+
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    & svg {
+      margin-top: 8px;
+      margin-right: 16px;
+    }
+
+    &:last-child {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__question {
+    position: relative;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+}
+
+.question {
+  border: none;
+  background-color: transparent;
+  color: #686a6c;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  line-height: 32px;
+  cursor: pointer;
+
+  &_active &__text {
+    padding-right: 40px;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    text-align: left;
+
+    &:hover {
+      color: #202025;
+    }
+  }
+}
+
+// @media (min-width: 768px) {
+//   .helpInfo {
+//     img {
+//       position: static;
+//     }
+
+//     &__container {
+//       display: flex;
+//     }
+
+//     &__content {
+//       display: flex;
+//       flex: 1 0 50%;
+//       width: 50%;
+//     }
+
+//     &__cube {
+//       width: 50%;
+//     }
+
+//     &__cubeBlock {
+//       position: sticky;
+//       top: 80px;
+//       padding: 40px;
+//     }
+
+//     &__info {
+//       flex: 1 0 50%;
+//       width: 50%;
+//     }
+//   }
+// }
+
+// @media (min-width: 1440px) {
+//   .helpInfo {
+//     &__cubeBlock {
+//       padding: 64px;
+//     }
+
+//     h2 {
+//       max-width: 519px;
+//       font-size: 80px;
+//       font-style: normal;
+//       font-weight: 800;
+//       letter-spacing: -1.6px;
+//       line-height: 80px;
+//     }
+
+//     img {
+//       width: 620px;
+//       transform: translateX(-23%) translateY(-9%);
+//     }
+//   }
+// }

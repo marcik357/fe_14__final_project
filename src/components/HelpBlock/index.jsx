@@ -4,7 +4,7 @@ import { OpenList } from "../Icons/open-list.jsx";
 import { CloseList } from "../Icons/close-list.jsx";
 import { MarkerList } from "../Icons/marker-list-hc.jsx";
 import { ArrowRightBlue } from "../Icons/arrow-right-blue.jsx";
-import styles from "./helpCenter.module.scss";
+import styles from "./helpBlock.module.scss";
 import { blockAnimation, itemAnimation, listAnimation } from "../../animation/helpBlock.js";
 
 export default function HelpBlock({
@@ -26,10 +26,10 @@ export default function HelpBlock({
   };
 
   return (
-    <div className={styles.helpCenter__infoBlock}>
+    <div className={styles.helpInfo}>
       <button
         type="button"
-        className={`${styles.helpCenter__blockButton} ${activeBlocks.includes(id) && styles.helpCenter__active}`}
+        className={`${styles.helpInfo__block} ${activeBlocks.includes(id) && styles.helpInfo__block_active}`}
         onClick={() => toggleBlock(id)}>
         {title}
         <span>{activeBlocks.includes(id) ? <CloseList /> : <OpenList />}</span>
@@ -37,21 +37,22 @@ export default function HelpBlock({
       <AnimatePresence>
         {activeBlocks.includes(id) && (
           <motion.div
-            className={styles.helpCenter__listContainer}
+            className={styles.helpInfo__wrapper}
             {...blockAnimation}>
             <motion.ul
-              className={styles.helpCenter__list}
+              className={styles.helpInfo__list}
               {...listAnimation}>
               {items.map((item) => (
                 <li
+                  className={styles.helpInfo__item}
                   key={item.id}
                   onMouseEnter={() => handleHoverItem(item.id)}
                   onMouseLeave={handleLeaveItem}>
                   <motion.button
                     type="button"
                     onClick={() => handleClickItem(item.id)}
-                    className={`${styles.helpCenter__blockButtonItem} ${activeClickedItem === item.id && styles.helpCenter__activeItem}`}>
-                    <span className={styles.helpCenter__blockButtonItemTitle}>
+                    className={`${styles.helpInfo__question} ${styles.question} ${activeClickedItem === item.id && styles.question_active}`}>
+                    <span className={styles.question__title}>
                       {hoveredItemId === item.id
                         ? <ArrowRightBlue />
                         : <MarkerList />}
@@ -59,7 +60,9 @@ export default function HelpBlock({
                     </span>
                     <AnimatePresence>
                       {activeClickedItem === item.id && (
-                        <motion.p {...itemAnimation}>
+                        <motion.p
+                          className={styles.question__text}
+                          {...itemAnimation}>
                           {item.content}
                         </motion.p>
                       )}

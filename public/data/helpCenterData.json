@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "title": "Buying",
+    "items": [
+      {
+        "id": 1,
+        "title": "Connect your wallet to Crypter",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 2,
+        "title": "Guide to collection NFT artworks on Crypter",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 3,
+        "title": "Marketplace balance",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 4,
+        "title": "Marketplace fees",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 5,
+        "title": "What is offer price?",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Selling",
+    "items": [
+      {
+        "id": 1,
+        "title": "Connect your wallet to Crypter",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 2,
+        "title": "Guide to collection NFT artworks on Crypter",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 3,
+        "title": "Marketplace balance",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 4,
+        "title": "Marketplace fees",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 5,
+        "title": "What is offer price?",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Creating",
+    "items": [
+      {
+        "id": 1,
+        "title": "Connect your wallet to Crypter",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 2,
+        "title": "Guide to collection NFT artworks on Crypter",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 3,
+        "title": "Marketplace balance",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 4,
+        "title": "Marketplace fees",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      },
+      {
+        "id": 5,
+        "title": "What is offer price?",
+        "content":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consequuntur beatae facilis, iusto incidunt quaerat suscipit veniam repudiandae, est possimus quo corrupti saepe ea officia illum vero unde sint vel."
+      }
+    ]
+  }
+]
