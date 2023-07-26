@@ -31,8 +31,8 @@ export function Help() {
   };
 
   const helpLoad = useCallback(async () => {
-    const data = await fetchData('/data/helpCenterData.json')
-    setHelpData(data);
+    const faq = await fetchData('/data/helpCenterData.json')
+    setHelpData(faq);
   }, [])
 
   useEffect(() => {
