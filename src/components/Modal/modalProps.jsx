@@ -105,7 +105,7 @@ export const modalProps = [
     actions(onClose, onSubmit, className) {
       return (
         <div className={className}>
-          <button onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Close</button>
+          <button onClick={onClose} className={`${style.modal__btn} ${style.submitBtn}`}>Close</button>
         </div>
       );
     },
