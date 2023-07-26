@@ -4,7 +4,7 @@ import { UploadFile } from '../Icons';
 import Input from '../Input';
 import { inputFields } from './inputFields';
 
-export default function PhotoUploader () {
+export default function PhotoUploader ({isInAccount = false}) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [imageUrl, setImageUrl] = useState([])
@@ -51,7 +51,9 @@ export default function PhotoUploader () {
        <UploadFile/>
       <span className={style.fileInput__text}>Choose file</span>
       </label>
-      <button onClick={handleUpload} disabled={!selectedFile} className={style.btn}>
+      <button onClick={handleUpload} disabled={!selectedFile} className={`${style.btn} ${
+          isInAccount ? style.btn_inAccount : ''
+        }`}>
         Upload
       </button>
 
@@ -59,7 +61,7 @@ export default function PhotoUploader () {
       {fileName && <p className={style.fileName} >{fileName}</p>}
       <Input key={inputFields.name} {...inputFields} value={imageUrl}/>
       {showSuccessMessage && (
-      <p className={style.successMessage}>Photo successfully uploaded!</p>
+      <p className={`${style.successMessage} ${isInAccount ? style.successMessage_inAccount : ''}`}>Photo successfully uploaded!</p>
     )}
       </div>
   );

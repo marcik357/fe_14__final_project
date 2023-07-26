@@ -72,6 +72,26 @@
     }
   }
 
+  .btn_inAccount {
+    color: #f7fbfa;
+    cursor: pointer;
+    z-index: 1;
+
+    &::before {
+      background-color: #202025;
+    }
+
+    &::after {
+      width: 100%;
+      height: 100%;
+      background-color: #f7fbfa;
+    }
+
+    &:hover {
+      color: #202025;
+    }
+  }
+
   .fileInput {
     position: absolute;
     margin-bottom: 2rem;
@@ -170,5 +190,9 @@
     font-weight: 600;
     pointer-events: none;
     z-index: 1;
+  }
+
+  .successMessage_inAccount {
+    top: 75%;
   }
 }

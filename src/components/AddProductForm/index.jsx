@@ -12,7 +12,7 @@ import Checkbox from '../Checkbox';
 import { addProductFormFields } from './addProductFormField';
 import  PhotoUploader  from '../PhotoUploader/index';
 
-export default function AddProductForm({ onCloseForm }) {
+export default function AddProductForm({ onCloseForm , isInAccount }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
   
@@ -62,7 +62,7 @@ export default function AddProductForm({ onCloseForm }) {
                 {...field} />
             )
           } else if (field.tagType === 'button') {
-            return (<PhotoUploader key={field.id} />
+            return (<PhotoUploader key={field.id} isInAccount={isInAccount}/>
             );
           }
           else if (field.tagType === 'select') {
@@ -93,10 +93,10 @@ export default function AddProductForm({ onCloseForm }) {
           return null;
         })}
         <div className={style.form__btns}>
-          <button className={style.form__submit} type="submit">
+          <button className={`${style.form__submit} ${isInAccount ? style.form__submit_inAccount : ''}`} type="submit">
             Save Changes
           </button>
-          <button onClick={onCloseForm} type='button' className={style.form__submit}>
+          <button onClick={onCloseForm} type='button' className={`${style.form__submit} ${isInAccount ? style.form__submit_inAccount : ''}`}>
             Cancel
           </button>
         </div>

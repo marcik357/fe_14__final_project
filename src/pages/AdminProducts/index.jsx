@@ -11,9 +11,12 @@ import AdminHeader from "../../components/AdminHeader";
 import { setModalType } from "../../redux/actions/modalActions";
 import { Modal } from "../../components/Modal";
 import { modalProps } from '../../components/Modal/modalProps';
+import { setErrorAction } from "../../redux/actions/errorActions";
+import { fetchData } from "../../utils";
 
 export function AdminProducts() {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.token.token);
 
   const [openForm, setOpenForm] = useState(false);
   const [productId, setProductId] = useState(null)
@@ -22,10 +25,28 @@ export function AdminProducts() {
   const [addProduct, setAddProduct] = useState(false)
   const modalType = useSelector((state) => state.modal.modal);
 
-function deleteProduct (id) {
-
+async function deleteProduct (product) {
+   const values = {...product, enabled: false}
+    try {
+      await fetchData(`${baseUrl}products/${product._id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      dispatch(setModalType('saved'))
+    } catch (error) {
+      dispatch(setErrorAction(error.message));
+      dispatch(setModalType('error'))
+    }
+  
 }
-function handleDelButton (){
+function handleDelButton (itemNo){
+  const product = products.find( (product) => product.itemNo === itemNo)
+  setProduct(product)
+  console.log(product);
   dispatch( setModalType('deleteProduct'))
 }
   function handleAddButton() {
@@ -58,7 +79,7 @@ function handleDelButton (){
 
   return <>
   {modalType && (
-        <Modal data={modalProps.find((modal) => modal.type === modalType)} />
+        <Modal data={modalProps.find((modal) => modal.type === modalType)} onDelete={()=> deleteProduct(product)}/>
       )}
   <AdminHeader/>
   <div className={style.container}>
@@ -76,7 +97,7 @@ function handleDelButton (){
         <p className={style.listHeader__name}>Name</p>
         <p className={style.listHeader__author}>Author</p>
         <p>Quantity</p>
-        <p>ItemNo</p>
+        <p>Enabled</p>
         <p>Price</p>
         <p>Actions</p>
 </div>
