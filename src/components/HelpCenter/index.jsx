@@ -156,10 +156,7 @@ export function HelpCenter() {
               activeBlocks={activeBlocks}
               activeClickedItem={clickedItems[blockData.id] || null}
               toggleBlock={toggleBlock}
-              handleClickItem={(itemId) =>
-                handleClickItem(blockData.id, itemId)
-              }
-            />
+              handleClickItem={(itemId) => handleClickItem(blockData.id, itemId)}/>
           ))}
         </div>
       </div>
