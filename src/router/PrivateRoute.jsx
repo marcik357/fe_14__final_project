@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Account, AdminProducts } from '../pages';
 import { Navigate } from 'react-router-dom';
 import { setErrorAction } from '../redux/actions/errorActions';
+import Loader from '../components/Loader';
 
 export default function PrivateRoute({ path }) {
   const dispatch = useDispatch();
@@ -37,40 +38,6 @@ export default function PrivateRoute({ path }) {
       } else {
         return <Navigate to="../not-found" />
       }
-    default: return
+    default: return <Loader />
   }
-
-  // if (token) {
-  //   switch (path) {
-  //     case 'account':
-  //       return <Account />
-  //     case 'admin':
-  //       if (isAdmin) return <AdminProducts />
-  //       if (isAdmin === false) return <Navigate to="../not-found" />
-
-  //     default: return
-  //   }
-  // } else {
-  //   if (path === 'account') return <Navigate to="/authorization" />
-  // }
-  // return <Navigate to="../not-found" />
-
-  // if (token) {
-  //   if (adminPanel && isAdmin) return <AdminProducts />
-  //   // if (adminPanel && !isAdmin) return navigate("../not-found")
-  //   // if (adminPanel && !isAdmin) return <Navigate to="../not-found" />
-  //   return <Account />
-  // }
-
-  // if (token) return <Navigate to="/account" />
-
-  // if (token) return <Account />
-  // if (token) return <Account />
-  // return <NotFound/>
-  // return <Navigate to="/authorization"/>
-
-  // if (adminPanel && isAdmin) return <AdminProducts />
-  // if (token) return <Account />
-  // return <Navigate to="../not-found"/>
-
 }
