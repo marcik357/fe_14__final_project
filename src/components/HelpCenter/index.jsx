@@ -138,7 +138,6 @@ export function HelpCenter() {
 
   return (
     <div className={styles.helpCenter}>
-
       <div className={styles.helpCenter__container}>
         <div className={styles.helpCenter__content}>
           <div className={styles.helpCenter__cubeBlockWrap}>
