@@ -20,8 +20,12 @@ export default function Router() {
           {/* <Route element={<PrivateRoute />}>
             <Route path='/account' element={<Account />} />
           </Route> */}
-          <Route path='/account' element={<PrivateRoute />} />
-          <Route path='/admin' element={<PrivateRoute adminPanel={true} />} />
+
+          <Route path='/account' element={<PrivateRoute path='account' />} />
+          <Route path='/admin' element={<PrivateRoute path='admin' />} />
+          {/* <Route path='/account' element={<PrivateRoute />} />
+          <Route path='/admin' element={<PrivateRoute adminPanel={true} />} /> */}
+
           {/* <Route element={<PrivateRoute adminPanel={true} />}>
             <Route path='/admin' element={<AdminProducts />} />
           </Route> */}

@@ -51,7 +51,13 @@ export const modalProps = [
     actions(onClose, onSubmit, className) {
       return (
         <div className={className}>
-          <NavLink to="/authorization" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
+          <NavLink to="/authorization"
+            className={`${style.modal__btn} ${style.cancelBtn}`}
+            onClick={() => {
+              localStorage.removeItem('token');
+              onClose();
+              window.location.reload();
+            }}>
             log in
           </NavLink>
         </div>
@@ -75,7 +81,7 @@ export const modalProps = [
   {
     type: 'order',
     header: 'Thank you for the order!',
-    icon:<SuccessOrder width='150px' />,
+    icon: <SuccessOrder width='150px' />,
     actions(onClose, onSubmit, className) {
       return (
         <div className={className}>
