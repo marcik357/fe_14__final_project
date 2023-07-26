@@ -11,7 +11,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
-
+import { Mint } from '../../components/Mint';
 export function Account() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
@@ -20,7 +20,7 @@ export function Account() {
   const [user, setUser] = useState(null)
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
-
+  const [mint,setMint] = useState(false);
   async function logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
@@ -28,7 +28,7 @@ export function Account() {
     await dispatch(setCart(null));
     return <Navigate to="/authorization" />;
   }
-
+  console.log(mint);
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
       method: "GET",
@@ -64,20 +64,31 @@ export function Account() {
                   type='button'>
                   Log out
                 </button>
+                <button
+                className={styles.user__btnsItem}
+                type='button'
+                onClick={()=>setMint(!mint)}
+                >Mint</button>
+               
                 {user?.isAdmin
                   && <button
                     className={styles.user__btnsItem}
                     onClick={() => setAdminPanel(!adminPanel)}
                     type='button'>
                     {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-                  </button>}
+                  </button>
+                  }
               </div>
-              {!adminPanel
+              {mint ?<Mint
+              setMint={setMint}
+              orders={orders}
+              mint={mint}/> :!adminPanel
                 ? <>
                   <h4 className={styles.user__title}>List of your orders:</h4>
                   {orders?.length > 0 && <OrdersList orders={orders}/>}
                 </>
                 : <AdminProducts />}
+              
             </div>
           </div>
         </>

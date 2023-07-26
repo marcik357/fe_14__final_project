@@ -1,0 +1,43 @@
+.description {
+  
+    font-weight: 400;
+    font-size: 18px;
+    padding-bottom: 30px;
+}
+.wrapper {
+    padding:50px 0 50px;
+    border-radius: 12px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    transition: all 0.7s;
+    &:hover {
+        box-shadow: -1px 1px 10px 10px rgba(0, 0, 0, 0.13);
+        margin-bottom: 20px;
+    }
+}
+
+.block {
+    display: flex;
+    flex-flow: column;
+    gap:20px;
+    font-size: 20px;
+    align-items: center;
+}
+.photo {
+    background: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+    transition: ease-in 0.9s;
+}
+.mint {
+    font-size: 32px;
+    
+}

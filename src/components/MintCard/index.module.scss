@@ -1,0 +1,70 @@
+.block {
+    display: flex;
+    flex-flow: column;
+    gap:20px;
+    font-size: 20px;
+    align-items: center;
+    &__card {
+        background: #fff;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 200px;
+        border-radius: 12px;
+        box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+        transition: ease-in 0.9;
+    }
+}
+.disabled {
+    display: flex;
+    flex-flow: column;
+    gap:20px;
+    font-size: 20px;
+    align-items: center;
+    pointer-events: none; 
+    opacity:0.4;
+}
+.card{
+    &__img {
+        width: 200px;
+        height: 200px;
+        border-radius: 12px;
+    }
+}
+.img {
+    &__addCard {
+        cursor: pointer;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        transition: all 0.5;
+        box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
+        background: rgba(181, 181, 181,0.5);
+        &::after {
+            content: "+";
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+        &:hover {
+            scale: 0.8;
+        }
+    }
+    &__deleteCard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: absolute;
+        border-radius: 50%;
+        top:10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        background: rgba(181, 181, 181,0.5);
+        transition: all 0.1;
+      
+    }
+}
