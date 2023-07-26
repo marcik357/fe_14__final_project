@@ -21,7 +21,8 @@ function ProductCard({
   buttonHandler,
   deleteButtonHandler,
   customCard = false,
-  quantity
+  quantity,
+  enabled
 }) {
   const dispatch = useDispatch();
   const cartProductsArray = useSelector((state) => state.cart.cart.products);
@@ -32,7 +33,7 @@ function ProductCard({
 
   return (<>{customCard ? (
     <AdminProductCard _id={_id} imageUrls={imageUrls}
-    currentPrice={currentPrice} itemNo={itemNo} name={name}
+    currentPrice={currentPrice} itemNo={itemNo} name={name} enabled={enabled}
     quantity={quantity} buttonHandler={() => buttonHandler(itemNo)} author={author} deleteButtonHandler={() => deleteButtonHandler(itemNo)}/>
   ) : (<div className={styles.productCard}>
   <Link to={`/product/${itemNo}`}>
