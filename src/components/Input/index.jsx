@@ -1,7 +1,15 @@
-import { useField } from 'formik';
+import { useField, useFormikContext } from 'formik';
+import { useEffect } from 'react';
 
 const Input = ({ label, ...props }) => {
     const [field, meta] = useField(props);
+    const { setFieldValue } = useFormikContext();
+
+  useEffect(() => {
+    if (props.name === 'imageUrls' && props.value !== field.value) {
+      setFieldValue(props.name, props.value || '');
+    }
+  }, [props.name, props.value, field.value, setFieldValue]);
     return (
         <>
             <label
@@ -16,7 +24,8 @@ const Input = ({ label, ...props }) => {
                 id={props.id}
                 {...field}
                 value={field.value || ''}
-                readOnly={props.name === '_id'}/>
+                readOnly={props.name === '_id'}
+                multiple={props.multiple}/>
             {meta.touched && meta.error
                 ? <div
                     className={props.errorClass}>

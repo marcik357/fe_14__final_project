@@ -7,7 +7,8 @@ import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { setModalType } from '../../redux/actions/modalActions';
 import { fetchData } from '../../utils';
-import { baseUrl, reqPost } from '../../utils/vars';
+import { baseUrl } from '../../utils/vars';
+import { reqPost } from '../../utils/requestBody';
 
 
 export default function LoginForm() {

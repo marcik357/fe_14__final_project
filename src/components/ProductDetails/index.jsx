@@ -8,7 +8,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
-export default function ProductDetails({ _id, itemNo, name, currentPrice, quantity, imageUrls, authorIcon, collectionIcon, author, categories, theme, details }) {
+export default function ProductDetails({ _id, name, currentPrice, imageUrls, authorIcon, author, categories, theme, details }) {
   const dispatch = useDispatch();
   const { token } = useSelector(state => state.token)
   const cart = useSelector((state) => state.cart.cart);
@@ -73,7 +73,6 @@ export default function ProductDetails({ _id, itemNo, name, currentPrice, quanti
               <span>view cart</span>
             </Link>
           }
-          {/* <button className={style.productDetails__actions_mainBtn} onClick={() => buyNowHandler(dispatch, _id, token)}>Buy now</button> */}
           <p className={style.productDetails__actions_text}>
             We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities.
             Join the millions of creators, collectors, and curators who are on this journey with you.
