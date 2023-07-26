@@ -39,6 +39,7 @@ function MintPage() {
 
         <div className={style.mintPage__wrapper}>
           <motion.div
+            id='box'
             animate={isOverlayVisible ? 'hidden' : 'show'}
             variants={leftCard}
             className={style.mintPage__card}
@@ -59,6 +60,7 @@ function MintPage() {
             transition={{ duration: 1.2 }}
             animate={isOverlayVisible ? 'hidden' : 'show'}
             variants={arrows}
+            className={`${style.mintPage__card_arrows}`}
           >
             &#8680;
           </motion.span>
@@ -91,11 +93,13 @@ function MintPage() {
             transition={{ duration: 1.2 }}
             animate={isOverlayVisible ? 'hidden' : 'show'}
             variants={arrows}
+            className={style.mintPage__card_arrows}
           >
             &#8678;
           </motion.span>
 
           <motion.div
+            id='box'
             animate={isOverlayVisible ? 'hidden' : 'show'}
             variants={rightCard}
             className={style.mintPage__card}
