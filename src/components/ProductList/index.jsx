@@ -1,7 +1,7 @@
 import ProductCard from '../ProductCard';
 import styles from './productList.module.scss';
 import './pagination.scss';
-import usePagination from '../../Hooks/usePagination';
+import usePagination from '../../hooks/usePagination';
 import { ArrowRight } from '../Icons';
 import { scrollTo } from '../../utils';
 
@@ -82,7 +82,7 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
     <div
       id='products'
       className={`${styles.products} ${isInAuthor && styles.productListInAuthor}`}>
-      {!isInAuthor && (
+      {(!isInAuthor && listName) && (
         <div className={styles.products__title}>
           <h2>{listName}</h2>
         </div>

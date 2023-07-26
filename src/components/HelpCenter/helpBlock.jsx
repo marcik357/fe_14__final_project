@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { OpenList } from "../Icons/open-list.jsx";
 import { CloseList } from "../Icons/close-list.jsx";

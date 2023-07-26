@@ -95,6 +95,7 @@ option {
     cursor: pointer;
     overflow: hidden;
     z-index: 1;
+    // box-sizing: border-box;
   }
 
   &__sortBtn {
