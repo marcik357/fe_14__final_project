@@ -12,11 +12,13 @@ import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
 import { Mint } from '../../components/Mint';
+
 export function Account() {
   const dispatch = useDispatch();
+  const { products } =useSelector(state=> state.products);
   const loading = useSelector((state) => state.loading.loading);
   const token = useSelector((state) => state.token.token);
-
+  const [mintResult, setMintResult ]=useState('')
   const [user, setUser] = useState(null)
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
@@ -28,7 +30,7 @@ export function Account() {
     await dispatch(setCart(null));
     return <Navigate to="/authorization" />;
   }
-  console.log(mint);
+
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
       method: "GET",
@@ -67,7 +69,9 @@ export function Account() {
                 <button
                 className={styles.user__btnsItem}
                 type='button'
-                onClick={()=>setMint(!mint)}
+                onClick={()=>{
+                  setMintResult(products)
+                  setMint(!mint)}}
                 >Mint</button>
                
                 {user?.isAdmin
@@ -80,6 +84,8 @@ export function Account() {
                   }
               </div>
               {mint ?<Mint
+              mintResult={mintResult}
+              user={user}
               setMint={setMint}
               orders={orders}
               mint={mint}/> :!adminPanel

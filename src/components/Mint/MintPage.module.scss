@@ -1,0 +1,196 @@
+.bg {
+    position: absolute;
+    top: -100px;
+    bottom: -90px;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: #000000b5;
+    color: #a4a4a4;
+    overflow: hidden;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+  }
+  
+  .mintPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+  
+    & h3 {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 50px;
+      z-index: 0;
+      gap: 70px;
+  
+      & span {
+        color: rgb(0, 0, 0);
+        font-size: 70px;
+      }
+    }
+  
+    &__card {
+      position: relative;
+      max-width: 270px;
+      max-height: max-content;
+      padding: 10px;
+      border: 1px solid rgba(111, 111, 111, .2);
+      border-radius: 20px;
+      text-align: center;
+  
+      &_image {
+        & p {
+          padding: 10px 0;
+        }
+  
+        & img {
+          max-width: 250px;
+          border-radius: 20px;
+        }
+      }
+  
+      &_unknown {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 5px;
+        border-radius: 20px;
+        background: linear-gradient(0deg, #000, #272727);
+  
+        & h6 {
+          max-width: 390px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          color: #fff;
+          font-size: 15px;
+          text-align: center;
+        }
+  
+        & img {
+          max-width: 400px;
+          border-radius: 20px;
+        }
+  
+        & h4 {
+          align-self: flex-end;
+          margin-right: 20px;
+          margin-bottom: 20px;
+          color: rgba(127, 54, 195, .815);
+          font-size: 30px;
+        }
+  
+        & p {
+          margin: 100px 100px;
+          text-align: center;
+          color: #fff;
+          font-size: 50px;
+        }
+  
+        &::before,
+        &::after {
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          width: calc(100% + 4px);
+          height: calc(100% + 4px);
+          border-radius: 20px;
+          background: linear-gradient(
+            45deg,
+            #fb0094,
+            #00f,
+            rgb(123, 0, 255),
+            rgb(255, 179, 0),
+            #f00,
+            #fb0094,
+            #00f,
+            rgb(119, 0, 255),
+            rgb(255, 140, 0),
+            #f00
+          );
+          background-size: 400%;
+          content: '';
+          z-index: -1;
+          animation: steam 20s linear infinite;
+        }
+  
+        &::after {
+          filter: blur(70px);
+        }
+      }
+    }
+  
+    &__button {
+      display: flex;
+      margin-bottom: 30px;
+      padding: 15px 30px;
+      transition: all .3s ease-in-out;
+      border-radius: 10px;
+      background-color: rgb(126, 54, 195);
+      color: #fff;
+      font-size: 22px;
+      text-transform: uppercase;
+      cursor: pointer;
+  
+      &:hover {
+        border: 1px solid rgb(126, 54, 195);
+        background-color: #fff;
+        color: rgb(126, 54, 195);
+      }
+    }
+  
+    &__hiddenButton_text {
+      opacity: 0;
+      visibility: hidden;
+    }
+  
+    &__hiddenButton::after {
+      position: absolute;
+      top: 700px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      border: 4px solid transparent;
+      border-radius: 50%;
+      border-top-color: rgb(126, 54, 195);
+      content: '';
+      animation: button-loading-spinner 1s ease infinite;
+    }
+  }
+  
+  @keyframes steam {
+    0% {
+      background-position: 0 0;
+    }
+  
+    50% {
+      background-position: 400% 0;
+    }
+  
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  @keyframes button-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+  
+    to {
+      transform: rotate(1turn);
+    }
+  }

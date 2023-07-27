@@ -1,0 +1,7 @@
+.block {
+    display: flex;
+    flex-flow: column;
+    &__price {
+        margin: 0;
+    }
+}
