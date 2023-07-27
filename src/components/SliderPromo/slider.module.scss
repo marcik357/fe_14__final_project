@@ -204,6 +204,7 @@
     &_buy {
       transition: color .3s;
       background: #f7fbfa;
+      color: #202025;
 
       &::before {
         position: absolute;
@@ -223,6 +224,14 @@
 
       &:hover {
         color: #f7fbfa;
+      }
+
+      & > span > svg > path {
+        transition: stroke .3s;
+      }
+
+      &:hover > span > svg > path {
+        stroke: #f7fbfa;
       }
     }
   }

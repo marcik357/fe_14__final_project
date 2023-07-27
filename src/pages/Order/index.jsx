@@ -1,6 +1,6 @@
 import styling from './order.module.scss';
 import Banner from "../../components/Banner";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useContext } from "react";
 import { baseUrl } from '../../utils/vars';
 import { contactForm } from "../../components/ContactForm/contactForm.js";
@@ -11,8 +11,11 @@ import { paymentForm } from '../../components/PaymentForm/paymentForm.js';
 import { Quantity } from '../../router';
 import { fetchData } from '../../utils';
 import { Link } from 'react-router-dom';
+import { setErrorAction } from '../../redux/actions/errorActions';
+import { reqPost } from '../../utils/requestBody';
 
 export function Order() {
+  const dispatch = useDispatch();
   const token = useSelector(state => state.token.token);
   const cart = useSelector(state => state.cart.cart)
   const { products } = useSelector(state => state.products);
@@ -60,18 +63,14 @@ export function Order() {
 
   async function sendOrder() {
     try {
-      await fetchData(`${baseUrl}orders`, {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(createOrder())
-      })
+      await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createOrder()), token))
     } catch (error) {
       dispatch(setErrorAction(error.message));
     }
   }
 
   return (
-    <>
+    <div id='main'>
       <Banner title="You orders in one touch" img="/images/banners/order-banner.png" />
       <div className={styling.order}>
         <div className={styling.order__container}>
@@ -110,6 +109,6 @@ export function Order() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -8,6 +8,7 @@ import { setErrorAction } from '../../redux/actions/errorActions';
 import { setModalType } from '../../redux/actions/modalActions';
 import { fetchData } from '../../utils';
 import { baseUrl } from '../../utils/vars';
+import { reqPost } from '../../utils/requestBody';
 
 
 export default function LoginForm({ redirectUrl = "/" }) {
@@ -16,13 +17,7 @@ export default function LoginForm({ redirectUrl = "/" }) {
 
   async function onSubmitHandler(values) {
     try {
-      const response = await fetchData(`${baseUrl}customers/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      })
+      const response = await fetchData(`${baseUrl}customers/login`, reqPost(JSON.stringify(values)))
       const token = response.token;
       localStorage.setItem('token', token);
       dispatch(setTokenAction(token));

@@ -10,9 +10,11 @@ export function Cart() {
   const cart = useSelector((state) => state.cart.cart);
   const products = useSelector((state) => state.products.products);
 
+  if (loading) return <Loader />
+
   return (
-    !loading
-      ? <div className={style.cart}>
+    <div id='main'>
+      <div className={style.cart}>
         <div className={style.cart__container}>
           <div className={style.cart__block}>
             <div className={style.block__items}>
@@ -34,12 +36,13 @@ export function Cart() {
                 })
                 : <p className={style.block__noItems}>No items in the Cart</p>}
             </div>
-            <div className={style.block__actionToBuy}>
-              <FormToBuy />
-            </div>
+            {cart?.products?.length > 0
+              && <div className={style.block__actionToBuy}>
+                <FormToBuy />
+              </div>}
           </div>
         </div>
       </div>
-      : <Loader />
+    </div>
   );
 }

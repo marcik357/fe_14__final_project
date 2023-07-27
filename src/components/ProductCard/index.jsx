@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './productCard.module.scss';
-import { buyNowHandler } from '../../utils';
+import { buyNowHandler, isInCart } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Verified } from '../Icons/verified';
 import { Basket, ETHIcon } from '../Icons';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { AdminProductCard } from '../AdminProductCard';
 
 function ProductCard({
@@ -25,10 +27,7 @@ function ProductCard({
   enabled
 }) {
   const dispatch = useDispatch();
-  const cartProductsArray = useSelector((state) => state.cart.cart.products);
-  const isInCart = cartProductsArray?.find(
-    (product) => product.product._id === _id
-  );
+  const cart = useSelector((state) => state.cart.cart);
   const { token } = useSelector((state) => state.token);
 
   return (<>{customCard ? (
@@ -36,11 +35,15 @@ function ProductCard({
     currentPrice={currentPrice} itemNo={itemNo} name={name} enabled={enabled}
     quantity={quantity} buttonHandler={() => buttonHandler(itemNo)} author={author} deleteButtonHandler={() => deleteButtonHandler(itemNo)}/>
   ) : (<div className={styles.productCard}>
-  <Link to={`/product/${itemNo}`}>
-    <img
+  <Link to={`/product/${itemNo}`} className={styles.productCard__link}>
+    <LazyLoadImage
       className={styles.productCard__img}
       src={imageUrls[0]}
       alt={name}
+          effect="blur"
+          placeholderSrc={'./images/products/placeholder.jpg'}
+          height={250}
+          width={250}
     />
     <p className={styles.productCard__name}>{name}</p>
   </Link>
@@ -49,7 +52,7 @@ function ProductCard({
       to={`/author/${author}`}
       className={styles.productCard__userInfo_items}
     >
-      <img
+      <LazyLoadImage
         className={styles.productCard__userInfo_userIcon}
         src={authorIcon}
         alt='user-avatar'
@@ -65,29 +68,29 @@ function ProductCard({
     <Verified />
   </div>
 
-  <div className={styles.productCard__priceInfo}>
-    {isInCart ? (
-      <Link
-        to={'/cart'}
-        className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
-        type='button'
-      >
-        view cart
-        <Basket color='#202025' strokeWidth='2.5' />
-      </Link>
-    ) : (
-      <button
-        className={styles.productCard__priceInfo_button}
-        type='button'
-        onClick={
-        !buttonHandler
-          ? () => buyNowHandler(dispatch, _id, token)
-          : () => buttonHandler(itemNo)
-      }
-      >
-        {buttonText}
-      </button>
-    )}
+      <div className={styles.productCard__priceInfo}>
+        {isInCart(cart, _id) ? (
+          <Link
+            to={'/cart'}
+            className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
+            type='button'
+          >
+            view cart
+            <Basket color='#202025' strokeWidth='2.5' />
+          </Link>
+        ) : (
+          <button
+            className={styles.productCard__priceInfo_button}
+            type='button'
+            onClick={
+            !buttonHandler
+              ? () => buyNowHandler(dispatch, _id, token)
+              : () => buttonHandler(itemNo)
+          }
+          >
+            {buttonText}
+          </button>
+        )}
 
     <div className={styles.productCard__priceInfo_buyNow}>
       <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />

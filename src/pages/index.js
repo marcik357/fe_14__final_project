@@ -11,4 +11,5 @@ export * from './AdminProducts'
 export * from './Discover';
 export * from './Help';
 export * from './NotFound';
+export * from './Collection';
 export * from '../components/AdminLogin'

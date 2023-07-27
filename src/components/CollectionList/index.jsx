@@ -19,7 +19,7 @@ function CollectionList({ products }) {
   }, [products, categories]);
 
   return (
-    <div className={style.collectionList}>
+    <div className={style.collectionList} id='collections'>
       <div className={style.collectionList__wrapper}>
         {categories.map((category) => (
           <CollectionCard

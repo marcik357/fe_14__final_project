@@ -8,8 +8,8 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
-import { Arrow } from '../Icons';
-import { buyNowHandler } from '../../utils';
+import { Arrow, Basket } from '../Icons';
+import { buyNowHandler, isInCart } from '../../utils';
 
 function SliderPromo({ products }) {
   const dispatch = useDispatch()
@@ -19,6 +19,7 @@ function SliderPromo({ products }) {
   const nextBtnRef = useRef(null);
 
   const token = useSelector(state => state.token.token);
+  const cart = useSelector((state) => state.cart.cart);
 
   return (
     <>
@@ -53,7 +54,8 @@ function SliderPromo({ products }) {
               key={_id}
               className={styles.promoSlider__slide}
             >
-              <img src={imageUrl} alt={name} className={styles.promoSlider__slide_img} />
+              <img src={imageUrl} alt={name} className={styles.promoSlider__slide_img} loading="lazy" />
+              <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
               <div className={styles.promoSlider__container}>
                 <div className={styles.promoSlider__inner}>
                   <div className={styles.promoSlider__meta}>
@@ -83,13 +85,24 @@ function SliderPromo({ products }) {
                         <Arrow fill="#F7FBFA" />
                       </span>
                     </Link>
-                    <button
-                      type='button'
-                      onClick={() => buyNowHandler(dispatch, _id, token)}
-                      className={styles.promoSlider__btns_buy}
-                    >
-                      <span>BUY NOW</span>
-                    </button>
+                    {!isInCart(cart, _id)
+                      ?
+                      <button
+                        type='button'
+                        onClick={() => buyNowHandler(dispatch, _id, token)}
+                        className={styles.promoSlider__btns_buy}>
+                        <span>BUY NOW</span>
+                      </button>
+                      : <Link
+                        to={'/cart'}
+                        className={styles.promoSlider__btns_buy}
+                        type='button'>
+                        <span>
+                          view cart
+                          <Basket color='#202025' strokeWidth='2.5' />
+                        </span>
+                      </Link>
+                    }
                   </div>
                 </div>
               </div>

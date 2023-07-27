@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 30px 15px;
-  transition: all .2s ease;
+  // margin: 30px 15px;
+  transition: background-color .3s;
   border-radius: 25px;
   background-color: #f7fbfa;
   font-family: 'Inter', sans-serif;
@@ -38,6 +38,7 @@
   &__image {
     max-width: 100%;
     border-radius: 20px;
+    object-fit: cover;
 
     &_sm {
       display: flex;
@@ -46,7 +47,6 @@
     }
 
     &_sm img {
-      max-width: 32%;
       border-radius: 20px;
     }
   }
@@ -64,13 +64,25 @@
     line-height: 32px;
   }
 
-  &__showCollection {
+  &__btns {
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: center;
+    gap: 2rem;
+    // flex-wrap: wrap;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  &__btn {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    width: max-content;
-    margin: 1rem 0;
+    // width: max-content;
+    // margin: 1rem 0;
     padding: .7rem;
     transition: color .3s;
     border: 2px solid #202025;
@@ -136,7 +148,7 @@
 
 @media (min-width: 1024px) {
   .collectionCard {
-    margin: 20px 0;
+    // margin: 20px 0;
 
     &__name {
       font-size: 32px;
@@ -145,46 +157,56 @@
   }
 }
 
-@media (min-width: 1400px) {
-  .collectionCard {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-    border: 1px solid #e1e2e2;
+// @media (min-width: 1400px) {
+//   .collectionCard {
+//     display: flex;
+//     justify-content: center;
+//     // margin: 20px 0;
+//     border: 1px solid #e1e2e2;
 
-    &__wrapper {
-      flex-direction: row;
-      padding: 7px;
-    }
+//     &__wrapper {
+//       flex-direction: row;
+//       padding: 7px;
 
-    &__image {
-      max-width: 80%;
-      border-radius: 20px;
+//       & > span {
+//         flex: 1 0 80%;
 
-      &_sm {
-        display: grid;
-        justify-content: space-between;
-        margin-top: 0;
-        margin-left: 10px;
-        grid-template-rows: repeat(3, 1fr);
-        row-gap: 10px;
-      }
+//         & > img {
+//           min-width: 100%;
+//           height: 100%;
+//           object-fit: cover;
+//         }
+//       }
+//     }
 
-      &_sm img {
-        max-width: 100%;
-        min-height: 102%;
-        border-radius: 20px;
-        object-fit: cover;
-      }
-    }
+//     &__image {
+//       max-width: 80%;
+//       border-radius: 20px;
 
-    &__viewAll {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 0;
-      font-size: 24px;
-      line-height: 32px;
-    }
-  }
-}
+//       &_sm {
+//         display: grid;
+//         justify-content: space-between;
+//         margin-top: 0;
+//         margin-left: 10px;
+//         grid-template-rows: repeat(3, 1fr);
+//         row-gap: 10px;
+//       }
+
+//       &_sm img {
+//         max-width: 100%;
+//         min-height: 102%;
+//         border-radius: 20px;
+//         object-fit: cover;
+//       }
+//     }
+
+//     &__viewAll {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       min-width: 0;
+//       font-size: 24px;
+//       line-height: 32px;
+//     }
+//   }
+// }
