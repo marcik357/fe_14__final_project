@@ -28,7 +28,7 @@ export function HeaderSearchResults(props) {
                 type === 'NFTs'
                   ? `/product/${itemNo}`
                   : type === 'Collections'
-                  ? `/collection/${id}`
+                  ? `/collection/${name}`
                   : type === 'Authors'
                   ? `/author/${customId}`
                   : '/'

@@ -5,7 +5,7 @@ import Loader from '../../components/Loader';
 import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
@@ -14,6 +14,7 @@ import { reqGet } from '../../utils/requestBody';
 
 export function Account() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loading = useSelector((state) => state.loading.loading);
 
   const [user, setUser] = useState(null)
@@ -24,7 +25,7 @@ export function Account() {
     localStorage.removeItem('cart');
     dispatch(setTokenAction(null));
     dispatch(setCart(null));
-    return <Navigate to="/authorization" />;
+    // return <Navigate to="/authorization" />;
   }
 
   const accountLoad = useCallback(async () => {
@@ -51,7 +52,13 @@ export function Account() {
           <div className={styles.user__btns}>
             <button
               className={styles.user__btnsItem}
-              onClick={logOut}
+              onClick={() => {
+                navigate("/authorization");
+                const timer = setTimeout(() => {
+                  logOut();
+                  clearTimeout(timer)
+                }, 10);
+              }}
               type='button'>
               Log out
             </button>
