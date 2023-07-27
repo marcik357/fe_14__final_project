@@ -64,7 +64,7 @@ export function Account() {
         <div className={styles.user__container}>
           <div className={styles.user__btns}>
           {!addProduct && <button
-                  className={styles.user__adminBtn}
+                  className={styles.user__btnsItem}
                   onClick={handleAddButton}
                   type='button'>
                   Add new product
@@ -75,12 +75,12 @@ export function Account() {
               type='button'>
               Log out
             </button>
-            {user?.isAdmin &&
+            {/* {user?.isAdmin &&
               <Link
                 className={styles.user__btnsItem}
                 to={'/admin'}>
                 Show Admin panel
-              </Link>}
+              </Link>} */}
           </div>
           {addProduct ?
           <AddProductForm onCloseForm={handleFormClose} isInAccount={true}/>
