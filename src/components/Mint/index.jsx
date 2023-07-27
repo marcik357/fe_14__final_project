@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 import { useSelector,useDispatch } from "react-redux";
-import { useState,useContext } from 'react';
+import { useState } from 'react';
 import { mintTypes } from '../../redux/types/mintTypes';
 import { MintCard } from '../MintCard';
 import { MintBtn } from '../MintBtn';
@@ -8,14 +8,10 @@ import { useEffect } from 'react';
 import { addToMint } from '../../redux/actions/mintActions';
 import { addToOrder } from "../../redux/actions/orderAction";
 import styleBtn from '../../pages/Account/Account.module.scss';
-import { baseUrl } from '../../utils/vars';
-import { setErrorAction } from '../../redux/actions/errorActions';
 ///animation
 import style from './MintPage.module.scss';
 import { motion } from 'framer-motion';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { MintResult } from '../MintResult';
-// import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const rightCard = {
   show: { opacity: 1, x: 0 },
@@ -31,13 +27,11 @@ const arrows = {
 };
 
 export function Mint ({setMint,mint,orders,user,mintResult}) {
-    const { token } = useSelector(state=>state.token);
     const [selectCardFirst, setSelectCardFirst] = useState(false);
     const [selectCardSecond,setSelectCardSecond] =useState(false);
     const [isOverlayVisible, setOverlayVisible] = useState(false);
     const [showCard, setShowCard] = useState(false);
     const [card, setCard]=useState(null);
-    // const { products } =useSelector(state=> state.products);
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();
   
@@ -48,7 +42,7 @@ export function Mint ({setMint,mint,orders,user,mintResult}) {
     }, 3000);
     };
 
-    console.log(card);
+  
     useEffect(()=>{
         const result=[]
         const cardsArray = orders.map(products=>products.products.map(({cartQuantity,product})=>{
@@ -56,6 +50,7 @@ export function Mint ({setMint,mint,orders,user,mintResult}) {
         cardsArray.map(card=>card.map(product=>result.push(product)))
         dispatch(addToOrder(result))
     },[dispatch,orders])
+
     useEffect(()=>{
       setCard( mintResult[Math.floor(Math.random() * mintResult?.length)])
     },[mintResult])
@@ -134,15 +129,13 @@ export function Mint ({setMint,mint,orders,user,mintResult}) {
         </div>
         {!showCard ? (
           <motion.button
-            onClick={()=>{
-              handleMintNowClick()
-              // setMintResult(products)
-
-            }}
+            onClick={handleMintNowClick}
             className={`${
-              isOverlayVisible
-                ? style.mintPage__hiddenButton
-                : styleBtn.user__btnsItem
+              mintCardFirst.itemNo && mintCardSecond.itemNo ? isOverlayVisible
+              ? style.mintPage__hiddenButton
+              : styleBtn.user__btnsItem
+              :styles.hidden_btn
+              
             }`}
           >
              <MintBtn

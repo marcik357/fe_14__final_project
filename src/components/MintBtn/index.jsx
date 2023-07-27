@@ -1,6 +1,5 @@
 import style from './index.module.scss';
 import styles from '../Mint/MintPage.module.scss';
-import axios from 'axios';
 import { useSelector,useDispatch } from "react-redux";
 import { baseUrl } from '../../utils/vars';
 import { setErrorAction } from '../../redux/actions/errorActions';
@@ -10,8 +9,6 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
     const { token } = useSelector(state=>state.token)
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();
-    const { products } =useSelector(state=> state.products);
-    console.log(card);
 
     function createMint  (orders,selectCard) {
         let order = orders.find((item)=>item.products.some(product=>product.product.itemNo ===selectCard.itemNo) ? item.products:"")
@@ -20,25 +17,34 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
         order.products.length > 1 ?changeOrder(token,order,order._id): deleteOrder(token,order._id)
         }
     
-    function changeOrder(token,changedOrder,orderNumber){
-        axios.defaults.headers.put['Authorization'] = `Bearer ${token}`
-        axios
-        .put(`${baseUrl}orders/${orderNumber}`,changedOrder)
+    async function changeOrder(token,changedOrder,orderNumber){
+        try {
+            await fetchData(`${baseUrl}orders/${orderNumber}`, {
+              method: "PUT",
+              headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json' },
+              body: JSON.stringify(changedOrder)
+            })
+          } catch (error) {
+            dispatch(setErrorAction(error.message));
+          }
     }
 
-    function deleteOrder (token,orderNumber){
-        axios.defaults.headers.delete['Authorization'] = `Bearer ${token}`
-        axios
-        .delete(`${baseUrl}orders/${orderNumber}`)
+    async function deleteOrder (token,orderNumber){
+        try {
+            await fetchData(`${baseUrl}orders/${orderNumber}`, {
+              method: "DELETE",
+              headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json' },
+              body: JSON.stringify(createMintOrder())
+            })
+          } catch (error) {
+            dispatch(setErrorAction(error.message));
+          }
     }
 
-    function getMintCard(token){
-        axios.defaults.headers.get['Authorization'] = `Bearer ${token}`
-        axios
-        .get(`${baseUrl}mintProducts`)
-        .then(res=>{
-            setMintResult(res.data)})}
- 
 function createMintOrder (){
 const order={
       paymentInfo: "Mint",
@@ -69,19 +75,27 @@ const order={
     }
   }
 
+  async function deleteMintCard() {
+    try {
+      await fetchData(`${baseUrl}mintProducts/${card._id}`, {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' }
+      })
+    } catch (error) {
+      dispatch(setErrorAction(error.message));
+    }
+  }
+
     return (
         <button
         className={isOverlayVisible && styles.mintPage__hiddenButton_text}
         onClick={()=>{
-            // setMintResult(products[Math.floor(Math.random() * products?.length)])
-            sendMintOrder()
-        }
-        }
-            // getMintCard(token)
-            // console.log(card)
             // createMint(orders,mintCardFirst),
             // createMint(orders,mintCardSecond),
-            // setMint(!mint)
+            sendMintOrder()
+            // deleteMintCard()
+        }
+        }
             >Mint</button>
     )
 }

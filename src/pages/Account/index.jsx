@@ -12,6 +12,7 @@ import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
 import { Mint } from '../../components/Mint';
+import axios from 'axios';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -30,6 +31,12 @@ export function Account() {
     await dispatch(setCart(null));
     return <Navigate to="/authorization" />;
   }
+  function getMintCard(token){
+    axios.defaults.headers.get['Authorization'] = `Bearer ${token}`
+    axios
+    .get(`${baseUrl}mintProducts`)
+    .then(res=>{
+        setMintResult(res.data)})}
 
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
@@ -46,7 +53,7 @@ export function Account() {
         'Content-Type': 'application/json'
       },
     }, 'account-data'));
-  }, [dispatch, token]);
+  }, [dispatch, token, mint]);
 
   return (
     <div id='main'>
@@ -70,6 +77,7 @@ export function Account() {
                 className={styles.user__btnsItem}
                 type='button'
                 onClick={()=>{
+                  // getMintCard(token)
                   setMintResult(products)
                   setMint(!mint)}}
                 >Mint</button>
