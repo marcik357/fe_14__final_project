@@ -9,7 +9,7 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
     const { token } = useSelector(state=>state.token)
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();
-
+  console.log(card);
     function createMint  (orders,selectCard) {
         let order = orders.find((item)=>item.products.some(product=>product.product.itemNo ===selectCard.itemNo) ? item.products:"")
         order.products =order.products.filter(item=>item.product.itemNo !==selectCard.itemNo ),
@@ -45,6 +45,21 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
           }
     }
 
+const mintelem={
+_id:"64c2c23a756a629cfe22d8ae",
+author:"@Drop",
+categories:"mint",
+currentPrice:8.5,
+authorIcon: "/images/avatars/@ArtWarsNFT.png",
+details:"Welcome to the world of unique art on the blockchain! Your NFT card ha…",
+enabled:true,
+imageUrls:["https://res.cloudinary.com/ddggwaua5/image/upload/v1690047021/animals_red_fox.webp"],
+itemNo:"923002",
+name:"robot in the canvas",
+quantity:10,
+theme:["robot"]
+}
+
 function createMintOrder (){
 const order={
       paymentInfo: "Mint",
@@ -61,8 +76,6 @@ const order={
 
     return { ...order, products: newCartArray}
   }
-
-
   async function sendMintOrder() {
     try {
       await fetchData(`${baseUrl}orders`, {
@@ -75,23 +88,16 @@ const order={
     }
   }
 
-  async function deleteMintCard() {
-    try {
-      await fetchData(`${baseUrl}mintProducts/${card._id}`, {
-        method: "DELETE",
-        headers: { 'Content-Type': 'application/json' }
-      })
-    } catch (error) {
-      dispatch(setErrorAction(error.message));
+   function deleteMintCard() {
+      return card.enabled=false
     }
-  }
 
     return (
         <button
         className={isOverlayVisible && styles.mintPage__hiddenButton_text}
         onClick={()=>{
-            // createMint(orders,mintCardFirst),
-            // createMint(orders,mintCardSecond),
+              // createMint(orders,mintCardFirst),
+              // createMint(orders,mintCardSecond),
             sendMintOrder()
             // deleteMintCard()
         }

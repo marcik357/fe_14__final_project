@@ -35,8 +35,8 @@ export function Account() {
     axios.defaults.headers.get['Authorization'] = `Bearer ${token}`
     axios
     .get(`${baseUrl}mintProducts`)
-    .then(res=>{
-        setMintResult(res.data)})}
+    .then(res=>
+        setMintResult(res.data))}
 
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
@@ -77,8 +77,8 @@ export function Account() {
                 className={styles.user__btnsItem}
                 type='button'
                 onClick={()=>{
-                  // getMintCard(token)
-                  setMintResult(products)
+                  getMintCard(token)
+                  // setMintResult(products)
                   setMint(!mint)}}
                 >Mint</button>
                
