@@ -11,6 +11,7 @@ import { fetchData } from '../../utils';
 import Checkbox from '../Checkbox';
 import { addProductFormFields } from './addProductFormField';
 import  PhotoUploader  from '../PhotoUploader/index';
+import { reqPost } from '../../utils/requestBody';
 
 export default function AddProductForm({ onCloseForm , isInAccount }) {
   const dispatch = useDispatch();
@@ -35,14 +36,8 @@ export default function AddProductForm({ onCloseForm , isInAccount }) {
       onSubmit={
         async (values, { setSubmitting }) => {
           try {
-            await fetchData(`${baseUrl}products`, {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(values)
-            });
+            await fetchData(`${baseUrl}products`, reqPost(JSON.stringify(values))
+            );
             onCloseForm()
             setSubmitting(false);
             dispatch(setModalType('saved'))
