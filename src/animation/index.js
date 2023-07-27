@@ -5,3 +5,4 @@ export { linkAnimation } from './headerSearch';
 export { blockAnimation } from './helpBlock';
 export { listAnimation } from './helpBlock';
 export { itemAnimation } from './helpBlock';
+export { buttonAnimation } from './buttonToTop';

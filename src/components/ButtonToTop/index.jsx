@@ -3,6 +3,8 @@ import { useState } from "react";
 import ArrowUp from "../Icons/arrow-up";
 import { scrollTo } from "../../utils";
 import styles from "./buttonToTop.module.scss";
+import { motion, AnimatePresence } from 'framer-motion';
+import { buttonAnimation } from "../../animation";
 
 export default function BackToTopButton(){
     const [backToTop, setBacktoTop] = useState(false);
@@ -18,14 +20,14 @@ export default function BackToTopButton(){
     }, [])
 
     return (
-        <>
+        <AnimatePresence>
             {backToTop && (
                 <>
-                <button className={styles.button} onClick={() => scrollTo("body")}>
+                <motion.button {...buttonAnimation} className={styles.button} onClick={() => scrollTo("body")}>
                     <ArrowUp />
-                </button>
+                </motion.button>
                 </>
             )}
-        </>
+        </AnimatePresence>
     )
 }

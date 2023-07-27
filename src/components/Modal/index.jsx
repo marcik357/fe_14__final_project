@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import style from './modal.module.scss';
+import { AnimatePresence, motion } from 'framer-motion';
+import { modalAnimation } from '../../animation/modal';
 
 export function Modal(props) {
   const dispatch = useDispatch();
@@ -19,9 +21,9 @@ export function Modal(props) {
   }
 
   return (
-    <>
+    <AnimatePresence>
       <div className={style.overlay} role="button" tabIndex={0} onClick={onCloseModal} onKeyDown={onCloseModal} />
-      <div className={style.modal}>
+      <motion.div {...modalAnimation} className={style.modal}>
         <div className={style.modal__container}>
           <div className={style.modal__header}>
             <h3 className={style.modal__title}>{header}</h3>
@@ -34,8 +36,8 @@ export function Modal(props) {
           </div>
           {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}
         </div>
-      </div>
-    </>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
