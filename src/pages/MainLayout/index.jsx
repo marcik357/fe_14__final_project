@@ -14,6 +14,7 @@ import { setCart } from '../../redux/actions/cartActions';
 import { fetchData, getDataFromLS, loadData } from '../../utils';
 import { Quantity } from '../../router';
 import { reqGet, reqPost } from '../../utils/requestBody';
+import BackToTopButton from '../../components/ButtonToTop';
 
 export function MainLayout() {
   const dispatch = useDispatch()
@@ -81,6 +82,7 @@ export function MainLayout() {
       )}
       <Header />
       <Outlet />
+      <BackToTopButton />
       <Footer />
     </>
   );
