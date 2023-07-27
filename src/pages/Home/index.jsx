@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDataAction } from '../../redux/actions/getDataActions';
 import SliderPromo from '../../components/SliderPromo';
 import ProductList from '../../components/ProductList';
 import Loader from '../../components/Loader';
@@ -11,8 +10,7 @@ import AuthorList from '../../components/AuthorList';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './tabs.scss';
 import { Link } from 'react-router-dom';
-import { fetchData } from '../../utils';
-import { setLoadingAction } from '../../redux/actions/loadingActions';
+import { fetchData, loadData } from '../../utils';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -23,24 +21,19 @@ export function Home() {
   const loading = useSelector((state) => state.loading.loading);
 
   const homeLoad = useCallback(async () => {
-    try {
-      dispatch(setLoadingAction(true));
-      const slides = await fetchData(`${baseUrl}slides`)
-      const partners = await fetchData(`${baseUrl}partners`)
-      setSlides(slides);
-      setPartners(partners);
-      dispatch(setLoadingAction(false))
-    } catch (error) {
-      dispatch(setLoadingAction(false))
-      dispatch(setErrorAction(error.message));
-    }
-  }, [dispatch])
+    const slides = await fetchData(`${baseUrl}slides`)
+    const partners = await fetchData(`${baseUrl}partners`)
+    setSlides(slides);
+    setPartners(partners);
+  }, [])
 
   useEffect(() => {
-    homeLoad()
-  }, [homeLoad]);
+    loadData(dispatch, homeLoad)
+  }, [dispatch, homeLoad]);
 
-  return !loading ? (
+  if (loading) return <Loader />
+
+  return (
     <div id='main'>
       {slides?.length > 0 ? <SliderPromo products={slides} /> : <SliderPromo products={[]} />}
       <div className={styles.products}>
@@ -65,7 +58,5 @@ export function Home() {
         </div>
       </div>
     </div>
-  ) : (
-    <Loader />
   );
 }

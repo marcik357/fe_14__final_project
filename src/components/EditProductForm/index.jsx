@@ -4,12 +4,13 @@ import { editProductFormFields } from './editProductFormField';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
-import { baseUrl, reqPut } from '../../utils/vars';
+import { baseUrl } from '../../utils/vars';
 import { Formik, Form } from 'formik';
 import { validationSchemaProduct } from '../../validation';
 import Select from '../Select';
 import { fetchData } from '../../utils';
 import Checkbox from '../Checkbox';
+import { reqPut } from '../../utils/requestBody';
 
 export default function EditProductForm({ product, onCloseForm }) {
   const dispatch = useDispatch();
