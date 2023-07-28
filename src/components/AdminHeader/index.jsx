@@ -1,37 +1,37 @@
-import { Link, Navigate  } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import style from "./adminHeader.module.scss"
 import { Logo } from "../Icons"
 import { useDispatch } from "react-redux";
 import { setTokenAction } from "../../redux/actions/tokenActions";
 
-export default function AdminHeader () {
+export default function AdminHeader({ loggedIn }) {
   const dispatch = useDispatch();
-    
-    function logOut() {
-        localStorage.removeItem('token');
-        dispatch(setTokenAction(null));
-        return <Navigate to="/admin" />;
-      }
-    return (
-        <header className={style.header}>
-            <div className={style.wrapper}>
-        <div className={style.container}>
-        <div className={style.section}>
-        <Link to="/admin">
-                <div className={style.logo}>
-                  <Logo />
-                  <span className={style.title}>CRYPTER</span>
-                </div>
-              </Link>
-              </div>
-              <button
-              className={style.logOut}
+
+  function logOut() {
+    localStorage.removeItem('token');
+    dispatch(setTokenAction(null));
+    window.location.reload()
+    // return <Navigate to="/admin" />;
+  }
+  return (
+    <header className={style.header}>
+      <div className={style.header__wrapper}>
+        <div className={style.header__container}>
+          <Link to="/admin" className={style.header__link}>
+            <div className={style.header__logo}>
+              <Logo />
+              <span className={style.header__title}>CRYPTER</span>
+            </div>
+          </Link>
+          {loggedIn
+            && <button
+              className={style.header__logOut}
               onClick={logOut}
               type='button'>
               Log out
-            </button>
+            </button>}
         </div>
-        </div>
-        </header>
-    )
+      </div>
+    </header>
+  )
 }

@@ -26,8 +26,8 @@ export function AdminProducts() {
   const [addProduct, setAddProduct] = useState(false)
   const modalType = useSelector((state) => state.modal.modal);
 
-async function deleteProduct (product) {
-   const values = {...product, enabled: false}
+  async function deleteProduct(product) {
+    const values = { ...product, enabled: false }
     try {
       await fetchData(`${baseUrl}products/${product._id}`, reqPut(JSON.stringify(values))
       );
@@ -36,14 +36,14 @@ async function deleteProduct (product) {
       dispatch(setErrorAction(error.message));
       dispatch(setModalType('error'))
     }
-  
-}
-function handleDelButton (itemNo){
-  const product = products.find( (product) => product.itemNo === itemNo)
-  setProduct(product)
-  console.log(product);
-  dispatch( setModalType('deleteProduct'))
-}
+
+  }
+  function handleDelButton(itemNo) {
+    const product = products.find((product) => product.itemNo === itemNo)
+    setProduct(product)
+    console.log(product);
+    dispatch(setModalType('deleteProduct'))
+  }
   function handleAddButton() {
     setAddProduct(true)
   }
@@ -51,7 +51,7 @@ function handleDelButton (itemNo){
     setProductId(id)
     setOpenForm(true);
   }
-  
+
   function handleFormClose() {
     setOpenForm(false);
     setProductId(null);
@@ -73,36 +73,39 @@ function handleDelButton (itemNo){
   }, [modalType, dispatch])
 
   return <>
-  {modalType && (
-        <Modal data={modalProps.find((modal) => modal.type === modalType)} onDelete={()=> deleteProduct(product)}/>
-      )}
-  <AdminHeader/>
-  <div className={style.container}>
-    {openForm && product
-      ? <EditProductForm product={product} onCloseForm={handleFormClose} />
-      : addProduct ? (
-        <AddProductForm onCloseForm={handleFormClose} />
-      ) : <>
-      <div className={style.btns}>
-        <h1>Products</h1>
-      <button className={style.addBtn} type='button' onClick={handleAddButton}>Add new product</button>
+    {modalType && (
+      <Modal data={modalProps.find((modal) => modal.type === modalType)} onDelete={() => deleteProduct(product)} />
+    )}
+    <AdminHeader loggedIn={true} />
+    <div className={style.admin}>
+      <div className={style.admin__container}>
+        {openForm && product
+          ? <EditProductForm product={product} onCloseForm={handleFormClose} />
+          : addProduct
+            ? <AddProductForm onCloseForm={handleFormClose} />
+            : <>
+              <div className={style.admin__header}>
+                <h1>Products</h1>
+                <button className={style.admin__btn} type='button' onClick={handleAddButton}>Add new product</button>
+              </div>
+              <div className={`${style.admin__table} ${style.table}`}>
+                <p className={style.table__img}>Image</p>
+                <p className={style.table__name}>Name</p>
+                <p className={style.table__author}>Author</p>
+                <p>Quantity</p>
+                <p>Enabled</p>
+                <p>Price</p>
+                <p>Actions</p>
+              </div>
+              <ProductList
+                products={products}
+                customButtonText="Edit"
+                customButtonHandler={handleEditButtonClick}
+                customCard={true}
+                deleteButtonHandler={handleDelButton} />
+            </>
+        }
       </div>
-      <div className={style.listHeader}>
-        <p className={style.listHeader__img}>Image</p>
-        <p className={style.listHeader__name}>Name</p>
-        <p className={style.listHeader__author}>Author</p>
-        <p>Quantity</p>
-        <p>Enabled</p>
-        <p>Price</p>
-        <p>Actions</p>
-</div>
-      <ProductList
-        products={products}
-        customButtonText="Edit"
-        customButtonHandler={handleEditButtonClick}
-        customCard={true}
-        deleteButtonHandler={handleDelButton}/>
-        </>
-    }
-  </div></>
+    </div>
+  </>
 }

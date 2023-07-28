@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, Collection} from '../pages';
+import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, Collection } from '../pages';
 import PrivateRoute from './PrivateRoute';
 import { useState, createContext } from 'react';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
@@ -34,8 +34,8 @@ export default function Router() {
 
         <Route path="*" element={<NotFound />} />
 
-        <Route element={<PrivateRouteAdmin/>}>
-        <Route path="/admin" element={<AdminProducts />} />
+        <Route element={<PrivateRouteAdmin />}>
+          <Route path="/admin" element={<AdminProducts />} />
         </Route>
         {/* <Route path="/admin/login" element={<AdminLogin />} /> */}
         {/* <Route path="/admin" element={<AdminLogin />} />
