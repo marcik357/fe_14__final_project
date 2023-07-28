@@ -4,7 +4,7 @@ import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
 import { setQueryStringAction } from '../../redux/actions/filterActions';
 import ProductList from '../ProductList';
-import { fetchData, getDataFromSS } from '../../utils';
+import { fetchData } from '../../utils';
 import { useCallback } from 'react';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { baseUrl } from '../../utils/vars';
@@ -67,12 +67,6 @@ function Filter({products}) {
   const applyPriceFilter = () => {
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
-
-      // if (minPrice === '' && maxPrice === '') {
-      //   // Якщо minPrice и maxPrice пусті, залишаємо їх значення по замовчуванню
-      //   setIsApplyButtonDisabled(true);
-      //   return updatedFilters;
-      // }
 
       if (minPrice === '' && maxPrice !== '') {
         updatedFilters.minPrice = '0';

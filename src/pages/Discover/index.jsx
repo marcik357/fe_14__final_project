@@ -50,8 +50,6 @@ export function Discover() {
   useEffect(() => {
     applyFilters(); // Викликати applyFilters при кожній зміні queryString
   }, [applyFilters]);
-  console.log(products);
-  console.log(loading);
 
   if (loading) return <Loader />
 
