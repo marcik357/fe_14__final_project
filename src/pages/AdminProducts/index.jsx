@@ -13,6 +13,7 @@ import { Modal } from "../../components/Modal";
 import { modalProps } from '../../components/Modal/modalProps';
 import { setErrorAction } from "../../redux/actions/errorActions";
 import { fetchData } from "../../utils";
+import { reqGet, reqPut } from "../../utils/requestBody";
 
 export function AdminProducts() {
   const dispatch = useDispatch();
@@ -28,14 +29,8 @@ export function AdminProducts() {
 async function deleteProduct (product) {
    const values = {...product, enabled: false}
     try {
-      await fetchData(`${baseUrl}products/${product._id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      });
+      await fetchData(`${baseUrl}products/${product._id}`, reqPut(JSON.stringify(values))
+      );
       dispatch(setModalType('saved'))
     } catch (error) {
       dispatch(setErrorAction(error.message));
@@ -64,8 +59,8 @@ function handleDelButton (itemNo){
     setAddProduct(false)
   }
   useEffect(() => {
-    dispatch(getDataAction(`${baseUrl}products`, addProductsAction));
-  }, [dispatch]);
+    dispatch(getDataAction(`${baseUrl}products`, addProductsAction, reqGet(token)));
+  }, [dispatch, token]);
 
   useEffect(() => {
     productId && dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
