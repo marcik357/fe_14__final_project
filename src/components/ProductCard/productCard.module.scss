@@ -312,6 +312,14 @@
       color: #f7fbfa;
     }
   }
+
+  .user {
+    align-items: center;
+
+    &__inAuthor {
+      color: #f7fbfa;
+    }
+  }
 }
 
 @media (min-width: 1024px) {
