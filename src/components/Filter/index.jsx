@@ -68,19 +68,19 @@ function Filter({products}) {
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
 
-      if (minPrice === '' && maxPrice === '') {
-        // Якщо minPrice и maxPrice пусті, залишаємо їх значення по замовчуванню
-        setIsApplyButtonDisabled(true);
-        return updatedFilters;
-      }
+      // if (minPrice === '' && maxPrice === '') {
+      //   // Якщо minPrice и maxPrice пусті, залишаємо їх значення по замовчуванню
+      //   setIsApplyButtonDisabled(true);
+      //   return updatedFilters;
+      // }
 
-      if (minPrice === '') {
+      if (minPrice === '' && maxPrice !== '') {
         updatedFilters.minPrice = '0';
       } else {
         updatedFilters.minPrice = minPrice;
       }
 
-      if (maxPrice === '') {
+      if (maxPrice === '' && minPrice !== '') {
         updatedFilters.maxPrice = '100000';
       } else {
         updatedFilters.maxPrice = maxPrice;
@@ -201,8 +201,8 @@ function Filter({products}) {
                 <button className={styles.filter__clearBtnHead + ' ' + styles.btnEffect} type="button" onClick={clearAllFilters}>Clear All</button>
                 <h4 className={styles.filter__sidebarCategoryTitle}>Price</h4>
                 <div className={styles.filter__sidebarItemValue}>
-                  <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} onClick={() => setIsApplyButtonDisabled(false)}/>
-                  <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} onClick={() => setIsApplyButtonDisabled(false)}/>
+                  <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="minPrice" name="minPrice" placeholder="Min" onChange={handleMinPriceChange} value={minPrice} maxLength={4} />
+                  <input className={`${isApplyButtonDisabled && styles.warning}`} type="text" id="maxPrice" name="maxPrice" placeholder="Max" onChange={handleMaxPriceChange} value={maxPrice} maxLength={4} />
                   <button className={`${styles.filter__sidebarApplyBtn} ${!isApplyButtonDisabled && styles.btnEffect} ${isApplyButtonDisabled && styles.disabled}`} type="button" onClick={applyPriceFilter} disabled={isApplyButtonDisabled}>Apply</button>
                 </div>
                 <h4 className={styles.filter__sidebarCategoryTitle}>Author</h4>
