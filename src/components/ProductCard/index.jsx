@@ -22,7 +22,7 @@ function ProductCard({
   buttonText,
   buttonHandler,
   deleteButtonHandler,
-  customCard = false,
+  adminCard = false,
   quantity,
   enabled
 }) {
@@ -30,7 +30,7 @@ function ProductCard({
   const cart = useSelector((state) => state.cart.cart);
   const { token } = useSelector((state) => state.token);
 
-  if (customCard) return (
+  if (adminCard) return (
     <AdminProductCard
       product={{
         _id,
@@ -121,7 +121,7 @@ ProductCard.propTypes = {
   currentPrice: PropTypes.number,
   buttonText: PropTypes.string,
   buttonHandler: PropTypes.func,
-  customCard: PropTypes.bool
+  adminCard: PropTypes.bool
 };
 
 ProductCard.defaultProps = {

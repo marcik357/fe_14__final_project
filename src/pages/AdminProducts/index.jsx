@@ -1,5 +1,5 @@
 import ProductList from "../../components/ProductList";
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { baseUrl } from '../../utils/vars';
 import { getDataAction } from '../../redux/actions/getDataActions';
@@ -12,7 +12,7 @@ import { setModalType } from "../../redux/actions/modalActions";
 import { Modal } from "../../components/Modal";
 import { modalProps } from '../../components/Modal/modalProps';
 import { setErrorAction } from "../../redux/actions/errorActions";
-import { fetchData } from "../../utils";
+import { fetchData, loadData } from "../../utils";
 import { reqGet, reqPut } from "../../utils/requestBody";
 
 export function AdminProducts() {
@@ -29,8 +29,7 @@ export function AdminProducts() {
   async function deleteProduct(product) {
     const values = { ...product, enabled: false }
     try {
-      await fetchData(`${baseUrl}products/${product._id}`, reqPut(JSON.stringify(values))
-      );
+      await fetchData(`${baseUrl}products/${product._id}`, reqPut(JSON.stringify(values)));
       dispatch(setModalType('saved'))
     } catch (error) {
       dispatch(setErrorAction(error.message));
@@ -41,7 +40,6 @@ export function AdminProducts() {
   function handleDelButton(itemNo) {
     const product = products.find((product) => product.itemNo === itemNo)
     setProduct(product)
-    console.log(product);
     dispatch(setModalType('deleteProduct'))
   }
   function handleAddButton() {
@@ -58,13 +56,31 @@ export function AdminProducts() {
     setProduct(null);
     setAddProduct(false)
   }
-  useEffect(() => {
-    dispatch(getDataAction(`${baseUrl}products`, addProductsAction, reqGet(token)));
-  }, [dispatch, token]);
+  // useEffect(() => {
+  //   dispatch(getDataAction(`${baseUrl}products`, addProductsAction, reqGet(token)));
+  // }, [dispatch, token]);
+
+  const adminLoad = useCallback(async () => {
+    const products = await fetchData(`${baseUrl}products`)
+    dispatch(addProductsAction(products));
+  }, [dispatch])
+
+  const getProduct = useCallback(async () => {
+    const product = await fetchData(`${baseUrl}products/${productId}`)
+    setProduct(product);
+  }, [productId])
 
   useEffect(() => {
-    productId && dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
-  }, [dispatch, productId, product]);
+    loadData(dispatch, adminLoad)
+  }, [dispatch, adminLoad])
+
+  // useEffect(() => {
+  //   productId && dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
+  // }, [dispatch, productId, product]);
+
+  useEffect(() => {
+    productId && getProduct();
+  }, [getProduct, productId, product]);
 
   useEffect(() => {
     modalType
@@ -80,28 +96,30 @@ export function AdminProducts() {
     <div className={style.admin}>
       <div className={style.admin__container}>
         {openForm && product
-          ? <EditProductForm product={product} onCloseForm={handleFormClose} />
+          ? <EditProductForm
+            product={product}
+            onCloseForm={handleFormClose} />
           : addProduct
             ? <AddProductForm onCloseForm={handleFormClose} />
             : <>
               <div className={style.admin__header}>
-                <h1>Products</h1>
+                <h1 className={style.admin__title}>Products</h1>
                 <button className={style.admin__btn} type='button' onClick={handleAddButton}>Add new product</button>
               </div>
               <div className={`${style.admin__table} ${style.table}`}>
-                <p className={style.table__img}>Image</p>
-                <p className={style.table__name}>Name</p>
-                <p className={style.table__author}>Author</p>
-                <p>Quantity</p>
-                <p>Enabled</p>
-                <p>Price</p>
-                <p>Actions</p>
+                <p className={style.table__cell}>Image</p>
+                <p className={style.table__cell}>Name</p>
+                <p className={style.table__cell}>Author</p>
+                <p className={style.table__cell}>Quantity</p>
+                <p className={style.table__cell}>Enabled</p>
+                <p className={style.table__cell}>Price</p>
+                <p className={style.table__cell}>Actions</p>
               </div>
               <ProductList
                 products={products}
                 customButtonText="Edit"
                 customButtonHandler={handleEditButtonClick}
-                customCard={true}
+                adminCard={true}
                 deleteButtonHandler={handleDelButton} />
             </>
         }

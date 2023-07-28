@@ -5,7 +5,7 @@ import usePagination from '../../hooks/usePagination';
 import { ArrowRight } from '../Icons';
 import { scrollTo } from '../../utils';
 
-function ProductList({ products, listName, isInAuthor = false, showPagination = true, customButtonText, customButtonHandler, customCard = false , deleteButtonHandler}) {
+function ProductList({ products, listName, isInAuthor = false, showPagination = true, customButtonText, customButtonHandler, adminCard = false , deleteButtonHandler}) {
   const {
     firstContentIndex,
     lastContentIndex,
@@ -81,18 +81,18 @@ function ProductList({ products, listName, isInAuthor = false, showPagination = 
   return (
     <div
       id='products'
-      className={`${styles.products} ${isInAuthor && styles.productListInAuthor} ${customCard && styles.productListAdmin}`}>
-      {!isInAuthor && !customCard && (
+      className={`${styles.products} ${isInAuthor && styles.productListInAuthor} ${adminCard && styles.productListAdmin}`}>
+      {!isInAuthor && !adminCard && (
         <div className={styles.products__title}>
           <h2>{listName}</h2>
         </div>
       )}
-      <div className={`${styles.products__wrapper} ${customCard && styles.productListAdmin__wrapper}`}>
+      <div className={`${styles.products__wrapper} ${adminCard && styles.productListAdmin__wrapper}`}>
         {products?.slice(firstContentIndex, lastContentIndex).map((product) => (
           <ProductCard {...product} key={product._id} isInAuthor={isInAuthor}
             buttonText={customButtonText}
             buttonHandler={customButtonHandler}
-            customCard={customCard}
+            adminCard={adminCard}
             deleteButtonHandler={deleteButtonHandler}
           />
         ))}

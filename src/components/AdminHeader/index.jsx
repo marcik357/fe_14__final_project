@@ -17,7 +17,7 @@ export default function AdminHeader({ loggedIn }) {
     <header className={style.header}>
       <div className={style.header__wrapper}>
         <div className={style.header__container}>
-          <Link to="/admin" className={style.header__link}>
+          <Link to="/" className={style.header__link}>
             <div className={style.header__logo}>
               <Logo />
               <span className={style.header__title}>CRYPTER</span>
