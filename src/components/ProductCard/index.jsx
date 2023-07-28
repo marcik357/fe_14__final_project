@@ -30,86 +30,86 @@ function ProductCard({
   const cart = useSelector((state) => state.cart.cart);
   const { token } = useSelector((state) => state.token);
 
-  return (<>{customCard ? (
-    <AdminProductCard _id={_id} imageUrls={imageUrls}
-      currentPrice={currentPrice} itemNo={itemNo} name={name} enabled={enabled}
-      quantity={quantity} buttonHandler={() => buttonHandler(itemNo)} author={author} deleteButtonHandler={() => deleteButtonHandler(itemNo)} />
-  ) : (<div className={styles.productCard}>
-    <Link to={`/product/${itemNo}`} className={styles.productCard__link}>
-      <LazyLoadImage
-        className={styles.productCard__img}
-        src={imageUrls[0]}
-        alt={name}
-        effect="blur"
-        placeholderSrc={'./images/products/placeholder.jpg'}
-        height={250}
-        width={250}
-      />
-      <p className={styles.productCard__name}>{name}</p>
-    </Link>
-    <div className={styles.productCard__userInfo}>
-      <Link
-        to={`/author/${author}`}
-        className={styles.productCard__userInfo_items}
-      >
+  if (customCard) return (
+    <AdminProductCard
+      product={{
+        _id,
+        imageUrls,
+        currentPrice,
+        itemNo,
+        name,
+        enabled,
+        quantity,
+        author
+      }}
+      buttonHandler={() => buttonHandler(itemNo)}
+      deleteButtonHandler={() => deleteButtonHandler(itemNo)} />
+  )
+
+  return (
+    <div className={styles.productCard}>
+      <Link to={`/product/${itemNo}`} className={styles.productCard__link}>
         <LazyLoadImage
-          className={styles.productCard__userInfo_userIcon}
-          src={authorIcon}
-          alt='user-avatar'
-        />
-        <p
-          className={`${styles.productCard__userInfo_author} ${isInAuthor ? styles.productCard__userInfo_inAuthor : ''
-            }`}
-        >
-          {author}
+          className={styles.productCard__img}
+          src={imageUrls[0]}
+          alt={name}
+          effect="blur"
+          placeholderSrc={'./images/products/placeholder.jpg'}
+          height={250}
+          width={250} />
+        <p className={styles.productCard__name}>
+          {name}
         </p>
       </Link>
-      <Verified />
-    </div>
-
-    <div className={styles.productCard__priceInfo}>
-      {isInCart(cart, _id) ? (
+      <div className={`${styles.productCard__user} ${styles.user}`}>
         <Link
-          to={'/cart'}
-          className={`${styles.productCard__priceInfo_button} ${styles.productCard__priceInfo_cartButton}`}
-          type='button'
-        >
-          view cart
-          <Basket color='#202025' strokeWidth='2.5' />
+          to={`/author/${author}`}
+          className={styles.user__items}>
+          <LazyLoadImage
+            className={styles.user__icon}
+            src={authorIcon}
+            alt='user-avatar' />
+          <p className={`${styles.user__author} ${isInAuthor ? styles.user__inAuthor : ''}`}>
+            {author}
+          </p>
         </Link>
-      ) : (
-        <button
-          className={styles.productCard__priceInfo_button}
-          type='button'
-          onClick={
-            !buttonHandler
-              ? () => buyNowHandler(dispatch, _id, token)
-              : () => buttonHandler(itemNo)
-          }
-        >
-          {buttonText}
-        </button>
-      )}
+        <Verified />
+      </div>
 
-      <div className={styles.productCard__priceInfo_buyNow}>
-        <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
-        {isInAuthor ? (
-          <p className={styles.productCard__priceInAuthor}>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
-          </p>
-        ) : (
-          <p>
-            {currentPrice}
-            &nbsp;
-            <span>ETH</span>
-          </p>
-        )}
+      <div className={`${styles.productCard__priceInfo} ${styles.priceInfo}`}>
+        {isInCart(cart, _id)
+          ? <Link
+            to={'/cart'}
+            className={`${styles.priceInfo__button} ${styles.priceInfo__cartButton}`}
+            type='button'>
+            view cart
+            <Basket color='#202025' strokeWidth='2.5' />
+          </Link>
+          : <button
+            className={styles.priceInfo__button}
+            type='button'
+            onClick={!buttonHandler
+              ? () => buyNowHandler(dispatch, _id, token)
+              : () => buttonHandler(itemNo)}>
+            {buttonText}
+          </button>}
+
+        <div className={styles.priceInfo__buyNow}>
+          <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
+          {isInAuthor
+            ? <p className={styles.priceInfo__price_author}>
+              {currentPrice}
+              &nbsp;
+              <span>ETH</span>
+            </p>
+            : <p className={styles.priceInfo__price}>
+              {currentPrice}
+              &nbsp;
+              <span className={styles.priceInfo__price_eth}>ETH</span>
+            </p>}
+        </div>
       </div>
     </div>
-  </div>)}</>
-
   );
 }
 
