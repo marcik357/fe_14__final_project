@@ -95,7 +95,6 @@ option {
     cursor: pointer;
     overflow: hidden;
     z-index: 1;
-    // box-sizing: border-box;
   }
 
   &__sortBtn {
@@ -137,13 +136,12 @@ option {
 
   &__sidebarWrapper {
     position: absolute;
-    top: 50px;
+    top: 34px;
     left: 0;
     width: 260px;
-    height: calc(100% - 50px);
+    height: calc(100% - 34px);
     transform: translateX(-100%);
     transition: transform .5s;
-    // border-radius: 10px;
     background-color: #fff;
     overflow-y: auto;
   }
@@ -223,8 +221,6 @@ option {
   }
 
   &__sidebarItem label:hover {
-    // border-radius: 4px;
-    // outline: 2px solid black;
     background-color: rgba(0, 0, 0, .2);
   }
 
@@ -373,6 +369,15 @@ option {
   }
 }
 
+@media (min-width: 481px) {
+  .filter {
+    &__sidebarWrapper {
+      top: 50px;
+      height: calc(100% - 50px);
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .filter {
     &__openBtn {
@@ -417,7 +422,8 @@ option {
       position: relative;
       top: inherit;
       transform: translateX(0);
-      transition: none;
+      // transition: none;
+      transition: transform .3s;
       border-radius: 10px;
       visibility: visible;
       overflow-y: auto;
