@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, Collection } from '../pages';
-import PrivateRoute from './PrivateRoute';
 import { useState, createContext } from 'react';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
+import PrivateRouteAccount from './PrivateRouteAccount';
 export const Quantity = createContext()
 
 export default function Router() {
@@ -19,7 +19,7 @@ export default function Router() {
           <Route path="/order" element={<Order />} />
           <Route path="/help" element={<Help />} />
 
-          <Route path='/account' element={<PrivateRoute />} />
+          <Route path='/account' element={<PrivateRouteAccount />} />
 
           <Route path="/authorization" element={<Authorization />} />
           <Route path="/author/:authorId" element={<Author />} />
