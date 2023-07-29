@@ -12,11 +12,11 @@ import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
 import { Mint } from '../../components/Mint';
-import axios from 'axios';
+
 
 export function Account() {
   const dispatch = useDispatch();
-  // const { products } =useSelector(state=> state.products);
+  const { products } =useSelector(state=> state.products);
   const loading = useSelector((state) => state.loading.loading);
   const token = useSelector((state) => state.token.token);
   const [mintResult, setMintResult ]=useState('')
@@ -24,6 +24,7 @@ export function Account() {
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
   const [mint,setMint] = useState(false);
+  const [card, setCard]=useState(null);
   async function logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
@@ -31,13 +32,7 @@ export function Account() {
     await dispatch(setCart(null));
     return <Navigate to="/authorization" />;
   }
-  function getMintCard(token){
-    axios.defaults.headers.get['Authorization'] = `Bearer ${token}`
-    axios
-    .get(`${baseUrl}mintProducts`)
-    .then(res=>
-        setMintResult(res.data))}
-
+  
   useEffect(() => {
     token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
       method: "GET",
@@ -54,6 +49,10 @@ export function Account() {
       },
     }, 'account-data'));
   }, [dispatch, token, mint]);
+
+  useEffect(()=>{
+    setCard(mintResult[Math.floor(Math.random() * mintResult?.length)])
+  },[mintResult])
 
   return (
     <div id='main'>
@@ -77,7 +76,7 @@ export function Account() {
                 className={styles.user__btnsItem}
                 type='button'
                 onClick={()=>{
-                  getMintCard(token)
+                  setMintResult(products.filter(product=>product.categories === "mint"))
                   setMint(!mint)}}
                 >Mint</button>
                
@@ -91,8 +90,8 @@ export function Account() {
                   }
               </div>
               {mint ?<Mint
-              mintResult={mintResult}
               user={user}
+              card={card}
               setMint={setMint}
               orders={orders}
               mint={mint}/> :!adminPanel

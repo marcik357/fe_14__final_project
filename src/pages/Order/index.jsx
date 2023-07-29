@@ -59,7 +59,6 @@ export function Order() {
   }
 
   async function sendOrder() {
-    console.log("stock")
     try {
       await fetchData(`${baseUrl}orders`, {
         method: "POST",

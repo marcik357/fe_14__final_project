@@ -9,9 +9,10 @@ import { cleanCart, createCartFromLS } from '../../redux/actions/cartActions';
 export function MintBtn({orders,isOverlayVisible,card,user}){
     const { token } = useSelector(state=>state.token);
     const { cart } =useSelector(state=>state.cart);
+    const { products } =useSelector(state=>state.products);
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();
-    const cartArray = cart;
+   
     function createMint  (orders,selectCard) {
         let order = orders.find((item)=>item.products.some(product=>product.product.itemNo ===selectCard.itemNo) ? item.products:"")
         order.products =order.products.filter(item=>item.product.itemNo !==selectCard.itemNo ),
@@ -46,10 +47,11 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
             dispatch(setErrorAction(error.message));
           }
     }
-    const newCartArray = [{product:{...card},cartQuantity:1}]
-
+ 
+   
     function createMintOrder (){
-      const order={
+      return {
+      canceled:false,
       paymentInfo: "Mint",
       letterSubject: "Mint",
       name: "Mint",
@@ -58,41 +60,84 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
       card: "4242 4242 4242 4242",
       letterHtml: "<p>Mint</p>",
       customerId:user._id,
-    };
-
-    return { ...order, products: [{product:{...card,date:'2023-07-27T17:39:46.132+00:00'},cartQuantity:1}]}
+    }
   }
     async function sendMintOrder(card) {
-    
-      await fetchData(`${baseUrl}cart`, {
+     
+     const cartArray=  cart?.products?.map(({cartQuantity,product}) =>{
+        return {product:product._id,cartQuantity:cartQuantity}
+       } )
+      if(cart?.products?.length > 0 ){
+       
+        await fetchData(`${baseUrl}cart`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+      
+        });
+       await fetchData(`${baseUrl}cart`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ products: [{product:card,cartQuantity:1}] })
+        body: JSON.stringify({ products: [{product:card._id,cartQuantity:1}] })
       });
-      try {
        await fetchData(`${baseUrl}orders`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`},
         body: JSON.stringify(createMintOrder())
-      })
+      });
+      await fetchData(`${baseUrl}cart`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
     
-        // await fetchData(`${baseUrl}cart`, {
-        //   method: "DELETE",
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //     'Content-Type': 'application/json',
-        //   },
+      });
+    
+       await fetchData(`${baseUrl}cart`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({products:cartArray})
+      });
       
-        // });
-    } catch (error) {
-      dispatch(setErrorAction(error.message));
-    }
-
+      }
+      else {
+        console.log("not work");
+        await fetchData(`${baseUrl}cart`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ products: [{product:card._id,cartQuantity:1}] })
+        });
+        
+         await fetchData(`${baseUrl}orders`, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`},
+          body: JSON.stringify(createMintOrder())
+        })
+        await fetchData(`${baseUrl}cart`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+      
+        });
+      }
   }
 
    async function makeMint(card){
@@ -112,9 +157,10 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
         <button
         className={isOverlayVisible && styles.mintPage__hiddenButton_text}
         onClick={()=>{
+            // console.log(card);
               // createMint(orders,mintCardFirst),
               // createMint(orders,mintCardSecond),
-              makeMint()
+              sendMintOrder(card)
             // deleteMintCard()
           }
         }

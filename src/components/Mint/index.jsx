@@ -26,15 +26,17 @@ const arrows = {
   hidden: { opacity: 0 },
 };
 
-export function Mint ({setMint,mint,orders,user,mintResult}) {
+export function Mint ({setMint,mint,orders,user,card}) {
     const [selectCardFirst, setSelectCardFirst] = useState(false);
     const [selectCardSecond,setSelectCardSecond] =useState(false);
     const [isOverlayVisible, setOverlayVisible] = useState(false);
     const [showCard, setShowCard] = useState(false);
-    const [card, setCard]=useState(null);
+    const { cart } =useSelector(state=>state.cart);
+
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();
-  
+    // const cartArray = cart?.products?.map(({cartQuantity,product}) => ({ products: [{product:product._id,cartQuantity:1}]}))
+    // console.log(cart);
     const handleMintNowClick = () => {
         setOverlayVisible((isOverlayVisible) => !isOverlayVisible);
         setTimeout(() => {
@@ -51,9 +53,6 @@ export function Mint ({setMint,mint,orders,user,mintResult}) {
         dispatch(addToOrder(result))
     },[dispatch,orders])
 
-    useEffect(()=>{
-      setCard(mintResult[Math.floor(Math.random() * mintResult?.length)])
-    },[mintResult])
 
     return (
         <>

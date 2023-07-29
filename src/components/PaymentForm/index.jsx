@@ -5,7 +5,6 @@ import FormikForm from '../FormikForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import 'react-phone-number-input/style.css'
-import { paymentForm } from './paymentForm.js';
 import { setModalType } from '../../redux/actions/modalActions';
 import { cleanCart } from '../../redux/actions/cartActions.js'
 import { useUserAuth } from './PhoneAuthContext';
@@ -62,7 +61,7 @@ const verifyOtp = async (e) => {
     <>
       <h2 className={styleText.user_info__title}>Payment</h2>
       <div className={style.payment_form}>
-      {error && <div className={style.payment_form__error} >Please check out your sms code. You write wrong code!</div>}
+      {error ? <div className={style.payment_form__error} >Please check out your sms code. You write wrong code!</div>:""}
       <Formik
       initialValues=""
       >
@@ -99,13 +98,13 @@ const verifyOtp = async (e) => {
       </Form>
       </Formik>
       {makeOrder && <FormikForm
-        fields={paymentForm}
+        initialValues={{}}
         submitBtn="Make an order"
         callback={() => {
           handleSubmit();
           dispatch(cleanCart(token));
         }}
-      /> }
+      />}
       </div>
     </>
   )
