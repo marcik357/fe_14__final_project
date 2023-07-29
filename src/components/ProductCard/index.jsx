@@ -8,6 +8,7 @@ import { Verified } from '../Icons/verified';
 import { Basket, ETHIcon } from '../Icons';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { AdminProductCard } from '../AdminProductCard';
 
 function ProductCard({
   _id,
@@ -20,10 +21,30 @@ function ProductCard({
   isInAuthor,
   buttonText,
   buttonHandler,
+  deleteButtonHandler,
+  adminCard = false,
+  quantity,
+  enabled
 }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const { token } = useSelector((state) => state.token);
+
+  if (adminCard) return (
+    <AdminProductCard
+      product={{
+        _id,
+        imageUrls,
+        currentPrice,
+        itemNo,
+        name,
+        enabled,
+        quantity,
+        author
+      }}
+      buttonHandler={() => buttonHandler(itemNo)}
+      deleteButtonHandler={() => deleteButtonHandler(itemNo)} />
+  )
 
   return (
     <div className={styles.productCard}>
@@ -99,7 +120,8 @@ ProductCard.propTypes = {
   author: PropTypes.string,
   currentPrice: PropTypes.number,
   buttonText: PropTypes.string,
-  buttonHandler: PropTypes.func
+  buttonHandler: PropTypes.func,
+  adminCard: PropTypes.bool
 };
 
 ProductCard.defaultProps = {

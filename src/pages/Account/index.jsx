@@ -1,3 +1,4 @@
+
 import styles from './Account.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
@@ -11,6 +12,7 @@ import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
 import { fetchData, loadData } from '../../utils';
 import { reqGet } from '../../utils/requestBody';
+import AddProductForm from '../../components/AddProductForm';
 
 export function Account() {
   const dispatch = useDispatch();
@@ -19,6 +21,8 @@ export function Account() {
 
   const [user, setUser] = useState(null)
   const [orders, setOrders] = useState(null)
+  // const [openForm, setOpenForm] = useState(false);
+  const [addProduct, setAddProduct] = useState(false)
 
   function logOut() {
     localStorage.removeItem('token');
@@ -41,8 +45,18 @@ export function Account() {
 
   if (loading) return <Loader />
 
+  function handleAddButton() {
+    setAddProduct(true)
+  }
+  function handleFormClose() {
+  
+    setAddProduct(false)
+  }
+
   return (
     <div id='main'>
+      {user &&
+        <>
       <Banner
         title='Hello there!'
         subtitle={`General ${user?.login || ''}`}
@@ -50,7 +64,13 @@ export function Account() {
       <div className={styles.user}>
         <div className={styles.user__container}>
           <div className={styles.user__btns}>
-            <button
+          {!addProduct && <button
+                  className={styles.user__btnsItem}
+                  onClick={handleAddButton}
+                  type='button'>
+                  Add new product
+                </button>}
+                <button
               className={styles.user__btnsItem}
               onClick={() => {
                 navigate("/authorization");
@@ -62,19 +82,23 @@ export function Account() {
               type='button'>
               Log out
             </button>
-            {user?.isAdmin &&
+            {/* {user?.isAdmin &&
               <Link
                 className={styles.user__btnsItem}
                 to={'/admin'}>
                 Show Admin panel
-              </Link>}
+              </Link>} */}
           </div>
+          {addProduct ?
+          <AddProductForm onCloseForm={handleFormClose} isInAccount={true}/>
+                  : <>
           <h4 className={styles.user__title}>List of your orders:</h4>
           {orders?.length > 0
             ? <OrdersList orders={orders} />
-            : <p className={styles.user__empty}>you still haven't bought anything...</p>}
+            : <p className={styles.user__empty}>you still haven't bought anything...</p>}</>}
         </div>
       </div>
+      </>}
     </div>
   )
 }

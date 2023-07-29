@@ -1,28 +1,47 @@
-.user {
-  margin-top: 1rem;
-  background-color: #f7fbfa;
-  font-family: "Inter", sans-serif;
+.header {
+  width: 100%;
+  color: #202025;
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 200%;
+  text-transform: uppercase;
+  z-index: 10;
+
+  &__wrapper {
+    padding: 15px 0;
+    transition: all .4s ease-out;
+    background-color: rgb(247, 251, 250);
+  }
 
   &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 320px;
     max-width: 1470px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 5px 15px;
   }
 
-  &__btns {
+  &__link {
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+    align-items: center;
   }
 
-  &__btnsItem {
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__logOut {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    width: max-content;
-    margin: 1rem 0;
-    padding: 1rem;
+    padding: .7rem 1rem;
     transition: color .3s;
     border: 2px solid #202025;
     border-radius: 4px;
@@ -72,17 +91,15 @@
   }
 
   &__title {
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    font-weight: 800;
-  }
+    display: none;
 
-  &__empty {
-    padding: 3rem 0;
-    text-align: center;
-
-    &::first-letter {
-      text-transform: uppercase;
+    @media (min-width: 481px) {
+      display: block;
+      color: #010101;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 167%;
+      text-decoration: none;
     }
   }
 }

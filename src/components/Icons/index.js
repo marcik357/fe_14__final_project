@@ -1,3 +1,5 @@
+import { from } from 'form-data';
+
 export { Search } from './search';
 export { Basket } from './basket';
 export { Logo } from './logo';
@@ -14,3 +16,6 @@ export { LogIn } from './login';
 export { Account } from './account';
 export { SuccessOrder } from './successOrder';
 export { UploadFile} from './uploadFile'
+export { Edit } from './edit'
+export { View } from './view'
+export { Delete } from './delete'

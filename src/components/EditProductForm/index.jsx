@@ -29,6 +29,7 @@ export default function EditProductForm({ product, onCloseForm }) {
             await fetchData(`${baseUrl}products/${product._id}`, reqPut(JSON.stringify(values)));
             onCloseForm()
             setSubmitting(false);
+            dispatch(setModalType('saved'))
           } catch (error) {
             dispatch(setErrorAction(error.message));
             dispatch(setModalType('error'))
