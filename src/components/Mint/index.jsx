@@ -35,8 +35,6 @@ export function Mint ({setMint,mint,orders,user,card}) {
 
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();
-    // const cartArray = cart?.products?.map(({cartQuantity,product}) => ({ products: [{product:product._id,cartQuantity:1}]}))
-    // console.log(cart);
     const handleMintNowClick = () => {
         setOverlayVisible((isOverlayVisible) => !isOverlayVisible);
         setTimeout(() => {
