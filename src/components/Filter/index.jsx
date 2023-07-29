@@ -4,12 +4,8 @@ import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
 import { setQueryStringAction } from '../../redux/actions/filterActions';
 import ProductList from '../ProductList';
-import { fetchData } from '../../utils';
-import { useCallback } from 'react';
-import { setErrorAction } from '../../redux/actions/errorActions';
-import { baseUrl } from '../../utils/vars';
 
-function Filter({products}) {
+function Filter({products, filters}) {
   const dispatch = useDispatch();
   const [selectedFilters, setSelectedFilters] = useState({
         authors: [],
@@ -19,11 +15,6 @@ function Filter({products}) {
         maxPrice: '',
         sortBy: '',
     });
-  const [filters, setFilters] = useState({
-    authorFilters: [],
-    categoriesFilters: [],
-    themeFilters: []
-  });
   const [minPrice, setMinPrice] = useState(selectedFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(selectedFilters.maxPrice);
   const [isApplyButtonDisabled, setIsApplyButtonDisabled] = useState(false);
@@ -32,18 +23,6 @@ function Filter({products}) {
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
-
-  const getFiltersByType = useCallback(async (type) => {
-    try {
-      const data = await fetchData(`${baseUrl}filters/${type}`);
-      setFilters(prevFilters => ({
-        ...prevFilters,
-        [`${type}Filters`]: data
-      }));
-    } catch (error) {
-      dispatch(setErrorAction(error.message));
-    }
-  }, [dispatch]);
 
   // Код фільтру по чекбоксам
   const valueChange = (event) => {
@@ -126,13 +105,6 @@ function Filter({products}) {
     setMaxPrice('');
     setIsApplyButtonDisabled(false);
   };
-
-  useEffect(() => {
-    // Виклик функції для отримання фільтрів по типам
-    getFiltersByType('author');
-    getFiltersByType('categories');
-    getFiltersByType('theme');
-  }, [getFiltersByType]);
 
   useEffect(() => {
     sessionStorage.setItem('isOpen', JSON.stringify(isOpen));

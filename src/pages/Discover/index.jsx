@@ -15,25 +15,45 @@ export function Discover() {
   const loading = useSelector((state) => state.loading.loading);
   const queryString = useSelector((state) => state.filter.queryString);
   const [products, setProducts] = useState([]);
+  const [filters, setFilters] = useState({
+    authorFilters: [],
+    categoriesFilters: [],
+    themeFilters: []
+  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const renderProducts = useCallback(async () => {
     try {
-      dispatch(setLoadingAction(true));
       // Запит до API
       const data = await fetchData(`${baseUrl}products/filter`)
       await setProducts(data);
-      dispatch(setLoadingAction(false))
     } catch (error) {
-      dispatch(setLoadingAction(false))
       dispatch(setErrorAction(error.message));
     }
   }, [dispatch]);
 
+  const getFiltersByType = useCallback(async (type) => {
+    try {
+      const data = await fetchData(`${baseUrl}filters/${type}`);
+      setFilters(prevFilters => ({
+        ...prevFilters,
+        [`${type}Filters`]: data
+      }));
+    } catch (error) {
+      dispatch(setErrorAction(error.message));
+    }
+  }, [dispatch]);
+
+  const fetchDataAndSetLoading = useCallback(async () => {
+    dispatch(setLoadingAction(true));
+    await Promise.all([renderProducts(), getFiltersByType('author'), getFiltersByType('categories'), getFiltersByType('theme')])
+    .then(() => dispatch(setLoadingAction(false)))
+  }, [dispatch, renderProducts, getFiltersByType]);
+
   useEffect(() => {
-    renderProducts();
-  }, [renderProducts]);
+    fetchDataAndSetLoading();
+  }, [fetchDataAndSetLoading]);
 
   const applyFilters = useCallback(async () => {
     try {
@@ -61,7 +81,7 @@ export function Discover() {
         img='/images/banners/discover-banner.webp' />
       <div className={styles.products}>
         <div className={styles.products__container}>
-          <Filter products={products} />
+          <Filter products={products} filters={filters}/>
         </div>
       </div>
     </div>
