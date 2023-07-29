@@ -3,6 +3,7 @@ import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author
 import PrivateRoute from './PrivateRoute';
 import { Provider, useSelector } from 'react-redux';
 import { useState, createContext } from 'react';
+import { PhoneAuthContextProvider } from '../components/PaymentForm/PhoneAuthContext';
 export const Quantity = createContext()
 
 export default function Router() {
@@ -10,6 +11,7 @@ export default function Router() {
   const token = useSelector((state) => state.token.token);
 
   return (
+    <PhoneAuthContextProvider>
     <Quantity.Provider value={[orderAmount, setOrderAmount]}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
@@ -31,5 +33,6 @@ export default function Router() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Quantity.Provider>
+    </PhoneAuthContextProvider>
   );
 }

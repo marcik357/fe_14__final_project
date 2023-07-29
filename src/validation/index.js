@@ -57,24 +57,6 @@ export const validationSchemaOrder = Yup.object({
     .required("Required Field!"),
 });
 
-export const validationSchemaCard = Yup.object({
-  cardNumber: Yup.string()
-  .label('Card Number')
-  .length(19)
-  .required("Required Field!"),
-  validity:Yup.string()
-  .typeError('Not a valid expiration date. Example: MM/YY')
-  .max(5, 'Not a valid expiration date. Example: MM/YY')
-  .matches(
-    /([0-9]{2})\/([0-9]{2})/,
-    'Not a valid expiration date. Example: MM/YY')
-  .required('Expiration date is required'),
-  cvv: Yup.string()
-    .label('CVV')
-    .length(3)
-    .required(),
-});
-
 export const validationSchemaProduct = Yup.object().shape({
   enabled: Yup.boolean(),
   imageUrls: Yup.array().of(Yup.string()).required("Required Field!"),

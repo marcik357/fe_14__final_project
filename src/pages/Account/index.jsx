@@ -16,7 +16,7 @@ import axios from 'axios';
 
 export function Account() {
   const dispatch = useDispatch();
-  const { products } =useSelector(state=> state.products);
+  // const { products } =useSelector(state=> state.products);
   const loading = useSelector((state) => state.loading.loading);
   const token = useSelector((state) => state.token.token);
   const [mintResult, setMintResult ]=useState('')
@@ -78,7 +78,6 @@ export function Account() {
                 type='button'
                 onClick={()=>{
                   getMintCard(token)
-                  // setMintResult(products)
                   setMint(!mint)}}
                 >Mint</button>
                

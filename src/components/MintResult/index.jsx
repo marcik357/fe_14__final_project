@@ -3,7 +3,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import style from './index.module.scss';
 
 export function MintResult ({card}) {
-  console.log(card);
     return(
         <div className={style.block} >
         <LazyLoadImage

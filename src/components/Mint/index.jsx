@@ -52,7 +52,7 @@ export function Mint ({setMint,mint,orders,user,mintResult}) {
     },[dispatch,orders])
 
     useEffect(()=>{
-      setCard( mintResult[Math.floor(Math.random() * mintResult?.length)])
+      setCard(mintResult[Math.floor(Math.random() * mintResult?.length)])
     },[mintResult])
 
     return (
