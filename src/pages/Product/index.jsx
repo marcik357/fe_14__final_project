@@ -1,3 +1,4 @@
+import style from './Product.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -33,6 +34,11 @@ export function Product() {
 
   return (
     <div id='main'>
-      {product && <ProductDetails {...product} />}
+      {product &&
+        <div className={style.productDetails}>
+          <div className={style.productDetails__container}>
+            <ProductDetails {...product} />
+          </div>
+        </div>}
     </div>)
 }
