@@ -14,7 +14,7 @@ import { setLoadingAction } from '../../redux/actions/loadingActions';
 export function Discover() {
   const loading = useSelector((state) => state.loading.loading);
   const queryString = useSelector((state) => state.filter.queryString);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [filters, setFilters] = useState({
     authorFilters: [],
     categoriesFilters: [],
@@ -27,7 +27,7 @@ export function Discover() {
     try {
       // Запит до API
       const data = await fetchData(`${baseUrl}products/filter`)
-      await setProducts(data);
+      setProducts(data);
     } catch (error) {
       dispatch(setErrorAction(error.message));
     }
@@ -48,7 +48,7 @@ export function Discover() {
   const fetchDataAndSetLoading = useCallback(async () => {
     dispatch(setLoadingAction(true));
     await Promise.all([renderProducts(), getFiltersByType('author'), getFiltersByType('categories'), getFiltersByType('theme')])
-    .then(() => dispatch(setLoadingAction(false)))
+      .then(() => dispatch(setLoadingAction(false)))
   }, [dispatch, renderProducts, getFiltersByType]);
 
   useEffect(() => {
@@ -75,15 +75,18 @@ export function Discover() {
 
   return (
     <div id='main'>
-      <Banner
-        title='Crypter discover'
-        subtitle='Discover endless world of NFTs'
-        img='/images/banners/discover-banner.webp' />
-      <div className={styles.products}>
-        <div className={styles.products__container}>
-          <Filter products={products} filters={filters}/>
-        </div>
-      </div>
+      {(products && filters.authorFilters.length > 0) &&
+        <>
+          <Banner
+            title='Crypter discover'
+            subtitle='Discover endless world of NFTs'
+            img='/images/banners/discover-banner.webp' />
+          <div className={styles.products}>
+            <div className={styles.products__container}>
+              <Filter products={products} filters={filters} />
+            </div>
+          </div>
+        </>}
     </div>
   );
 }

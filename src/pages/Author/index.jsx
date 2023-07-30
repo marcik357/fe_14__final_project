@@ -40,7 +40,7 @@ export function Author() {
 
   return (
     <div id='main'>
-      {author && (
+      {Object.keys(author).length > 0 && (
         <div className={style.author}>
           <Banner title={author.name} img='/images/banners/author-banner.webp' />
           <div className={style.author__wrapper}>

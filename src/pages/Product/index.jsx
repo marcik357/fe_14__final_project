@@ -9,7 +9,7 @@ import { fetchData, loadData } from '../../utils';
 
 export function Product() {
   const { productId } = useParams();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(null);
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
@@ -33,6 +33,6 @@ export function Product() {
 
   return (
     <div id='main'>
-      <ProductDetails {...product} />
+      {product && <ProductDetails {...product} />}
     </div>)
 }
