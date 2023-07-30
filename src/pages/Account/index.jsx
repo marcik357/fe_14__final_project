@@ -49,7 +49,7 @@ export function Account() {
     setAddProduct(true)
   }
   function handleFormClose() {
-  
+
     setAddProduct(false)
   }
 
@@ -57,48 +57,42 @@ export function Account() {
     <div id='main'>
       {user &&
         <>
-      <Banner
-        title='Hello there!'
-        subtitle={`General ${user?.login || ''}`}
-        img='/images/banners/account-banner.webp' />
-      <div className={styles.user}>
-        <div className={styles.user__container}>
-          <div className={styles.user__btns}>
-          {!addProduct && <button
-                  className={styles.user__btnsItem}
+          <Banner
+            title='Hello there!'
+            subtitle={`General ${user?.login || 'Kenobi'}`}
+            img='/images/banners/account-banner.webp' />
+          <div className={styles.user}>
+            <div className={styles.user__container}>
+            <div className={styles.user__buttons}>
+                {!addProduct && <button
+                  className={styles.user__btn}
                   onClick={handleAddButton}
                   type='button'>
                   Add new product
                 </button>}
                 <button
-              className={styles.user__btnsItem}
-              onClick={() => {
-                navigate("/authorization");
-                const timer = setTimeout(() => {
-                  logOut();
-                  clearTimeout(timer)
-                }, 10);
-              }}
-              type='button'>
-              Log out
-            </button>
-            {/* {user?.isAdmin &&
-              <Link
-                className={styles.user__btnsItem}
-                to={'/admin'}>
-                Show Admin panel
-              </Link>} */}
+                  className={styles.user__btn}
+                  onClick={() => {
+                    navigate("/authorization");
+                    const timer = setTimeout(() => {
+                      logOut();
+                      clearTimeout(timer)
+                    }, 10)
+                  }}
+                  type='button'>
+                  Log out
+                </button>
+              </div>
+              {addProduct
+                ? <AddProductForm onCloseForm={handleFormClose} isInAccount={true} />
+                : <>
+                  <h4 className={styles.user__title}>List of your orders:</h4>
+                  {orders?.length > 0
+                    ? <OrdersList orders={orders} />
+                    : <p className={styles.user__empty}>you still haven't bought anything...</p>}</>}
+            </div>
           </div>
-          {addProduct ?
-          <AddProductForm onCloseForm={handleFormClose} isInAccount={true}/>
-                  : <>
-          <h4 className={styles.user__title}>List of your orders:</h4>
-          {orders?.length > 0
-            ? <OrdersList orders={orders} />
-            : <p className={styles.user__empty}>you still haven't bought anything...</p>}</>}
-        </div>
-      </div>
-      </>}
+        </>}
     </div>
   )
 }

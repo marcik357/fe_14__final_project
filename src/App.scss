@@ -32,6 +32,12 @@ body {
 
 #main {
   flex: 1 0 auto;
+  height: 100%;
+}
+
+html:has(#main:empty),
+body:has(#main:empty) {
+  height: 100%;
 }
 
 // #root {
