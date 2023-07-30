@@ -24,6 +24,8 @@ export function Account() {
   const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
   const [mint,setMint] = useState(false);
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
+
   async function logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
@@ -54,6 +56,14 @@ export function Account() {
       },
     }, 'account-data'));
   }, [dispatch, token, mint]);
+
+  useEffect(() => {
+    if (isOverlayVisible) {
+     document.body.style.overflow = 'hidden';
+   } else {
+     document.body.style.overflow = 'auto';
+   }
+ }, [isOverlayVisible]);
 
   return (
     <div id='main'>
@@ -96,6 +106,8 @@ export function Account() {
               user={user}
               setMint={setMint}
               orders={orders}
+              isOverlayVisible={isOverlayVisible}
+              setOverlayVisible={setOverlayVisible}
               mint={mint}/> :!adminPanel
                 ? <>
                   <h4 className={styles.user__title}>List of your orders:</h4>

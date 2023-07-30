@@ -6,7 +6,7 @@ import { setModalType } from '../../redux/actions/modalActions';
 export function MintCard(props){
     const { state,setState,dispatch,mint,mintTypes,flag} = props;
     return (
-    <div className={flag ?style.disabled:style.block}>
+    <div className={flag ? style.disabled : style.block}>
         <div className={style.block__card}>
             {state && mint.length !== 0 && mint?<>
                 <img className={style.card__img} src={mint?.imageUrls} alt={mint?.name}/>
