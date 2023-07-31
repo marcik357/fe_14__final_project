@@ -7,8 +7,8 @@ export function MintResult ({card}) {
         <div className={style.block} >
         <LazyLoadImage
           effect='blur'
-          height={400}
-          width={400}
+         //  height={400}
+         //  width={400}
           placeholderSrc={'./images/products/placeholder.jpg'}
           src={card?.imageUrls}
           alt={card?.name}

@@ -1,5 +1,5 @@
-import styles from './index.module.scss';
-import { useSelector,useDispatch } from "react-redux";
+// import styles from './index.module.scss';
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
 import { mintTypes } from '../../redux/types/mintTypes';
 import { MintCard } from '../MintCard';
@@ -12,6 +12,8 @@ import styleBtn from '../../pages/Account/Account.module.scss';
 import style from './MintPage.module.scss';
 import { motion } from 'framer-motion';
 import { MintResult } from '../MintResult';
+import { useMediaQuery } from "react-responsive";
+import { topCard, bottomCard, rightCard, leftCard, arrows } from '../../animation';
 
 const rightCard = {
   show: { opacity: 1, x: 0 },
@@ -51,108 +53,109 @@ export function Mint ({setMint,mint,orders,user,card}) {
         dispatch(addToOrder(result))
     },[dispatch,orders])
 
+	const isDesktop = useMediaQuery({ minWidth: 769 })
 
-    return (
-        <>
-        <motion.div
-        transition={{ duration: 1.1, ease: 'easeInOut' }}
-        className={`${style.mintPage} ${isOverlayVisible ? style.bg : ''}`}
-        >
-            <p>Try something new from <b>Crypter-mint</b> your NFT.</p>
-            <p>
-                You can take any of your NFT and merge it with your other by paying a flat fee of 0.2 ETH for that coin.<br/>
-                At the end of the mint, you will receive a brand new pumped NFT, which will help you stand out and earn more NFT.
-            </p>
-     
-       <div className={style.mintPage__wrapper}>
-         <motion.div
-          animate={isOverlayVisible ? 'hidden' : 'show'}
-          variants={leftCard}
-          className={style.mintPage__card}
-          transition={{ duration: 1.5, delay: 0.8, ease: 'easeInOut' }}
-         >
-            <MintCard
-            mint={mintCardFirst}
-            state={selectCardFirst}
-            setState={setSelectCardFirst}
-            dispatch={dispatch}
-            mintTypes={mintTypes.IS_MINT_FIRST}
-            />
-         </motion.div>
+	return (
+		<>
+			<motion.div
+				transition={{ duration: 1.1, ease: 'easeInOut' }}
+				className={`${style.mintPage} ${isOverlayVisible && style.bg}`}
+			>
+				<div className={`${style.mintPage__description} ${isOverlayVisible && !isDesktop && style.overlay}`}>
+					<p>Try something new from <b>Crypter-mint</b> your NFT.</p>
+					<p>You can take any of your NFT and merge it with your other by paying a flat fee of 0.2 ETH for that coin.<br /></p>
+					<p>At the end of the mint, you will receive a brand new pumped NFT, which will help you stand out and earn more NFT.</p>
+				</div>
+				<div className={`${style.mintPage__wrapper} ${isOverlayVisible && !isDesktop && style.overlay}`}>
+					<motion.div
+						animate={isOverlayVisible ? 'hidden' : 'show'}
+						variants={isDesktop ? leftCard : topCard}
+						className={style.mintPage__card}
+						transition={{ duration: 1.5, delay: 0.8, ease: 'easeInOut' }}
+					>
+						<MintCard
+							mint={mintCardFirst}
+							state={selectCardFirst}
+							setState={setSelectCardFirst}
+							dispatch={dispatch}
+							mintTypes={mintTypes.IS_MINT_FIRST}
+						/>
+					</motion.div>
 
-         <motion.span
-            transition={{ duration: 1.2 }}
-            animate={isOverlayVisible ? 'hidden' : 'show'}
-            variants={arrows}
-          >
-            &#8680;
-         </motion.span>
-         
-        <motion.div className={style.mintPage__card_unknown}>
-          {!showCard ? (
-            <p>?</p>
-          ) : (
-            <MintResult
-            card={card}
-            />
-          )}
-        </motion.div>
+					<motion.span
+						transition={{ duration: 1.2 }}
+						animate={isOverlayVisible ? 'hidden' : 'show'}
+						variants={arrows}
+						className={style.mintPage__arrow}
+					>
+						&#8680;
+					</motion.span>
 
-        <motion.span
-            transition={{ duration: 1.2 }}
-            animate={isOverlayVisible ? 'hidden' : 'show'}
-            variants={arrows}
-          >
-            &#8678;
-        </motion.span>
+					<motion.div className={style.mintPage__card_unknown}>
+						{!showCard ? (
+							<p className={style.mintPage__card_unknown_empty}>?</p>
+						) : (
+							<MintResult
+								card={card}
+							/>
+						)}
+					</motion.div>
 
-        <motion.div
-            animate={isOverlayVisible ? 'hidden' : 'show'}
-            variants={rightCard}
-            className={style.mintPage__card}
-            transition={{ duration: 1.5, delay: 0.8, ease: 'easeInOut' }}
-        >
-        <MintCard
-            flag={mintCardFirst?.itemNo ? false:true}
-            mint={mintCardSecond}
-            state={selectCardSecond}
-            setState={setSelectCardSecond}
-            dispatch={dispatch}
-            mintTypes={mintTypes.IS_MINT_SECOND}
-        />
-          
-        </motion.div>
+					<motion.span
+						transition={{ duration: 1.2 }}
+						animate={isOverlayVisible ? 'hidden' : 'show'}
+						variants={arrows}
+						className={style.mintPage__arrow}
+					>
+						&#8678;
+					</motion.span>
 
-        </div>
-        {!showCard ? (
-          <motion.button
-            onClick={handleMintNowClick}
-            className={`${
-              mintCardFirst.itemNo && mintCardSecond.itemNo ? isOverlayVisible
-              ? style.mintPage__hiddenButton
-              : styleBtn.user__btnsItem
-              :styles.hidden_btn
-              
-            }`}
-          >
-             <MintBtn
-            user={user}
-            card={card}
-            isOverlayVisible={isOverlayVisible}
-            orders={orders}/>
-          </motion.button>
-        ) : (<button className={styleBtn.user__btnsItem}
-            onClick={()=>{
-                dispatch(addToMint([],0,mintTypes.IS_MINT_FIRST));
-                dispatch(addToMint([],0,mintTypes.IS_MINT_SECOND));
-                setOverlayVisible(!isOverlayVisible);
-                setMint(!mint)
-            }}
-            >
-            Back to transition
-            </button>
-        )}
-        </motion.div>
-        </>
-    )
+					<motion.div
+						animate={isOverlayVisible ? 'hidden' : 'show'}
+						variants={isDesktop ? rightCard : bottomCard}
+						className={style.mintPage__card}
+						transition={{ duration: 1.5, delay: 0.8, ease: 'easeInOut' }}
+					>
+						<MintCard
+							flag={mintCardFirst?.itemNo ? false : true}
+							mint={mintCardSecond}
+							state={selectCardSecond}
+							setState={setSelectCardSecond}
+							dispatch={dispatch}
+							mintTypes={mintTypes.IS_MINT_SECOND}
+						/>
+
+					</motion.div>
+
+				</div>
+				{!showCard ? (
+					<motion.button
+						onClick={handleMintNowClick}
+						className={`${mintCardFirst.itemNo && mintCardSecond.itemNo ? isOverlayVisible
+							? style.mintPage__hiddenButton
+							: styleBtn.user__btnsItem
+							: style.hidden_btn
+
+							}`}
+					>
+						<MintBtn
+							user={user}
+							card={card}
+							isOverlayVisible={isOverlayVisible}
+							orders={orders} />
+					</motion.button>
+				) : (<button className={styleBtn.user__btnsItem}
+					onClick={() => {
+						dispatch(addToMint([], 0, mintTypes.IS_MINT_FIRST));
+						dispatch(addToMint([], 0, mintTypes.IS_MINT_SECOND));
+						setOverlayVisible(!isOverlayVisible);
+						setMint(!mint)
+					}}
+				>
+					Back to transition
+				</button>
+				)}
+			</motion.div>
+		</>
+	)
 }

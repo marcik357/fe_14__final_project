@@ -23,7 +23,7 @@ export function MintModal(){
                     addToMint(order,card.itemNo,mintTypes.IS_MINT_FIRST))),
                     dispatch(setModalType(null))}}
                     >
-                    <img className={style.select_nft__img} src={card?.imageUrls} alt={card?.name} />
+                    <img src={card?.imageUrls} alt={card?.name} />
                     </button>
                     </>
                 ))}
