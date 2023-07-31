@@ -89,6 +89,56 @@
 //   }
 // }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: .5rem;
+  user-select: none;
+
+  & :last-child {
+    border: none;
+    font-size: 20px;
+  }
+
+  &__num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    transition: all .3s ease;
+    border: solid 1px #202025;
+    border-radius: 30%;
+    background-color: transparent;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+
+    &_active {
+      transition: all .3s ease;
+      background-color: #202025;
+      color: #fff;
+    }
+
+    &_disabled {
+      background-color: transparent !important;
+      color: #202025;
+      cursor: not-allowed;
+    }
+
+    &:first-child {
+      border: none;
+      font-size: 20px;
+    }
+
+    &:first-child svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 .productListInAuthor {
   padding: 1rem 1rem 2rem;
   background-color: black;

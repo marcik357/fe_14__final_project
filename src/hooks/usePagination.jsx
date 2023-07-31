@@ -44,7 +44,7 @@ const usePagination = ({ contentPerPage, count }) => {
     }
   };
   const generatePageNumbers = () => {
-    const maxVisiblePages = 5;
+    const maxVisiblePages = count;
     const visiblePages = Math.min(maxVisiblePages, pageCount);
 
     let startPage = Math.max(page - Math.floor(visiblePages), 1);
