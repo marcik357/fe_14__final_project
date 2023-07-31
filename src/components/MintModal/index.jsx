@@ -8,10 +8,11 @@ export function MintModal(){
     const dispatch = useDispatch();
     const { order } =useSelector(state=>state.order);
     const { mintCardFirst } = useSelector(state=> state.mint);
-    const selectedCard = order?.filter(items =>items.itemNo !== mintCardFirst?.itemNo );
+    const noMintOrder= order.filter(items=>items.categories !== "mint");
+    const selectedCard = noMintOrder?.filter(items =>items.itemNo !== mintCardFirst?.itemNo );
     return(
     <div className={style.nft_block}>
-            {(mintCardFirst?.itemNo ? selectedCard : order).map(card=>
+            {(mintCardFirst?.itemNo ? selectedCard : noMintOrder).map(card=>
                 (
                     <>
                     <button className={style.nft_block__select_nft}

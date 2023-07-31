@@ -1,4 +1,4 @@
-import style from './index.module.scss';
+// import style from './index.module.scss';
 import styles from '../Mint/MintPage.module.scss';
 import { useSelector,useDispatch } from "react-redux";
 import { baseUrl } from '../../utils/vars';
@@ -9,7 +9,6 @@ import { cleanCart, createCartFromLS } from '../../redux/actions/cartActions';
 export function MintBtn({orders,isOverlayVisible,card,user}){
     const { token } = useSelector(state=>state.token);
     const { cart } =useSelector(state=>state.cart);
-    const { products } =useSelector(state=>state.products);
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();
    
@@ -63,13 +62,11 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
     }
   }
     async function sendMintOrder(card) {
-     
      const cartArray=  cart?.products?.map(({cartQuantity,product}) =>{
         return {product:product._id,cartQuantity:cartQuantity}
        } )
       if(cart?.products?.length > 0 ){
-       
-        await fetchData(`${baseUrl}cart`, {
+      await fetchData(`${baseUrl}cart`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -98,9 +95,7 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-    
       });
-    
        await fetchData(`${baseUrl}cart`, {
         method: "POST",
         headers: {
@@ -109,10 +104,8 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
         },
         body: JSON.stringify({products:cartArray})
       });
-      
       }
       else {
-        console.log("not work");
         await fetchData(`${baseUrl}cart`, {
           method: "POST",
           headers: {
@@ -121,7 +114,6 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
           },
           body: JSON.stringify({ products: [{product:card._id,cartQuantity:1}] })
         });
-        
          await fetchData(`${baseUrl}orders`, {
           method: "POST",
           headers: {
@@ -135,36 +127,19 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-      
         });
       }
   }
-
-   async function makeMint(card){
-   return await sendMintOrder(card)
-  //   await sendMintOrder()
-     // dispatch(cleanCart(token))
-    // dispatch(createCartFromLS(token,newCartArray))
-    // sendMintOrder()
-    // dispatch(cleanCart(token))
-    // createCartFromLS(token,cartArray)
-  }
-  //  function deleteMintCard() {
-  //     return card.enabled=false
-  //   }
-
     return (
         <button
         className={isOverlayVisible && styles.mintPage__hiddenButton_text}
         onClick={()=>{
-            // console.log(card);
-              // createMint(orders,mintCardFirst),
-              // createMint(orders,mintCardSecond),
+              createMint(orders,mintCardFirst),
+              createMint(orders,mintCardSecond),
               sendMintOrder(card)
-            // deleteMintCard()
           }
         }
-            >Mint</button>
+        >Mint</button>
     )
 }
 

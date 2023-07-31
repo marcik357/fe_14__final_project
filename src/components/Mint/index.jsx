@@ -1,4 +1,3 @@
-// import styles from './index.module.scss';
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
 import { mintTypes } from '../../redux/types/mintTypes';
@@ -8,32 +7,17 @@ import { useEffect } from 'react';
 import { addToMint } from '../../redux/actions/mintActions';
 import { addToOrder } from "../../redux/actions/orderAction";
 import styleBtn from '../../pages/Account/Account.module.scss';
-///animation
 import style from './MintPage.module.scss';
 import { motion } from 'framer-motion';
 import { MintResult } from '../MintResult';
 import { useMediaQuery } from "react-responsive";
 import { topCard, bottomCard, rightCard, leftCard, arrows } from '../../animation';
 
-const rightCard = {
-  show: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: '-100%' },
-};
-const leftCard = {
-  show: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: '100%' },
-};
-const arrows = {
-  show: { opacity: 1 },
-  hidden: { opacity: 0 },
-};
-
 export function Mint ({setMint,mint,orders,user,card}) {
     const [selectCardFirst, setSelectCardFirst] = useState(false);
     const [selectCardSecond,setSelectCardSecond] =useState(false);
     const [isOverlayVisible, setOverlayVisible] = useState(false);
     const [showCard, setShowCard] = useState(false);
-    const { cart } =useSelector(state=>state.cart);
 
     const { mintCardFirst,mintCardSecond } = useSelector(state=> state.mint);
     const dispatch = useDispatch();

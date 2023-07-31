@@ -55,6 +55,11 @@ export const validationSchemaOrder = Yup.object({
     telephone: Yup.string()
     .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
     .required("Required Field!"),
+    wallet: Yup.string()
+    .min(40, 'Must contain at least 40 characters')
+    .max(42, 'Can be no more than 42 characters')
+    .matches(/^(0x)?[0-9a-fA-F]{40}$/, 'Must be 0-9 a-f A-F')
+    .required("Required Field!"),
 });
 
 export const validationSchemaProduct = Yup.object().shape({
