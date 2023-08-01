@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SliderPromo from '../../components/SliderPromo';
 import ProductList from '../../components/ProductList';

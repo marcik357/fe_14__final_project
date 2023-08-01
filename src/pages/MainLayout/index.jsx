@@ -1,5 +1,4 @@
 import { useEffect, useContext, useCallback } from 'react';
-import { useEffect, useContext, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../components/Footer';

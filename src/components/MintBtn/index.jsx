@@ -62,10 +62,10 @@ export function MintBtn({orders,isOverlayVisible,card,user}){
     }
   }
     async function sendMintOrder(card) {
-     const cartArray=  cart?.products?.map(({cartQuantity,product}) =>{
-        return {product:product._id,cartQuantity:cartQuantity}
-       } )
       if(cart?.products?.length > 0 ){
+        const cartArray=  cart?.products?.map(({cartQuantity,product}) =>{
+          return {product:product?._id,cartQuantity:cartQuantity}
+         } )
       await fetchData(`${baseUrl}cart`, {
           method: "DELETE",
           headers: {

@@ -117,7 +117,7 @@ export function Mint ({setMint,mint,orders,user,card}) {
 						onClick={handleMintNowClick}
 						className={`${mintCardFirst.itemNo && mintCardSecond.itemNo ? isOverlayVisible
 							? style.mintPage__hiddenButton
-							: styleBtn.user__btnsItem
+							: styleBtn.user__btn
 							: style.hidden_btn
 
 							}`}
@@ -128,7 +128,7 @@ export function Mint ({setMint,mint,orders,user,card}) {
 							isOverlayVisible={isOverlayVisible}
 							orders={orders} />
 					</motion.button>
-				) : (<button className={styleBtn.user__btnsItem}
+				) : (<button className={styleBtn.user__btn}
 					onClick={() => {
 						dispatch(addToMint([], 0, mintTypes.IS_MINT_FIRST));
 						dispatch(addToMint([], 0, mintTypes.IS_MINT_SECOND));

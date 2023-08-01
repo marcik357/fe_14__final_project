@@ -1,4 +1,3 @@
-
 import styles from './Account.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
@@ -6,33 +5,31 @@ import Loader from '../../components/Loader';
 import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
 import { fetchData, loadData } from '../../utils';
 import { reqGet, Navigate } from '../../utils/requestBody';
 import AddProductForm from '../../components/AddProductForm';
-import { setTokenAction } from '../../redux/actions/tokenActions';
-import { setCart } from '../../redux/actions/cartActions';
-import OrdersList from '../../components/OrdersList';
 import { Mint } from '../../components/Mint';
-
 
 export function Account() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { products } =useSelector(state=> state.products);
+  // const { products } =useSelector(state=> state.products);
   const loading = useSelector((state) => state.loading.loading);
   const [mintResult, setMintResult ]=useState('')
   const [user, setUser] = useState(null)
   const [orders, setOrders] = useState(null)
+  const token = useSelector((state) => state.token.token) || localStorage.getItem('token');
   // const [openForm, setOpenForm] = useState(false);
   const [addProduct, setAddProduct] = useState(false)
   const [mint,setMint] = useState(false);
   const [card, setCard]=useState(null);
   const [isOverlayVisible, setOverlayVisible] = useState(false);
 
+  console.log(mintResult);
   function logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
@@ -42,28 +39,18 @@ export function Account() {
   }
 
   const accountLoad = useCallback(async () => {
-    const user = await fetchData(`${baseUrl}customers/customer`, reqGet())
-    const orders = await fetchData(`${baseUrl}orders`, reqGet())
+    const user = await fetchData(`${baseUrl}customers/customer`, reqGet());
+    const orders = await fetchData(`${baseUrl}orders`, reqGet());
+    const products = await fetchData(`${baseUrl}products`);
     setUser(user)
     setOrders(orders)
+    setMintResult(products.filter(item=>item.categories ==="mint"))
+  
   }, [])
 
   useEffect(() => {
-    token && dispatch(getDataAction(`${baseUrl}customers/customer`, setUser, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-    }, 'account-data'));
-    token && dispatch(getDataAction(`${baseUrl}orders`, setOrders, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-    }, 'account-data'));
-  }, [dispatch, token, mint]);
+    loadData(dispatch, accountLoad)
+  }, [dispatch, accountLoad, mint]);
 
   useEffect(() => {
     if (isOverlayVisible) {
@@ -77,6 +64,15 @@ export function Account() {
     setCard(mintResult[Math.floor(Math.random() * mintResult?.length)])
   },[mintResult])
 
+  if (loading) return <Loader />
+
+  function handleAddButton() {
+    setAddProduct(true)
+  }
+  function handleFormClose() {
+
+    setAddProduct(false)
+  }
   return (
     <div id='main'>
       {user &&
@@ -107,21 +103,11 @@ export function Account() {
                   Log out
                 </button>
                 <button
-                className={styles.user__btnsItem}
+                className={styles.user__btn}
                 type='button'
                 onClick={()=>{
-                  setMintResult(products.filter(product=>product.categories === "mint"))
                   setMint(!mint)}}
                 >Mint</button>
-               
-                {user?.isAdmin
-                  && <button
-                    className={styles.user__btnsItem}
-                    onClick={() => setAdminPanel(!adminPanel)}
-                    type='button'>
-                    {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-                  </button>
-                  }
               </div>
               {mint ?<Mint
               user={user}
