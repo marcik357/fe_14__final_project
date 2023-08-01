@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { baseUrl } from '../../utils/vars';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { fetchData } from '../../utils';
-import { cleanCart, createCartFromLS } from '../../redux/actions/cartActions';
+// import { cleanCart, createCartFromLS } from '../../redux/actions/cartActions';
 
 export function MintBtn({ orders, isOverlayVisible, card, user }) {
   const { token } = useSelector(state => state.token);
@@ -49,7 +49,6 @@ export function MintBtn({ orders, isOverlayVisible, card, user }) {
     }
   }
 
-
   function createMintOrder() {
     return {
       canceled: false,
@@ -63,6 +62,7 @@ export function MintBtn({ orders, isOverlayVisible, card, user }) {
       customerId: user._id,
     }
   }
+  
   async function sendMintOrder(card) {
     if (cart?.products?.length > 0) {
       const cartArray = cart?.products?.map(({ cartQuantity, product }) => {
@@ -138,9 +138,9 @@ export function MintBtn({ orders, isOverlayVisible, card, user }) {
     <button
       className={isOverlayVisible && styles.mintPage__hiddenButton_text}
       onClick={() => {
-        createMint(orders, mintCardFirst),
-          createMint(orders, mintCardSecond),
-          sendMintOrder(card)
+        createMint(orders, mintCardFirst);
+        createMint(orders, mintCardSecond);
+        sendMintOrder(card);
       }}>
       Mint
     </button>

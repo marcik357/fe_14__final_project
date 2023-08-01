@@ -21,13 +21,11 @@ export function MintModal() {
             key={Math.random() * 1000}
             onClick={
               () => {
-                dispatch(
-                  mintCardFirst?.itemNo ?
-                    addToMint(selectedCard, card.itemNo, mintTypes.IS_MINT_SECOND) : (
-                      addToMint(order, card.itemNo, mintTypes.IS_MINT_FIRST))),
-                  dispatch(setModalType(null))
-              }}
-          >
+                dispatch(mintCardFirst?.itemNo
+                  ? addToMint(selectedCard, card.itemNo, mintTypes.IS_MINT_SECOND)
+                  : addToMint(order, card.itemNo, mintTypes.IS_MINT_FIRST))
+                dispatch(setModalType(null));
+              }}>
             <img src={card?.imageUrls} alt={card?.name} />
           </button>
         ))}

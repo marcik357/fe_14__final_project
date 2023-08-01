@@ -48,12 +48,14 @@ export function Mint({ setMint, mint, orders, user, card }) {
         transition={{ duration: 1.1, ease: 'easeInOut' }}
         className={`${style.mintPage} ${isOverlayVisible && style.bg}`}
       >
-        <div className={`${style.mintPage__description} ${isOverlayVisible && !isDesktop && style.overlay}`}>
+        <div className={`${style.mintPage__description}`}>
+        {/* <div className={`${style.mintPage__description} ${isOverlayVisible && !isDesktop && style.overlay}`}> */}
           <p>Try something new from <b>Crypter-mint</b> your NFT.</p>
           <p>You can take any of your NFT and merge it with your other by paying a flat fee of 0.2 ETH for that coin.<br /></p>
           <p>At the end of the mint, you will receive a brand new pumped NFT, which will help you stand out and earn more NFT.</p>
         </div>
-        <div className={`${style.mintPage__wrapper} ${isOverlayVisible && !isDesktop && style.overlay}`}>
+        <div className={`${style.mintPage__wrapper}`}>
+        {/* <div className={`${style.mintPage__wrapper} ${isOverlayVisible && !isDesktop && style.overlay}`}> */}
           <motion.div
             animate={isOverlayVisible ? 'hidden' : 'show'}
             variants={isDesktop ? leftCard : topCard}
