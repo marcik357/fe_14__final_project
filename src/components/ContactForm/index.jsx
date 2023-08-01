@@ -12,7 +12,8 @@ export function ContactForm({ contactForm, setActive, active, setContactValue })
   const [initialValues, setInitialValues] = useState({
     name: '',
     email: '',
-    telephone: ''
+    telephone: '',
+    wallet: ''
   })
 
   useEffect(() => {
@@ -21,7 +22,8 @@ export function ContactForm({ contactForm, setActive, active, setContactValue })
         setInitialValues(
           initialValues.name = customer?.firstName,
           initialValues.email = customer?.email,
-          initialValues.telephone = customer?.telephone)
+          initialValues.telephone = customer?.telephone,
+          initialValues.wallet = customer?.wallet)
     } catch (error) {
       return
     }

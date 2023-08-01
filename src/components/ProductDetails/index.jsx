@@ -17,29 +17,30 @@ export default function ProductDetails({ _id, name, currentPrice, imageUrls, aut
     <>
       <div className={style.content}>
         <LazyLoadImage className={style.content__img} src={imageUrls} alt={name || "product image"} effect="blur" />
-        <div className={style.content__wrapper}>
-          <div className={`${style.content__userInfo} ${style.info}`}>
-            <p className={style.info__text}>Created by:</p>
-            <Link to={`/author/${author}`} className={style.info__block}>
-              <img className={style.info__icon} src={authorIcon} alt="user-avatar" />
-              <p className={style.info__userLink}>{author}</p>
-            </Link>
-          </div>
-          <div className={`${style.content__userInfo} ${style.info}`}>
-            <p className={style.info__text}>Collection:</p>
-            <div className={style.info__block}>
-              <Link to={`/collection/${categories}`} className={style.info__props}>{categories}</Link>
+        {categories !== 'mint' &&
+          <div className={style.content__wrapper}>
+            <div className={`${style.content__userInfo} ${style.info}`}>
+              <p className={style.info__text}>Created by:</p>
+              <Link to={`/author/${author}`} className={style.info__block}>
+                <img className={style.info__icon} src={authorIcon} alt="user-avatar" />
+                <p className={style.info__userLink}>{author}</p>
+              </Link>
             </div>
-          </div>
-          <div className={`${style.content__userInfo} ${style.info}`}>
-            <p className={style.info__text}>Tags:</p>
-            <div className={style.info__block}>
-              {theme && theme.map((item) => (
-                <div className={style.info__props} key={item}>{item}</div>
-              ))}
+            <div className={`${style.content__userInfo} ${style.info}`}>
+              <p className={style.info__text}>Collection:</p>
+              <div className={style.info__block}>
+                <Link to={`/collection/${categories}`} className={style.info__props}>{categories}</Link>
+              </div>
             </div>
-          </div>
-        </div>
+            <div className={`${style.content__userInfo} ${style.info}`}>
+              <p className={style.info__text}>Tags:</p>
+              <div className={style.info__block}>
+                {theme && theme.map((item) => (
+                  <div className={style.info__props} key={item}>{item}</div>
+                ))}
+              </div>
+            </div>
+          </div>}
       </div>
       <div className={style.actions}>
         <div className={style.actions__header}>
@@ -57,7 +58,7 @@ export default function ProductDetails({ _id, name, currentPrice, imageUrls, aut
           <h3 className={style.descr__title}>Details:</h3>
           <p className={style.descr__text}>{details}</p>
         </div>
-        {!isInCart(cart, _id)
+        {categories !== 'mint' && (!isInCart(cart, _id)
           ? <button
             type='button'
             onClick={() => buyNowHandler(dispatch, _id, token)}
@@ -69,7 +70,7 @@ export default function ProductDetails({ _id, name, currentPrice, imageUrls, aut
             className={style.actions__mainBtn}
             type='button'>
             <span>view cart</span>
-          </Link>}
+          </Link>)}
         <p className={style.actions__text}>
           We are laying the groundwork for web3 — the next generation of the internet full of limitless possibilities.
           Join the millions of creators, collectors, and curators who are on this journey with you.
