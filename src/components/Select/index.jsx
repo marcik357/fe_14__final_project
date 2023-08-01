@@ -17,7 +17,9 @@ const Select = ({ label, ...props }) => {
         {...field}
         value={field.value || ''}
         multiple = {props.multiple}
-      >
+      ><option value="" disabled>
+      Choose from the list
+    </option>
         {props.options.map((option) => (
           <option key={option} value={option}>
             {option}

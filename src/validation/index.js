@@ -31,6 +31,11 @@ export const validationSchemaUser = Yup.object({
   telephone: Yup.string()
     .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
     .required("Required Field!"),
+  wallet: Yup.string()
+    .min(40, 'Must contain at least 40 characters')
+    .max(42, 'Can be no more than 42 characters')
+    .matches(/^(0x)?[0-9a-fA-F]{40}$/, 'Must be 0-9 a-f A-F')
+    .required("Required Field!"),
 })
 
 export const validationSchemaLogin = Yup.object({
@@ -49,26 +54,26 @@ export const validationSchemaOrder = Yup.object({
     .matches(/^[a-zA-Zа-яА-Я]+$/, 'Must be a-z A-Z а-я А-Я')
     .trim()
     .required("Required Field!"),
-    email: Yup.string()
+  email: Yup.string()
     .email('Invalid email')
     .required('Required'),
-    telephone: Yup.string()
+  telephone: Yup.string()
     .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
     .required("Required Field!"),
 });
 
 export const validationSchemaCard = Yup.object({
   cardNumber: Yup.string()
-  .label('Card Number')
-  .length(19)
-  .required("Required Field!"),
-  validity:Yup.string()
-  .typeError('Not a valid expiration date. Example: MM/YY')
-  .max(5, 'Not a valid expiration date. Example: MM/YY')
-  .matches(
-    /([0-9]{2})\/([0-9]{2})/,
-    'Not a valid expiration date. Example: MM/YY')
-  .required('Expiration date is required'),
+    .label('Card Number')
+    .length(19)
+    .required("Required Field!"),
+  validity: Yup.string()
+    .typeError('Not a valid expiration date. Example: MM/YY')
+    .max(5, 'Not a valid expiration date. Example: MM/YY')
+    .matches(
+      /([0-9]{2})\/([0-9]{2})/,
+      'Not a valid expiration date. Example: MM/YY')
+    .required('Expiration date is required'),
   cvv: Yup.string()
     .label('CVV')
     .length(3)
@@ -77,7 +82,7 @@ export const validationSchemaCard = Yup.object({
 
 export const validationSchemaProduct = Yup.object().shape({
   enabled: Yup.boolean(),
-  imageUrls: Yup.array().of(Yup.string()).required("Required Field!"),
+  imageUrls: Yup.array().required("Required Field!"),
   quantity: Yup.number().integer().positive().required("Required Field!"),
   _id: Yup.string(),
   name: Yup.string().required("Required Field!"),

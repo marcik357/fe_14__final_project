@@ -3,7 +3,7 @@ const logInGreatingProps = [
     type: 'login',
     title: 'Welcome back!',
     subtitle: 'Sign in to your account',
-    switch_subtitle: 'Don\'t you have account?',
+    switch_subtitle: 'Don\'t have an account yet?',
     button: 'Sign Up'
   },
   {

@@ -6,19 +6,14 @@ import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { baseUrl } from '../../utils/vars';
 import FormikForm from '../FormikForm';
+import { reqPost } from '../../utils/requestBody';
 
 export default function SignUpForm({ callback }) {
   const dispatch = useDispatch();
 
   async function onSubmitHandler(values) {
     try {
-      await fetchData(`${baseUrl}customers`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      })
+      await fetchData(`${baseUrl}customers`, reqPost(JSON.stringify(values)))
       callback(true)
       dispatch(setModalType('registred'))
     } catch (error) {

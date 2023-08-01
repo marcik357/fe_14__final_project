@@ -1,13 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts } from '../pages';
-import PrivateRoute from './PrivateRoute';
-import { Provider, useSelector } from 'react-redux';
+import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, Collection } from '../pages';
 import { useState, createContext } from 'react';
+import PrivateRouteAdmin from './PrivateRouteAdmin';
+import PrivateRouteAccount from './PrivateRouteAccount';
 export const Quantity = createContext()
 
 export default function Router() {
   const [orderAmount, setOrderAmount] = useState(0);
-  const token = useSelector((state) => state.token.token);
 
   return (
     <Quantity.Provider value={[orderAmount, setOrderAmount]}>
@@ -20,15 +19,20 @@ export default function Router() {
           <Route path="/order" element={<Order />} />
           <Route path="/help" element={<Help />} />
 
-          <Route element={<PrivateRoute />}>
-            <Route path='/account' element={<Account />} />
-          </Route>
+          <Route path='/account' element={<PrivateRouteAccount />} />
 
           <Route path="/authorization" element={<Authorization />} />
           <Route path="/author/:authorId" element={<Author />} />
+          <Route path="/collection/:collectionId" element={<Collection />} />
           <Route path="/product/:productId" element={<Product />} />
         </Route>
+
         <Route path="*" element={<NotFound />} />
+
+        <Route element={<PrivateRouteAdmin />}>
+          <Route path="/admin" element={<AdminProducts />} />
+        </Route>
+
       </Routes>
     </Quantity.Provider>
   );

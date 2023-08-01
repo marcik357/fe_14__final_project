@@ -1,3 +1,8 @@
+body:has(.cart),
+html:has(.cart) {
+  height: 100%;
+}
+
 .cart {
   min-width: 320px;
   min-height: 100%;
