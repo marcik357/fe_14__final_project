@@ -89,7 +89,6 @@ function Filter({products, filters}) {
   const sortByPrice = (e) => {
     setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
   }
-
   // Очистити всі фільтри
   const clearAllFilters = () => {
     setSelectedFilters({

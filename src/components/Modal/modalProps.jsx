@@ -3,6 +3,7 @@ import { Success } from '../Icons/success-icon';
 import { SuccessOrder } from '../Icons';
 import { newOrder } from '../../utils/vars';
 import style from './modal.module.scss';
+import { MintModal } from '../MintModal';
 
 export const modalProps = [
   {
@@ -112,6 +113,18 @@ export const modalProps = [
       return (
         <div className={className}>
           <button onClick={onClose} className={`${style.modal__btn} ${style.submitBtn}`}>Close</button>
+        </div>
+      );
+    },
+  },
+  {
+    type: 'mint',
+    header: 'Select photo',
+    icon:<MintModal />,
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+            <button type='button' onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>Close modal</button>
         </div>
       );
     },
