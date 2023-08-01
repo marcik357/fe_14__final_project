@@ -8,8 +8,8 @@ import HelpBlock from '../../components/HelpBlock';
 export function Help() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
-  
-  const [helpData, setHelpData] = useState([])
+
+  const [helpData, setHelpData] = useState(null)
   const [activeBlocks, setActiveBlocks] = useState([]);
   const [clickedItems, setClickedItems] = useState({});
 
@@ -43,28 +43,29 @@ export function Help() {
 
   return (
     <div id='main'>
-      <div className={styles.helpCenter}>
-        <div className={styles.helpCenter__container}>
-          <div className={styles.helpCenter__content}>
-            <div className={styles.helpCenter__cube}>
-              <h3 className={styles.helpCenter__title}>Gettings started on Crypter</h3>
-              <img src="/images/banners/cube.webp" className={styles.helpCenter__img} alt="cube" />
+      {helpData &&
+        <div className={styles.helpCenter}>
+          <div className={styles.helpCenter__container}>
+            <div className={styles.helpCenter__content}>
+              <div className={styles.helpCenter__cube}>
+                <h3 className={styles.helpCenter__title}>Gettings started on Crypter</h3>
+                <img src="/images/banners/cube.webp" className={styles.helpCenter__img} alt="cube" />
+              </div>
+            </div>
+            <div className={styles.helpCenter__info}>
+              {helpData?.map((blockData) => {
+                return (
+                  <HelpBlock
+                    key={blockData.id}
+                    blockData={blockData}
+                    activeBlocks={activeBlocks}
+                    activeClickedItem={clickedItems[blockData.id] || null}
+                    toggleBlock={toggleBlock}
+                    handleClickItem={(itemId) => handleClickItem(blockData.id, itemId)} />)
+              })}
             </div>
           </div>
-          <div className={styles.helpCenter__info}>
-            {helpData?.map((blockData) => {
-              return (
-              <HelpBlock
-                key={blockData.id}
-                blockData={blockData}
-                activeBlocks={activeBlocks}
-                activeClickedItem={clickedItems[blockData.id] || null}
-                toggleBlock={toggleBlock}
-                handleClickItem={(itemId) => handleClickItem(blockData.id, itemId)} />
-            )})}
-          </div>
-        </div>
-      </div>
+        </div>}
     </div>
   );
 }

@@ -37,15 +37,16 @@ export function Collection() {
   if (loading) return <Loader />
 
   return (
-    products && (
-      <div className={style.collection}>
-        <Banner title={'Collection'} subtitle={collection?.name} img='/images/banners/collection-banner.webp' />
-        <div className={style.collection__wrapper}>
-          <div className={style.collection__container}>
-            <CollectionDetails collection={collection} products={products} productsQuantity={productsQuantity} />
+    <div id='main'>
+      {products &&
+        <div className={style.collection}>
+          <Banner title={'Collection'} subtitle={collection?.name} img='/images/banners/collection-banner.webp' />
+          <div className={style.collection__wrapper}>
+            <div className={style.collection__container}>
+              <CollectionDetails collection={collection} products={products} productsQuantity={productsQuantity} />
+            </div>
           </div>
-        </div>
-      </div>
-    )
+        </div>}
+    </div>
   )
 }

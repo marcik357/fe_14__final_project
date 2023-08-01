@@ -11,7 +11,7 @@ import { baseUrl } from '../../utils/vars';
 import { reqPost } from '../../utils/requestBody';
 
 
-export default function LoginForm() {
+export default function LoginForm({ redirectUrl = "/" }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function LoginForm() {
       const token = response.token;
       localStorage.setItem('token', token);
       dispatch(setTokenAction(token));
-      navigate("/")
+      navigate(redirectUrl)
     } catch (error) {
       dispatch(setErrorAction(error.message));
       dispatch(setModalType('error'))

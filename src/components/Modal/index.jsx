@@ -8,7 +8,7 @@ import { modalAnimation } from '../../animation';
 
 export function Modal(props) {
   const dispatch = useDispatch();
-  const { data: { type, header, text, actions, icon } } = props;
+  const { data: { type, header, text, actions, icon }, onDelete } = props;
   const error = useSelector((state) => state.error.error)
 
   function onCloseModal() {
@@ -17,26 +17,31 @@ export function Modal(props) {
   }
 
   function onSubmitModal() {
+    if (onDelete && typeof onDelete === 'function') {
+      onDelete();
+    }
     onCloseModal();
   }
 
   return (
     <AnimatePresence>
-      <div className={style.overlay} role="button" tabIndex={0} onClick={onCloseModal} onKeyDown={onCloseModal} />
-      <motion.div {...modalAnimation} className={style.modal}>
-        <div className={style.modal__container}>
-          <div className={style.modal__header}>
-            <h3 className={style.modal__title}>{header}</h3>
+      <>
+        <div className={style.overlay} role="button" tabIndex={0} onClick={onCloseModal} onKeyDown={onCloseModal} />
+        <motion.div {...modalAnimation} className={style.modal}>
+          <div className={style.modal__container}>
+            <div className={style.modal__header}>
+              <h3 className={style.modal__title}>{header}</h3>
+            </div>
+            <div className={style.modal__text}>
+              {icon && <div className={style.modal__icon}>
+                {icon}
+              </div>}
+              {type !== 'buy' && <p>{text || error}</p>}
+            </div>
+            {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}
           </div>
-          <div className={style.modal__text}>
-            {icon && <div className={style.modal__icon}>
-              {icon}
-            </div>}
-            {type !== 'buy' && <p>{text || error}</p>}
-          </div>
-          {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}
-        </div>
-      </motion.div>
+        </motion.div>
+      </>
     </AnimatePresence>
   );
 }

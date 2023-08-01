@@ -39,9 +39,9 @@
     // display: flex;
     // justify-content: space-between;
     display: grid;
+    margin-bottom: 2rem;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-bottom: 2rem;
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(6, 1fr);
@@ -131,6 +131,30 @@
 
     &:hover {
       color: #f7fbfa;
+    }
+  }
+
+  &__submit_inAccount {
+    color: #f7fbfa;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+      background-color: #202025;
+    }
+
+    &::after {
+      width: 100%;
+      height: 100%;
+      background-color: #f7fbfa;
+    }
+
+    &:hover {
+      color: #202025;
     }
   }
 

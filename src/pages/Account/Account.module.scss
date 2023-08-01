@@ -1,4 +1,6 @@
 .user {
+  height: 100%;
+  margin-top: 1rem;
   background-color: #f7fbfa;
   font-family: "Inter", sans-serif;
 
@@ -8,13 +10,13 @@
     padding: 0 15px;
   }
 
-  &__btns {
+  &__buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
   }
 
-  &__btnsItem {
+  &__btn {
     display: flex;
     align-items: center;
     justify-content: center;

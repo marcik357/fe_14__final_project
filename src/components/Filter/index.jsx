@@ -4,66 +4,25 @@ import styles from './filter.module.scss';
 import { LeftChevron } from '../Icons/left-chevron';
 import { setQueryStringAction } from '../../redux/actions/filterActions';
 import ProductList from '../ProductList';
-import { fetchData, getDataFromSS } from '../../utils';
-import { useCallback } from 'react';
-import { setErrorAction } from '../../redux/actions/errorActions';
-import { baseUrl } from '../../utils/vars';
-import { useNavigate } from 'react-router-dom';
 
-function Filter() {
+function Filter({products, filters}) {
   const dispatch = useDispatch();
-  const [selectedFilters, setSelectedFilters] = useState(!Array.isArray(getDataFromSS('selectedFilters'))
-    ? getDataFromSS('selectedFilters')
-    : {
-      authors: [],
-      categories: [],
-      theme: [],
-      minPrice: '',
-      maxPrice: '',
-      sortBy: '',
-      isOpen: false,
+  const [selectedFilters, setSelectedFilters] = useState({
+        authors: [],
+        categories: [],
+        theme: [],
+        minPrice: '',
+        maxPrice: '',
+        sortBy: '',
     });
-  const [filters, setFilters] = useState({
-    authorFilters: [],
-    categoriesFilters: [],
-    themeFilters: []
-  });
   const [minPrice, setMinPrice] = useState(selectedFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(selectedFilters.maxPrice);
-  const [{ products, productsQuantity }, setProducts] = useState([]);
   const [isApplyButtonDisabled, setIsApplyButtonDisabled] = useState(false);
-  const queryString = useSelector((state) => state.filter.queryString);
+  const [isOpen, setIsOpen] = useState(JSON.parse(sessionStorage.getItem('isOpen')) || false);
 
-  const navigate = useNavigate();
   const toggleModal = () => {
-    setSelectedFilters({ ...selectedFilters, isOpen: !selectedFilters.isOpen })
+    setIsOpen(!isOpen);
   };
-
-  const getFiltersByType = useCallback(async (type) => {
-    try {
-      const data = await fetchData(`${baseUrl}filters/${type}`);
-      setFilters(prevFilters => ({
-        ...prevFilters,
-        [`${type}Filters`]: data
-      }));
-    } catch (error) {
-      dispatch(setErrorAction(error.message));
-    }
-  }, [dispatch]);
-
-  // Функція для відображення товарів згідно обраних фільтрів
-  const applyFilters = useCallback(async () => {
-    try {
-      // Оновлення URL з актуальними параметрами фільтрації
-      navigate(`/discover?${queryString}`);
-      // Запит до API з використанням queryString для фільтрації товарів
-      const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
-      setProducts(data);
-    } catch (error) {
-      dispatch(setErrorAction(error.message));
-    }
-  }, [dispatch, queryString, navigate]);
-
 
   // Код фільтру по чекбоксам
   const valueChange = (event) => {
@@ -88,13 +47,13 @@ function Filter() {
     setSelectedFilters((prevSelectedFilters) => {
       const updatedFilters = { ...prevSelectedFilters };
 
-      if (minPrice === '') {
+      if (minPrice === '' && maxPrice !== '') {
         updatedFilters.minPrice = '0';
       } else {
         updatedFilters.minPrice = minPrice;
       }
 
-      if (maxPrice === '') {
+      if (maxPrice === '' && minPrice !== '') {
         updatedFilters.maxPrice = '100000';
       } else {
         updatedFilters.maxPrice = maxPrice;
@@ -130,7 +89,6 @@ function Filter() {
   const sortByPrice = (e) => {
     setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
   }
-
   // Очистити всі фільтри
   const clearAllFilters = () => {
     setSelectedFilters({
@@ -148,19 +106,8 @@ function Filter() {
   };
 
   useEffect(() => {
-    // Виклик функції для отримання фільтрів по типам
-    getFiltersByType('author');
-    getFiltersByType('categories');
-    getFiltersByType('theme');
-  }, [getFiltersByType]);
-
-  useEffect(() => {
-    sessionStorage.setItem('selectedFilters', JSON.stringify(selectedFilters));
-  }, [selectedFilters]);
-
-  useEffect(() => {
-    applyFilters(); // Викликати applyFilters при кожній зміні queryString
-  }, [applyFilters]);
+    sessionStorage.setItem('isOpen', JSON.stringify(isOpen));
+  }, [isOpen]);
 
   useEffect(() => {
     let newQueryString = '';
@@ -192,7 +139,6 @@ function Filter() {
       newQueryString += `&maxPrice=${selectedFilters.maxPrice}`;
     }
 
-    sessionStorage.setItem('queryString', JSON.stringify(newQueryString));
     dispatch(setQueryStringAction(newQueryString));
   }, [dispatch, selectedFilters]);
 
@@ -200,7 +146,7 @@ function Filter() {
     <div className={styles.filter}>
       <div className={styles.filter__container}>
         <div className={styles.filter__nav}>
-          <button className={`${styles.filter__openBtn + ' ' + styles.btnEffect} ${selectedFilters.isOpen && styles.open}`} type="button" onClick={toggleModal}>Filters</button>
+          <button className={`${styles.filter__openBtn + ' ' + styles.btnEffect} ${isOpen && styles.open}`} type="button" onClick={toggleModal}>Filters</button>
           <select name="sortBy" id="sortBy" className={styles.filter__sortBtn} value={selectedFilters.sortBy || 'Sort By'} onChange={(e) => sortByPrice(e)}>
             <option disabled hidden value="Sort By">Sort By</option>
             <option value="+currentPrice" className={styles.filter__sortValue}>Lowest price</option>
@@ -208,8 +154,8 @@ function Filter() {
           </select>
         </div>
         <div className={styles.filter__content}>
-          <div className={`${styles.filter__sidebarBckg} ${selectedFilters.isOpen && styles.open}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
-            <div className={`${styles.filter__sidebarWrapper} ${selectedFilters.isOpen && styles.open}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+          <div className={`${styles.filter__sidebarBckg} ${isOpen && styles.open}`} role="button" tabIndex="0" onClick={toggleModal} onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
+            <div className={`${styles.filter__sidebarWrapper} ${isOpen && styles.open}`} onClick={(event) => event.stopPropagation()} role="button" tabIndex="0" onKeyDown={(e) => e.key === 'Esc' && toggleModal()}>
               <div className={styles.filter__sidebarHeader}>
                 <button className={styles.filter__sidebarCloseBtn} type="button" onClick={toggleModal}>
                   <LeftChevron />
@@ -248,7 +194,7 @@ function Filter() {
                 </div>
                 <h4 className={styles.filter__sidebarCategoryTitle}>Tags</h4>
                 <div className={styles.filter__sidebarList}>
-                  {filters.themeFilters.map((theme) => (
+                  {filters?.themeFilters?.map((theme) => (
                     <div key={theme._id} className={styles.filter__sidebarItem}>
                       <label htmlFor={theme._id}>
                         <input type="checkbox" id={theme._id} name={theme.name} data-filter-type="theme" onChange={valueChange} checked={selectedFilters.theme.includes(theme.name) ? true : false} />
@@ -264,9 +210,9 @@ function Filter() {
             </div>
           </div>
           <section className={styles.filter__contentList}>
-            {productsQuantity === 0
+            {products.productsQuantity === 0
               ? <p className={styles.filter__contentNoItems}>No items with such parameters</p>
-              : <ProductList products={products} />
+              : <ProductList products={products.products} />
             }
           </section>
         </div>

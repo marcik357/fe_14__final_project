@@ -37,9 +37,9 @@
 
   &__checkboxes {
     display: grid;
+    margin-bottom: 2rem;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-bottom: 2rem;
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(6, 1fr);

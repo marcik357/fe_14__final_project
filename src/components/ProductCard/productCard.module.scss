@@ -292,16 +292,24 @@
         font-size: 10px;
       }
 
-      &_buyNow {
-        & img {
-          max-width: 13px;
-          max-height: 13px;
-        }
+      // &_buyNow {
+      //   & img {
+      //     max-width: 13px;
+      //     max-height: 13px;
+      //   }
 
-        & p {
-          font-size: 12px;
-        }
-      }
+      //   & p {
+      //     font-size: 12px;
+      //   }
+      // }
+    }
+  }
+
+  .user {
+    align-items: center;
+
+    &__inAuthor {
+      color: #f7fbfa;
     }
   }
 
@@ -350,16 +358,16 @@
         font-size: 12px;
       }
 
-      &_buyNow {
-        & img {
-          max-width: 20px;
-          max-height: 20px;
-        }
+      // &_buyNow {
+      //   & img {
+      //     max-width: 20px;
+      //     max-height: 20px;
+      //   }
 
-        & p {
-          font-size: 15px;
-        }
-      }
+      //   & p {
+      //     font-size: 15px;
+      //   }
+      // }
     }
   }
 }

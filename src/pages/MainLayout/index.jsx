@@ -52,7 +52,7 @@ export function MainLayout() {
   const mainLoad = useCallback(async () => {
     dispatch(setTokenAction(localStorage.getItem('token')));
     const products = await fetchData(`${baseUrl}products`)
-    dispatch(addProductsAction(products.filter((product)=>product.enabled)));
+    dispatch(addProductsAction(products.filter((product) => product.enabled && product.categories !== 'mint')));
     await migrateCartToServer()
   }, [dispatch, migrateCartToServer])
 
