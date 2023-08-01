@@ -5,6 +5,9 @@ import style from './collectionCard.module.scss';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { scrollTo } from '../../utils';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { scrollTo } from '../../utils';
 
 function CollectionCard({
   category,
@@ -28,42 +31,61 @@ function CollectionCard({
     setCollectionVisible(false);
     setProductListVisible(true);
     scrollTo('#collections');
+    scrollTo('#collections');
   };
   const renderCollection = () => {
     setCollectionVisible(true);
     setProductListVisible(false);
+    scrollTo('#collections');
     scrollTo('#collections');
   };
 
   return (
     <>
       {isCollectionVisible && (
-        <Link
+        <Link to='/'
           style={{ display: display }}
           onClick={renderList}
           className={style.collectionCard}
         >
           <div className={style.collectionCard__wrapper}>
-            {products[1]?.imageUrls.map((imageUrl, index) => (
+            {products[0]?.imageUrls.map((imageUrl, index) => (
               <LazyLoadImage
                 key={index}
                 className={style.collectionCard__image}
                 src={imageUrl}
                 alt='collectionCardName'
                 effect="blur"
+                placeholderSrc={'./images/products/placeholder.jpg'}
+                height={300}
+                width={300}
               />
             ))}
 
             <div className={style.collectionCard__image_sm}>
+              {products[1]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
+                <LazyLoadImage
+                key={index}
+                src={imageUrl}
+                alt='collectionCardName'
+                effect="blur"
+                placeholderSrc={'./images/products/placeholder.jpg'}
+                height={96}
+                width={96} />
+              ))}
+
               {products[2]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
-                <LazyLoadImage key={index} src={imageUrl} alt='collectionCardName' />
+                <LazyLoadImage
+                key={index}
+                src={imageUrl}
+                alt='collectionCardName'
+                effect="blur"
+                placeholderSrc={'./images/products/placeholder.jpg'}
+                height={96}
+                width={96} />
               ))}
 
-              {products[3]?.imageUrls.slice(0, 2).map((imageUrl, index) => (
-                <LazyLoadImage key={index} src={imageUrl} alt='collectionCardName' />
-              ))}
-
-              <div
+              {products.length - 3 >0 && <div
                 style={{
                   backgroundColor:
                     bgColors[Math.floor(Math.random() * bgColors.length)],
@@ -71,7 +93,7 @@ function CollectionCard({
                 className={style.collectionCard__viewAll}
               >
                 +{products.length - 3}
-              </div>
+              </div>}
             </div>
           </div>
           <p className={style.collectionCard__name}>{category}</p>
@@ -80,12 +102,18 @@ function CollectionCard({
       {isProductListVisible
         &&
         <>
-          <button
-            className={style.collectionCard__showCollection}
-            onClick={renderCollection}
-          >
-            Show all collections
-          </button>
+          <div className={style.collectionCard__btns}>
+            <button
+              className={style.collectionCard__btn}
+              onClick={renderCollection}>
+              Show all collections
+            </button>
+            <Link
+              className={style.collectionCard__btn}
+              to={`/collection/${category}`}>
+              Show details
+            </Link>
+          </div>
           <ProductList products={products} listName={category} />
         </>
       }

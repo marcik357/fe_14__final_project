@@ -1,8 +1,8 @@
 import { cartTypes } from "../types/cartTypes";
 import { setErrorAction } from "./errorActions";
-import { setLoadingAction } from "./loadingActions";
 import { baseUrl } from '../../utils/vars'
 import { fetchData, getDataFromLS } from "../../utils";
+import { reqDelete, reqPost, reqPut } from "../../utils/requestBody";
 
 export function setCart(cart) {
   return {
@@ -11,17 +11,10 @@ export function setCart(cart) {
   }
 }
 
-export function createCartFromLS(token, cartFromLS) {
+export function createCartFromLS(cartFromLS) {
   return async function (dispatch) {
     try {
-      const cart = await fetchData(`${baseUrl}cart`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ products: cartFromLS })
-      });
+      const cart = await fetchData(`${baseUrl}cart`, reqPost(JSON.stringify({ products: cartFromLS })));
       dispatch(setCart(cart));
     } catch (error) {
       dispatch(setErrorAction(error));
@@ -29,14 +22,8 @@ export function createCartFromLS(token, cartFromLS) {
   }
 }
 
-async function addToCartServer(id, token, dispatch) {
-  const newCart = await fetchData(`${baseUrl}cart/${id}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
-  });
+async function addToCartServer(id, dispatch) {
+  const newCart = await fetchData(`${baseUrl}cart/${id}`, reqPut());
   dispatch(setCart(newCart));
 }
 
@@ -55,7 +42,7 @@ export function addToCart(id, token) {
   return async function (dispatch) {
     try {
       token
-        ? addToCartServer(id, token, dispatch)
+        ? addToCartServer(id, dispatch)
         : addToCartLocal(id, dispatch)
     }
     catch (error) {
@@ -64,15 +51,8 @@ export function addToCart(id, token) {
   }
 }
 
-async function changeQuantityServer(cart, token, newCart, dispatch) {
-  await fetchData(`${baseUrl}cart`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ products: newCart })
-  });
+async function changeQuantityServer(cart, newCart, dispatch) {
+  await fetchData(`${baseUrl}cart`, reqPut(JSON.stringify({ products: newCart })));
   dispatch(setCart({ ...cart, products: newCart }))
 }
 
@@ -92,7 +72,7 @@ export function changeQuantity(cart, id, token, plus) {
         return { product: product, cartQuantity: cartQuantity }
       });
       token
-        ? changeQuantityServer(cart, token, newCart, dispatch)
+        ? changeQuantityServer(cart, newCart, dispatch)
         : changeQuantityLocal(newCart, dispatch)
     }
     catch (error) {
@@ -102,13 +82,7 @@ export function changeQuantity(cart, id, token, plus) {
 }
 
 async function deleteFromCartServer(cart, id, token, newCart, dispatch) {
-  await fetchData(`${baseUrl}cart/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  await fetchData(`${baseUrl}cart/${id}`, reqDelete(token));
   dispatch(setCart({ ...cart, products: newCart }))
 }
 
@@ -131,37 +105,8 @@ export function deleteFromCart(cart, id, token) {
   }
 }
 
-
-export function buyProduct(token) {
-  return async function (dispatch) {
-    try {
-      dispatch(setLoadingAction(true));
-      const sendFetch = await fetchData(`${baseUrl}cart`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-      })
-      dispatch(setCart([]));
-      dispatch(setLoadingAction(false));
-      dispatch(setErrorAction(null));
-    }
-    catch (error) {
-      dispatch(setLoadingAction(false));
-      dispatch(setErrorAction(error));
-    }
-  }
-}
 async function cleanCartServer(token, dispatch) {
-  await fetchData(`${baseUrl}cart`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-
-  });
+  await fetchData(`${baseUrl}cart`, reqDelete(token));
   dispatch(setCart([]))
 }
 

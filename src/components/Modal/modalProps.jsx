@@ -52,7 +52,13 @@ export const modalProps = [
     actions(onClose, onSubmit, className) {
       return (
         <div className={className}>
-          <NavLink to="/authorization" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
+          <NavLink to="/authorization"
+            className={`${style.modal__btn} ${style.cancelBtn}`}
+            onClick={() => {
+              localStorage.removeItem('token');
+              onClose();
+              window.location.reload();
+            }}>
             log in
           </NavLink>
         </div>
@@ -76,13 +82,37 @@ export const modalProps = [
   {
     type: 'order',
     header: 'Thank you for the order!',
-    icon:<SuccessOrder width='150px' />,
+    icon: <SuccessOrder width='150px' />,
     actions(onClose, onSubmit, className) {
       return (
         <div className={className}>
           <NavLink to="/" onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>
             Ok
           </NavLink>
+        </div>
+      );
+    },
+  },
+  {
+    type: 'deleteProduct',
+    header: 'Are you sure?',
+    text: 'Do you want to delete this product?',
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <button type='button' onClick={onSubmit} className={`${style.modal__btn} ${style.submitBtn}`}>Delete</button>
+          <button type='button' onClick={onClose} className={`${style.modal__btn} ${style.cancelBtn}`}>Cancel</button>
+        </div>
+      );
+    },
+  }, {
+    type: 'saved',
+    header: 'Changes saved',
+    icon: <Success />,
+    actions(onClose, onSubmit, className) {
+      return (
+        <div className={className}>
+          <button onClick={onClose} className={`${style.modal__btn} ${style.submitBtn}`}>Close</button>
         </div>
       );
     },

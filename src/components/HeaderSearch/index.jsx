@@ -3,7 +3,9 @@ import { fetchData } from '../../utils';
 import { baseUrl } from '../../utils/vars';
 import { useState, useEffect, useRef } from 'react';
 import { HeaderSearchResults } from '../HeaderSearchResults';
+import { motion, AnimatePresence } from 'framer-motion';
 import style from './headerSearch.module.scss';
+import { wrapperAnimation, bodyAnimation, containerAnimation } from '../../animation';
 
 export function HeaderSearch(props) {
   const { classForm, isSearchVisible, classActive, scrolled, classScrolled, classLabel,
@@ -87,6 +89,21 @@ export function HeaderSearch(props) {
    };
  }, []);
 
+  // стан для об"єкт matchingData пустий він чи ні
+  const [isSearchArray, setIsSearchArray] = useState(false);
+
+  useEffect(() => {
+	 setIsSearchArray(Object.values(matchingData).some(data => data.length > 0));
+  }, [matchingData]);
+  
+
+  // анімація framer-motion
+ const items = [
+	{ key: 'products', data: matchingData.products },
+	{ key: 'collections', data: matchingData.collections },
+	{ key: 'authors', data: matchingData.authors },
+ ];
+ 
   return (
    <>
     <form action="" ref={formRef} className={`${classForm} ${isSearchVisible && classActive} ${scrolled && classScrolled}`}>
@@ -108,38 +125,41 @@ export function HeaderSearch(props) {
       </button>
       </label>
      </form>
-     {inputLength > 2 && dataLoaded && Object.values(matchingData).some(data => data.length > 0) &&(
-        <div className={`${style.headerSearch} ${scrolled && style.scrolled}`} role="button" tabIndex={0} onClick={toggleSearchView} onKeyDown={toggleSearchView}>
-          <div className={style.headerSearch__container} style={isDesktop ? { left: containerLeft } : null}  ref={containerRef}>
-            {matchingData.products.length > 0 && (
-              <HeaderSearchResults
-                data={matchingData.products}
-                type='NFTs'
-                handleClearSearch={handleClearSearch}
-                toggleSearchView={toggleSearchView}
-              />
-            )}
-
-            {matchingData.collections.length > 0 && (
-              <HeaderSearchResults
-                data={matchingData.collections}
-                type='Collections'
-                handleClearSearch={handleClearSearch}
-                toggleSearchView={toggleSearchView}
-              />
-            )}
-
-            {matchingData.authors.length > 0 && (
-              <HeaderSearchResults
-                data={matchingData.authors}
-                type='Authors'
-                handleClearSearch={handleClearSearch}
-                toggleSearchView={toggleSearchView}
-              />
-            )}
-           </div>
-        </div>
+     <AnimatePresence>
+     {inputLength > 2 && dataLoaded && isSearchArray && (
+        <motion.div
+          className={`${style.headerSearch} ${scrolled && style.scrolled}`}
+          role="button" tabIndex={0}
+          onClick={toggleSearchView}
+          onKeyDown={toggleSearchView}
+          {...wrapperAnimation}
+        >
+          <motion.div
+            className={style.headerSearch__container}
+            style={isDesktop ? { left: containerLeft } : null}
+            ref={containerRef}
+            {...containerAnimation}
+          >
+            {items.map(({ key, data }, index) => (
+                <motion.div
+                 key={key}
+                 className={style.headerSearch__body}
+                 {...bodyAnimation(index)}
+                >
+                  {data.length > 0 && (
+                    <HeaderSearchResults
+                      data={data}
+                      type={key === 'products' ? 'NFTs' : key === 'collections' ? 'Collections' : 'Authors'}
+                      handleClearSearch={handleClearSearch}
+                      toggleSearchView={toggleSearchView}
+                    />
+                  )}
+                </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       )}
+     </AnimatePresence>
 	  </>
   )
 }

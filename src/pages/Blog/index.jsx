@@ -1,34 +1,42 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDataAction } from '../../redux/actions/getDataActions';
 import styles from './blog.module.scss';
 import Loader from '../../components/Loader';
 import { BlogIcon } from '../../components/Icons/icon-blog';
 import Banner from '../../components/Banner';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { fetchData, loadData } from '../../utils';
+import { useCallback } from 'react';
 
 export function Blog() {
   const dispatch = useDispatch();
-  const [data, setData] = useState([])
+  const [data, setData] = useState(null)
   const loading = useSelector((state) => state.loading.loading);
 
+  const blogLoad = useCallback(async () => {
+    const blog = await fetchData('/data/blog.json')
+    setData(blog);
+  }, [])
+
   useEffect(() => {
-    dispatch(getDataAction('/data/blog.json', setData, {}, 'blog'));
-  }, [dispatch])
+    loadData(dispatch, blogLoad)
+  }, [dispatch, blogLoad]);
+
+  if (loading) return <Loader />
 
   return (
     <div id='main'>
-      {!loading ? (
+      {data &&
         <div className={styles.blog}>
           <Banner
             title='Crypter Blog'
             subtitle='Crypter NFT marketplace blog'
-            img='/images/banners/blog-banner.jpg' />
+            img='/images/banners/blog-banner.webp' />
           <div className={styles.blog__container}>
             <div className={styles.blog__posts}>
-              {data.map(({ url, id, textButton, capturePost, authorPost, dataPost, textPost }, index) => {
+              {data?.map(({ url, id, textButton, capturePost, authorPost, dataPost, textPost }, index) => {
                 return (
                   <div key={id} className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                     <div className={styles.blog__postImgBlock}>
@@ -59,10 +67,7 @@ export function Blog() {
               })}
             </div>
           </div>
-        </div>
-      ) : (
-        <Loader />
-      )}
+        </div>}
     </div>
   );
 }
