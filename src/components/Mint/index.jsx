@@ -109,7 +109,7 @@ export function Mint({ orders, user, mintArray }) {
           className={`${mintCardFirst.itemNo && mintCardSecond.itemNo
             ? isOverlayVisible
               ? style.mintPage__hiddenButton
-              : styleBtn.user__btn
+              : `${styleBtn.user__btn} ${styleBtn.user__btn_mint}`
             : style.hidden_btn}`}>
           <MintBtn
             user={user}
