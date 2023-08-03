@@ -15,7 +15,13 @@ export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
   async function createMint(orders, selectCard) {
     try {
       let order = orders.find((item) => item.products.some(product => product.product.itemNo === selectCard.itemNo) && item.products)
-      order.products = order.products.filter(item => item.product.itemNo !== selectCard.itemNo);
+      order.products = order.products.filter(item => {
+        if (item.product.itemNo !== selectCard.itemNo) return item;
+        if (item.product.itemNo === selectCard.itemNo && item.cartQuantity > 1) {
+          item.cartQuantity -= 1;
+          return item
+        };
+      });
       order.email = "tester.crypter@gmail.com";
       order.products.length >= 1
         ? await changeOrder(order, order._id)
@@ -161,7 +167,7 @@ export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
 
   return (
     <button
-      className={isOverlayVisible && styles.mintPage__hiddenButton_text}
+      // className={styles.mintPage__hiddenButton_text}
       onClick={async () => {
         try {
           await createMint(orders, mintCardFirst);
