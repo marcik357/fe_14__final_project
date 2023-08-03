@@ -398,6 +398,10 @@ option {
       width: 260px;
     }
 
+    &__sidebarBckg {
+      z-index: 1;
+    }
+
     &__sidebarBckg.open {
       position: relative;
       transition: none;
