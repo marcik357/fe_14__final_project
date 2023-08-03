@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { baseUrl } from '../../utils/vars';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { fetchData } from '../../utils';
-import { reqDelete, reqPost } from '../../utils/requestBody';
+import { reqDelete, reqPost, reqPut } from '../../utils/requestBody';
 // import { cleanCart, createCartFromLS } from '../../redux/actions/cartActions';
 
 export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
@@ -13,17 +13,21 @@ export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
   const dispatch = useDispatch();
 
   async function createMint(orders, selectCard) {
-    let order = orders.find((item) => item.products.some(product => product.product.itemNo === selectCard.itemNo) && item.products)
-    order.products = order.products.filter(item => item.product.itemNo !== selectCard.itemNo);
-    order.email = "tester.crypter@gmail.com";
-    order.products.length >= 1
-      ? await changeOrder(order, order._id)
-      : await deleteOrder(order._id)
+    try {
+      let order = orders.find((item) => item.products.some(product => product.product.itemNo === selectCard.itemNo) && item.products)
+      order.products = order.products.filter(item => item.product.itemNo !== selectCard.itemNo);
+      order.email = "tester.crypter@gmail.com";
+      order.products.length >= 1
+        ? await changeOrder(order, order._id)
+        : await deleteOrder(order._id)
+    } catch (error) {
+      throw new Error(error?.message);
+    }
   }
 
   async function changeOrder(changedOrder, orderNumber) {
     try {
-      await fetchData(`${baseUrl}orders/${orderNumber}`, reqPost(JSON.stringify(changedOrder)));
+      await fetchData(`${baseUrl}orders/${orderNumber}`, reqPut(JSON.stringify(changedOrder)));
       // await fetchData(`${baseUrl}orders/${orderNumber}`, {
       //   method: "PUT",
       //   headers: {
@@ -33,7 +37,7 @@ export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
       //   body: JSON.stringify(changedOrder)
       // })
     } catch (error) {
-      dispatch(setErrorAction(error.message));
+      throw new Error(error?.message);
     }
   }
 
@@ -49,7 +53,7 @@ export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
       //   body: JSON.stringify(createMintOrder())
       // })
     } catch (error) {
-      dispatch(setErrorAction(error.message));
+      throw new Error(error?.message);
     }
   }
 
@@ -151,8 +155,7 @@ export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
         // });
       }
     } catch (error) {
-      console.log(error);
-      dispatch(setErrorAction(error.message));
+      throw new Error(error?.message);
     }
   }
 
@@ -160,9 +163,13 @@ export function MintBtn({ orders, isOverlayVisible, mintCard, user }) {
     <button
       className={isOverlayVisible && styles.mintPage__hiddenButton_text}
       onClick={async () => {
-        await createMint(orders, mintCardFirst);
-        await createMint(orders, mintCardSecond);
-        await sendMintOrder(mintCard);
+        try {
+          await createMint(orders, mintCardFirst);
+          await createMint(orders, mintCardSecond);
+          await sendMintOrder(mintCard);
+        } catch (error) {
+          dispatch(setErrorAction(error.message));
+        }
       }}>
       Mint
     </button>
