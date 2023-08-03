@@ -46,7 +46,7 @@ export function Mint({ orders, user, mintArray }) {
   return (
     <motion.div
       transition={{ duration: 1.1, ease: 'easeInOut' }}
-      className={`${style.mintPage} ${isOverlayVisible && style.bg}`}>
+      className={`${style.mintPage} ${isOverlayVisible ? style.bg : ''}`}>
       <div className={`${style.mintPage__description}`}>
         <p>Try something new from <b>Crypter-mint</b> your NFT.</p>
         <p>You can take any of your NFT and merge it with your other by paying a flat fee of 0.2 ETH for that coin.<br /></p>
