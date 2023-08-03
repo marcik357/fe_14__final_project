@@ -56,9 +56,6 @@ export function AdminProducts() {
     setProduct(null);
     setAddProduct(false)
   }
-  // useEffect(() => {
-  //   dispatch(getDataAction(`${baseUrl}products`, addProductsAction, reqGet(token)));
-  // }, [dispatch, token]);
 
   const adminLoad = useCallback(async () => {
     const products = await fetchData(`${baseUrl}products`)
@@ -73,10 +70,6 @@ export function AdminProducts() {
   useEffect(() => {
     loadData(dispatch, adminLoad)
   }, [dispatch, adminLoad, productId])
-
-  // useEffect(() => {
-  //   productId && dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
-  // }, [dispatch, productId, product]);
 
   useEffect(() => {
     productId && getProduct();

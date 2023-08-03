@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
 import { mintTypes } from '../../redux/types/mintTypes';
 import { MintCard } from '../MintCard';
-import { MintBtn } from '../MintBtn';
 import { useEffect } from 'react';
 import { addToMint } from '../../redux/actions/mintActions';
 import { addToOrder } from "../../redux/actions/orderAction";
@@ -12,6 +11,10 @@ import { motion } from 'framer-motion';
 import { MintResult } from '../MintResult';
 import { useMediaQuery } from "react-responsive";
 import { topCard, bottomCard, rightCard, leftCard, arrows } from '../../animation';
+import { setErrorAction } from "../../redux/actions/errorActions";
+import { createMintOrder, fetchData } from "../../utils";
+import { reqDelete, reqPost, reqPut } from "../../utils/requestBody";
+import { baseUrl } from "../../utils/vars";
 
 export function Mint({ orders, user, mintArray }) {
   const [selectCardFirst, setSelectCardFirst] = useState(false);
@@ -20,15 +23,87 @@ export function Mint({ orders, user, mintArray }) {
   const [showCard, setShowCard] = useState(false);
   const [mintCard, setMintCard] = useState(null);
 
+  const { cart } = useSelector(state => state.cart);
   const { mintCardFirst, mintCardSecond } = useSelector(state => state.mint);
+
   const dispatch = useDispatch();
-  const handleMintNowClick = () => {
-    setOverlayVisible((isOverlayVisible) => !isOverlayVisible);
-    const timer = setTimeout(() => {
+
+  const isDesktop = useMediaQuery({ minWidth: 769 });
+
+  const handleMintClick = async (e) => {
+    e.currentTarget.disabled = true;
+    try {
+      setOverlayVisible((isOverlayVisible) => !isOverlayVisible);
+      await createMint(orders, mintCardFirst);
+      await createMint(orders, mintCardSecond);
+      await sendMintOrder(mintCard);
       setShowCard(true);
-      clearTimeout(timer);
-    }, 3000);
+    } catch (error) {
+      dispatch(setErrorAction(error.message));
+    }
   };
+
+  async function createMint(orders, selectCard) {
+    try {
+      let order = orders.find((item) => item.products.some(product => product.product.itemNo === selectCard.itemNo) && item.products)
+      order.products = order.products.filter(item => {
+        if (item.product.itemNo !== selectCard.itemNo) return item;
+        if (item.product.itemNo === selectCard.itemNo && item.cartQuantity > 1) {
+          item.cartQuantity -= 1;
+          return item
+        };
+      });
+      order.email = "tester.crypter@gmail.com";
+      order.products.length >= 1
+        ? await changeOrder(order, order._id)
+        : await deleteOrder(order._id)
+    } catch (error) {
+      throw new Error(error?.message);
+    }
+  }
+
+  async function changeOrder(changedOrder, orderNumber) {
+    try {
+      await fetchData(`${baseUrl}orders/${orderNumber}`, reqPut(JSON.stringify(changedOrder)));
+    } catch (error) {
+      throw new Error(error?.message);
+    }
+  }
+
+  async function deleteOrder(orderNumber) {
+    try {
+      await fetchData(`${baseUrl}orders/${orderNumber}`, reqDelete());
+    } catch (error) {
+      throw new Error(error?.message);
+    }
+  }
+
+  async function sendMintOrder(mintCard) {
+    try {
+      if (cart?.products?.length > 0) {
+        const cartArray = cart?.products?.map(({ cartQuantity, product }) => ({ product: product?._id, cartQuantity: cartQuantity }))
+
+        await fetchData(`${baseUrl}cart`, reqDelete());
+
+        await fetchData(`${baseUrl}cart`, reqPost(JSON.stringify({ products: [{ product: mintCard._id, cartQuantity: 1 }] })));
+
+        await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createMintOrder(user._id))));
+
+        await fetchData(`${baseUrl}cart`, reqDelete());
+
+        await fetchData(`${baseUrl}cart`, reqPost(JSON.stringify({ products: cartArray })));
+      }
+      else {
+        await fetchData(`${baseUrl}cart`, reqPost(JSON.stringify({ products: [{ product: mintCard._id, cartQuantity: 1 }] })));
+
+        await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createMintOrder(user._id))));
+
+        await fetchData(`${baseUrl}cart`, reqDelete());
+      }
+    } catch (error) {
+      throw new Error(error?.message);
+    }
+  }
 
   useEffect(() => {
     mintArray && setMintCard(mintArray[Math.floor(Math.random() * mintArray?.length)])
@@ -40,8 +115,6 @@ export function Mint({ orders, user, mintArray }) {
     cardsArray.map(card => card.map(product => result.push(product)))
     dispatch(addToOrder(result))
   }, [dispatch, orders])
-
-  const isDesktop = useMediaQuery({ minWidth: 769 })
 
   return (
     <motion.div
@@ -104,20 +177,14 @@ export function Mint({ orders, user, mintArray }) {
       </div>
 
       {!showCard
-        ? <motion.div
-          onClick={handleMintNowClick}
-          className={`${mintCardFirst.itemNo && mintCardSecond.itemNo
-            ? isOverlayVisible
-              ? style.mintPage__hiddenButton
-              : `${styleBtn.user__btn} ${styleBtn.user__btn_mint}`
-            : style.hidden_btn}`}>
-          <MintBtn
-            user={user}
-            mintCard={mintCard}
-            isOverlayVisible={isOverlayVisible}
-            orders={orders} />
-        </motion.div>
+        ? ((selectCardFirst && selectCardSecond) &&
+          (<button
+            className={styleBtn.user__btn}
+            onClick={(e) => handleMintClick(e)}>
+            Mint
+          </button>))
         : <button className={styleBtn.user__btn}
+          disabled={false}
           onClick={() => {
             dispatch(addToMint([], 0, mintTypes.IS_MINT_FIRST));
             dispatch(addToMint([], 0, mintTypes.IS_MINT_SECOND));
