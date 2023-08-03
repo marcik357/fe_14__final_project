@@ -72,7 +72,7 @@ export function AdminProducts() {
 
   useEffect(() => {
     loadData(dispatch, adminLoad)
-  }, [dispatch, adminLoad])
+  }, [dispatch, adminLoad, productId])
 
   // useEffect(() => {
   //   productId && dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
@@ -80,7 +80,7 @@ export function AdminProducts() {
 
   useEffect(() => {
     productId && getProduct();
-  }, [getProduct, productId, product]);
+  }, [getProduct, productId]);
 
   useEffect(() => {
     modalType
