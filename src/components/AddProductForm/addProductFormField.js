@@ -91,7 +91,7 @@ export const addProductFormFields = [
     id: "categories",
     name: "categories",
     type: "select",
-    options: ["animals","art side", "celebrities","cute planet","dog","fantasy landscape","kooler","metaverse","rainbow lion", "other"],
+    options: ["animals","art side", "celebrities","cute planet","dog","fantasy landscape","kooler","metaverse","rainbow lion", "mint", "other"],
   },
   {
     tagtype: 'checkbox',
