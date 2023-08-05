@@ -8,6 +8,7 @@ import Loader from '../../components/Loader';
 import socialData from '../../components/SocialLink/socialData';
 import SocialLink from '../../components/SocialLink';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { baseUrl } from '../../utils/vars';
 
 export function Articles(){
     const dispatch = useDispatch();
@@ -18,9 +19,8 @@ export function Articles(){
     const [article, setArticle] = useState({});
 
     const articlesLoad = useCallback(async () => {
-        const articles = await fetchData('/data/articles.json');
-        const article = articles.find((article) => article.customId === articleId);
-        setArticle(article);
+        const articles = await fetchData(`${baseUrl}pages/${articleId}`);
+        setArticle(articles);
     }, [articleId])
     
     useEffect(() => {
