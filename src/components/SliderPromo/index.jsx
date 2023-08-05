@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/css';
@@ -33,10 +34,10 @@ function SliderPromo({ products }) {
         }}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         speed={500}
-        // autoplay={{
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         className={styles.promoSlider}>
         <div slot="container-start" className={styles.promoSlider__container}>
           <div className={styles.promoSlider__prevBtn} ref={prevBtnRef}>
@@ -129,5 +130,9 @@ function SliderPromo({ products }) {
     </>
   );
 }
+
+SliderPromo.propTypes = {
+  products: PropTypes.array.isRequired,
+};
 
 export default SliderPromo;

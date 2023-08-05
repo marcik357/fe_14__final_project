@@ -7,7 +7,7 @@ import { reqDelete, reqPost, reqPut } from "../../utils/requestBody";
 export function setCart(cart) {
   return {
     type: cartTypes.SET_CART,
-    payload: cart || []
+    payload: cart || { products: [] }
   }
 }
 
@@ -114,7 +114,7 @@ function cleanCartLocal(dispatch) {
   dispatch(setCart({ products: [] }))
 }
 
-export function cleanCart (token) {
+export function cleanCart(token) {
   return async function (dispatch) {
     try {
       localStorage.setItem('cart', JSON.stringify([]))
