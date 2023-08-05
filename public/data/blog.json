@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "customId": "BuyNFT",
         "capturePost": "Buy NFT Guide; Learn Everything About to Buying NFTs",
         "url": "../images/Img-blog/img-blog-8things.webp",
         "authorPost": "Crypter II",
@@ -9,7 +10,8 @@
         "textButton": "continue reading >"
     },
      {
-        "id": 2,
+        "id": 1,
+        "customId": "NFTArt",
         "capturePost": "NFT Art Guide; Meaning, Examples, Market Places, and How to Buy",
         "url": "../images/Img-blog/img-blog-introducing.webp",
         "authorPost": "Crypter II",
@@ -18,7 +20,8 @@
         "textButton": "continue reading >"
     },
     {
-        "id": 3,
+        "id": 1,
+        "customId": "NFTGuide",
         "capturePost": "NFT Guide; Everything You Need To Know About NFTs",
         "url": "../images/Img-blog/img-blog-robot.webp",
         "authorPost": "Crypter II",
@@ -27,7 +30,8 @@
         "textButton": "continue reading >"
     },
     {
-        "id": 4,
+        "id": 1,
+        "customId": "NFTMeaning",
         "capturePost": "NFT Meaning for Various Industries; How NFTs Disrupt Digital Markets",
         "url": "../images/Img-blog/img-blog-car.webp",
         "authorPost": "Crypter II",
