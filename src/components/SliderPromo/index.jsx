@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/css';
@@ -129,5 +130,9 @@ function SliderPromo({ products }) {
     </>
   );
 }
+
+SliderPromo.propTypes = {
+  products: PropTypes.array.isRequired,
+};
 
 export default SliderPromo;

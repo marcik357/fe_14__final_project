@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Success } from '../Icons/success-icon';
 import { SuccessOrder } from '../Icons';
-import { newOrder } from '../../utils/vars';
 import style from './modal.module.scss';
 import { MintModal } from '../MintModal';
 
@@ -57,7 +56,6 @@ export const modalProps = [
             onClick={() => {
               localStorage.removeItem('token');
               onClose();
-              window.location.reload();
             }}>
             log in
           </NavLink>
