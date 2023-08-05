@@ -4,10 +4,8 @@ import Banner from '../../components/Banner';
 import LogInGreating from '../../components/LogInGreating';
 import SignUpForm from '../../components/SignUpForm';
 import LoginForm from '../../components/LoginForm';
-import { useSelector } from 'react-redux';
 import Loader from '../../components/Loader';
 import { useSelector } from 'react-redux';
-import Loader from '../../components/Loader';
 
 export function Authorization() {
   const [isLogIn, setIsLogIn] = useState(true)

@@ -6,6 +6,8 @@ import { modalReducer as modal } from './modalReducer';
 import { tokenReducer as token } from './tokenReducer';
 import { cartReducer as cart } from './cartReducer';
 import { filterReducer as filter } from './filterReducer';
+import { mintReducer as mint } from './mintReducer';
+import { orderReducer as order } from './orderReducer';
 
 export const rootReducer = combineReducers({
   products,
@@ -15,4 +17,6 @@ export const rootReducer = combineReducers({
   cart,
   token,
   filter,
+  mint,
+  order
 });

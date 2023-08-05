@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout, Home, Cart, NotFound, Product, Blog, Order, Account, Author, Authorization, Discover, Help, AdminProducts, Collection } from '../pages';
 import { useState, createContext } from 'react';
+import { PhoneAuthContextProvider } from '../components/PaymentForm/PhoneAuthContext';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 import PrivateRouteAccount from './PrivateRouteAccount';
 export const Quantity = createContext()
@@ -9,6 +10,7 @@ export default function Router() {
   const [orderAmount, setOrderAmount] = useState(0);
 
   return (
+    <PhoneAuthContextProvider>
     <Quantity.Provider value={[orderAmount, setOrderAmount]}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
@@ -35,5 +37,6 @@ export default function Router() {
 
       </Routes>
     </Quantity.Provider>
+    </PhoneAuthContextProvider>
   );
 }

@@ -1,29 +1,17 @@
-.user {
-  height: 100%;
-  padding: 1rem 0;
-  background-color: #f7fbfa;
-  font-family: "Inter", sans-serif;
+.payment_form {
 
-  &__container {
-    max-width: 1470px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  &__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem 0;
-  }
-
+  // &__btn {
+  //   display: flex;
+  //   gap: 70px;
+  // }
   &__btn {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     width: max-content;
-    padding: 1rem;
+    margin: 1rem 0;
+    padding: .7rem 2rem;
     transition: color .3s;
     border: 2px solid #202025;
     border-radius: 4px;
@@ -35,12 +23,6 @@
     cursor: pointer;
     overflow: hidden;
     z-index: 1;
-
-    &_mint {
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      letter-spacing: 5px;
-    }
 
     &::before {
       position: absolute;
@@ -78,18 +60,29 @@
     }
   }
 
-  &__title {
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    font-weight: 800;
+  &__error {
+    color: red;
   }
+}
 
-  &__empty {
-    padding: 3rem 0;
-    text-align: center;
+.form {
+  &__input {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: .3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
 
-    &::first-letter {
-      text-transform: uppercase;
+    &::placeholder {
+      color: #888;
+    }
+
+    &:focus {
+      border-color: transparent;
+      outline: 2px solid #202025;
     }
   }
 }

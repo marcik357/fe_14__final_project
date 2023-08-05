@@ -60,24 +60,11 @@ export const validationSchemaOrder = Yup.object({
   telephone: Yup.string()
     .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
     .required("Required Field!"),
-});
-
-export const validationSchemaCard = Yup.object({
-  cardNumber: Yup.string()
-    .label('Card Number')
-    .length(19)
+    wallet: Yup.string()
+    .min(40, 'Must contain at least 40 characters')
+    .max(42, 'Can be no more than 42 characters')
+    .matches(/^(0x)?[0-9a-fA-F]{40}$/, 'Must be 0-9 a-f A-F')
     .required("Required Field!"),
-  validity: Yup.string()
-    .typeError('Not a valid expiration date. Example: MM/YY')
-    .max(5, 'Not a valid expiration date. Example: MM/YY')
-    .matches(
-      /([0-9]{2})\/([0-9]{2})/,
-      'Not a valid expiration date. Example: MM/YY')
-    .required('Expiration date is required'),
-  cvv: Yup.string()
-    .label('CVV')
-    .length(3)
-    .required(),
 });
 
 export const validationSchemaProduct = Yup.object().shape({

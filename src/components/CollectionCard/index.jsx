@@ -33,6 +33,7 @@ function CollectionCard({
     scrollTo('#collections');
     scrollTo('#collections');
   };
+  
   const renderCollection = () => {
     setCollectionVisible(true);
     setProductListVisible(false);

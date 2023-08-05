@@ -1,1 +1,1 @@
-export const baseUrl = 'https://final-backend-lilac.vercel.app/api/';
+export const baseUrl = 'https://plankton-app-6vr5h.ondigitalocean.app/api/';

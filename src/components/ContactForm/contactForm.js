@@ -24,5 +24,13 @@ export const contactForm = [
     type: "text",
     format: "+380#########",
     mask: "#",
+  },
+  {
+    tagType: 'regular',
+    label: "Wallet Number",
+    id: "wallet",
+    name: "wallet",
+    type: "text",
+    placeholder: "Enter wallet",
   }
 ];

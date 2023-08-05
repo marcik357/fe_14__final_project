@@ -76,8 +76,6 @@ option {
   }
 
   &__openBtn {
-    box-sizing: border-box;
-    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,6 +95,7 @@ option {
     cursor: pointer;
     overflow: hidden;
     z-index: 1;
+    box-sizing: border-box;
   }
 
   &__sortBtn {
@@ -230,6 +229,8 @@ option {
     // border-radius: 4px;
     // outline: 2px solid black;
     background-color: rgba(0, 0, 0, .2);
+    // border-radius: 4px;
+    // outline: 2px solid black;
   }
 
   // Кастомний чекбокс
@@ -409,6 +410,10 @@ option {
 
     &__openBtn.open {
       width: 260px;
+    }
+
+    &__sidebarBckg {
+      z-index: 1;
     }
 
     &__sidebarBckg.open {

@@ -2,7 +2,6 @@ import ProductList from "../../components/ProductList";
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { baseUrl } from '../../utils/vars';
-import { getDataAction } from '../../redux/actions/getDataActions';
 import { addProductsAction } from '../../redux/actions/productsActions';
 import EditProductForm from "../../components/EditProductForm";
 import style from "./AdminProducts.module.scss"
@@ -13,17 +12,17 @@ import { Modal } from "../../components/Modal";
 import { modalProps } from '../../components/Modal/modalProps';
 import { setErrorAction } from "../../redux/actions/errorActions";
 import { fetchData, loadData } from "../../utils";
-import { reqGet, reqPut } from "../../utils/requestBody";
+import { reqPut } from "../../utils/requestBody";
 
 export function AdminProducts() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token.token);
 
   const [openForm, setOpenForm] = useState(false);
   const [productId, setProductId] = useState(null)
   const products = useSelector((state) => state.products.products);
   const [product, setProduct] = useState(null)
   const [addProduct, setAddProduct] = useState(false)
+  
   const modalType = useSelector((state) => state.modal.modal);
 
   async function deleteProduct(product) {
@@ -35,13 +34,14 @@ export function AdminProducts() {
       dispatch(setErrorAction(error.message));
       dispatch(setModalType('error'))
     }
-
   }
+
   function handleDelButton(itemNo) {
     const product = products.find((product) => product.itemNo === itemNo)
     setProduct(product)
     dispatch(setModalType('deleteProduct'))
   }
+
   function handleAddButton() {
     setAddProduct(true)
   }
@@ -56,9 +56,6 @@ export function AdminProducts() {
     setProduct(null);
     setAddProduct(false)
   }
-  // useEffect(() => {
-  //   dispatch(getDataAction(`${baseUrl}products`, addProductsAction, reqGet(token)));
-  // }, [dispatch, token]);
 
   const adminLoad = useCallback(async () => {
     const products = await fetchData(`${baseUrl}products`)
@@ -72,15 +69,11 @@ export function AdminProducts() {
 
   useEffect(() => {
     loadData(dispatch, adminLoad)
-  }, [dispatch, adminLoad])
-
-  // useEffect(() => {
-  //   productId && dispatch(getDataAction(`${baseUrl}products/${productId}`, setProduct, {}, 'product'));
-  // }, [dispatch, productId, product]);
+  }, [dispatch, adminLoad, productId, addProduct])
 
   useEffect(() => {
     productId && getProduct();
-  }, [getProduct, productId, product]);
+  }, [getProduct, productId]);
 
   useEffect(() => {
     modalType

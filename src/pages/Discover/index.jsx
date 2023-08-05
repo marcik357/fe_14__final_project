@@ -26,8 +26,9 @@ export function Discover() {
   const renderProducts = useCallback(async () => {
     try {
       // Запит до API
-      const data = await fetchData(`${baseUrl}products/filter`)
-      setProducts(data);
+      const data = await fetchData(`${baseUrl}products/filter`);
+      const products = data?.products.filter((product) => product.categories !== 'mint')
+      setProducts({ products, productsQuantity: products.length });
     } catch (error) {
       dispatch(setErrorAction(error.message));
     }
@@ -61,7 +62,8 @@ export function Discover() {
       navigate(`/discover?${queryString}`);
       // Запит до API з використанням queryString для фільтрації товарів
       const data = await fetchData(`${baseUrl}products/filter?${queryString}`)
-      await setProducts(data);
+      const products = data?.products.filter((product) => product.categories !== 'mint')
+      setProducts({ products, productsQuantity: products.length });
     } catch (error) {
       dispatch(setErrorAction(error.message));
     }
@@ -83,7 +85,7 @@ export function Discover() {
             img='/images/banners/discover-banner.webp' />
           <div className={styles.products}>
             <div className={styles.products__container}>
-              <Filter products={products} filters={filters} />
+            <Filter products={products} filters={filters} />
             </div>
           </div>
         </>}
