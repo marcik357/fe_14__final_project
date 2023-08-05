@@ -84,7 +84,7 @@ export const addProductFormFields = [
   },
   {
     tagType: 'select',
-    label: "Categories",
+    label: "Collections",
     labelClass: style.form__label,
     inputClass: style.form__input,
     errorClass: style.form__error,

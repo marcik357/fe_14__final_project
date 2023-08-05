@@ -59,6 +59,7 @@ export default function AddProductForm({ onCloseForm, isInAccount }) {
             return (
               <Select
                 key={field.name}
+                isInAccount={isInAccount}
                 {...field} />);
           } else if (field.tagtype === 'checkbox') {
             return (
