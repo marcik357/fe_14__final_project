@@ -1,6 +1,6 @@
 import Input from '../Input';
 import style from './addProductForm.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modalActions';
 import { setErrorAction } from '../../redux/actions/errorActions';
 import { baseUrl } from '../../utils/vars';
@@ -15,7 +15,6 @@ import { reqPost } from '../../utils/requestBody';
 
 export default function AddProductForm({ onCloseForm, isInAccount }) {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token.token);
 
   return (
     <Formik
@@ -60,6 +59,7 @@ export default function AddProductForm({ onCloseForm, isInAccount }) {
             return (
               <Select
                 key={field.name}
+                isInAccount={isInAccount}
                 {...field} />);
           } else if (field.tagtype === 'checkbox') {
             return (

@@ -83,3 +83,17 @@ export const loadData = async (dispatch, callback) => {
     dispatch(setErrorAction(error.message));
   }
 }
+
+export function createMintOrder(id) {
+  return {
+    canceled: false,
+    paymentInfo: "Mint",
+    letterSubject: "Mint",
+    name: "Mint",
+    email: "tester.crypter@gmail.com",
+    mobile: "+380674444444",
+    card: "4242 4242 4242 4242",
+    letterHtml: "<p>Mint</p>",
+    customerId: id,
+  }
+}

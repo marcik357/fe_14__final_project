@@ -3,13 +3,13 @@ import styles from './OrdersList.module.scss'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-function OrdersList({orders}) {
+function OrdersList({ orders }) {
 
   return (
     <div className={styles.orders}>
       {orders?.length > 0 && orders?.map((order) => (
         <div
-          className={styles.orders__wrapper}
+          className={`${styles.orders__wrapper} ${order.products.some(({ product }) => product.categories === 'mint') ? styles.orders__wrapper_mint : ''}`}
           key={order._id}>
           <div
             className={styles.orders__content}>
@@ -35,18 +35,22 @@ function OrdersList({orders}) {
                   </p>
                 </div>
                 <div className={styles.orders__amount}>
-                  <p className={styles.orders__quantity}>
-                    <span>Quantity: </span>
-                    <span>{cartQuantity}</span>
-                  </p>
-                  <p className={styles.orders__price}>
-                    <span>Price:</span>
-                    <span>{Number(product.currentPrice?.toFixed(2))}</span>
-                  </p>
-                  <p className={styles.orders__price}>
-                    <span>Total price:</span>
-                    <span>{Number((cartQuantity * product.currentPrice).toFixed(2))}</span>
-                  </p>
+                  {product.categories !== 'mint'
+                    ? <>
+                      <p className={styles.orders__quantity}>
+                        <span>Quantity: </span>
+                        <span>{cartQuantity}</span>
+                      </p>
+                      <p className={styles.orders__price}>
+                        <span>Price:</span>
+                        <span>{Number(product.currentPrice?.toFixed(2))}</span>
+                      </p>
+                      <p className={styles.orders__price}>
+                        <span>Total price:</span>
+                        <span>{Number((cartQuantity * product.currentPrice).toFixed(2))}</span>
+                      </p>
+                    </>
+                    : <p className={styles.orders__quantity}>MINT</p>}
                 </div>
               </div>
             ))}

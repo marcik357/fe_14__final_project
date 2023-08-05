@@ -84,14 +84,14 @@ export const addProductFormFields = [
   },
   {
     tagType: 'select',
-    label: "Categories",
+    label: "Collections",
     labelClass: style.form__label,
     inputClass: style.form__input,
     errorClass: style.form__error,
     id: "categories",
     name: "categories",
     type: "select",
-    options: ["animals","art side", "celebrities","cute planet","dog","fantasy landscape","kooler","metaverse","rainbow lion", "other"],
+    options: ["animals","art side", "celebrities","cute planet","dog","fantasy landscape","kooler","metaverse", "mint", "rainbow lion", "other"],
   },
   {
     tagtype: 'checkbox',

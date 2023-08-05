@@ -73,10 +73,10 @@ export function PaymentForm({ sendOrder, setContactValue }) {
               onChange={setNumber}
               placeholder="Enter the phone number" />
             <div id='recaptcha-container'></div>
-            <div className={style.payment_form__btn} >
-              <button className={styleBtn.user__btnsItem} type="submit">Send</button>
+            {/* <div className={style.payment_form__btn} > */}
+              <button className={styleBtn.user__btn} type="submit">Send</button>
 
-            </div>
+            {/* </div> */}
           </Form>
         </Formik>
         <Formik
@@ -92,9 +92,9 @@ export function PaymentForm({ sendOrder, setContactValue }) {
               placeholder="Enter sms code"
               onChange={(e) => setOtp(e.target.value)} />
             <div id='recaptcha-container'></div>
-            <div className={style.payment_form__btn}>
-              <button className={styleBtn.user__btnsItem} type="submit">Send</button>
-            </div>
+            {/* <div className={style.payment_form__btn}> */}
+              <button className={styleBtn.user__btn} type="submit">Send</button>
+            {/* </div> */}
           </Form>
         </Formik>
         {makeOrder && <FormikForm

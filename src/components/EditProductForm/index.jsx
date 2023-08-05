@@ -14,7 +14,6 @@ import { reqPut } from '../../utils/requestBody';
 
 export default function EditProductForm({ product, onCloseForm }) {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token.token);
 
   return (
     <Formik
