@@ -47,7 +47,7 @@ const verifyOtp = async (e) => {
       setMakeOrder(!makeOrder)
   }
   catch(err){
-      setError(err.message)
+      setError("Please enter a valid code")
   }
 }
 
@@ -61,7 +61,7 @@ const verifyOtp = async (e) => {
     <>
       <h2 className={styleText.user_info__title}>Payment</h2>
       <div className={style.payment_form}>
-      {error ? <div className={style.payment_form__error} >Please check out your sms code. You write wrong code!</div>:""}
+      {error ? <div className={style.payment_form__error} >{error}</div>:""}
       <Formik
       initialValues=""
       >
@@ -97,7 +97,8 @@ const verifyOtp = async (e) => {
       </div>
       </Form>
       </Formik>
-      {makeOrder && <FormikForm
+     {makeOrder &&
+      <FormikForm
         initialValues={{}}
         submitBtn="Make an order"
         callback={() => {
