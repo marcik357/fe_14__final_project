@@ -28,12 +28,11 @@ function CollectionCard({
     setCollectionVisible(false);
     setProductListVisible(true);
     scrollTo('#collections');
-    scrollTo('#collections');
   };
+  
   const renderCollection = () => {
     setCollectionVisible(true);
     setProductListVisible(false);
-    scrollTo('#collections');
     scrollTo('#collections');
   };
 
