@@ -47,7 +47,7 @@ export function PaymentForm({ sendOrder, setContactValue }) {
       setMakeOrder(!makeOrder)
     }
     catch (err) {
-      setError(err.message)
+      setError("The code is incorrect.Please enter a valid code")
     }
   }
 
@@ -61,7 +61,7 @@ export function PaymentForm({ sendOrder, setContactValue }) {
     <>
       <h2 className={styleText.user_info__title}>Payment</h2>
       <div className={style.payment_form}>
-        {error ? <div className={style.payment_form__error} >Please check out your sms code. You write wrong code!</div> : ""}
+        {error ? <div className={style.payment_form__error} >{error}</div> : ""}
         <Formik
           initialValues=""
         >

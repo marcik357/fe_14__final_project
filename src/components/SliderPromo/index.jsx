@@ -11,8 +11,6 @@ import 'swiper/css/thumbs';
 import styles from './slider.module.scss';
 import { Arrow, Basket } from '../Icons';
 import { buyNowHandler, isInCart } from '../../utils';
-import { Arrow, Basket } from '../Icons';
-import { buyNowHandler, isInCart } from '../../utils';
 
 function SliderPromo({ products }) {
   const dispatch = useDispatch()
@@ -22,7 +20,6 @@ function SliderPromo({ products }) {
   const nextBtnRef = useRef(null);
 
   const token = useSelector(state => state.token.token);
-  const cart = useSelector((state) => state.cart.cart);
   const cart = useSelector((state) => state.cart.cart);
 
   return (

@@ -89,33 +89,6 @@ function Filter({products, filters}) {
   const sortByPrice = (e) => {
     setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
   }
-
-  // Перевірка інпутів по ціні від / до
-  const isValidPriceInput = (minPriceValue, maxPriceValue) => {
-    if (!/^[0-9.]*$/.test(minPriceValue) || !/^[0-9.]*$/.test(maxPriceValue)) {
-      return false;
-    }
-
-    if (minPriceValue === '' || maxPriceValue === '') {
-      return true;
-    }
-
-    return parseFloat(minPriceValue) <= parseFloat(maxPriceValue);
-  };
-
-  const handleMinPriceChange = (e) => {
-    setMinPrice(e.target.value);
-    setIsApplyButtonDisabled(!isValidPriceInput(e.target.value, maxPrice));
-  };
-
-  const handleMaxPriceChange = (e) => {
-    setMaxPrice(e.target.value);
-    setIsApplyButtonDisabled(!isValidPriceInput(minPrice, e.target.value));
-  };
-
-  const sortByPrice = (e) => {
-    setSelectedFilters({ ...selectedFilters, sortBy: e.target.value })
-  }
   // Очистити всі фільтри
   const clearAllFilters = () => {
     setSelectedFilters({
