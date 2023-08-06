@@ -1,9 +1,11 @@
-body {
-  margin: 0;
+body:has(.cart),
+html:has(.cart) {
+  height: 100%;
 }
 
 .cart {
   min-width: 320px;
+  min-height: 100%;
   background: url('../../components/Cart/image/cart-BG.png') no-repeat center / cover;
   font-family: "Inter", sans-serif;
 
