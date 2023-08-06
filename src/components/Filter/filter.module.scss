@@ -225,9 +225,6 @@ option {
     background-color: rgba(0, 0, 0, .2);
     // border-radius: 4px;
     // outline: 2px solid black;
-    background-color: rgba(0, 0, 0, .2);
-    // border-radius: 4px;
-    // outline: 2px solid black;
   }
 
   // Кастомний чекбокс
@@ -364,7 +361,6 @@ option {
     position: relative;
     width: 100%;
     padding-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
     z-index: 0;
   }
 
@@ -399,10 +395,6 @@ option {
       align-items: flex-start;
       margin-top: 30px;
       gap: 10px;
-    }
-
-    &__openBtn.open {
-      width: 260px;
     }
 
     &__openBtn.open {
