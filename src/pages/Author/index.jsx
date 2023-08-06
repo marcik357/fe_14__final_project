@@ -13,7 +13,7 @@ import { fetchData, loadData } from '../../utils';
 export function Author() {
   const { authorId } = useParams();
   const [{ products, productsQuantity }, setProducts] = useState([]);
-  const [author, setAuthor] = useState({});
+  const [author, setAuthor] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,23 +24,24 @@ export function Author() {
     const authors = await fetchData(`${baseUrl}partners`)
     const products = await fetchData(`${baseUrl}products/filter?&author=${authorId}`)
     const author = await authors.find((author) => author.customId === authorId)
+    if (!author) throw new Error(error);
     setAuthor(author);
     setProducts(products);
-  }, [authorId])
+  }, [authorId, error])
 
   useEffect(() => {
     loadData(dispatch, authorLoad)
   }, [dispatch, authorLoad]);
 
   useEffect(() => {
-    (error || !author) && navigate("/not-found");
-  }, [error, author, navigate]);
+    error && navigate("/not-found");
+  }, [error, navigate]);
 
   if (loading) return <Loader />
 
   return (
     <div id='main'>
-      {Object.keys(author).length > 0 && (
+      {author?.name && (
         <div className={style.author}>
           <Banner title={author.name} img='/images/banners/author-banner.webp' />
           <div className={style.author__wrapper}>
