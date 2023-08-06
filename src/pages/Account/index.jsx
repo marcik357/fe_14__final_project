@@ -10,7 +10,7 @@ import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
 import { fetchData, loadData } from '../../utils';
-import { reqGet, Navigate } from '../../utils/requestBody';
+import { reqGet } from '../../utils/requestBody';
 import AddProductForm from '../../components/AddProductForm';
 import { Mint } from '../../components/Mint';
 
