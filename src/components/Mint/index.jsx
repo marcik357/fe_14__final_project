@@ -30,8 +30,7 @@ export function Mint({ orders, user, mintArray }) {
 
   const isDesktop = useMediaQuery({ minWidth: 769 });
 
-  const handleMintClick = async (e) => {
-    e.currentTarget.disabled = true;
+  const handleMintClick = async () => {
     try {
       setOverlayVisible((isOverlayVisible) => !isOverlayVisible);
       await createMint(orders, mintCardFirst);
@@ -176,23 +175,22 @@ export function Mint({ orders, user, mintArray }) {
         </motion.div>
       </div>
 
-      {!showCard
-        ? ((selectCardFirst && selectCardSecond) &&
-          (<button
-            className={styleBtn.user__btn}
-            onClick={(e) => handleMintClick(e)}>
-            Mint
-          </button>))
-        : <button className={styleBtn.user__btn}
-          disabled={false}
+      {showCard
+        && <button className={styleBtn.user__btn}
           onClick={() => {
-            dispatch(addToMint([], 0, mintTypes.IS_MINT_FIRST));
-            dispatch(addToMint([], 0, mintTypes.IS_MINT_SECOND));
+            dispatch(addToMint('', 0, mintTypes.IS_MINT_FIRST));
+            dispatch(addToMint('', 0, mintTypes.IS_MINT_SECOND));
             setOverlayVisible(!isOverlayVisible);
             window.location.reload()
           }}>
           Back to transition
         </button>}
+      {(!showCard && selectCardFirst && selectCardSecond && !isOverlayVisible) &&
+        (<button
+          className={styleBtn.user__btn}
+          onClick={handleMintClick}>
+          Mint
+        </button>)}
     </motion.div>
   )
 }

@@ -65,23 +65,33 @@
 
 .img {
   &__addCard {
+    position: relative;
     width: 30px;
     height: 30px;
-    transition: all .5;
+    transition: scale .3s;
     border-radius: 50%;
     background: rgba(181, 181, 181, .5);
     box-shadow: 0 5px 10px 8px rgba(0, 0, 0, .05);
     cursor: pointer;
 
-    &::after {
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      content: "+";
+    &::after,
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 3px;
+      transform: translate(-50%, - 50%);
+      background: #000;
+      content: "";
+    }
+
+    &::before {
+      transform: translate(-50%, - 50%) rotate(90deg);
     }
 
     &:hover {
-      scale: .8;
+      scale: 1.1;
     }
   }
 
