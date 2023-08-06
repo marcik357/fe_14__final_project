@@ -44,7 +44,9 @@ export function AuthorDetails({ author, products, productsQuantity }) {
             <span className={style.authorDetails__products_counter}>{productsQuantity}</span>
           </p>
         </div>
-        <ProductList products={products} isInAuthor={true} showPagination={false} />
+        {products?.length > 0
+          ? <ProductList products={products} isInAuthor={true} showPagination={false} />
+          : <p className={style.authorDetails__products_empty}>Sorry, but at this moment we don't have any NFT's of this author</p>}
       </div>
     </div>
   );

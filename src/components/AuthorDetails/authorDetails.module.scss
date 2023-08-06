@@ -93,9 +93,20 @@
     position: relative;
     margin: 0 -15px;
 
+    &_empty {
+      padding: 3rem 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
     @media (min-width: 748px) {
       width: 70%;
       margin: 0;
+      background: black;
+
+      &_empty {
+        color: white;
+      }
     }
 
     &_container {

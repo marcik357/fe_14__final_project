@@ -11,7 +11,7 @@ import { fetchData, loadData } from '../../utils';
 export function Collection() {
   const { collectionId } = useParams();
   const [{ products, productsQuantity }, setProducts] = useState([]);
-  const [collection, setCollection] = useState({});
+  const [collection, setCollection] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,23 +22,25 @@ export function Collection() {
     const collections = await fetchData(`${baseUrl}catalog`)
     const products = await fetchData(`${baseUrl}products/filter?&categories=${collectionId}`)
     const collection = await collections.find((collection) => collection.name === collectionId)
+    console.log(collection);
+    if (!collection) throw new Error(error);
     setCollection(collection);
     setProducts(products);
-  }, [collectionId])
+  }, [collectionId, error])
 
   useEffect(() => {
     loadData(dispatch, collectionLoad)
   }, [dispatch, collectionLoad]);
 
   useEffect(() => {
-    (error || !collection) && navigate("/not-found");
-  }, [error, collection, navigate]);
+    error && navigate("/not-found");
+  }, [error, navigate]);
 
   if (loading) return <Loader />
 
   return (
     <div id='main'>
-      {products &&
+      {(collection && products) &&
         <div className={style.collection}>
           <Banner title={'Collection'} subtitle={collection?.name} img='/images/banners/collection-banner.webp' />
           <div className={style.collection__wrapper}>
