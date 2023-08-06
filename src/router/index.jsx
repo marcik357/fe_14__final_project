@@ -4,6 +4,7 @@ import { useState, createContext } from 'react';
 import { PhoneAuthContextProvider } from '../components/PaymentForm/PhoneAuthContext';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 import PrivateRouteAccount from './PrivateRouteAccount';
+import { Articles } from '../pages/Articles';
 export const Quantity = createContext()
 
 export default function Router() {
@@ -18,6 +19,7 @@ export default function Router() {
           <Route path="/discover" element={<Discover />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/articles/:articleId" element={<Articles />} />
           <Route path="/order" element={<Order />} />
           <Route path="/help" element={<Help />} />
 

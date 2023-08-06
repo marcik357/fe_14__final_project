@@ -36,18 +36,18 @@ export function Blog() {
             img='/images/banners/blog-banner.webp' />
           <div className={styles.blog__container}>
             <div className={styles.blog__posts}>
-              {data?.map(({ url, id, textButton, capturePost, authorPost, dataPost, textPost }, index) => {
+              {data?.map(({customId, url, id, textButton, capturePost, authorPost, dataPost, textPost }, index) => {
                 return (
                   <div key={id} className={`${styles.blog__post} ${index % 2 !== 0 ? styles.blog__reverse : ''}`}>
                     <div className={styles.blog__postImgBlock}>
                       <LazyLoadImage className={styles.blog__postImg} src={url} alt={`img ${id}`} effect="blur" />
-                      <Link to="*" className={styles.blog__btnImg}>
+                      <Link to={`/articles/${customId}`} className={styles.blog__btnImg}>
                         {textButton}
                       </Link>
                     </div>
                     <div className={styles.blog__contentBlock}>
                       <div className={styles.blog__content}>
-                        <Link to="*" className={styles.blog__linkCapturePost}>
+                        <Link to={`/articles/${customId}`} className={styles.blog__linkCapturePost}>
                           <h3 className={styles.blog__capturePost}>{capturePost}</h3>
                         </Link>
                         <div className={styles.blog__infoAuthor}>
