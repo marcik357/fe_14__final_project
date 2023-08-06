@@ -54,6 +54,6 @@ export const signInFormFields = [
     id: "wallet",
     name: "wallet",
     type: "text",
-    placeholder: "0x4Qbzg...",
+    placeholder: "0x81b8172c80d146ed80d7d6cbb2f7ca807602b493",
   }
 ]

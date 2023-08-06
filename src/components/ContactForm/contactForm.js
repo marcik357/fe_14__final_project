@@ -31,6 +31,6 @@ export const contactForm = [
     id: "wallet",
     name: "wallet",
     type: "text",
-    placeholder: "Enter wallet",
+    placeholder: "0x81b8172c80d146ed80d7d6cbb2f7ca807602b493",
   }
 ];
