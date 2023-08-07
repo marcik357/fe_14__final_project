@@ -84,7 +84,7 @@ export const loadData = async (dispatch, callback) => {
   }
 }
 
-export function createMintOrder(id) {
+export function createMintOrder(id, wallet) {
   return {
     canceled: false,
     paymentInfo: "Mint",
@@ -95,5 +95,6 @@ export function createMintOrder(id) {
     card: "4242 4242 4242 4242",
     letterHtml: "<p>Mint</p>",
     customerId: id,
+    wallet: wallet
   }
 }

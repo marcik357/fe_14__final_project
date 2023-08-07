@@ -86,7 +86,7 @@ export function Mint({ orders, user, mintArray }) {
 
         await fetchData(`${baseUrl}cart`, reqPost(JSON.stringify({ products: [{ product: mintCard._id, cartQuantity: 1 }] })));
 
-        await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createMintOrder(user._id))));
+        await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createMintOrder(user._id, user.wallet))));
 
         await fetchData(`${baseUrl}cart`, reqDelete());
 
@@ -95,7 +95,7 @@ export function Mint({ orders, user, mintArray }) {
       else {
         await fetchData(`${baseUrl}cart`, reqPost(JSON.stringify({ products: [{ product: mintCard._id, cartQuantity: 1 }] })));
 
-        await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createMintOrder(user._id))));
+        await fetchData(`${baseUrl}orders`, reqPost(JSON.stringify(createMintOrder(user._id, user.wallet))));
 
         await fetchData(`${baseUrl}cart`, reqDelete());
       }
