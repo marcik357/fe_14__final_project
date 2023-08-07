@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 import style from './notFound.module.scss';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setErrorAction } from '../../redux/actions/errorActions';
 
 export function NotFound() {
-  let location = useLocation();
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setErrorAction(null));
+  }, [dispatch]);
 
   return (
     <>

@@ -1,108 +1,118 @@
 import styles from './Account.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
-import { getDataAction } from '../../redux/actions/getDataActions';
 import Loader from '../../components/Loader';
 import { baseUrl } from '../../utils/vars';
 import Banner from '../../components/Banner';
 import { useState } from 'react';
-import { AdminProducts } from '../../components/AdminProducts';
-import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setTokenAction } from '../../redux/actions/tokenActions';
 import { setCart } from '../../redux/actions/cartActions';
 import OrdersList from '../../components/OrdersList';
-import { async } from 'q';
-import { fetchData } from '../../utils';
-import { setLoadingAction } from '../../redux/actions/loadingActions';
-import { setErrorAction } from '../../redux/actions/errorActions';
+import { fetchData, loadData } from '../../utils';
+import { reqGet } from '../../utils/requestBody';
+import AddProductForm from '../../components/AddProductForm';
+import { Mint } from '../../components/Mint';
 
 export function Account() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loading = useSelector((state) => state.loading.loading);
-  const token = useSelector((state) => state.token.token);
-
+  const [mintArray, setMintArray] = useState(null)
   const [user, setUser] = useState(null)
-  const [adminPanel, setAdminPanel] = useState(false)
   const [orders, setOrders] = useState(null)
+  const [addProduct, setAddProduct] = useState(false)
+  const [mint, setMint] = useState(false);
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
 
-  async function logOut() {
+  function logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
-    await dispatch(setTokenAction(null));
-    await dispatch(setCart(null));
-    return <Navigate to="/authorization" />;
+    dispatch(setTokenAction(null));
+    dispatch(setCart(null));
   }
 
   const accountLoad = useCallback(async () => {
-    try {
-      if (token) {
-        dispatch(setLoadingAction(true));
-        const user = await fetchData(`${baseUrl}customers/customer`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-        })
-        await setUser(user)
-        const orders = await fetchData(`${baseUrl}orders`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-        })
-        await setOrders(orders)
-        dispatch(setLoadingAction(false))
-      }
-    } catch (error) {
-      dispatch(setLoadingAction(false))
-      dispatch(setErrorAction(error.message));
-    }
-  }, [dispatch, token])
+    const user = await fetchData(`${baseUrl}customers/customer`, reqGet());
+    const orders = await fetchData(`${baseUrl}orders`, reqGet());
+    const products = await fetchData(`${baseUrl}products`);
+    setUser(user)
+    setOrders(orders)
+    setMintArray(products.filter(item => item.categories === "mint"))
+  }, [])
 
   useEffect(() => {
-    accountLoad()
-  }, [accountLoad]);
+    loadData(dispatch, accountLoad)
+  }, [dispatch, accountLoad]);
+
+  useEffect(() => {
+    isOverlayVisible
+      ? document.body.style.overflow = 'hidden'
+      : document.body.style.overflow = 'auto'
+  }, [isOverlayVisible]);
+
+  if (loading) return <Loader />
 
   return (
     <div id='main'>
-      {!loading
-        ? <>
+      {user &&
+        <>
           <Banner
             title='Hello there!'
-            subtitle={`General ${user?.login || ''}`}
+            subtitle={`General ${user?.login || 'Kenobi'}`}
             img='/images/banners/account-banner.webp' />
           <div className={styles.user}>
             <div className={styles.user__container}>
-              <div className={styles.user__btns}>
+              <div className={styles.user__buttons}>
                 <button
-                  className={styles.user__btnsItem}
-                  onClick={logOut}
+                  className={styles.user__btn}
+                  onClick={() => {
+                    navigate("/authorization");
+                    const timer = setTimeout(() => {
+                      logOut();
+                      clearTimeout(timer)
+                    }, 10)
+                  }}
                   type='button'>
                   Log out
                 </button>
-                {user?.isAdmin
-                  && <button
-                    className={styles.user__btnsItem}
-                    onClick={() => setAdminPanel(!adminPanel)}
-                    type='button'>
-                    {adminPanel ? 'Show List of orders' : 'Show Admin panel'}
-                  </button>}
+                <button
+                  className={styles.user__btn}
+                  onClick={() => {
+                    setAddProduct(!addProduct);
+                    setMint(false);
+                  }}
+                  type='button'>
+                  {!addProduct ? 'Add new product' : 'Orders list'}
+                </button>
+                <button
+                  className={styles.user__btn}
+                  type='button'
+                  onClick={() => {
+                    setAddProduct(false);
+                    setMint(!mint);
+                  }}>
+                  {mint ? 'Orders list' : 'Mint'}
+                </button>
               </div>
-              {!adminPanel
-                ? <>
-                  <h4 className={styles.user__title}>List of your orders:</h4>
-                  {orders?.length > 0
-                    ? <OrdersList orders={orders} />
-                    : <p className={styles.user__empty}>you still haven't bought anything...</p>}
-                </>
-                : <AdminProducts />}
+              {mint
+                ? <Mint
+                  user={user}
+                  mintArray={mintArray}
+                  orders={orders}
+                  isOverlayVisible={isOverlayVisible}
+                  setOverlayVisible={setOverlayVisible} />
+                : addProduct
+                  ? <AddProductForm onCloseForm={() => setAddProduct(false)} isInAccount={true} />
+                  : <>
+                    <h4 className={styles.user__title}>List of your orders:</h4>
+                    {orders?.length > 0
+                      ? <OrdersList orders={orders} />
+                      : <p className={styles.user__empty}>you still haven't bought anything...</p>}
+                  </>}
             </div>
           </div>
-        </>
-        : <Loader />
-      }
+        </>}
     </div>
   )
 }

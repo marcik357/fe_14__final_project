@@ -47,5 +47,13 @@ export const signInFormFields = [
     type: "text",
     format: "+380#########",
     mask: "#",
+  },
+  {
+    tagType: 'regular',
+    label: "Wallet number",
+    id: "wallet",
+    name: "wallet",
+    type: "text",
+    placeholder: "0x81b8172c80d146ed80d7d6cbb2f7ca807602b493",
   }
 ]

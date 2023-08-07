@@ -5,6 +5,10 @@
   @media (min-width: 748px) {
     &__wrapper {
       background: linear-gradient(90deg, white 46%, black 46%);
+
+      &:has(.author__text) {
+        background: none;
+      }
     }
   }
 
@@ -13,5 +17,11 @@
     margin: 0 auto;
     padding: 0 15px;
     box-sizing: border-box;
+  }
+
+  &__text {
+    padding: 5rem 0;
+    font-size: 1.2rem;
+    text-align: center;
   }
 }

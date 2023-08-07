@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import style from '../HeaderSearch/headerSearch.module.scss';
+import { linkAnimation } from '../../animation';
 
 export function HeaderSearchResults(props) {
   const { data, type, handleClearSearch, toggleSearchView } = props;
@@ -27,7 +28,7 @@ export function HeaderSearchResults(props) {
                 type === 'NFTs'
                   ? `/product/${itemNo}`
                   : type === 'Collections'
-                  ? `/collection/${id}`
+                  ? `/collection/${name}`
                   : type === 'Authors'
                   ? `/author/${customId}`
                   : '/'

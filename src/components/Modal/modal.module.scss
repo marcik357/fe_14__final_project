@@ -81,6 +81,12 @@
     text-align: center;
   }
 
+  &__icon {
+    width: 100%;
+    max-height: calc(100vh - 355px);
+    overflow: auto;
+  }
+
   &__closeBtn {
     padding-right: 5px;
     border: none;

@@ -1,4 +1,6 @@
 import { addToCart } from "../redux/actions/cartActions";
+import { setErrorAction } from "../redux/actions/errorActions";
+import { setLoadingAction } from "../redux/actions/loadingActions";
 import { setModalType } from "../redux/actions/modalActions";
 
 export const handleError = (response, code) => {
@@ -70,3 +72,29 @@ export const scrollUpPage = () => {
     window.scrollTo({ top: 0, behavor: 'smooth' });
   }
 };
+
+export const loadData = async (dispatch, callback) => {
+  try {
+    dispatch(setLoadingAction(true));
+    await callback()
+    dispatch(setLoadingAction(false))
+  } catch (error) {
+    dispatch(setLoadingAction(false))
+    dispatch(setErrorAction(error.message));
+  }
+}
+
+export function createMintOrder(id, wallet) {
+  return {
+    canceled: false,
+    paymentInfo: "Mint",
+    letterSubject: "Mint",
+    name: "Mint",
+    email: "tester.crypter@gmail.com",
+    mobile: "+380674444444",
+    card: "4242 4242 4242 4242",
+    letterHtml: "<p>Mint</p>",
+    customerId: id,
+    wallet: wallet
+  }
+}

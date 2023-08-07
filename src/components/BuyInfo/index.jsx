@@ -18,14 +18,13 @@ export function BuyInfo() {
             <div className={style.products__card} key={Math.random() * 1000}>
               <img className={style.card__img} src={product.imageUrls} alt={product.name} />
             </div>))
-          : (cart?.products?.map(({ product, cartQuantity }) => {
+          : cart?.products?.map(({ product, cartQuantity }) => {
             const prod = products?.find((item) => item._id === product)
             return (
               <div className={style.products__card} key={Math.random() * 1000}>
                 <img className={style.card__img} src={prod?.imageUrls} alt={prod?.name} />
-              </div>
-            )
-          }))}
+              </div>)
+          })}
       </div>
       <div className={style.cart_block__total} >
         <p> Total Price :</p>

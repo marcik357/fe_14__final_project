@@ -2,20 +2,27 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__block {
+    flex: 1 0 50%;
+  }
 
   &__title {
+    margin-bottom: 1rem;
     font-size: 2.5rem;
     font-weight: 800;
     line-height: 3rem;
   }
 
-  &__subtitle:not(:last-of-type) {
-    margin-bottom: 3rem;
-    font-size: 1.2rem;
-  }
-
-  &__subtitle:last-of-type {
+  &__subtitle:not(:last-child) {
     margin-bottom: 1rem;
+    font-size: 1.2rem;
   }
 
   &__btn {

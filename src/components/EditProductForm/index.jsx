@@ -10,10 +10,10 @@ import { validationSchemaProduct } from '../../validation';
 import Select from '../Select';
 import { fetchData } from '../../utils';
 import Checkbox from '../Checkbox';
+import { reqPut } from '../../utils/requestBody';
 
 export default function EditProductForm({ product, onCloseForm }) {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token.token);
 
   return (
     <Formik
@@ -25,16 +25,10 @@ export default function EditProductForm({ product, onCloseForm }) {
       onSubmit={
         async (values, { setSubmitting }) => {
           try {
-            await fetchData(`${baseUrl}products/${product._id}`, {
-              method: "PUT",
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(values)
-            });
+            await fetchData(`${baseUrl}products/${product._id}`, reqPut(JSON.stringify(values)));
             onCloseForm()
             setSubmitting(false);
+            dispatch(setModalType('saved'))
           } catch (error) {
             dispatch(setErrorAction(error.message));
             dispatch(setModalType('error'))

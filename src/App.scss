@@ -34,6 +34,14 @@ body {
   flex: 1 0 auto;
 }
 
+#root:has(#main:empty) {
+  display: none;
+}
+// html:has(#main:empty),
+// body:has(#main:empty) {
+//   visibility: hidden;
+// }
+
 // #root {
 //   display: flex;
 //   flex-direction: column;

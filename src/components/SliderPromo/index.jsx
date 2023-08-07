@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/css';
@@ -37,8 +38,7 @@ function SliderPromo({ products }) {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        className={styles.promoSlider}
-      >
+        className={styles.promoSlider}>
         <div slot="container-start" className={styles.promoSlider__container}>
           <div className={styles.promoSlider__prevBtn} ref={prevBtnRef}>
             <Arrow fill="#202025" />
@@ -47,65 +47,61 @@ function SliderPromo({ products }) {
             <Arrow fill="#E1E2E2" />
           </div>
         </div>
-        {products.map((product) => {
+        {products?.map((product) => {
           const { imageUrl, product: { _id, itemNo, name, authorIcon, author } } = product;
           return (
             <SwiperSlide
               key={_id}
-              className={styles.promoSlider__slide}
-            >
-              <img src={imageUrl} alt={name} className={styles.promoSlider__slide_img} loading="lazy" />
+              className={`${styles.promoSlider__slide} ${styles.slide}`}>
+              <img src={imageUrl} alt={name} className={styles.slide__img} loading="lazy" />
               <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-              <div className={styles.promoSlider__container}>
-                <div className={styles.promoSlider__inner}>
-                  <div className={styles.promoSlider__meta}>
-                    <Link
-                      to={`/product/${itemNo}`}
-                      className={styles.promoSlider__meta_prod}
-                    >
-                      {name}
-                    </Link>
-                    <Link
-                      to={`/author/${author}`}
-                      className={styles.promoSlider__meta_auth}
-                    >
-                      <div className={styles.promoSlider__meta_img}>
-                        <img src={authorIcon || '/images/avatars/user-icon.png'} alt="avatar" />
-                      </div>
-                      {author}
-                    </Link>
-                  </div>
-                  <div className={styles.promoSlider__btns}>
-                    <Link
-                      to={`/product/${itemNo}`}
-                      className={styles.promoSlider__btns_link}
-                    >
+              {/* <div className={styles.promoSlider__container}> */}
+              <div className={styles.slide__inner}>
+                <div className={`${styles.slide__meta} ${styles.meta}`}>
+                  <Link
+                    to={`/product/${itemNo}`}
+                    className={styles.meta__prod}>
+                    {name}
+                  </Link>
+                  <Link
+                    to={`/author/${author}`}
+                    className={styles.meta__auth}>
+                    <div className={styles.meta__img}>
+                      <img src={authorIcon || '/images/avatars/user-icon.png'} alt="avatar" />
+                    </div>
+                    {author}
+                  </Link>
+                </div>
+                <div className={`${styles.slide__btns} ${styles.btns}`}>
+                  <Link
+                    to={`/product/${itemNo}`}
+                    className={styles.btns__link}>
+                    <span>
+                      View NFT
+                      <Arrow fill="#F7FBFA" />
+                    </span>
+                  </Link>
+                  {!isInCart(cart, _id)
+                    ?
+                    <button
+                      type='button'
+                      onClick={() => buyNowHandler(dispatch, _id, token)}
+                      className={styles.btns__buy}>
+                      <span>BUY NOW</span>
+                    </button>
+                    : <Link
+                      to={'/cart'}
+                      className={styles.btns__buy}
+                      type='button'>
                       <span>
-                        View NFT
-                        <Arrow fill="#F7FBFA" />
+                        view cart
+                        <Basket color='#202025' strokeWidth='2.5' />
                       </span>
                     </Link>
-                    {!isInCart(cart, _id)
-                      ?
-                      <button
-                        type='button'
-                        onClick={() => buyNowHandler(dispatch, _id, token)}
-                        className={styles.promoSlider__btns_buy}>
-                        <span>BUY NOW</span>
-                      </button>
-                      : <Link
-                        to={'/cart'}
-                        className={styles.promoSlider__btns_buy}
-                        type='button'>
-                        <span>
-                          view cart
-                          <Basket color='#202025' strokeWidth='2.5' />
-                        </span>
-                      </Link>
-                    }
-                  </div>
+                  }
                 </div>
               </div>
+              {/* </div> */}
             </SwiperSlide>
           )
         })}
@@ -120,8 +116,7 @@ function SliderPromo({ products }) {
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
           direction="vertical"
-          className={styles.promoThumbs__container}
-        >
+          className={styles.promoThumbs__container}>
           {products.map((product) => {
             const { _id, imageUrl, product: { name } } = product
             return (
@@ -135,5 +130,9 @@ function SliderPromo({ products }) {
     </>
   );
 }
+
+SliderPromo.propTypes = {
+  products: PropTypes.array.isRequired,
+};
 
 export default SliderPromo;
