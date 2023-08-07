@@ -29,8 +29,9 @@
     display: flex;
     flex-basis: 20%;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 5px;
+    min-width: 100px;
   }
 
   &__btnDelete {
@@ -110,7 +111,7 @@
     }
 
     &__quantity {
-      flex-basis: 10%;
+      min-width: 100px;
     }
   }
 }
@@ -119,10 +120,6 @@
   .cartListItem {
     &__description {
       flex-basis: 40%;
-    }
-
-    &__quantity {
-      flex-basis: 20%;
     }
   }
 
@@ -143,10 +140,6 @@
     &__description {
       flex-basis: 50%;
     }
-
-    &__quantity {
-      flex-basis: 10%;
-    }
   }
 
   .description {
@@ -164,11 +157,6 @@
     &__description {
       display: block;
       flex-basis: 40%;
-    }
-
-    &__quantity {
-      justify-content: space-between;
-      font-size: 18px;
     }
   }
 
